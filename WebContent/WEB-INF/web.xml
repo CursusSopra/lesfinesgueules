@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	
-	<display-name>00-Template</display-name>
+	<display-name>Les Fines Gueules !</display-name>
 	
 	<welcome-file-list>
 		<welcome-file>retourIndex.action</welcome-file>
