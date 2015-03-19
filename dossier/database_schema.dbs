@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="finesgueules" id="Project7286647" template="Default" database="PostgreSQL" >
+	<comment><![CDATA[Les fines gueules]]></comment>
+	<schema name="finesgueules" schemaname="finesgueules" defo="y" >
+		<table name="commentaires" >
+			<column name="id_commentaire" type="serial" jt="4" mandatory="y" />
+			<column name="id_utilisateur" type="serial" jt="4" mandatory="y" />
+			<column name="avis" type="text" jt="12" />
+			<column name="note" type="integer" length="600" jt="4" mandatory="y" />
+			<column name="etat" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[-1 = comm rejete
+ = en attente de validation
+1 = valide]]></comment>
+			</column>
+			<index name="pk_commentaires" unique="PRIMARY_KEY" >
+				<column name="id_commentaire" />
+			</index>
+			<index name="idx_commentaires" unique="NORMAL" >
+				<column name="id_utilisateur" />
+			</index>
+			<fk name="fk_commentaires_utilisateurs" to_schema="finesgueules" to_table="utilisateurs" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_utilisateur" pk="id_utilisateur" />
+			</fk>
+		</table>
+		<table name="commentaires_produits" >
+			<column name="id_commentaire" type="bigint" jt="-5" mandatory="y" />
+			<column name="id_produit" type="bigint" jt="-5" mandatory="y" />
+			<index name="idx_commentaires_produits" unique="NORMAL" >
+				<column name="id_commentaire" />
+			</index>
+			<index name="idx_commentaires_produits_0" unique="NORMAL" >
+				<column name="id_produit" />
+			</index>
+			<index name="pk_commentaires_produits" unique="PRIMARY_KEY" >
+				<column name="id_commentaire" />
+				<column name="id_produit" />
+			</index>
+			<fk name="fk_commentaires_produits_commentaires" to_schema="finesgueules" to_table="commentaires" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_commentaire" pk="id_commentaire" />
+			</fk>
+			<fk name="fk_commentaires_produits_produits" to_schema="finesgueules" to_table="produits" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_produit" pk="id_produit" />
+			</fk>
+		</table>
+		<table name="items_commandes" >
+			<column name="id_item_commande" type="serial" jt="4" mandatory="y" />
+			<column name="id_utilisateur" type="bigint" jt="-5" mandatory="y" />
+			<column name="id_produit" type="bigint" jt="-5" mandatory="y" />
+			<column name="etat" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[-1 = commande dans le panier, non validee
+0 = commande validee en cours de livraison
+1 = commande livree, archivee]]></comment>
+			</column>
+			<column name="quantite" type="integer" jt="4" mandatory="y" />
+			<column name="moyen_paiement" type="integer" jt="4" mandatory="y" />
+			<column name="ts_creation" type="timestamp" jt="93" />
+			<column name="ts_validation" type="timestamp" jt="93" />
+			<column name="ts_archivage" type="timestamp" jt="93" />
+			<index name="pk_commandes" unique="PRIMARY_KEY" >
+				<column name="id_item_commande" />
+			</index>
+			<index name="idx_commandes_0" unique="NORMAL" >
+				<column name="id_produit" />
+			</index>
+			<index name="idx_commandes" unique="NORMAL" >
+				<column name="id_utilisateur" />
+			</index>
+			<fk name="fk_commandes_produits" to_schema="finesgueules" to_table="produits" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_produit" pk="id_produit" />
+			</fk>
+			<fk name="fk_commandes_utilisateurs" to_schema="finesgueules" to_table="utilisateurs" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_utilisateur" pk="id_utilisateur" />
+			</fk>
+		</table>
+		<table name="producteurs" >
+			<column name="id_producteur" type="serial" jt="4" mandatory="y" />
+			<column name="raison_sociale" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="siren" type="integer" jt="4" mandatory="y" />
+			<column name="ligne_adresse1" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="ligne_adresse2" type="varchar" length="50" jt="12" />
+			<column name="code_postal" type="char" length="5" jt="1" mandatory="y" />
+			<column name="ville" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="gps" type="varchar" length="25" jt="12" mandatory="y" />
+			<column name="description" type="text" jt="12" mandatory="y" />
+			<column name="delai_livraison" type="integer" jt="4" mandatory="y" />
+			<column name="photo" type="varchar" length="50" jt="12" mandatory="y" />
+			<index name="pk_producteurs" unique="PRIMARY_KEY" >
+				<column name="id_producteur" />
+			</index>
+		</table>
+		<table name="produits" >
+			<column name="id_produit" type="serial" jt="4" mandatory="y" />
+			<column name="id_producteur" type="bigint" jt="-5" mandatory="y" />
+			<column name="id_type2" type="bigint" jt="-5" mandatory="y" />
+			<column name="description" type="text" jt="12" />
+			<column name="prix" type="numeric" length="0" decimal="2" jt="2" mandatory="y" >
+				<comment><![CDATA[prix unitaire]]></comment>
+			</column>
+			<column name="designation" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="photo" type="varchar" length="50" jt="12" />
+			<column name="disponible" type="bool" jt="-7" mandatory="y" />
+			<index name="pk_produits" unique="PRIMARY_KEY" >
+				<column name="id_produit" />
+			</index>
+			<index name="idx_produits" unique="NORMAL" >
+				<column name="id_producteur" />
+			</index>
+			<index name="idx_produits_0" unique="NORMAL" >
+				<column name="id_type2" />
+			</index>
+			<fk name="fk_produits_producteurs" to_schema="finesgueules" to_table="producteurs" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_producteur" pk="id_producteur" />
+			</fk>
+			<fk name="fk_produits_types2" to_schema="finesgueules" to_table="types2" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_type2" pk="id_type2" />
+			</fk>
+		</table>
+		<table name="types1" >
+			<column name="id_type1" type="serial" jt="4" mandatory="y" />
+			<column name="libelle1" type="varchar" length="50" jt="12" mandatory="y" />
+			<index name="pk_types1" unique="PRIMARY_KEY" >
+				<column name="id_type1" />
+			</index>
+		</table>
+		<table name="types2" >
+			<column name="id_type2" type="serial" jt="4" mandatory="y" />
+			<column name="id_type1" type="bigint" jt="-5" mandatory="y" />
+			<column name="libelle2" type="varchar" length="50" jt="12" mandatory="y" />
+			<index name="pk_types1_0" unique="PRIMARY_KEY" >
+				<column name="id_type2" />
+			</index>
+			<index name="idx_types2" unique="NORMAL" >
+				<column name="id_type1" />
+			</index>
+			<fk name="fk_types2_types1" to_schema="finesgueules" to_table="types1" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_type1" pk="id_type1" />
+			</fk>
+		</table>
+		<table name="utilisateurs" >
+			<column name="id_utilisateur" type="serial" jt="4" mandatory="y" />
+			<column name="nom" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="prenom" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="ligne_adresse1" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="ligne_adresse2" type="varchar" length="50" jt="12" />
+			<column name="code_postal" type="char" length="5" jt="1" mandatory="y" />
+			<column name="ville" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="email" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="mdp" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="tel" type="char" length="10" jt="1" mandatory="y" />
+			<column name="photo" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="droits" type="integer" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<index name="pk_clients" unique="PRIMARY_KEY" >
+				<column name="id_utilisateur" />
+			</index>
+		</table>
+	</schema>
+	<layout id="Layout7286652" name="finesgueules" show_relation_columns="y" >
+		<entity schema="finesgueules" name="utilisateurs" color="b2cdf7" x="420" y="45" />
+		<entity schema="finesgueules" name="producteurs" color="b2cdf7" x="270" y="105" />
+		<entity schema="finesgueules" name="types2" color="b2cdf7" x="420" y="375" />
+		<entity schema="finesgueules" name="types1" color="b2cdf7" x="570" y="375" />
+		<entity schema="finesgueules" name="commentaires_produits" color="b2cdf7" x="45" y="285" />
+		<entity schema="finesgueules" name="commentaires" color="b2cdf7" x="105" y="60" />
+		<entity schema="finesgueules" name="items_commandes" color="b2cdf7" x="705" y="330" />
+		<entity schema="finesgueules" name="produits" color="b2cdf7" x="240" y="390" />
+	</layout>
+</project>
