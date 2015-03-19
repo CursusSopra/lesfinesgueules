@@ -11,7 +11,6 @@
 	<definition name="index" extends="baseLayout">
 		<put-attribute name="title" value="Accueil" />
 		<put-attribute name="body" value="/views/index.jsp" />
-		
 	</definition>
 
 </tiles-definitions>
