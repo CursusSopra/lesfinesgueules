@@ -1,19 +1,16 @@
 package fr.cursusSopra.dataLayer.admin;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import fr.cursusSopra.tech.PostgresConnection;
+import fr.cursusSopra.dataLayer.DataLayerExtended;
 
-public class ProducteurDal {
-	
-	//on demande a la classe PostgresConnection de nous connecter a la table par cette classe "static".
-	private Connection connection = PostgresConnection.getConnection();
+public class ProducteurDal extends DataLayerExtended {
 		
-	private final static String rqInsert = "INSERT INTO membres (nom, prenom, idsexe, datenaissance, pseudo, mail, motdepasse) VALUES (?,?,?,?,?,?,?)";
+	private final static String rqInsert = 
+			"INSERT INTO membres (raison_sociale, siren, ligne_adresse_1, ligne_adresse_2, code_postal, ville, gps, description, delai_livraison) VALUES (?,?,?,?,?,?,?,?,?)";
 	
 	private long idProducteur;
 	
@@ -54,7 +51,7 @@ public class ProducteurDal {
 		ps.setString(6, ville);
 		ps.setString(7, coordonneesGPS);
 		ps.setString(8, description);
-		ps.setInt(9, delaiLivraison);
+		ps.setInt   (9, delaiLivraison);
 		
 		ps.executeUpdate();
 		

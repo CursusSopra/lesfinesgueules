@@ -1,4 +1,4 @@
-package fr.cursusSopra.metier.admin;
+package fr.cursusSopra.model;
 
 import java.sql.SQLException;
 
@@ -58,10 +58,8 @@ public class Producteur {
 	
 	public void save() throws SQLException{
 			
-		ProducteurDal cd = new ProducteurDal();
+		ProducteurDal cd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, coordonneesGPS, description, delaiLivraison);
 		idProducteur = cd.save();
 		//System.out.println(idProducteur);
 	}
-	
-	
 }
