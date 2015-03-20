@@ -15,7 +15,7 @@
 	
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" href="../../favicon.ico">
+	<link rel="icon" href="images/favicon.ico">
 	
 	<!-- PAGE TITLE -->
 	<title><tiles:getAsString name="title" /></title>
@@ -102,7 +102,16 @@
 			<!-- Page Heading/Breadcrumbs -->
 			<br>
 			<ol class="breadcrumb">
-				<li><a href="<s:url action="retourIndex"></s:url>">Index</a></li>
+				<s:iterator value="listeBreadcrumbs">
+					<s:set var="targetAction" value="action" />
+					<li><a href="<s:url action="%{#targetAction}" />"><s:property value='nom' /></a></li>
+<%-- 					<s:url action="displayCinema" var="dc"> --%>
+<%-- 						<s:param name="idc"> --%>
+<%-- 							<s:property value="idCinema" /> --%>
+<%-- 						</s:param> --%>
+<%-- 					</s:url> --%>
+<%-- 					<li><a href="<s:property value='#dc'/>"><s:property value="nom" /></a></li> --%>
+				</s:iterator>
 				<li class="active"><tiles:getAsString name="title" /></li>
 			</ol>
 
