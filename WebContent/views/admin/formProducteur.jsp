@@ -1,12 +1,37 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<%-- <s:if test="!firstDisplay"> --%>
-<!-- 	<p class="bg-danger text-center"> -->
-<%-- 		<br /> <strong>Il y a des problèmes de données, voyez les --%>
-<%-- 			messages ci-dessous.</strong><br />&nbsp; --%>
-<!-- 	</p> -->
-<%-- </s:if> --%>
+
+<!-- On ajoute ce qui est dans le "if" si "saveBDD" n'est pas vrai -->
+<s:if test="saveBDD">
+	<p class="bg-danger"><br/>Il y a des problèmes, voyez les messages ci-dessous:
+		<s:if test="!raisonSocialeOK">
+			<br/> La raison sociale de votre exploitation est obligatoire
+		</s:if>
+		<s:if test="!sirenOK">
+			<br/> Votre code siren est obligatoire
+		</s:if>
+		<s:if test="!ligneAdresse1OK">
+			<br/> Vous devez saisir votre adresse
+		</s:if>
+		<s:if test="!codePostalOK">
+			<br/> Votre code postal contient des erreurs
+		</s:if>
+		<s:if test="!villeOK">
+			<br/> Vous devez saisir une ville
+		</s:if>
+		<s:if test="!coordonneesGPSOK">
+			<br/> Vos coordonnées GPS ne sont pas valides
+		</s:if>
+		<s:if test="!descriptionOK">
+			<br/> Veuillez décrire votre exploitation
+		</s:if>
+	</p>
+</s:if>
+
+
+
+
 
 <div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
 	<form class="form-horizontal" id="FormProducteur" method="post"
