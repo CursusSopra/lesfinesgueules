@@ -13,7 +13,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label">Type 1</label>
 				<div class="col-sm-4">
-					 <select name="idType1">
+					 <select name="listeDesTypes1">
 					 	<s:iterator value="listeDesTypes1">
 						  <option value="<s:property value="key"/>">
 						  <s:property value="value"/>
