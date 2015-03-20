@@ -1,8 +1,12 @@
 package fr.cursusSopra.action;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import fr.cursusSopra.tech.Breadcrumbs;
 
 public abstract class ActionSupportExtended extends ActionSupport {
 
@@ -11,9 +15,14 @@ public abstract class ActionSupportExtended extends ActionSupport {
 	private Date dateDuJour;
 	private final String lang = "en";
 	
+	private List<Breadcrumbs> listeBreadcrumbs;
+	
 	public ActionSupportExtended () {
 		
 		dateDuJour = new Date();
+		listeBreadcrumbs = new ArrayList<Breadcrumbs>();
+		
+		listeBreadcrumbs.add(new Breadcrumbs("Accueil", "retourIndex"));
 		
 	}
 
@@ -24,5 +33,11 @@ public abstract class ActionSupportExtended extends ActionSupport {
 	public String getLang() {
 		return lang;
 	}
+
+	public List<Breadcrumbs> getListeBreadcrumbs() {
+		return listeBreadcrumbs;
+	}
+	
+	
 }
 	
