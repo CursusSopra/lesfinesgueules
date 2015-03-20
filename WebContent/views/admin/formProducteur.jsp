@@ -8,13 +8,13 @@
 <!-- 	</p> -->
 <%-- </s:if> --%>
 
-<div class="row" id="divFormProducteur"
-	data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
-
+<div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
 	<form class="form-horizontal" id="FormProducteur" method="post"
 		action="<s:url action='createProducteur' />">
 		<fieldset>
+		
 			<legend> Producteur : </legend>
+			
 			<div class="form-group">
 				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du
 					producteur</label>
@@ -24,6 +24,7 @@
 						placeholder="Raison sociale du producteur"> 
 				</div>
 			</div>
+			
 			<div class="form-group">
 				<label for="idSiren" class="col-sm-2 control-label">SIREN</label>
 				<div class="col-sm-6">
@@ -32,6 +33,74 @@
 						placeholder="numero Siren"> 
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label for="idDelai" class="col-sm-2 control-label">Délai de livraison</label>
+				<div class="col-sm-2">
+					<input type="number" class="form-control" id="idDelai" name="delaiLivraison" 
+						value="<s:property value="delaiLivraison" />" >
+				</div>
+			</div>
+			
+			<div class="form-group"> -->
+				<label for="idDescription" class="col-sm-2 control-label">Description</label>
+				<div class="col-sm-6">
+					<textarea class="form-control" name="description" id="idDescription" rows="5"
+						placeholder="Vous avez droit à 100 caractères">
+					<s:property value="description" />
+					</textarea>
+				</div>
+			</div>
+		</fieldset>
+			
+			
+			
+			
+			
+		<fieldset>
+			<legend> Adresse : </legend>
+			<div class="form-group">
+				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="idLigneAdresse1"
+						name="ligneAdresse1" value="<s:property value="ligneAdresse1" />"
+						placeholder="Rue">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="idCodePostal" class="col-sm-2 control-label">Code
+					Postal</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="idCodePostal"
+						name="codePostal" pattern="\d{5}"
+						value="<s:property value="codePostal" />"> <span
+ 						id="idHelpCodePostal" class="help-block"></span>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="inputVille" class="col-sm-2 control-label">Ville</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="idVille" name="ville"
+						value="<s:property value="ville" />" placeholder="Ville">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="idGPS" class="col-sm-2 control-label">Coordonnées GPS</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-lg" id="idGPS"
+						name="coordonneesgps" value="<s:property value="coordonneesgps"/>"
+						placeholder="Coordonnées GPS">
+				</div>
+			</div>
+		</fieldset>
+			
+			
+			
+			
+			
 
 <!-- 			<div class="form-group"> -->
 <!-- 				<label for="inputNombreDeSalles" class="col-sm-2 control-label">Nombre -->
@@ -53,16 +122,7 @@
 <!-- 					</div> -->
 <!-- 				</div> -->
 <!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="idDescription" class="col-sm-2 control-label">Description</label> -->
-<!-- 				<div class="col-sm-6"> -->
-<!-- 					<textarea class="form-control" name="description" -->
-<!-- 						id="idDescription" rows="5" -->
-<!-- 						placeholder="Vous avez droit à 100 caractères"> -->
-<%-- 				<s:property value="description" /> --%>
-<!-- 				</textarea> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+<!-- 			
 <!-- 			<div class="form-group"> -->
 <!-- 				<label for="idType" class="col-sm-2 control-label">Type</label> -->
 <!-- 				<div class="col-sm-6"> -->
@@ -80,36 +140,10 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 <!-- 		</fieldset> -->
-<!-- 		<fieldset> -->
-<!-- 			<legend> Adresse : </legend> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue</label> -->
-<!-- 				<div class="col-sm-3"> -->
-<!-- 					<input type="text" class="form-control" id="idLigneAdresse1" -->
-<%-- 						name="ligneAdresse1" value="<s:property value="ligneAdresse1" />" --%>
-<!-- 						placeholder="Rue"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="idCodePostal" class="col-sm-2 control-label">Code -->
-<!-- 					Postal</label> -->
-<!-- 				<div class="col-sm-2"> -->
-<!-- 					<input type="text" class="form-control" id="idCodePostal" -->
-<!-- 						name="codePostal" pattern="\d{5}" -->
-<%-- 						value="<s:property value="codePostal" />"> <span --%>
-<%-- 						id="idHelpCodePostal" class="help-block"></span> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="inputVille" class="col-sm-2 control-label">Ville</label> -->
-<!-- 				<div class="col-sm-3"> -->
-<!-- 					<input type="text" class="form-control" id="idVille" name="ville" -->
-<%-- 						value="<s:property value="ville" />" placeholder="Ville"> --%>
-<!-- 				</div> -->
 
-<!-- 			</div> -->
-		</fieldset>
-
+		
+		
+		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button>
