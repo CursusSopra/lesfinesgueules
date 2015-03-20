@@ -4,9 +4,10 @@ import java.sql.SQLException;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.model.Producteur;
 
-public class ProducteurAction extends ActionSupport {
+public class ProducteurAction extends ActionSupportExtended {
 	
 	/**
 	 * 
