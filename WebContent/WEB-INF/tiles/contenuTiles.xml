@@ -9,7 +9,7 @@
 
 	<!-- LISTE PRODUITS -->
 	<definition name="listeProduits" extends="baseLayout">
-		<put-attribute name="title" value="Liste des produits..." />
+		<put-attribute name="title" value="Liste des produits" />
 		<put-attribute name="body" value="/views/contenu/listeProduits.jsp" />
 <!-- 		<put-list-attribute name="moreScripts"> -->
 <!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
@@ -20,5 +20,20 @@
 <!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
 <!-- 		</put-list-attribute> -->
 	</definition>
+	
+	<!-- RECHERCHE -->
+	<definition name="recherche" extends="baseLayout">
+		<put-attribute name="title" value="Recherche" />
+		<put-attribute name="body" value="/views/contenu/recherche.jsp" />
+<!-- 		<put-list-attribute name="moreScripts"> -->
+<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
+<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
+<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
+<!-- 		</put-list-attribute> -->
+<!-- 		<put-list-attribute name="moreStyles"> -->
+<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
+<!-- 		</put-list-attribute> -->
+	</definition>
+	
 
 </tiles-definitions>
