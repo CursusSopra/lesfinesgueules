@@ -1,8 +1,8 @@
 package fr.cursusSopra.action.contenu;
 
-import com.opensymphony.xwork2.ActionSupport;
+import fr.cursusSopra.action.*;
 
-public class ListeProduitsAction extends ActionSupport {
+public class ListeProduitsAction extends ActionSupportExtended {
 	
 	public String execute() {
 		return SUCCESS;

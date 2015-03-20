@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-abstract class ActionSupportExtended extends ActionSupport {
+public abstract class ActionSupportExtended extends ActionSupport {
 
 	private static final long serialVersionUID = -4931119770070210257L;
 
