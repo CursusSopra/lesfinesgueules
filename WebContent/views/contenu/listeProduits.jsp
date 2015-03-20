@@ -13,7 +13,9 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>PHOTO</td>
+				<td>
+					<img alt="image" src="">
+				</td>
 				<td>
 					<h4>Nom de mon produit</h4>
 					<p>Description de mon produit</p>
