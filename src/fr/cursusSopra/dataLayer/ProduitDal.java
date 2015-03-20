@@ -1,5 +1,6 @@
 package fr.cursusSopra.dataLayer;
 
-public class ProduitDaL {
-
+public class ProduitDal {
+	public ProduitDal() {
+	}
 }
