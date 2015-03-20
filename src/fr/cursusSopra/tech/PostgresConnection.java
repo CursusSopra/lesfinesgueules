@@ -4,19 +4,33 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class PostgresConnection {
-	static String server = "localhost";
-	static String user = "postgres";
-	static String passwd = "postgres";
 	
-	static String bdd = "sortiralyon";
+	// Static car partagee par toutes les instances de this
+	private static PostgresConnection instance = null;
 	
-	public static void setBdd(String bdd) {
-		PostgresConnection.bdd = bdd;
+	private Connection connection = null;
+	
+	private String server = "localhost";
+	private String user = "postgres";
+	private String passwd = "postgres";
+	
+	// constructeur private, accessible uniquement par la classe elle même
+	private PostgresConnection() {
 	}
 	
-	public static Connection getConnection() {		
-		HostnameConnection hostnameConnection = HostnameConnection.getInstance();
-		if(!hostnameConnection.getHostName().equals("localhost")) {
+	// getInstance(), c'est une methode PUBLIC, c'est par cette methode qu'on instancie l'objet unique "PostgresConnection"
+	// C'est une methode STATIC car cette methode doit etre executable sans avoir besoin d'instancier this
+	public static PostgresConnection getInstance() {
+		if (instance == null) {
+			instance = new PostgresConnection();
+		}
+		return instance;
+	}
+	
+	// Set the bdd name to work on, and also defines the connection
+	public void setBdd(String bdd) {
+		
+		if(!HostnameConnection.getInstance().getHostName().equals("localhost")) {
 			server = "s2.neggruda.net";
 			user = "cursussopra";
 			passwd = "cursussopra";			
@@ -25,11 +39,15 @@ public class PostgresConnection {
         try {
             Class.forName("org.postgresql.Driver");
             String url = String.format("jdbc:postgresql://%s/%s", server, bdd);
-            return DriverManager.getConnection(url, user, passwd);
+            connection = DriverManager.getConnection(url, user, passwd);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+	}
 
-        return null;
-    }
+	public Connection getConnection() {
+		return connection;
+	}
+	
 }
