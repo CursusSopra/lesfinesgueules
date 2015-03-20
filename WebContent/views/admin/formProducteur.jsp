@@ -2,8 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 
-<!-- On ajoute ce qui est dans le "if" si "saveBDD" n'est pas vrai -->
-<s:if test="saveBDD">
+<s:if test="!firstDisplay">
 	<p class="bg-danger"><br/>Il y a des problèmes, voyez les messages ci-dessous:
 		<s:if test="!raisonSocialeOK">
 			<br/> La raison sociale de votre exploitation est obligatoire
@@ -26,16 +25,28 @@
 		<s:if test="!descriptionOK">
 			<br/> Veuillez décrire votre exploitation
 		</s:if>
+		<s:if test="!delaiLivraisonOK">
+			<br/> Votre délai n'est pas correct
+		</s:if>
 	</p>
 </s:if>
 
-
-
+<s:if test="firstDisplay">
+	<s:if test="createSuccess">
+		<p class="bg-danger"><br/>Bravo, vous êtes référencé(e) parmi nos fines gueules.
+		</p>
+	</s:if>
+	<s:if test="!createSuccess">
+		<p class="bg-danger"><br/>Vos données sont correctes mais nous avons rencontré un problème 
+									lors de votre enregistrement.
+		</p>
+	</s:if>
+</s:if>
 
 
 <div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
 	<form class="form-horizontal" id="FormProducteur" method="post"
-		action="<s:url action='createProducteur' />">
+		action="<s:url action='ajout-producteur' />">
 		<fieldset>
 		
 			<legend> Producteur : </legend>
@@ -62,12 +73,12 @@
 			<div class="form-group">
 				<label for="idDelai" class="col-sm-2 control-label">Délai de livraison</label>
 				<div class="col-sm-2">
-					<input type="number" class="form-control" id="idDelai" name="delaiLivraison" 
+					<input type="number" class="form-control" id="idDelai" name="delaiLivraison" min="0"
 						value="<s:property value="delaiLivraison" />" >
 				</div>
 			</div>
 			
-			<div class="form-group"> -->
+			<div class="form-group">
 				<label for="idDescription" class="col-sm-2 control-label">Description</label>
 				<div class="col-sm-6">
 					<textarea class="form-control" name="description" id="idDescription" rows="5"
@@ -77,9 +88,6 @@
 				</div>
 			</div>
 		</fieldset>
-			
-			
-			
 			
 			
 		<fieldset>

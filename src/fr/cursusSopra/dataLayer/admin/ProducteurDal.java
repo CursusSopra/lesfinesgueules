@@ -10,7 +10,7 @@ import fr.cursusSopra.dataLayer.DataLayerExtended;
 public class ProducteurDal extends DataLayerExtended {
 		
 	private final static String rqInsert = 
-			"INSERT INTO membres (raison_sociale, siren, ligne_adresse_1, ligne_adresse_2, code_postal, ville, gps, description, delai_livraison) VALUES (?,?,?,?,?,?,?,?,?)";
+		"INSERT INTO producteurs (raison_sociale, siren, ligne_adresse_1, ligne_adresse_2, code_postal, ville, gps, description, delai_livraison) VALUES (?,?,?,?,?,?,?,?,?)";
 	
 	private long idProducteur;
 	
@@ -62,5 +62,4 @@ public class ProducteurDal extends DataLayerExtended {
 		}
 		return idProducteur;
 	}
-	
 }

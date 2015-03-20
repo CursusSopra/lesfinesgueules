@@ -17,6 +17,7 @@ public class Producteur {
 	private String coordonneesGPS;
 	private String description;
 	private int delaiLivraison;
+	private String photo;
 	
 	
 	public String getRaisonSociale() {return raisonSociale;}
@@ -39,7 +40,25 @@ public class Producteur {
 	public void setDelaiLivraison(int delaiLivraison) {this.delaiLivraison = delaiLivraison;}
 	public long getIdProducteur() {return idProducteur;}
 	public void setIdProducteur(long idProducteur) {this.idProducteur = idProducteur;}
+	public String getPhoto() {return photo;}
+	public void setPhoto(String photo) {this.photo = photo;}
 	
+	
+	public Producteur(String raisonSociale, String siren, String ligneAdresse1,
+			String ligneAdresse2, String codePostal, String ville,
+			String coordonneesGPS, String description, int delaiLivraison, String photo) {
+		
+		this.raisonSociale = raisonSociale;
+		this.siren = siren;
+		this.ligneAdresse1 = ligneAdresse1;
+		this.ligneAdresse2 = ligneAdresse2;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.coordonneesGPS = coordonneesGPS;
+		this.description = description;
+		this.delaiLivraison = delaiLivraison;
+		this.photo = photo;
+	}
 	
 	public Producteur(String raisonSociale, String siren, String ligneAdresse1,
 			String ligneAdresse2, String codePostal, String ville,

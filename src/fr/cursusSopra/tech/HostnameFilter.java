@@ -22,8 +22,6 @@ public class HostnameFilter implements javax.servlet.Filter {
 		HostnameConnection hostnameConnexion = HostnameConnection.getInstance();		
 		hostnameConnexion.setHostName(request.getServerName());
 		
-		PostgresConnection.getInstance().setBdd("finesgueules");
-		
 //		System.out.println(request.getServerName());
 		
 		filterChain.doFilter(request, response);

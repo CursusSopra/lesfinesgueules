@@ -10,7 +10,7 @@ public abstract class DataLayerExtended {
 	
 	public DataLayerExtended() {
 		
-		connection = PostgresConnection.getInstance().getConnection();
+		connection = PostgresConnection.GetConnexion();
 		
 	}
 }

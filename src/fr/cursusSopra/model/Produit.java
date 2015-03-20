@@ -1,23 +1,29 @@
 package fr.cursusSopra.model;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import fr.cursusSopra.dataLayer.contenu.ProduitDal;
 
 public class Produit {
 	
 	/* PROPERTIES */
 	
+	private long idProduit;
 	private String designation;
 	private String description;
-	private Number prix;
+	private double prix;
 	private String photo;
 	private boolean disponible;
-	private String type1;
-	private String type2;
+	private long type1;
+	private long type2;
+	private long producteur;
 	private List<Commentaire> listeCommentaires;
 	
-	/* CONSTRUCTOR */
+	/* CONSTRUCTORS */
 	
-	public Produit(String designation, String description, Number prix, String photo, boolean disponible, String type1, String type2) {
+	public Produit(String designation, String description, double prix, String photo, boolean disponible, long type1, long type2, long producteur) {
 		this.designation = designation;
 		this.description = description;
 		this.prix = prix;
@@ -25,8 +31,46 @@ public class Produit {
 		this.disponible = disponible;
 		this.type1 = type1;
 		this.type2 = type2;
+		this.producteur = producteur;
+		
+		listeCommentaires = new ArrayList<Commentaire>();
+	}
+	
+	public Produit(long idProduit) throws SQLException {
+		ProduitDal pdal = new ProduitDal(idProduit);
+		
+		this.designation = pdal.getDesignation();
+		this.description = pdal.getDescription();
+		this.prix = pdal.getPrix();
+		this.photo = pdal.getPhoto();
+		this.disponible = pdal.isDisponible();
+		this.type1 = pdal.getType1();
+		this.type2 = pdal.getType2();
+		this.producteur = pdal.getProducteur();
 	}
 
+	/* METHODS */
+	
+	public static List<Produit> getListeProduits(long idType1, long idType2) throws Exception {
+		List<Produit> listeProduits = new ArrayList<Produit>();
+		List<ProduitDal> lpdal = ProduitDal.getListeProduitsDal(idType1, idType2);
+		for (int i = 0; i < lpdal.size(); i++) {
+			
+			String designation = lpdal.get(i).getDesignation();
+			String description = lpdal.get(i).getDescription();
+			double prix = lpdal.get(i).getPrix();
+			String photo = lpdal.get(i).getPhoto();
+			boolean disponible = lpdal.get(i).isDisponible();
+			long type1 = lpdal.get(i).getType1();
+			long type2 = lpdal.get(i).getType2();
+			long producteur = lpdal.get(i).getProducteur();
+			
+			Produit p = new Produit(designation, description, prix, photo, disponible, type1, type2, producteur);
+			listeProduits.add(p);
+		}
+		return listeProduits;
+	}
+	
 	/* ACCESSORS */
 
 	public String getDesignation() {
@@ -49,7 +93,7 @@ public class Produit {
 		return prix;
 	}
 
-	public void setPrix(Number prix) {
+	public void setPrix(double prix) {
 		this.prix = prix;
 	}
 
@@ -69,20 +113,36 @@ public class Produit {
 		this.disponible = disponible;
 	}
 
-	public String getType1() {
+	public long getType1() {
 		return type1;
 	}
 
-	public void setType1(String type1) {
+	public void setType1(long type1) {
 		this.type1 = type1;
 	}
 
-	public String getType2() {
+	public long getType2() {
 		return type2;
 	}
 
-	public void setType2(String type2) {
+	public void setType2(long type2) {
 		this.type2 = type2;
+	}
+
+	public long getProducteur() {
+		return producteur;
+	}
+
+	public void setProducteur(long producteur) {
+		this.producteur = producteur;
+	}
+
+	public List<Commentaire> getListeCommentaires() {
+		return listeCommentaires;
+	}
+
+	public void setListeCommentaires(List<Commentaire> listeCommentaires) {
+		this.listeCommentaires = listeCommentaires;
 	}
 	
 }
