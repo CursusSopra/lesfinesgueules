@@ -1,10 +1,17 @@
 package fr.cursusSopra.action.utilisateurs;
 
-import com.opensymphony.xwork2.ActionSupport;
+import java.sql.SQLException;
+
+import fr.cursusSopra.action.ActionSupportExtended;
 
 
-public class InscriptionAction extends ActionSupport{
+public class InscriptionAction extends ActionSupportExtended{
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5788642102104502456L;
 	
 	private String nom;
 	private String prenom;

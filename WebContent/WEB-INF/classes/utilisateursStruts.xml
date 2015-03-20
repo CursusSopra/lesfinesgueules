@@ -13,7 +13,7 @@
 		</result-types>
 
 		<!-- MON COMPTE -->
-		<action name="mon-compte" class="fr.cursusSopra.action.IndexAction" method="createProfilForm">
+		<action name="mon-compte" class="fr.cursusSopra.action.utilisateurs.InscriptionAction" method="createProfilForm">
 			<result name="success" type="tiles">mon-compte</result>
 		</action>
 		
