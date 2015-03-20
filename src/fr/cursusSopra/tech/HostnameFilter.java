@@ -19,7 +19,7 @@ public class HostnameFilter implements javax.servlet.Filter {
 			FilterChain filterChain) throws IOException, ServletException {
 		
 
-		HostnameConnexion hostnameConnexion = HostnameConnexion.getInstance();		
+		HostnameConnection hostnameConnexion = HostnameConnection.getInstance();		
 		hostnameConnexion.setHostName(request.getServerName());
 		
 //		System.out.println(request.getServerName());

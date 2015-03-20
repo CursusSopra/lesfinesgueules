@@ -11,7 +11,7 @@ public class PostgresConnection {
 		
 		String bdd = "lesfinesgueules";
 		
-		HostnameConnexion hostnameConnexion = HostnameConnexion.getInstance();
+		HostnameConnection hostnameConnexion = HostnameConnection.getInstance();
 		if(!hostnameConnexion.getHostName().equals("localhost")) {
 			server = "s2.neggruda.net";
 			user = "cursussopra";
