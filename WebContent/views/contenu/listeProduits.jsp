@@ -14,11 +14,11 @@
 		<tbody>
 			<tr>
 				<td>
-					<img alt="image" src="">
+					<img alt="image" width="200px" src="../../images/default.jpg">
 				</td>
 				<td>
 					<h4>Nom de mon produit</h4>
-					<p>Description de mon produit</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis enim nulla, eu pharetra nisl porta a. Sed sed pretium metus. Donec vitae nisl bibendum, ullamcorper ex quis, imperdiet purus. Vestibulum fringilla velit a tempor rutrum. Pellentesque orci mauris, ultrices nec orci a, fermentum suscipit metus. Sed nec vulputate ante. Vivamus massa turpis, sodales sed sollicitudin in, facilisis a tortor. Cras sit amet orci tortor. Quisque auctor facilisis orci. Proin nec tortor pharetra, mattis ligula sed, placerat sapien. Vestibulum accumsan tempor metus non pellentesque. Vestibulum varius tristique diam volutpat consequat. Morbi porttitor porta efficitur. Fusce rutrum felis sem, sit amet interdum eros placerat a. Duis pellentesque mauris nunc, vitae vehicula odio scelerisque sed. Ut est lectus, efficitur eget nisl nec, venenatis sodales est.</p>
 					<p>Prix : 9€20</p>
 				</td>
 			</tr>
