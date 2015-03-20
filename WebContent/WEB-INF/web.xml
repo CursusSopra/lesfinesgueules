@@ -50,6 +50,7 @@
 			/WEB-INF/tiles/utilisateursTiles.xml,
 			/WEB-INF/tiles/contenuTiles.xml,
 			/WEB-INF/tiles/adminTiles.xml
+<!-- 			, /WEB-INF/tiles/testTiles.xml -->
 		</param-value>
 	</context-param>
 	<!-- / DEFINITION DU LISTENER -->
