@@ -13,7 +13,8 @@
 		</result-types>
 
 		<!-- LISTE PRODUITS -->
-		<action name="ajout-producteur" class="fr.cursusSopra.action.IndexAction" method="execute">
+		<action name="ajout-producteur" class="fr.cursusSopra.action.admin.ProducteurAction" 
+			method="createProducteurForm">
 			<result name="success" type="tiles">ajout-producteur</result>
 		</action>
 
