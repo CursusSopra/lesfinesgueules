@@ -41,26 +41,21 @@
 		
 		<fieldset>
 		<legend > Recherche par producteurs :	</legend>
-		<div class="row">
-			<div class="form-group">
-				<label class="col-md-4 control-label">Type 1</label>
-				<div class="col-sm-4">
-					 <select name="idType1">
-					 	<s:iterator value="listeDesTypes1">
-						  <option value="<s:property value="key"/>">
-						  <s:property value="value"/>
-						  </option>
-						</s:iterator>
-					</select> 
+			<div class="row">
+				<div class="form-group">
+					<label class="col-md-4 control-label">Producteurs</label>
+					<div class="col-sm-4">
+						 <select name="idProducteurs">
+						 	<s:iterator value="listeDesProducteurs">
+							  <option value="<s:property value="key"/>">
+							  <s:property value="value"/>
+							  </option>
+							</s:iterator>
+						</select> 
+					</div>
 				</div>
 			</div>
-		
-		
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
-			</div>
-		</div>
+		</fieldset>
 	</form>
 
 </div>

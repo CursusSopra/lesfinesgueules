@@ -5,9 +5,15 @@
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+
+	<!-- BASE LAYOUT -->
 	<definition name="baseLayout" template="/layouts/_mainLayout.jsp">
+		<put-list-attribute name="moreStyles">
+			<add-attribute value="_css/mainLayout.css"></add-attribute>
+		</put-list-attribute>
 	</definition>
-	
+
+	<!-- INDEX -->
 	<definition name="index" extends="baseLayout">
 		<put-attribute name="title" value="Accueil" />
 		<put-attribute name="body" value="/views/index.jsp" />
