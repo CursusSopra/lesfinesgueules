@@ -13,8 +13,8 @@
 		</result-types>
 
 		<!-- LISTE PRODUITS -->
-		<action name="produits" class="fr.cursusSopra.action.IndexAction" method="execute">
-			<result name="success" type="tiles">produits</result>
+		<action name="listeProduits" class="fr.cursusSopra.action.contenu.ListeProduitsAction" method="execute">
+			<result name="success" type="tiles">listeProduits</result>
 		</action>
 
 	</package>
