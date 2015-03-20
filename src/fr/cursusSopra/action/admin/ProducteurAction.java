@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.model.Producteur;
+import fr.cursusSopra.tech.FormTools;
 
 public class ProducteurAction extends ActionSupportExtended {
 	
@@ -35,6 +36,8 @@ public class ProducteurAction extends ActionSupportExtended {
 	private boolean  coordonneesGPSOK;
 	private boolean  descriptionOK;
 	private boolean  delaiLivraisonOK;
+	
+	private boolean saveBDD = false;
 	
 	
 	public String getRaisonSociale() {return raisonSociale;}
@@ -78,17 +81,30 @@ public class ProducteurAction extends ActionSupportExtended {
 	//Fonction d'ajout d'un producteur en BDD
 	public String createProducteur() throws SQLException {
 		
-		// On instancie un objet 'Producteur'
-		Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, coordonneesGPS, description, delaiLivraison);
+		raisonSocialeOK = FormTools.isStrNotEmpty(raisonSociale);
+		sirenOK = FormTools.isStrNotEmpty(siren);
+		ligneAdresse1OK = FormTools.isStrNotEmpty(ligneAdresse1);
+		ligneAdresse2OK = FormTools.isStrNotEmpty(ligneAdresse2);
+		codePostalOK = FormTools.isZipValid(codePostal);
+		villeOK = FormTools.isStrNotEmpty(ville);
+		coordonneesGPSOK = FormTools.isStrNotEmpty(coordonneesGPS);
+		descriptionOK = FormTools.isStrNotEmpty(description);
 		
-		// On lui demande gentiment de se sauvegarder en BDD
-		prod.save();
-		idProducteur = prod.getIdProducteur();
-		System.out.println(idProducteur);
+		saveBDD = raisonSocialeOK && sirenOK && ligneAdresse1OK && ligneAdresse2OK && codePostalOK &&
+				villeOK && coordonneesGPSOK && descriptionOK;
 		
+		long idProducteur = 0;
 		
-		return SUCCESS;
-		
+		if(saveBDD){
+			// On instancie un objet 'Producteur'
+			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, coordonneesGPS, description, delaiLivraison);
+			
+			// On lui demande gentiment de se sauvegarder en BDD
+			prod.save();
+			idProducteur = prod.getIdProducteur();
+			System.out.println(idProducteur);
+		}
+		return saveBDD ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
 	
 }
