@@ -19,10 +19,8 @@ public class HostnameFilter implements javax.servlet.Filter {
 			FilterChain filterChain) throws IOException, ServletException {
 		
 
-		HostnameConnection hostnameConnexion = HostnameConnection.getInstance();		
+		HostnameConnexion hostnameConnexion = HostnameConnexion.getInstance();		
 		hostnameConnexion.setHostName(request.getServerName());
-		
-		PostgresConnection.getInstance().setBdd("lesfinesgueules");
 		
 //		System.out.println(request.getServerName());
 		
