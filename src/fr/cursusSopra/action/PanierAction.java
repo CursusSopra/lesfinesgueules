@@ -1,8 +1,14 @@
 package fr.cursusSopra.action;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
 
-public class PanierAction extends ActionSupport {
-	
+@Results({ @Result(name = "success", type="tiles", location = "index") })
+public class PanierAction extends ActionSupportExtended {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7191306713805918718L;
 
 }

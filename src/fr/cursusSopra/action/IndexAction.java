@@ -1,15 +1,17 @@
 package fr.cursusSopra.action;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
 
-public class IndexAction extends ActionSupport {
-	
+//@Results({ @Result(name = "success", type="tiles", location = "index") })
+public class IndexAction extends ActionSupportExtended {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2639338600299902248L;
 
-	public String execute(){
+	public String execute() {
 		return SUCCESS;
 	}
 

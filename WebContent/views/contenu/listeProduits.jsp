@@ -14,7 +14,7 @@
 		<tbody>
 			<tr>
 				<td>
-					<img alt="image" class="img-responsive img-thumbnail" width="200px" src="../../images/default.jpg" />
+					<img alt="image" class="img-responsive img-thumbnail" width="200px" src="images/default.jpg" />
 				</td>
 				<td>
 					<h4>Nom de mon produit</h4>
