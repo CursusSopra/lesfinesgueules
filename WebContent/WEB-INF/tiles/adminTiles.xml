@@ -10,7 +10,7 @@
 	<!-- FORM PRODUCTEURS -->
 	<definition name="ajout-producteur" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'un producteur à la bdd" />
-		<put-attribute name="body" value="/views/admin/formProducteurs.jsp" />
+		<put-attribute name="body" value="/views/admin/formProducteur.jsp" />
 <!-- 		<put-list-attribute name="moreScripts"> -->
 <!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
 <!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->

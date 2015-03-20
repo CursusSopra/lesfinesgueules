@@ -14,7 +14,6 @@ public class ProducteurAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
 	private String raisonSociale;
 	private String siren;
 	private String ligneAdresse1;
@@ -36,8 +35,8 @@ public class ProducteurAction extends ActionSupport {
 	private boolean  descriptionOK;
 	private boolean  delaiLivraisonOK;
 	
-	private boolean saveBDD = false;
-	
+	private boolean firstDisplay = true;
+	private boolean createSuccess = false;
 	
 	public String getRaisonSociale() {return raisonSociale;}
 	public void setRaisonSociale(String raisonSociale) {this.raisonSociale = raisonSociale;}
@@ -69,13 +68,15 @@ public class ProducteurAction extends ActionSupport {
 	public boolean isCoordonneesGPSOK() {return coordonneesGPSOK;}
 	public boolean isDescriptionOK() {return descriptionOK;}
 	public boolean isDelaiLivraisonOK() {return delaiLivraisonOK;}
-
-
+	
+	public boolean isFirstDisplay() {return firstDisplay;}
+	public boolean isCreateSuccess() {return createSuccess;}
+	
+	
 	//Fontion qui retournera le formulaire de création de producteur
 	public String createProducteurForm() {
 		return SUCCESS;
 	}
-	
 	
 	//Fonction d'ajout d'un producteur en BDD
 	public String createProducteur() throws SQLException {
@@ -88,13 +89,14 @@ public class ProducteurAction extends ActionSupport {
 		villeOK = FormTools.isStrNotEmpty(ville);
 		coordonneesGPSOK = FormTools.isStrNotEmpty(coordonneesGPS);
 		descriptionOK = FormTools.isStrNotEmpty(description);
+		delaiLivraisonOK = (delaiLivraison > 0);
 		
-		saveBDD = raisonSocialeOK && sirenOK && ligneAdresse1OK && ligneAdresse2OK && codePostalOK &&
-				villeOK && coordonneesGPSOK && descriptionOK;
+		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK && ligneAdresse2OK && codePostalOK &&
+				villeOK && coordonneesGPSOK && descriptionOK && delaiLivraisonOK;
 		
 		long idProducteur = 0;
 		
-		if(saveBDD){
+		if(firstDisplay){
 			// On instancie un objet 'Producteur'
 			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, coordonneesGPS, description, delaiLivraison);
 			
@@ -103,7 +105,6 @@ public class ProducteurAction extends ActionSupport {
 			idProducteur = prod.getIdProducteur();
 			System.out.println(idProducteur);
 		}
-		return saveBDD ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
+		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
-	
 }
