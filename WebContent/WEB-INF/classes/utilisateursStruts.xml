@@ -13,9 +13,16 @@
 		</result-types>
 
 		<!-- MON COMPTE -->
-		<action name="mon-compte" class="fr.cursusSopra.action.IndexAction" method="execute">
+		<action name="mon-compte" class="fr.cursusSopra.action.IndexAction" method="createProfilForm">
 			<result name="success" type="tiles">mon-compte</result>
 		</action>
+		
+		<!-- INSCRIPTION -->
+		<action name="inscription" class="fr.cursusSopra.action.utilisateurs.InscriptionAction" method="createProfil">
+			<result name="success" type="tiles">inscription</result>
+		</action>
+		
+		
 
 	</package>
 
