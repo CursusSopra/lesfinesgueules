@@ -14,6 +14,6 @@ public class RechercheAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public 
+	
 	
 }
