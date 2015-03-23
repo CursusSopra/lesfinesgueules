@@ -4,66 +4,72 @@
 
 <div class="row" id="divFormRecherche">
 	<div class="col-md-8 col-md-offset-2">
-	
-	<form  id="formRecherche" method="post" action="<s:url action='' />">
+
+	<form  id="formRecherche" method="post" action="<s:url action='listeProduits' />">
 		<fieldset>
 		<legend > Recherche par type :	</legend>
 		
-		<table>
-		
-			<tr>
-			<td>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
 			
-				<label>Type 1</label>
-					 <select name="idType1">
+					<label class="control-label">Type 1</label>
+					 <select name="idType1" class="form-control">
+					 	<option value="-1"></option>
 					 	<s:iterator value="listeTypes1">
 						  <option value="<s:property value="key"/>">
 						  <s:property value="value"/>
 						  </option>
 						</s:iterator>
 					</select> 
-					
-			</td>
-			<td>
+				</div>
+			</div>
 			
+			<div class="col-md-4 col-md-offset-2">
+				<div class="form-group">
 					<label>Type 2</label>
-					 <select name="idType2">
-					 	<s:iterator value="listeDesTypes2">
-					 	<input type="checkbox"id="idType2" name="type2" value="-1">
+					 <select name="idType2" class="form-control">
+					 	<option value="-1"></option>
+					 	<s:iterator value="listeTypes2">
 						  <option value="<s:property value="key"/>">
 						  <s:property value="value"/>
 						  </option>
 						</s:iterator>
 					</select> 
-			
-			</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+		</div>
 		</fieldset>
 		
 		<fieldset>
 		<legend > Recherche par producteurs :	</legend>
 			<div class="row">
-				<div class="form-group">
-					<label class="col-md-4">Producteurs</label>
-					<div class="col-md-4">
-						 <select name="idProducteur">
-						 	<s:iterator value="listeDesProducteurs">
-							  <option value="<s:property value="key"/>">
-							  <s:property value="value"/>
-							  </option>
-							</s:iterator>
-						</select> 
-					</div>
+				<div class="col-md-4">
+				<label>Producteurs</label>
+					 <select name="idProducteur" class="form-control">
+						<option value="-1"></option>
+					 	<s:iterator value="listeProducteurs">
+						  <option value="<s:property value="key"/>">
+						  <s:property value="value"/>
+						  </option>
+						</s:iterator>
+					</select> 
 				</div>
+				
 			</div>
 		</fieldset>
 		
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-4 col-md-offset-8">
+					<button type="submit" class="btn btn-primary">Rechercher</button>
+				</div>
 			</div>
 		</div>
+	</form>
+
+
+
 	</form>
 	</div>
 </div>
