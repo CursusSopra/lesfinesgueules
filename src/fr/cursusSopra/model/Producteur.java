@@ -78,15 +78,21 @@ public class Producteur {
 		this.delaiLivraison = delaiLivraison;
 	}
 	
+	public Producteur(long idProducteur, String raisonSociale, String siren) {
+		this.idProducteur = idProducteur;
+		this.raisonSociale = raisonSociale;
+		this.siren = siren;
+	}
+	
 	public void save() throws SQLException{
 			
-		ProducteurDal cd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
+		ProducteurDal pd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
 		
-		if(ligneAdresse2.length() != 0){
-			cd.setLigneAdresse2(ligneAdresse2);
+		if(ligneAdresse2 != null){
+			pd.setLigneAdresse2(ligneAdresse2);
 		}
 		
-		idProducteur = cd.save();
+		idProducteur = pd.save();
 		//System.out.println(idProducteur);
 	}
 }

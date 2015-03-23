@@ -1,16 +1,23 @@
 package fr.cursusSopra.dataLayer.admin;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.cursusSopra.dataLayer.DataLayerExtended;
+import fr.cursusSopra.model.Producteur;
+import fr.cursusSopra.tech.PostgresConnection;
 
 public class ProducteurDal extends DataLayerExtended {
 		
 	private final static String rqInsert = 
 		"INSERT INTO producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	
+	private final static String rq = "SELECT * FROM producteurs";
 	
 	private long idProducteur;
 	
@@ -26,8 +33,10 @@ public class ProducteurDal extends DataLayerExtended {
 	private int delaiLivraison;
 	private String photo;
 	
+	private static List<Producteur> listeProducteur;
 	
-	//ACCESSEURS
+	
+	//ACCESSEURS (A Simplifier)
 	public long getIdProducteur() {return idProducteur;}
 	public void setIdProducteur(long idProducteur) {this.idProducteur = idProducteur;}
 	public String getRaisonSociale() {return raisonSociale;}
@@ -94,5 +103,35 @@ public class ProducteurDal extends DataLayerExtended {
 			System.out.println(idProducteur);
 		}
 		return idProducteur;
+	}
+	
+	
+	public static List<Producteur> getListeProducteur(){
+		
+		listeProducteur = new ArrayList<Producteur>();
+		
+		Connection connection = PostgresConnection.GetConnexion();
+		Statement state;
+		
+		try {
+			state = connection.createStatement();
+			ResultSet rs = state.executeQuery(rq);
+			Producteur prod;
+			
+			while (rs.next()) {
+				prod = new Producteur(rs.getLong("id_producteur"), rs.getString("raisonSociale"), rs.getString("siren"));
+				listeProducteur.add(prod);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try{
+				connection.close();
+			}catch (SQLException e){
+				
+			}
+		}
+		return listeProducteur;
 	}
 }

@@ -100,16 +100,13 @@ public class ProducteurAction extends ActionSupportExtended {
 		long idProducteur = 0;
 		
 		if(firstDisplay){
-			// On instancie un objet 'Producteur'
 			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, codePostal, ville, latitude, longitude, 
 						description, delaiLivraison, photo);
 			
-			if(ligneAdresse2.length() != 0){
+			if(ligneAdresse2 != null){
 				prod.setLigneAdresse2(ligneAdresse2);
 			}
 			
-			
-			// On lui demande gentiment de se sauvegarder en BDD
 			prod.save();
 			idProducteur = prod.getIdProducteur();
 			System.out.println(idProducteur);
