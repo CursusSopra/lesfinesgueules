@@ -32,8 +32,6 @@ public class Produit {
 		this.type1 = type1;
 		this.type2 = type2;
 		this.producteur = producteur;
-		
-		listeCommentaires = new ArrayList<Commentaire>();
 	}
 	
 	public Produit(long idProduit, String designation, String description, double prix, String photo, boolean disponible, long type1, long type2, long producteur) {
@@ -62,6 +60,8 @@ public class Produit {
 		this.type1 = pdal.getType1();
 		this.type2 = pdal.getType2();
 		this.producteur = pdal.getProducteur();
+		
+		listeCommentaires = new ArrayList<Commentaire>();
 	}
 
 	/* METHODS */
