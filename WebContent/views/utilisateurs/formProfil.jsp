@@ -8,11 +8,11 @@
 <!-- 	</p> -->
 <%-- </s:if> --%>
 
-<div class="row" id="divFormProfil"
-	data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
+<div class="row" id="divFormProfil">
 
 	<form class="form-horizontal" id="FormProfil" method="post"
-		action="<s:url action='createProfil' />">
+		action="<s:url action='inscription'/>">
+		
 		<fieldset>
 			<legend> Vos données personnelles : </legend>
 			
@@ -85,4 +85,10 @@
 				</div>
 			</div>
 		</fieldset>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
+			</div>
+		</div>
 </div>

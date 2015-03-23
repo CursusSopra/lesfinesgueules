@@ -1,36 +1,30 @@
-package fr.cursusSopra.action.utilisateurs;
+package fr.cursusSopra.model;
 
 import java.sql.SQLException;
 
-import fr.cursusSopra.action.ActionSupportExtended;
-import fr.cursusSopra.model.Utilisateur;
+import fr.cursusSopra.dataLayer.admin.ProducteurDal;
+import fr.cursusSopra.dataLayer.utilisateurs.UtilisateurDal;
 
-
-public class InscriptionAction extends ActionSupportExtended{
+public class Utilisateur {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5788642102104502456L;
-	
-	private long idUtilisateur;
+private long idUtilisateur;
 	
 	private String nom;
 	private String prenom;
+	private String email;
 	private String ligneAdresse1;
 	private String ligneAdresse2;
 	private String codePostal;
 	private String ville;
-	private String email;
 	private String mdp;
 	private String tel;
 	private String photo;
 	private int droits;
 	
+	
 	//accesseurs
 	public long getIdUtilisateur() {return idUtilisateur;}
 	public void setIdUtilisateur(long idUtilisateur) {this.idUtilisateur = idUtilisateur;}
-	
 	public String getNom() {return nom;}
 	public void setNom(String nom) {this.nom = nom;}
 	public String getPrenom() {return prenom;}
@@ -54,26 +48,32 @@ public class InscriptionAction extends ActionSupportExtended{
 	public int getDroits() {return droits;}
 	public void setDroits(int droits) {this.droits = droits;}
 	
-
-	//formulaire inscription utilisateur
-	public String createProfilForm() {
-		return SUCCESS;
+	
+	//constructeur
+	public Utilisateur(String nom, String prenom,
+			String email, String ligneAdresse1, String ligneAdresse2,
+			String codePostal, String ville, String mdp, String tel,
+			String photo, int droits) {
+		
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.ligneAdresse1 = ligneAdresse1;
+		this.ligneAdresse2 = ligneAdresse2;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.mdp = mdp;
+		this.tel = tel;
+		this.photo = photo;
+		this.droits = droits;
 	}
 	
-	
-	//ajout utilisateur en BDD
-	public String createProfil() throws SQLException {
-<<<<<<< HEAD
-=======
+	public void save() throws SQLException{
 		
-		Utilisateur utilisateur = new Utilisateur(idUtilisateur, nom, prenom, ligneAdresse1, ligneAdresse2,
-				codePostal, ville, email, mdp, tel, photo, droits);
-		
-		utilisateur.save();
-		
->>>>>>> 8b0018ab76c23d740253c1018875d09e0430ee4a
-		return SUCCESS;
+		UtilisateurDal ud = new UtilisateurDal(nom, prenom, ligneAdresse1, ligneAdresse2, codePostal, ville, email, mdp, tel, photo, droits);
+		idUtilisateur = ud.save();
 	}
+	
 	
 	
 
