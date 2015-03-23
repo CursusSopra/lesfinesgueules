@@ -50,11 +50,11 @@ private long idUtilisateur;
 	
 	
 	//constructeur
-	public Utilisateur(long idUtilisateur, String nom, String prenom,
+	public Utilisateur(String nom, String prenom,
 			String email, String ligneAdresse1, String ligneAdresse2,
 			String codePostal, String ville, String mdp, String tel,
 			String photo, int droits) {
-		this.idUtilisateur = idUtilisateur;
+		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
