@@ -142,7 +142,6 @@
 						</div>
 					</li>
 
-
 					<li class="dropdown">
 						<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
 							<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>

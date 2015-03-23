@@ -1,5 +1,6 @@
 package fr.cursusSopra.dataLayer.utilisateurs;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import fr.cursusSopra.dataLayer.DataLayerExtended;
 import fr.cursusSopra.model.ItemCommande;
+import fr.cursusSopra.tech.PostgresConnection;
 
 public class ItemCommandeDal extends DataLayerExtended {
 
@@ -16,7 +18,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 	private final static String rqInsert = "INSERT INTO items_commandes (id_utilisateur, id_produit, etat, quantite, moyen_paiement) VALUES(?, ?, ?, ?, ?)";
 	private final static String rqUpdate = "UPDATE items_commandes SET (id_utilisateur, id_produit, etat, quantite, moyen_paiement) = (?, ?, ?, ?, ?) WHERE id_item_commande = ?;";
 	private final static String rqSelectList = "SELECT id_item_commande, id_utilisateur, id_produit, etat, quantite, moyen_paiement, ts_creation, ts_validation, ts_archivage FROM items_commandes WHERE id_utilisateur = ? AND etat = ?;";
-	private final static String rqSelectListComplete = "SELECT id_item_commande, id_utilisateur, id_produit, etat, quantite, moyen_paiement, ts_creation, ts_validation, ts_archivage FROM items_commandes WHERE id_utilisateur = ?;";
+	private final static String rqSelectListComplete = "SELECT id_item_commande, id_utilisateur, id_produit, etat, quantite, moyen_paiement, ts_creation, ts_validation, ts_archivage FROM items_commandes WHERE id_utilisateur = ? ORDER BY ts_validation;";
 	private final static String rqDelete = "DELETE FROM items_commandes WHERE id_item_commande = ?;";
 	
 	private ItemCommande LocItemC;
@@ -109,6 +111,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 			if (rs.next()) {
 				newId = rs.getLong(1);
 				LocItemC.setFromDb(true);
+				LocItemC.setId(newId);
 			}
 			
 			ps.close();
@@ -149,9 +152,12 @@ public class ItemCommandeDal extends DataLayerExtended {
 	 * @return List<ItemCommande>
 	 * @throws SQLException
 	 */
-	public List<ItemCommande> getListeCommandes(long id, int etat) throws SQLException {
+	public static List<ItemCommande> getListeCommandes(long id, int etat) throws SQLException {
 		
 		List<ItemCommande> myList = new ArrayList<ItemCommande>();
+		
+		Connection connection = PostgresConnection.GetConnexion();
+		
 		PreparedStatement ps;
 		
 		if (etat > 1) {

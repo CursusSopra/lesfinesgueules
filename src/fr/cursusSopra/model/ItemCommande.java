@@ -62,9 +62,6 @@ public class ItemCommande {
 	}
 	
 	
-	public ItemCommande() { }
-	
-	
 	/**
 	 *  Sauvegarde de l'item (ou update si deja existant) dans la db
 	 * @return long qui contient l'id de l'item sauver (ou 0 si le save est un echec)
@@ -131,10 +128,10 @@ public class ItemCommande {
 	 * @param id
 	 * @return List<ItemCommande>
 	 */
-	public List<ItemCommande> getListeCommandes(long id) {
+	public static List<ItemCommande> getListeCommandes(long id) {
 		List<ItemCommande> mylist = new ArrayList<ItemCommande>();
 		try {
-			mylist = new ItemCommandeDal().getListeCommandes(id, 2);
+			mylist = ItemCommandeDal.getListeCommandes(id, 2);
 		} catch (SQLException e) {
 			System.err.print(String.format("ERREUR : Impossible de recuperer les commande de l'id : %d .\n", id));
 		}
@@ -148,10 +145,10 @@ public class ItemCommande {
 	 * @param etat
 	 * @return List<ItemCommande>
 	 */
-	public List<ItemCommande> getListeCommandes(long id, int etat) {
+	public static List<ItemCommande> getListeCommandes(long id, int etat) {
 		List<ItemCommande> mylist = new ArrayList<ItemCommande>();
 		try {
-			mylist = new ItemCommandeDal().getListeCommandes(id, etat);
+			mylist = ItemCommandeDal.getListeCommandes(id, etat);
 		} catch (SQLException e) {
 			System.err.print(String.format("ERREUR : Impossible de recuperer les commande de l'id : %d .\n", id));
 		}
