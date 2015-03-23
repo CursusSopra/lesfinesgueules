@@ -4,12 +4,8 @@
  */
 
 $(function() {
-	i = form.Rubrique.selectedIndex;
-	if (i == -1) { 
-		return;
-	}
 	
-	$.get("ListeProduits.action", function(data) {
+	$.getJSON("ListeProduits.action", function(data) {
 		$("#listeProduits").html(data);
 	});
 });
