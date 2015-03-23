@@ -9,7 +9,7 @@
 			<div class="form-group">
 				<label for="idType1" class="col-sm-2 control-label">Type général du produit: (type 1)</label>
 				<div class="col-sm-4">
-			        <select name="type1" size="1" id="idType1" class="form-control">
+			        <select name="idType1" size="1" id="idType1" class="form-control">
 						<option value="-1">Sélectionnez un type de produit</option>
 						<s:iterator value="listeType1">
 							<option value="<s:property value="idType1" />">
