@@ -9,9 +9,9 @@
 			<div class="form-group">
 				<label for="idProduit" class="col-sm-2 control-label">Désignation du Produit</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-lg" id="idNom" name="designation" value="<s:property value="designation"/>"
+					<input type="text" class="form-control input-lg" id="idProduit" name="designation" value="<s:property value="designation"/>"
 						placeholder="Nom du Produit">
-						<span id="idHelpNom" class="help-block"></span>
+						<span id="idHelpProduit" class="help-block"></span>
 				</div>
 			</div>
 			
