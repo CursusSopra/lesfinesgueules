@@ -21,6 +21,7 @@
 	<include file="adminStruts.xml" />
 	<include file="contenuStruts.xml" />
 	<include file="utilisateursStruts.xml" />
+	<include file="strutsJSON.xml" />
 
 <!-- 	<constant name="struts.convention.default.parent.package" -->
 <!-- 		value="tiles-default" /> -->
