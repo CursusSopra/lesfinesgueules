@@ -12,16 +12,15 @@ import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.tech.PostgresConnection;
 
 public class ProduitDal extends DataLayerExtended {
-	
+
 	/* Properties */
-	
+
 	private static List<ProduitDal> listeProduitsDal;
 	private final static String rqListe = "SELECT id_produit FROM produits INNER JOIN types2 using(id_type2) WHERE ? = ? ORDER BY designation";
 	private final static String rqProduit = "SELECT * FROM produits "
 			+ "INNER JOIN types2 USING(id_type2) "
-			+ "INNER JOIN types1 USING(id_type1) "
-			+ "WHERE id_produit = ? ";
-	
+			+ "INNER JOIN types1 USING(id_type1) " + "WHERE id_produit = ? ";
+
 	private long idProduit;
 	private String designation;
 	private String description;
@@ -34,59 +33,66 @@ public class ProduitDal extends DataLayerExtended {
 	private List<Commentaire> listeCommentaires;
 
 	/* Constructors */
-	
+
 	public ProduitDal(long idProduit) throws SQLException {
 		PreparedStatement ps;
 		ps = connection.prepareStatement(rqProduit);
 		ps.setLong(1, idProduit);
-		
+
 		ResultSet rs = ps.executeQuery();
-		
-		if(rs.next()) {
-			this.idProduit	= rs.getLong("id_produit");
-			designation	= rs.getString("designation");
-			description	= rs.getString("designation");
-			prix		= rs.getDouble("prix");
-			photo		= rs.getString("designation");
-			disponible	= rs.getBoolean("disponible");
-			type1		= rs.getLong("id_type1");
-			type2		= rs.getLong("id_type2");
-			producteur	= rs.getLong("id_producteur");
-//			this.listeCommentaires = rs.getListeCommentaires();
+
+		if (rs.next()) {
+			this.idProduit = rs.getLong("id_produit");
+			designation = rs.getString("designation");
+			description = rs.getString("designation");
+			prix = rs.getDouble("prix");
+			photo = rs.getString("photo");
+			disponible = rs.getBoolean("disponible");
+			type1 = rs.getLong("id_type1");
+			type2 = rs.getLong("id_type2");
+			producteur = rs.getLong("id_producteur");
+			// this.listeCommentaires = rs.getListeCommentaires();
 		}
 	}
-	
+
 	/* Methods */
-	
-	static public List<ProduitDal> getListeProduitsDal(long idType1, long idType2) throws Exception {
+
+	static public List<ProduitDal> getListeProduitsDal(long idType1, long idType2) {
 		listeProduitsDal = new ArrayList<ProduitDal>();
 		Connection c = PostgresConnection.GetConnexion();
 		PreparedStatement ps;
 		
-		if(idType2 == (long) -1 && idType1 != (long) -1){
-			ps = c.prepareStatement(rqListe);
-			ps.setString(1, "id_type1");
-			ps.setLong(2, idType1);
-		} else if(idType2 == (long) -1 && idType1 == (long) -1) {
-			ps = c.prepareStatement("SELECT id_produit FROM produits ORDER BY designation");
-		} else {
-			System.out.println("Before : " + rqListe);
-			ps = c.prepareStatement(rqListe);
-			System.out.println("Between : " + rqListe);
-			ps.setString(1, "id_type2");
-			ps.setLong(2, idType2);
-			System.out.println("After : " + rqListe);
-		}
-		
-		ResultSet rs = ps.executeQuery();
-		
-		while(rs.next()) {
-			listeProduitsDal.add(new ProduitDal(rs.getLong("id_produit")));
-		}
-		
-		return listeProduitsDal;
-	}
+		try {
+			if (idType1 >= (long) 0 && idType2 == (long) -1) {		// Only type1 selected
+				ps = c.prepareStatement("SELECT id_produit FROM produits INNER JOIN types2 using(id_type2) WHERE id_type1 = ? ORDER BY designation");
+				ps.setLong(1, idType1);
+			} else if(idType2 >= (long) 0) {						// type2 selected
+				ps = c.prepareStatement("SELECT id_produit FROM produits INNER JOIN types2 using(id_type2) WHERE id_type2 = ? ORDER BY designation");
+				ps.setLong(1, idType2);
+			} else {												// default case
+				ps = c.prepareStatement("SELECT id_produit FROM produits ORDER BY designation");
+			}
+
+			System.out.println(ps);
+			ResultSet rs = ps.executeQuery();
 	
+			while (rs.next()) {
+				listeProduitsDal.add(new ProduitDal(rs.getLong("id_produit")));
+			}
+		} catch (SQLException e) {
+			System.out.println("Connexion BDD impossible !");
+		} finally {
+			System.out.println("Fermeture de la connexion.");
+			try {
+				c.close();
+			} catch (SQLException e1) {
+				System.out.println("Fermeture de la connexion suite problème impossible !");
+			}
+
+			return listeProduitsDal;
+		}
+	}
+
 	/* Accessors */
 
 	public long getIdProduit() {
@@ -168,5 +174,5 @@ public class ProduitDal extends DataLayerExtended {
 	public void setListeCommentaires(List<Commentaire> listeCommentaires) {
 		this.listeCommentaires = listeCommentaires;
 	}
-	
+
 }

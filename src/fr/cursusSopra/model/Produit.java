@@ -66,7 +66,7 @@ public class Produit {
 
 	/* METHODS */
 	
-	public static List<Produit> getListeProduits(long idType1, long idType2) throws Exception {
+	public static List<Produit> getListeProduits(long idType1, long idType2) {
 		List<Produit> listeProduits = new ArrayList<Produit>();
 		List<ProduitDal> lpdal = ProduitDal.getListeProduitsDal(idType1, idType2);
 		

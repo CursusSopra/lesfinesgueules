@@ -13,33 +13,32 @@
 		</thead>
 		<tbody>
 			<s:iterator value="listeProduits" status="stat">
-			<s:iterator>
-				<s:url action="detailsProduit" var="dp">
-					<s:param name="id">
-						<s:property value="idProduit" />
-					</s:param>
-				</s:url>
-			
-				<tr>
-					<td><img alt="image" class="img-responsive img-thumbnail"
-						width="200px" src="images/default.jpg" /></td>
-					<td>
-						<h4>
-							<s:property value="designation" />
-						</h4>
-						<p>
-							<s:property value="description" />
-						</p>
-						<p>
-							<div class="input-group">
-								<span class="input-group-addon"><s:property value="prix" /> &euro;</span>
-								<button type="button" class="btn btn-default">Ajouter au panier</button>
-								<a href="<s:property value='#dp'/>"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>
-							</div>
-						</p>
-					</td>
-				</tr>
-			</s:iterator>
+				<s:iterator>
+					<s:url action="detailsProduit" var="dp">
+						<s:param name="id">
+							<s:property value="idProduit" />
+						</s:param>
+					</s:url>
+				
+					<tr>
+						<td><img alt="image" class="img-responsive img-thumbnail" width="200px" src="<s:property value="photo"/>" /></td>
+						<td>
+							<h4>
+								<s:property value="designation" />
+							</h4>
+							<p>
+								<s:property value="description" />
+							</p>
+							<p>
+								<div class="input-group">
+									<span class="input-group-addon"><s:property value="prix" /> &euro;</span>
+									<button type="button" class="btn btn-default">Ajouter au panier</button>
+									<a href="<s:property value='#dp'/>"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>
+								</div>
+							</p>
+						</td>
+					</tr>
+				</s:iterator>
 			</s:iterator>
 		</tbody>
 	</table>
