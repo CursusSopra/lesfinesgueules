@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
+import fr.cursusSopra.dataLayer.admin.ProducteurDal;
 import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.model.Produit;
 
@@ -26,6 +27,13 @@ public class DetailsProduit extends ActionSupportExtended {
 	private long producteur;
 	private List<Commentaire> listeCommentaires;
 	
+	private String raisonSociale;
+	private String ligneAdresse1;
+	private String ligneAdresse2;
+	private String codePostal;
+	private String ville;
+	private int delaiLivraison;
+	
 	/* EXECUTE METHOD */
 	
 	public String execute() throws SQLException {
@@ -40,6 +48,15 @@ public class DetailsProduit extends ActionSupportExtended {
 		type2 = produit.getType2();
 		producteur = produit.getProducteur();
 		listeCommentaires = produit.getListeCommentaires();
+		
+		ProducteurDal prod = new ProducteurDal(producteur);
+		
+		raisonSociale = prod.getRaisonSociale();
+		ligneAdresse1 = prod.getLigneAdresse1();
+		ligneAdresse2 = prod.getLigneAdresse2();
+		codePostal = prod.getCodePostal();
+		ville = prod.getVille();
+		delaiLivraison = prod.getDelaiLivraison();
 		
 		return SUCCESS;
 	}
@@ -92,6 +109,30 @@ public class DetailsProduit extends ActionSupportExtended {
 
 	public List<Commentaire> getListeCommentaires() {
 		return listeCommentaires;
+	}
+
+	public String getRaisonSociale() {
+		return raisonSociale;
+	}
+
+	public String getLigneAdresse1() {
+		return ligneAdresse1;
+	}
+
+	public String getLigneAdresse2() {
+		return ligneAdresse2;
+	}
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public int getDelaiLivraison() {
+		return delaiLivraison;
 	}
 	
 }

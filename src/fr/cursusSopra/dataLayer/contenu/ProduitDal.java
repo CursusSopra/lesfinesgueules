@@ -43,7 +43,7 @@ public class ProduitDal extends DataLayerExtended {
 		if (rs.next()) {
 			this.idProduit = rs.getLong("id_produit");
 			designation = rs.getString("designation");
-			description = rs.getString("designation");
+			description = rs.getString("description");
 			prix = rs.getDouble("prix");
 			photo = rs.getString("photo");
 			disponible = rs.getBoolean("disponible");

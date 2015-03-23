@@ -20,8 +20,10 @@ $(function() {
 			// Ajout du code HTML dans la balise #listeProduits
 			$("#listeProduits").append(
 				'<tr><td><img alt="image" class="img-responsive img-thumbnail" width="200px" src="' +
-				elt.photo + '"/></td><td><h4>' + elt.designation + '</h4><p>' +
-				elt.description + '</p><p><div class="input-group">' +
+				elt.photo + '"/></td><td><h4>' + elt.designation + 
+				
+				'</h4><p>' +
+				elt.description.substring(0,250) + '...</p><p><div class="input-group">' +
 				'<span class="input-group-addon">' + elt.prix + ' &euro;</span>' +
 				'<button type="button" class="btn btn-default">Ajouter au panier</button>' +
 				'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>' +
