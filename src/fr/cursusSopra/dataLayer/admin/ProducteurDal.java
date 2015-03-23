@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.cursusSopra.dataLayer.DataLayerExtended;
 import fr.cursusSopra.model.Producteur;
+import fr.cursusSopra.model.Type2;
 import fr.cursusSopra.tech.PostgresConnection;
 
 public class ProducteurDal extends DataLayerExtended {
@@ -18,6 +19,7 @@ public class ProducteurDal extends DataLayerExtended {
 		"INSERT INTO producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
 	private final static String rq = "SELECT * FROM producteurs";
+	private final static String rqProducteur = "SELECT * FROM producteurs WHERE id_producteur=?";
 	
 	private long idProducteur;
 	
@@ -79,6 +81,38 @@ public class ProducteurDal extends DataLayerExtended {
 		this.description = description;
 		this.delaiLivraison = delaiLivraison;
 		this.photo = photo;
+	}
+	public ProducteurDal(long idProducteur){
+		try {
+			PreparedStatement ps = connection.prepareStatement(rqProducteur);
+			ps.setLong(1, idProducteur);
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				raisonSociale = rs.getString("raison_sociale");
+				siren = rs.getString("siren");
+				ligneAdresse1 = rs.getString("ligne_adresse1");
+				ligneAdresse2 = rs.getString("ligne_adresse2");
+				codePostal = rs.getString("code_postal");
+				ville = rs.getString("ville");
+				latitude = rs.getString("gpslat");
+				longitude = rs.getString("gpslong");
+				description = rs.getString("description");
+				delaiLivraison = rs.getInt("delai_livraison");
+				photo = rs.getString("raison_sociale");
+				
+			}
+		} catch (SQLException e) {
+			System.out.println("Echec de la création de la liste type1");
+		}finally{
+			try{
+				connection.close();
+				System.out.println("fermeture de la connexion");
+			}catch (SQLException e){
+				System.out.println("echec de la fermeture de la connexion");
+			}
+		}
+		
 	}
 	
 	public long save() throws SQLException {
