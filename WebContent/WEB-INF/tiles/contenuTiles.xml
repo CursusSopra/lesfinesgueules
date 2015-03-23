@@ -8,6 +8,7 @@
 <tiles-definitions>
 
 	<!-- LISTE PRODUITS -->
+	
 	<definition name="listeProduits" extends="baseLayout">
 		<put-attribute name="title" value="Liste des produits" />
 		<put-attribute name="body" value="/views/contenu/listeProduits.jsp" />
@@ -16,7 +17,18 @@
  		</put-list-attribute>
 	</definition>
 	
+	<!-- DETAILS PRODUIT -->
+	
+	<definition name="detailsProduit" extends="baseLayout">
+		<put-attribute name="title" value="Détails du produit" />
+		<put-attribute name="body" value="/views/contenu/detailsProduit.jsp" />
+<!--  		<put-list-attribute name="moreScripts">
+ 			<add-attribute value="_js/recherche.js"></add-attribute>
+ 		</put-list-attribute> -->
+	</definition>
+	
 	<!-- RECHERCHE -->
+	
 	<definition name="recherche" extends="baseLayout">
 		<put-attribute name="title" value="Recherche" />
 		<put-attribute name="body" value="/views/contenu/recherche.jsp" />
@@ -30,3 +42,6 @@
 	
 
 </tiles-definitions>
+
+
+
