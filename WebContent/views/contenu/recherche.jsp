@@ -5,47 +5,49 @@
 <div class="row" id="divFormRecherche">
 	<div class="col-md-8 col-md-offset-2">
 	
-	<form class="form-horizontal" id="formRecherche" method="post" action="<s:url action='' />">
+	<form  id="formRecherche" method="post" action="<s:url action='' />">
 		<fieldset>
 		<legend > Recherche par type :	</legend>
 		
-		<div class="row">
-			<div class="form-group">
-				<label class="col-md-4 control-label">Type 1</label>
-				<div class="col-sm-4">
-					 <select name="listeDesTypes1">
-					 	<s:iterator value="listeDesTypes1">
+		<table>
+		
+			<tr>
+			<td>
+			
+				<label>Type 1</label>
+					 <select name="idType1">
+					 	<s:iterator value="listeTypes1">
 						  <option value="<s:property value="key"/>">
 						  <s:property value="value"/>
 						  </option>
 						</s:iterator>
 					</select> 
-				</div>
-			</div>
+					
+			</td>
+			<td>
 			
-			<div class="form-group">
-				<label class="col-sm-4 control-label">Type 2</label>
-				<div class="col-sm-4">
+					<label>Type 2</label>
 					 <select name="idType2">
 					 	<s:iterator value="listeDesTypes2">
+					 	<input type="checkbox"id="idType2" name="type2" value="-1">
 						  <option value="<s:property value="key"/>">
 						  <s:property value="value"/>
 						  </option>
 						</s:iterator>
 					</select> 
-				</div>
-			</div>
 			
-		</div>
+			</td>
+			</tr>
+		</table>
 		</fieldset>
 		
 		<fieldset>
 		<legend > Recherche par producteurs :	</legend>
 			<div class="row">
 				<div class="form-group">
-					<label class="col-md-4 control-label">Producteurs</label>
-					<div class="col-sm-4">
-						 <select name="idProducteurs">
+					<label class="col-md-4">Producteurs</label>
+					<div class="col-md-4">
+						 <select name="idProducteur">
 						 	<s:iterator value="listeDesProducteurs">
 							  <option value="<s:property value="key"/>">
 							  <s:property value="value"/>
@@ -56,7 +58,13 @@
 				</div>
 			</div>
 		</fieldset>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
+			</div>
+		</div>
 	</form>
-
+	</div>
 </div>
 
