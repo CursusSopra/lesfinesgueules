@@ -18,6 +18,7 @@ public class RechercheAction extends ActionSupport {
 	private int idType2;
 	private int idProducteur;
 	
+	
 	public String execute() {
 		Type1Dal type1Dal;
 //		listeTypes1 = getListeType1(); ;
