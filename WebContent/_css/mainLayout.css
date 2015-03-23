@@ -19,7 +19,7 @@ body {
 
 /* Footer Styles */
 footer {
-	margin: 10px;
+	margin: 10px 0px;
 	padding: 10px;
 	background-color: #222222;
    color: #ffffff;
@@ -42,6 +42,10 @@ blockquote {
 /* .navbar .navbar-collapse {border-color: #A40303;} */
 /* .navbar .navbar-form { margin-top: 5px; margin-bottom: 5px } */
 /* .navbarbutton { margin-top: 2px; margin-left: 5px; margin-bottom: 2px} */
+
+.bodycontent {
+	margin: 0px 15px;
+}
 
 header {
 /* 	background-color: #222222; */

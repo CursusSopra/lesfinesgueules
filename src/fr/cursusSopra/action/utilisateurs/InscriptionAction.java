@@ -33,9 +33,7 @@ public class InscriptionAction extends ActionSupportExtended{
 	
 	//Fonction d'ajout d'un utilisateur en BDD
 	public String createProfil() throws SQLException {
-		
 		return SUCCESS;
-		
 	}
 	
 	
