@@ -2,8 +2,6 @@ package fr.cursusSopra.action.admin;
 
 import java.sql.SQLException;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.model.Producteur;
 import fr.cursusSopra.tech.FormTools;
@@ -21,23 +19,25 @@ public class ProducteurAction extends ActionSupportExtended {
 	private String ligneAdresse2;
 	private String codePostal;
 	private String ville;
-	private String coordonneesGPS;
+	private String longitude;
+	private String latitude;
 	private String description;
 	private int delaiLivraison;
 	private long idProducteur;
+	private String photo = "photo";
 	
 	private boolean  raisonSocialeOK;
 	private boolean  sirenOK;
 	private boolean  ligneAdresse1OK;
-	private boolean  ligneAdresse2OK;
 	private boolean  codePostalOK;
 	private boolean  villeOK;
 	private boolean  coordonneesGPSOK;
 	private boolean  descriptionOK;
 	private boolean  delaiLivraisonOK;
+	private boolean latitudeOK;
+	private boolean longitudeOK;
 	
 	private boolean firstDisplay = true;
-	private boolean createSuccess = false;
 	
 	public String getRaisonSociale() {return raisonSociale;}
 	public void setRaisonSociale(String raisonSociale) {this.raisonSociale = raisonSociale;}
@@ -51,8 +51,10 @@ public class ProducteurAction extends ActionSupportExtended {
 	public void setCodePostal(String codePostal) {this.codePostal = codePostal;}
 	public String getVille() {return ville;}
 	public void setVille(String ville) {this.ville = ville;}
-	public String getCoordonneesGPS() {return coordonneesGPS;}
-	public void setCoordonneesGPS(String coordonneesGPS) {this.coordonneesGPS = coordonneesGPS;}
+	public String getLongitude() {return longitude;}
+	public void setLongitude(String longitude) {this.longitude = longitude;}
+	public String getLatitude() {return latitude;}
+	public void setLatitude(String latitude) {this.latitude = latitude;}
 	public String getDescription() {return description;}
 	public void setDescription(String description) {this.description = description;}
 	public int getDelaiLivraison() {return delaiLivraison;}
@@ -63,15 +65,15 @@ public class ProducteurAction extends ActionSupportExtended {
 	public boolean isRaisonSocialeOK() {return raisonSocialeOK;}
 	public boolean isSirenOK() {return sirenOK;}
 	public boolean isLigneAdresse1OK() {return ligneAdresse1OK;}
-	public boolean isLigneAdresse2OK() {return ligneAdresse2OK;}
 	public boolean isCodePostalOK() {return codePostalOK;}
 	public boolean isVilleOK() {return villeOK;}
 	public boolean isCoordonneesGPSOK() {return coordonneesGPSOK;}
 	public boolean isDescriptionOK() {return descriptionOK;}
 	public boolean isDelaiLivraisonOK() {return delaiLivraisonOK;}
+	public boolean isLatitudeOK() {return latitudeOK;}
+	public boolean isLongitudeOK() {return longitudeOK;}
 	
 	public boolean isFirstDisplay() {return firstDisplay;}
-	public boolean isCreateSuccess() {return createSuccess;}
 	
 	
 	//Fontion qui retournera le formulaire de création de producteur
@@ -82,24 +84,30 @@ public class ProducteurAction extends ActionSupportExtended {
 	//Fonction d'ajout d'un producteur en BDD
 	public String createProducteur() throws SQLException {
 		
-		raisonSocialeOK = FormTools.isStrNotEmpty(raisonSociale);
-		sirenOK = FormTools.isStrNotEmpty(siren);
-		ligneAdresse1OK = FormTools.isStrNotEmpty(ligneAdresse1);
-		ligneAdresse2OK = FormTools.isStrNotEmpty(ligneAdresse2);
+		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale.length() < 50);
+		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
+		ligneAdresse1OK = (FormTools.isStrNotEmpty(ligneAdresse1) && ligneAdresse1.length() < 50);
 		codePostalOK = FormTools.isZipValid(codePostal);
-		villeOK = FormTools.isStrNotEmpty(ville);
-		coordonneesGPSOK = FormTools.isStrNotEmpty(coordonneesGPS);
+		villeOK = (FormTools.isStrNotEmpty(ville) && ville.length() < 50);
+		latitudeOK = (FormTools.isStrNotEmpty(latitude) && latitude.length() < 13);
+		longitudeOK = (FormTools.isStrNotEmpty(longitude) && longitude.length() < 13);
 		descriptionOK = FormTools.isStrNotEmpty(description);
 		delaiLivraisonOK = (delaiLivraison > 0);
 		
-		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK && ligneAdresse2OK && codePostalOK &&
-				villeOK && coordonneesGPSOK && descriptionOK && delaiLivraisonOK;
+		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK && codePostalOK &&
+				villeOK && latitudeOK && longitudeOK && descriptionOK && delaiLivraisonOK;
 		
 		long idProducteur = 0;
 		
 		if(firstDisplay){
 			// On instancie un objet 'Producteur'
-			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, coordonneesGPS, description, delaiLivraison);
+			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, codePostal, ville, latitude, longitude, 
+						description, delaiLivraison, photo);
+			
+			if(ligneAdresse2.length() != 0){
+				prod.setLigneAdresse2(ligneAdresse2);
+			}
+			
 			
 			// On lui demande gentiment de se sauvegarder en BDD
 			prod.save();

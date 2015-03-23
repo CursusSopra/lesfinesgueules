@@ -14,7 +14,8 @@ public class Producteur {
 	private String ligneAdresse2;
 	private String codePostal;
 	private String ville;
-	private String coordonneesGPS;
+	private String latitude;
+	private String longitude;
 	private String description;
 	private int delaiLivraison;
 	private String photo;
@@ -32,8 +33,10 @@ public class Producteur {
 	public void setCodePostal(String codePostal) {this.codePostal = codePostal;}
 	public String getVille() {return ville;}
 	public void setVille(String ville) {this.ville = ville;}
-	public String getCoordonneesGPS() {return coordonneesGPS;}
-	public void setCoordonneesGPS(String coordonneesGPS) {this.coordonneesGPS = coordonneesGPS;}
+	public String getLatitude() {return latitude;}
+	public void setLatitude(String latitude) {this.latitude = latitude;}
+	public String getLongitude() {return longitude;}
+	public void setLongitude(String longitude) {this.longitude = longitude;}
 	public String getDescription() {return description;}
 	public void setDescription(String description) {this.description = description;}
 	public int getDelaiLivraison() {return delaiLivraison;}
@@ -45,39 +48,44 @@ public class Producteur {
 	
 	
 	public Producteur(String raisonSociale, String siren, String ligneAdresse1,
-			String ligneAdresse2, String codePostal, String ville,
-			String coordonneesGPS, String description, int delaiLivraison, String photo) {
+			String codePostal, String ville, String latitude, String longitude, 
+			String description, int delaiLivraison, String photo) {
 		
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 		this.ligneAdresse1 = ligneAdresse1;
-		this.ligneAdresse2 = ligneAdresse2;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.coordonneesGPS = coordonneesGPS;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.description = description;
 		this.delaiLivraison = delaiLivraison;
 		this.photo = photo;
 	}
 	
-	public Producteur(String raisonSociale, String siren, String ligneAdresse1,
-			String ligneAdresse2, String codePostal, String ville,
-			String coordonneesGPS, String description, int delaiLivraison) {
+	public Producteur(String raisonSociale, String siren, String ligneAdresse1, 
+			String codePostal, String ville, String latitude, String longitude,
+			String description, int delaiLivraison) {
 		
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 		this.ligneAdresse1 = ligneAdresse1;
-		this.ligneAdresse2 = ligneAdresse2;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.coordonneesGPS = coordonneesGPS;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.description = description;
 		this.delaiLivraison = delaiLivraison;
 	}
 	
 	public void save() throws SQLException{
 			
-		ProducteurDal cd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, coordonneesGPS, description, delaiLivraison);
+		ProducteurDal cd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
+		
+		if(ligneAdresse2.length() != 0){
+			cd.setLigneAdresse2(ligneAdresse2);
+		}
+		
 		idProducteur = cd.save();
 		//System.out.println(idProducteur);
 	}

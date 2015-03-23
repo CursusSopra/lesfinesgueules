@@ -19,8 +19,11 @@
 		<s:if test="!villeOK">
 			<br/> Vous devez saisir une ville
 		</s:if>
-		<s:if test="!coordonneesGPSOK">
-			<br/> Vos coordonnées GPS ne sont pas valides
+		<s:if test="!latitudeOK">
+			<br/> Problème de latitude
+		</s:if>
+		<s:if test="!longitudeOK">
+			<br/> Problème de longitude
 		</s:if>
 		<s:if test="!descriptionOK">
 			<br/> Veuillez décrire votre exploitation
@@ -32,11 +35,11 @@
 </s:if>
 
 <s:if test="firstDisplay">
-	<s:if test="createSuccess">
+	<s:if test="idProducteur != 0">
 		<p class="bg-danger"><br/>Bravo, vous êtes référencé(e) parmi nos fines gueules.
 		</p>
 	</s:if>
-	<s:if test="!createSuccess">
+	<s:if test="idProducteur = 0">
 		<p class="bg-danger"><br/>Vos données sont correctes mais nous avons rencontré un problème 
 									lors de votre enregistrement.
 		</p>
@@ -52,21 +55,18 @@
 			<legend> Producteur : </legend>
 			
 			<div class="form-group">
-				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du
-					producteur</label>
+				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du producteur</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-lg" id="idRaisonSociale"
-						name="raisonSociale" value="<s:property value="raisonSociale"/>"
-						placeholder="Raison sociale du producteur"> 
+					<input type="text" class="form-control input-lg" id="idRaisonSociale" maxlength="50"
+						name="raisonSociale" value="<s:property value="raisonSociale"/>"> 
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="idSiren" class="col-sm-2 control-label">SIREN</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-lg" id="idSiren"
-						name="siren" value="<s:property value="siren"/>"
-						placeholder="numero Siren"> 
+					<input type="text" class="form-control input-lg" id="idSiren" maxlength="50"
+						name="siren" value="<s:property value="siren"/>"> 
 				</div>
 			</div>
 			
@@ -81,10 +81,7 @@
 			<div class="form-group">
 				<label for="idDescription" class="col-sm-2 control-label">Description</label>
 				<div class="col-sm-6">
-					<textarea class="form-control" name="description" id="idDescription" rows="5"
-						placeholder="Vous avez droit à 100 caractères">
-					<s:property value="description" />
-					</textarea>
+					<textarea class="form-control" name="description" id="idDescription" rows="5"><s:property value="description" /></textarea>
 				</div>
 			</div>
 		</fieldset>
@@ -95,9 +92,12 @@
 			<div class="form-group">
 				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="idLigneAdresse1"
-						name="ligneAdresse1" value="<s:property value="ligneAdresse1" />"
-						placeholder="Rue">
+					<input type="text" class="form-control" id="idLigneAdresse1" maxlength="50"
+						name="ligneAdresse1" value="<s:property value="ligneAdresse1" />">
+				</div>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="idLigneAdresse2" maxlength="50"
+						name="ligneAdresse2" value="<s:property value="ligneAdresse2" />">
 				</div>
 			</div>
 			
@@ -115,67 +115,27 @@
 			<div class="form-group">
 				<label for="inputVille" class="col-sm-2 control-label">Ville</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="idVille" name="ville"
+					<input type="text" class="form-control" id="idVille" name="ville" maxlength="50"
 						value="<s:property value="ville" />" placeholder="Ville">
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label for="idGPS" class="col-sm-2 control-label">Coordonnées GPS</label>
+				<label for="idLatitude" class="col-sm-2 control-label">Coordonnées GPS</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-lg" id="idGPS"
-						name="coordonneesgps" value="<s:property value="coordonneesgps"/>"
-						placeholder="Coordonnées GPS">
+					<input type="text" class="form-control input-lg" id="idLatitude"
+						name="latitude" value="<s:property value="latitude"/>">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="idLongitude" class="col-sm-2 control-label">Coordonnées GPS</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control input-lg" id="idLongitude"
+						name="longitude" value="<s:property value="longitude"/>">
 				</div>
 			</div>
 		</fieldset>
-			
-			
-			
-			
-			
-
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="inputNombreDeSalles" class="col-sm-2 control-label">Nombre -->
-<!-- 					De Salles</label> -->
-<!-- 				<div class="col-sm-2"> -->
-<!-- 					<input id="idNbSalles" name="nbSalles" type="number" min="0" -->
-<%-- 						max="99" value="<s:property value="nbSalles" />" --%>
-<!-- 						class="form-control" id="inputNombreDeSalles" required> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<div class="col-sm-offset-2 col-sm-6"> -->
-<!-- 					<div class="checkbox"> -->
-<!-- 						<label> <input type="checkbox" id="idStationnement" -->
-<!-- 							name="stationnement" value="1" -->
-<!-- 							<s:if test="stationnement">checked</s:if>> Stationnement -->
-<!-- 							à proximité -->
-<!-- 						</label> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="idType" class="col-sm-2 control-label">Type</label> -->
-<!-- 				<div class="col-sm-6"> -->
-<!-- 					<SELECT name="type" size="1" id="idType" class="form-control"> -->
-<!-- 						<OPTION value="-1">Veuillez choisir un Type de cinema</OPTION> -->
-<%-- 						<s:iterator value="listeTypeCinema"> --%>
-
-<%-- 							<OPTION value="<s:property value="idType" />"> --%>
-
-<%-- 								<s:property value="nom" /> --%>
-
-<!-- 							</OPTION> -->
-<%-- 						</s:iterator> --%>
-<!-- 					</SELECT> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</fieldset> -->
-
-		
-		
 		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
