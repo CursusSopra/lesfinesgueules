@@ -50,16 +50,13 @@ private long idUtilisateur;
 	
 	
 	//constructeur
-	public Utilisateur(String nom, String prenom,
-			String email, String ligneAdresse1, String ligneAdresse2,
-			String codePostal, String ville, String mdp, String tel,
+	public Utilisateur(String nom, String prenom, String ligneAdresse1, String codePostal, String ville, String email, String mdp, String tel,
 			String photo, int droits) {
 		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.ligneAdresse1 = ligneAdresse1;
-		this.ligneAdresse2 = ligneAdresse2;
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.mdp = mdp;
@@ -70,8 +67,8 @@ private long idUtilisateur;
 	
 	public void save() throws SQLException{
 		
-		UtilisateurDal ud = new UtilisateurDal(nom, prenom, ligneAdresse1, ligneAdresse2, codePostal, ville, email, mdp, tel, photo, droits);
-		idUtilisateur = ud.save();
+		UtilisateurDal ud = new UtilisateurDal(nom, prenom, ligneAdresse1, codePostal, ville, email, mdp, tel, photo, droits);
+		ud.save();
 	}
 	
 	

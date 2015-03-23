@@ -11,7 +11,7 @@ public class UtilisateurDal extends DataLayerExtended {
 
 	
 	private final static String rqInsert = 
-			"INSERT INTO utilisateurs (nom, prenom, ligne_adresse_1, ligne_adresse_2, code_postal, ville, email, mdp, tel, photo, droits) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO utilisateurs (nom, prenom, ligne_adresse1, code_postal, ville, email, mdp, tel, photo, droits) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	
 	private long idUtilisateur;
 	
@@ -29,17 +29,16 @@ public class UtilisateurDal extends DataLayerExtended {
 	
 	
 	//constructeur
-	public UtilisateurDal(String nom, String prenom,
-			String email, String ligneAdresse1, String ligneAdresse2,
-			String codePostal, String ville, String mdp, String tel,
+	public UtilisateurDal(String nom, String prenom, String ligneAdresse1,
+			String codePostal, String ville, String email, String mdp, String tel,
 			String photo, int droits) {
 		this.nom = nom;
 		this.prenom = prenom;
-		this.email = email;
 		this.ligneAdresse1 = ligneAdresse1;
 		this.ligneAdresse2 = ligneAdresse2;
 		this.codePostal = codePostal;
 		this.ville = ville;
+		this.email = email;
 		this.mdp = mdp;
 		this.tel = tel;
 		this.photo = photo;
@@ -52,14 +51,13 @@ public class UtilisateurDal extends DataLayerExtended {
 		ps.setString(1, nom);
 		ps.setString(2, prenom);
 		ps.setString(3, ligneAdresse1);
-		ps.setString(4, ligneAdresse2);
-		ps.setString(5, codePostal);
-		ps.setString(6, ville);
-		ps.setString(7, email);
-		ps.setString(8, mdp);
-		ps.setString(9, tel);
-		ps.setString(10, photo);
-		ps.setInt(11, droits);
+		ps.setString(4, codePostal);
+		ps.setString(5, ville);
+		ps.setString(6, email);
+		ps.setString(7, mdp);
+		ps.setString(8, tel);
+		ps.setString(9, "");
+		ps.setInt(10, 0);
 		
 		ps.executeUpdate();
 		

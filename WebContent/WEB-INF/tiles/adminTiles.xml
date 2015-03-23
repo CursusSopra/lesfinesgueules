@@ -20,5 +20,19 @@
 <!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
 <!-- 		</put-list-attribute> -->
 	</definition>
+	
+	<!-- FORM TYPE1 -->
+	<definition name="ajout-type1-produit" extends="baseLayout">
+		<put-attribute name="title" value="Ajout d'un type general (type1) à la bdd" />
+		<put-attribute name="body" value="/views/admin/formType1.jsp" />
+<!-- 		<put-list-attribute name="moreScripts"> -->
+<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
+<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
+<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
+<!-- 		</put-list-attribute> -->
+<!-- 		<put-list-attribute name="moreStyles"> -->
+<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
+<!-- 		</put-list-attribute> -->
+	</definition>
 
 </tiles-definitions>
