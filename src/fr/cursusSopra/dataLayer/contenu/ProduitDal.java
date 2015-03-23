@@ -16,7 +16,6 @@ public class ProduitDal extends DataLayerExtended {
 	/* Properties */
 
 	private static List<ProduitDal> listeProduitsDal;
-	private final static String rqListe = "SELECT id_produit FROM produits INNER JOIN types2 using(id_type2) WHERE ? = ? ORDER BY designation";
 	private final static String rqProduit = "SELECT * FROM produits "
 			+ "INNER JOIN types2 USING(id_type2) "
 			+ "INNER JOIN types1 USING(id_type1) " + "WHERE id_produit = ? ";
@@ -51,7 +50,7 @@ public class ProduitDal extends DataLayerExtended {
 			type1 = rs.getLong("id_type1");
 			type2 = rs.getLong("id_type2");
 			producteur = rs.getLong("id_producteur");
-			// this.listeCommentaires = rs.getListeCommentaires();
+		//	this.listeCommentaires = rs.getListeCommentaires();
 		}
 	}
 
@@ -108,10 +107,9 @@ public class ProduitDal extends DataLayerExtended {
 			System.out.println("Fermeture de la connexion.");
 			try {
 				c.close();
-			} catch (SQLException e1) {
+			} catch (Exception e1) {
 				System.out.println("Fermeture de la connexion suite problème impossible !");
 			}
-
 			return listeProduitsDal;
 		}
 	}
@@ -192,10 +190,6 @@ public class ProduitDal extends DataLayerExtended {
 
 	public List<Commentaire> getListeCommentaires() {
 		return listeCommentaires;
-	}
-
-	public void setListeCommentaires(List<Commentaire> listeCommentaires) {
-		this.listeCommentaires = listeCommentaires;
 	}
 
 }

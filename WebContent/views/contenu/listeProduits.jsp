@@ -11,7 +11,22 @@
 				<th class="col-md-10">Description</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="listeProduits">
+		
+			<!-- Contenu de la liste des produits -->
+		
+		</tbody>
+	</table>
+
+</div>
+
+
+
+
+
+<!-- LAISSEZ MOI MON ANCIEN CODE SVP, Benoît -->
+
+<%-- 
 			<s:iterator value="listeProduits" status="stat">
 				<s:iterator>
 					<s:url action="detailsProduit" var="dp">
@@ -40,7 +55,4 @@
 					</tr>
 				</s:iterator>
 			</s:iterator>
-		</tbody>
-	</table>
-
-</div>
+--%>

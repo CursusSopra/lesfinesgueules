@@ -3,23 +3,35 @@
  */
 
 $(function() {
-		$.getJSON('/lesfinesgueules/getProduitsJSON.action', function(data) {
-			$("#listeProduits").html(data);
-			$.each(data.listeDesJours, function(index, elt) {
-				$('#inputHoraires').append('<tr><td><input type="hidden" class="jour" value="'
-						+ elt.idJour + '"/><span>' + elt.jour + '</span></td><td>'
-						+ selectHoraireDebut + '</td><td>' + selectHoraireFin
-						+ '</td><td>' + boutonPlus + boutonMoins + '</td><td>'
-						+ checkboxFerme + '</td></tr>');
-			});
+	$.getJSON('getProduitsJSON.action', function(data) {
+		
+		$.each(data.listeProduits, function(index, elt) {
+		/*	
+			$('#inputHoraires').append('<tr><td><input type="hidden" class="jour" value="'
+				+ elt.idJour + '"/><span>' + elt.jour + '</span></td><td>'
+				+ selectHoraireDebut + '</td><td>' + selectHoraireFin
+				+ '</td><td>' + boutonPlus + boutonMoins + '</td><td>'
+				+ checkboxFerme + '</td></tr>');
+		*/
 			
-			$('.boutonPlusHoraires').click(plusHoraires);
-			$('.boutonMoinsHoraires').click(moinsHoraires);
-			$('.boutonFerme').click(fermeAction);
-			$('#selectDebutTousLesJours').children().change(changeTousLesHorairesDebut);
-			$('#selectFinTousLesJours').children().change(changeTousLesHorairesFin);
+			// Mise du contenu dans la balise #listeProduits
+			$('#listeProduits').html();
+			
+			// Ajout du code HTML dans la balise #listeProduits
+			$("#listeProduits").append(
+				'<tr><td><img alt="image" class="img-responsive img-thumbnail" width="200px" src="' +
+				elt.photo + '"/></td><td><h4>' + elt.designation + '</h4><p>' +
+				elt.description + '</p><p><div class="input-group">' +
+				'<span class="input-group-addon">' + elt.prix + ' &euro;</span>' +
+				'<button type="button" class="btn btn-default">Ajouter au panier</button>' +
+				'<a href="detailsProtuit.action?idProduit=' + elt.idProduit + '"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>' +
+				'</div></p></td></tr>'
+			);
+			
 		});
-	
+		
+	});
+	/*
 	$.get("ListeProduits.action", function(data) {
 		$("#listeProduits").html(data);
 	});
@@ -44,5 +56,5 @@ $(function() {
 			$("#listeProduits").html(data);
 		});
 	});
-	
+	*/
 });

@@ -13,15 +13,17 @@ public class ListeProduitsAction extends ActionSupportExtended {
 	
 	/* Properties */
 	
+	
 	private String idType1 = "-1";
 	private String idType2 = "-1";
 	private String idProducteur = "-1";
+
 	private List<Produit> listeProduits;
 
 	/* Execute Method */
 	
 	public String execute() {
-		long type1 = -2, type2 = -2, producteur = -2;
+	/*	long type1 = -2, type2 = -2, producteur = -2;
 		
 		try {
 			type1 = Long.parseLong(idType1);
@@ -51,6 +53,7 @@ public class ListeProduitsAction extends ActionSupportExtended {
 		} catch (Exception e) {
 			System.out.println("getListeProduits impossible.");
 		}
+	*/
 		return SUCCESS;
 	}
 	

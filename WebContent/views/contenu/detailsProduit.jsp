@@ -6,7 +6,7 @@
 	
 	<table>
 		<thead>
-			<
+			
 		</thead>
 	
 	</table>
