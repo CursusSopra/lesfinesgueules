@@ -3,7 +3,6 @@ package fr.cursusSopra.action.utilisateurs;
 import java.sql.SQLException;
 
 import fr.cursusSopra.action.ActionSupportExtended;
-import fr.cursusSopra.model.Utilisateur;
 
 
 public class InscriptionAction extends ActionSupportExtended{
@@ -63,15 +62,12 @@ public class InscriptionAction extends ActionSupportExtended{
 	
 	//ajout utilisateur en BDD
 	public String createProfil() throws SQLException {
-<<<<<<< HEAD
-=======
-		
-		Utilisateur utilisateur = new Utilisateur(idUtilisateur, nom, prenom, ligneAdresse1, ligneAdresse2,
-				codePostal, ville, email, mdp, tel, photo, droits);
-		
-		utilisateur.save();
-		
->>>>>>> 8b0018ab76c23d740253c1018875d09e0430ee4a
+
+//		Utilisateur utilisateur = new Utilisateur(idUtilisateur, nom, prenom, ligneAdresse1, ligneAdresse2,
+//				codePostal, ville, email, mdp, tel, photo, droits);
+//		
+//		utilisateur.save();
+
 		return SUCCESS;
 	}
 	
