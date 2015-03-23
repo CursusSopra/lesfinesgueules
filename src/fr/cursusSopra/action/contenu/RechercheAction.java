@@ -6,26 +6,20 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.dataLayer.contenu.RechercheDal;
 
+
 public class RechercheAction extends ActionSupport {
 	
 	static private HashMap<Integer, String> listeTypes1;
 	static private HashMap<Integer, String> listeTypes2;
 	static private HashMap<Integer, String> listeProducteurs;
 	
-	
-	private long idType1;
-	private String libelle1;
-	
-	
+	private int idType1;
+	private int idType2;
+	private int idProducteur;
 	
 	public String execute() {
-		listeTypes1 = new HashMap<Integer, String>();
 		RechercheDal rchdal = new RechercheDal();
-		rchdal.getType1();
-		this.idType1=rchdal.getIdType1();
-		this.libelle1=rchdal.getLibelle1();
-		
-		listeTypes1.put((int) rchdal.getIdType1(), rchdal.getLibelle1());
+		listeTypes1 = rchdal.getListeTypes();
 		return SUCCESS;
 	}
 	
@@ -42,12 +36,19 @@ public class RechercheAction extends ActionSupport {
 //		
 //	}
 
-	public long getIdType1() {
+	
+
+	public HashMap<Integer, String> getListeTypes1() {
+		return listeTypes1;
+	}
+
+
+	public int getIdType1() {
 		return idType1;
 	}
 
-	public String getLibelle1() {
-		return libelle1;
+	public void setIdType1(int idType1) {
+		this.idType1 = idType1;
 	}
 	
 }

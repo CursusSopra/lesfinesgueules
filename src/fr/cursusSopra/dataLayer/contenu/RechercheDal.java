@@ -1,18 +1,18 @@
 package fr.cursusSopra.dataLayer.contenu;
 
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
 import fr.cursusSopra.dataLayer.DataLayerExtended;
-import fr.cursusSopra.tech.PostgresConnection;
+
 
 public class RechercheDal extends DataLayerExtended {
 	
-	private long idType1;
-	private String libelle1;
+	private long idType1Dal;
+	private String libelle1Dal;
 	
 
 	static private HashMap<Integer, String> listeTypes1;
@@ -24,20 +24,20 @@ public class RechercheDal extends DataLayerExtended {
 	static private final String rqProducteurs = "SELECT * FROM producteurs";
 
 	
-	public void getType1(){
+	public HashMap<Integer, String> getListeTypes(){
 		
-		long idType1;
-		String libelle1;
-		
+				
 		PreparedStatement ps;
 		
 		try {
 			ps = connection.prepareStatement(rqType1);
-			ResultSet rsQuery = ps
-					.executeQuery();
+			ResultSet rsQuery = ps.executeQuery();
+			
+			listeTypes1 = new HashMap<Integer, String>();
+			
 			while (rsQuery.next()) {
-				idType1 = rsQuery.getInt("id_type1");
-				libelle1 = rsQuery.getString("libelle1");
+				
+				listeTypes1.put(rsQuery.getInt("id_type1"), rsQuery.getString("libelle1"));
 			}
 			
 		} catch (SQLException e1) {
@@ -45,23 +45,23 @@ public class RechercheDal extends DataLayerExtended {
 			e1.printStackTrace();
 		}
 		
-		
-	}
-
-
-	public long getIdType1() {
-		return idType1;
-	}
-
-
-	public String getLibelle1() {
-		return libelle1;
-	}
-
-
-	public static HashMap<Integer, String> getListeTypes1() {
 		return listeTypes1;
 	}
+
+
+	
+
+
+	public long getIdType1Dal() {
+		return idType1Dal;
+	}
+
+
+	public String getLibelle1Dal() {
+		return libelle1Dal;
+	}
+
+
 	
 	
 //	public HashMap<Integer, String> getType1() throws SQLException {

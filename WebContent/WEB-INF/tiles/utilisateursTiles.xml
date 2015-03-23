@@ -11,14 +11,6 @@
 	<definition name="mon-compte" extends="baseLayout">
 		<put-attribute name="title" value="Mon compte" />
 		<put-attribute name="body" value="/views/utilisateurs/profil.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
 	</definition>
 	
 	
@@ -26,43 +18,6 @@
 	<definition name="inscription" extends="baseLayout">
 		<put-attribute name="title" value="Inscription" />
 		<put-attribute name="body" value="/views/utilisateurs/formProfil.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-	</definition>
-	
-	
-		<!-- COMMENTAIRE -->
-	<definition name="commentaire" extends="baseLayout">
-		<put-attribute name="title" value="Ajout Commentaire" />
-		<put-attribute name="body" value="/views/utilisateurs/formCommentaire.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-	</definition>
-	
-		<!-- COMMANDES -->
-	<definition name="commande" extends="baseLayout">
-		<put-attribute name="title" value="Liste Commandes" />
-		<put-attribute name="body" value="/views/utilisateurs/listeCommandes.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
 	</definition>
 
 </tiles-definitions>

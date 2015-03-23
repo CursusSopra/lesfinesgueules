@@ -62,12 +62,13 @@ public class InscriptionAction extends ActionSupportExtended{
 	
 	//ajout utilisateur en BDD
 	public String createProfil() throws SQLException {
+
 		
 		Utilisateur utilisateur = new Utilisateur(nom, prenom, ligneAdresse1,
 				codePostal, ville, email, mdp, tel, photo, droits);
 		
 		utilisateur.save();
-		
+
 		return SUCCESS;
 	}
 	
