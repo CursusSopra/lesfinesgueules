@@ -43,6 +43,7 @@ public class ProduitDal extends DataLayerExtended {
 		ResultSet rs = ps.executeQuery();
 		
 		if(rs.next()) {
+			this.idProduit	= rs.getLong("id_produit");
 			designation	= rs.getString("designation");
 			description	= rs.getString("designation");
 			prix		= rs.getDouble("prix");

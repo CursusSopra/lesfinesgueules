@@ -1,6 +1,5 @@
 package fr.cursusSopra.action.contenu;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import fr.cursusSopra.action.*;
@@ -22,6 +21,9 @@ public class ListeProduitsAction extends ActionSupportExtended {
 	
 	public String execute() throws Exception {
 		setListeProduits(Produit.getListeProduits(idType1, idType2));
+		for(int i = 0 ; i< listeProduits.size() ; i++) {
+			System.out.println("IDP : " + listeProduits.get(i).getIdProduit());
+		}
 		return SUCCESS;
 	}
 	
