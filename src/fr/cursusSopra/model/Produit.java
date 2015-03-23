@@ -36,9 +36,24 @@ public class Produit {
 		listeCommentaires = new ArrayList<Commentaire>();
 	}
 	
+	public Produit(long idProduit, String designation, String description, double prix, String photo, boolean disponible, long type1, long type2, long producteur) {
+		this.idProduit = idProduit;
+		this.designation = designation;
+		this.description = description;
+		this.prix = prix;
+		this.photo = photo;
+		this.disponible = disponible;
+		this.type1 = type1;
+		this.type2 = type2;
+		this.producteur = producteur;
+		
+		listeCommentaires = new ArrayList<Commentaire>();
+	}
+	
 	public Produit(long idProduit) throws SQLException {
 		ProduitDal pdal = new ProduitDal(idProduit);
 		
+		this.idProduit = pdal.getIdProduit();
 		this.designation = pdal.getDesignation();
 		this.description = pdal.getDescription();
 		this.prix = pdal.getPrix();
@@ -54,8 +69,9 @@ public class Produit {
 	public static List<Produit> getListeProduits(long idType1, long idType2) throws Exception {
 		List<Produit> listeProduits = new ArrayList<Produit>();
 		List<ProduitDal> lpdal = ProduitDal.getListeProduitsDal(idType1, idType2);
+		
 		for (int i = 0; i < lpdal.size(); i++) {
-			
+			long idProduit = lpdal.get(i).getIdProduit();
 			String designation = lpdal.get(i).getDesignation();
 			String description = lpdal.get(i).getDescription();
 			double prix = lpdal.get(i).getPrix();
@@ -65,13 +81,21 @@ public class Produit {
 			long type2 = lpdal.get(i).getType2();
 			long producteur = lpdal.get(i).getProducteur();
 			
-			Produit p = new Produit(designation, description, prix, photo, disponible, type1, type2, producteur);
+			Produit p = new Produit(idProduit, designation, description, prix, photo, disponible, type1, type2, producteur);
 			listeProduits.add(p);
 		}
 		return listeProduits;
 	}
 	
 	/* ACCESSORS */
+	
+	public long getIdProduit() {
+		return idProduit;
+	}
+	
+	public void setIdProduit(long idProduit) {
+		this.idProduit = idProduit;
+	}
 
 	public String getDesignation() {
 		return designation;
