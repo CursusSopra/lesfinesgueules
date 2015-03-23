@@ -26,7 +26,8 @@
 <!-- Bootstrap -->
 <!-- Boostrap linter : http://www.bootlint.com/ -->
 <!-- Boostrap switch : http://www.bootstrap-switch.org/examples.html -->
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 <!-- Bootswatch theme -->
 <link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css" rel="stylesheet">
@@ -126,48 +127,59 @@
 
 				<ul class="nav navbar-nav navbar-right">
 
-					<li class="dropdown"><a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown"><b class="caret"></b>&nbsp;&nbsp;
-							<i class="glyphicon glyphicon-user navbaricon"></i></a>
-						<ul class="dropdown-menu userdropdown">
-							<li><a class="btn btn-primary" href="<s:url action='mon-compte' />" role="button">Voir mon compte</a></li>
-							<li class="divider"></li>
-							<li><a class="btn btn-danger" href="<s:url action='' />" role="button">Déconnexion</a></li>
-						</ul></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+							<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
+						</a>
+						<div class="dropdown-menu userdropdown">
+							<a class="btn btn-primary" href="<s:url action='mon-compte' />" role="button">
+								Voir mon compte
+							</a>
+							<hr>
+							<a class="btn btn-danger" href="<s:url action='' />" role="button">
+								Déconnexion
+							</a>
+						</div>
+					</li>
 
 
-					<li class="dropdown"><a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown"><b class="caret"></b>&nbsp;&nbsp;
-							<i class="glyphicon glyphicon-user navbaricon"></i></a>
-						<ul class="dropdown-menu userdropdown">
-							<li>
-								<div class="row">
-									<div class="col-md-12">
-										<form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-											<div class="form-group">
-												<label class="sr-only" for="idEmail">Adresse mail</label> <input type="email" class="form-control" id="idEmail"
-													placeholder="Adresse mail" required>
-											</div>
-											<div class="form-group">
-												<label class="sr-only" for="idMdp">Mot de passe</label> <input type="password" class="form-control" id="idMdp"
-													placeholder="Mot de passe" required>
-											</div>
-											<div class="checkbox">
-												<label> <input type="checkbox"> Se souvenir de moi
-												</label>
-											</div>
-											<div class="form-group">
-												<button type="submit" class="btn btn-success btn-block">S'identifier</button>
-											</div>
-										</form>
-									</div>
+					<li class="dropdown">
+						<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+							<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
+						</a>
+						<div class="dropdown-menu userdropdown">
+							<div class="row">
+								<div class="col-md-12">
+									<form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+										<div class="form-group">
+											<label class="sr-only" for="idEmail">Adresse mail</label> <input type="email" class="form-control" id="idEmail"
+												placeholder="Adresse mail" required>
+										</div>
+										<div class="form-group">
+											<label class="sr-only" for="idMdp">Mot de passe</label> <input type="password" class="form-control" id="idMdp"
+												placeholder="Mot de passe" required>
+										</div>
+										<div class="checkbox">
+											<label> <input type="checkbox"> Se souvenir de moi
+											</label>
+										</div>
+										<div class="form-group">
+											<button type="submit" class="btn btn-success btn-block">S'identifier</button>
+										</div>
+									</form>
 								</div>
-							</li>
-							<li class="divider"></li>
-							<li><a class="btn btn-primary" href="<s:url action='inscription' />" role="button">Créer un compte</a></li>
-						</ul></li>
+							</div>
+							<hr>
+							<a class="btn btn-primary" href="<s:url action='inscription' />" role="button">
+								Créer un compte
+							</a>
+						</div>
+					</li>
 
-					<li class="dropdown"><a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown"> <b class="caret"></b>&nbsp;&nbsp;
-							<i class="glyphicon glyphicon-shopping-cart navbaricon"></i> <span class="badge">4</span>
-					</a>
+					<li class="dropdown">
+						<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+							<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-shopping-cart navbaricon"></i> <span class="badge">4</span>
+						</a>
 						<div class="dropdown-menu table-responsive userdropdown">
 							<table class="table table-striped table-bordered table-condensed">
 								<tbody>
@@ -195,8 +207,11 @@
 									</tr>
 								</tbody>
 							</table>
-							<a href="" class="btn btn-success btn-block">Aller au panier</a>
-						</div></li>
+							<a href="" class="btn btn-success btn-block">
+								Aller au panier
+							</a>
+						</div>
+					</li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
