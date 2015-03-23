@@ -15,28 +15,39 @@ public class ListeProduitsAction extends ActionSupportExtended {
 	
 	private String idType1 = "-1";
 	private String idType2 = "-1";
+	private String idProducteur = "-1";
 	private List<Produit> listeProduits;
 
 	/* Execute Method */
 	
 	public String execute() {
-		long type1, type2;
+		long type1 = -2, type2 = -2, producteur = -2;
+		
 		try {
-			type1 = Long.parseLong(this.idType1);
+			type1 = Long.parseLong(idType1);
 		} catch (NumberFormatException e) {
 			type1 = -1;
 			System.out.println("Conversion String > Long impossible pour idType1.");
 		}
 		try {
-			type2 = Long.parseLong(this.idType2);
+			type2 = Long.parseLong(idType2);
 		} catch (NumberFormatException e) {
 			type2 = -1;
 			System.out.println("Conversion String > Long impossible pour idType2.");
 		}
+		try {
+			producteur = Long.parseLong(idProducteur);
+		} catch (NumberFormatException e) {
+			type2 = -1;
+			System.out.println("Conversion String > Long impossible pour idType2.");
+		}
+		
 		System.out.println("idType1 = " + type1);
 		System.out.println("idType2 = " + type2);
+		System.out.println("idProducteur = " + producteur);
+		
 		try {
-			setListeProduits(Produit.getListeProduits(type1, type2));
+			setListeProduits(Produit.getListeProduits(type1, type2, producteur));
 		} catch (Exception e) {
 			System.out.println("getListeProduits impossible.");
 		}
@@ -51,6 +62,10 @@ public class ListeProduitsAction extends ActionSupportExtended {
 	
 	public void setIdType2(String idType2) {
 		this.idType2 = idType2;
+	}
+	
+	public void setIdProducteur(String idProducteur) {
+		this.idProducteur = idProducteur;
 	}
 
 	public List<Produit> getListeProduits() {

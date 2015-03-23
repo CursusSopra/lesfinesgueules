@@ -66,9 +66,9 @@ public class Produit {
 
 	/* METHODS */
 	
-	public static List<Produit> getListeProduits(long idType1, long idType2) {
+	public static List<Produit> getListeProduits(long idType1, long idType2, long idProducteur) {
 		List<Produit> listeProduits = new ArrayList<Produit>();
-		List<ProduitDal> lpdal = ProduitDal.getListeProduitsDal(idType1, idType2);
+		List<ProduitDal> lpdal = ProduitDal.getListeProduitsDal(idType1, idType2, idProducteur);
 		
 		for (int i = 0; i < lpdal.size(); i++) {
 			long idProduit = lpdal.get(i).getIdProduit();

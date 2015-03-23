@@ -57,19 +57,42 @@ public class ProduitDal extends DataLayerExtended {
 
 	/* Methods */
 
-	static public List<ProduitDal> getListeProduitsDal(long idType1, long idType2) {
+	static public List<ProduitDal> getListeProduitsDal(long idType1, long idType2, long idProducteur) {
 		listeProduitsDal = new ArrayList<ProduitDal>();
 		Connection c = PostgresConnection.GetConnexion();
 		PreparedStatement ps;
 		
 		try {
-			if (idType1 >= (long) 0 && idType2 == (long) -1) {		// Only type1 selected
-				ps = c.prepareStatement("SELECT id_produit FROM produits INNER JOIN types2 using(id_type2) WHERE id_type1 = ? ORDER BY designation");
+			if (idType1 >= (long) 0 && idType2 == (long) -1 && idProducteur == (long) -1) {		// type1
+				ps = c.prepareStatement("SELECT id_produit FROM produits "
+						+ "INNER JOIN types2 using(id_type2) "
+						+ "WHERE id_type1 = ? "
+						+ "ORDER BY designation");
 				ps.setLong(1, idType1);
-			} else if(idType2 >= (long) 0) {						// type2 selected
-				ps = c.prepareStatement("SELECT id_produit FROM produits INNER JOIN types2 using(id_type2) WHERE id_type2 = ? ORDER BY designation");
+			} else if(idType2 >= (long) 0 && idProducteur == (long) -1) {						// type2 (& type1)
+				ps = c.prepareStatement("SELECT id_produit FROM produits "
+						+ "WHERE id_type2 = ? "
+						+ "ORDER BY designation");
 				ps.setLong(1, idType2);
-			} else {												// default case
+			} else if(idType1 >= (long) 0 && idType2 == (long) -1 && idProducteur >= (long) 0) {// type1 & producteur
+				ps = c.prepareStatement("SELECT id_produit FROM produits "
+						+ "INNER JOIN types2 using(id_type2) "
+						+ "WHERE id_type1 = ? AND id_producteur = ? "
+						+ "ORDER BY designation");
+				ps.setLong(1, idType1);
+				ps.setLong(2, idProducteur);
+			} else if(idType2 >= (long) 0 && idProducteur >= (long) 0) {						// type2 & producteur (& type1)
+				ps = c.prepareStatement("SELECT id_produit FROM produits "
+						+ "WHERE id_type2 = ? AND id_producteur = ? "
+						+ "ORDER BY designation");
+				ps.setLong(1, idType2);
+				ps.setLong(2, idProducteur);
+			} else if(idProducteur >= (long) 0) {												// producteur
+				ps = c.prepareStatement("SELECT id_produit FROM produits "
+						+ "WHERE id_producteur = ? "
+						+ "ORDER BY designation");
+				ps.setLong(1, idProducteur);
+			} else {																			// tous les produits
 				ps = c.prepareStatement("SELECT id_produit FROM produits ORDER BY designation");
 			}
 
