@@ -17,8 +17,8 @@
 					 <select name="idType1" class="form-control">
 					 	<option value="-1"></option>
 					 	<s:iterator value="listeTypes1">
-						  <option value="<s:property value="key"/>">
-						  <s:property value="value"/>
+						  <option value="<s:property value="idType1"/>">
+						  <s:property value="libelle1"/>
 						  </option>
 						</s:iterator>
 					</select> 

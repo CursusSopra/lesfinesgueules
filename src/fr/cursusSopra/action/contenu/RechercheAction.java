@@ -1,62 +1,63 @@
 package fr.cursusSopra.action.contenu;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.cursusSopra.dataLayer.contenu.ProducteurDal;
-import fr.cursusSopra.dataLayer.contenu.Type1Dal;
-
+import fr.cursusSopra.dataLayer.admin.Type1Dal;
+import fr.cursusSopra.model.Type1;
+import fr.cursusSopra.model.Type2;
 
 public class RechercheAction extends ActionSupport {
 	
-	static private HashMap<Integer, String> listeTypes1;
-	static private HashMap<Integer, String> listeTypes2;
+	static private List<Type1> listeTypes1;
+	private List<Type2> listeTypes2;
 	static private HashMap<Integer, String> listeProducteurs;
 	
-	private int idType1;
-	private int idType2;
-	private int idProducteur;
+	private long idType1;
+	private long idType2;
+	private long idProducteur;
 	
 	
 	public String execute() {
-		Type1Dal type1Dal;
-//		listeTypes1 = getListeType1(); ;
+
+		listeTypes1 = Type1Dal.getListeType1();
 		
-		ProducteurDal rchdal = new ProducteurDal();
-		rchdal.getListeProducteur();
+		//ProducteurDal rchdal = new ProducteurDal();
+		//rchdal.getListeProducteur();
 				
 		
 		
-		listeProducteurs = rchdal.getListeProducteurs();
+		//listeProducteurs = rchdal.getListeProducteurs();
 		
 		return SUCCESS;
 	}
 	
 	
 
-	public HashMap<Integer, String> getListeTypes1() {
+	public List<Type1>  getListeTypes1() {
 		return listeTypes1;
 	}
 
 
-	public HashMap<Integer, String> getListeTypes2() {
+	public List<Type2> getListeTypes2() {
 		return listeTypes2;
 	}
 
-	public int getIdType1() {
+	public long getIdType1() {
 		return idType1;
 	}
 
-	public void setIdType1(int idType1) {
+	public void setIdType1(long idType1) {
 		this.idType1 = idType1;
 	}
 
-	public int getIdType2() {
+	public long getIdType2() {
 		return idType2;
 	}
 
-	public void setIdType2(int idType2) {
+	public void setIdType2(long idType2) {
 		this.idType2 = idType2;
 	}
 

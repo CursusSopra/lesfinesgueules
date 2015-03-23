@@ -10,10 +10,14 @@ public class Type2 {
 		this.setLibelle2(libelle2);
 	}
 	
-	public Type2 (long idType2, String libelle2, long idType1){
+	public Type2 (long idType1, long idType2, String libelle2){
 		this.setLibelle2(libelle2);
 		this.setIdType2(idType2);
 		this.setIdType1(idType1);
+	}
+	public Type2 (long idType2, String libelle2){
+		this.setLibelle2(libelle2);
+		this.setIdType2(idType2);
 	}
 
 	public long getIdType2() {return idType2;}
