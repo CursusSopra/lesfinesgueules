@@ -61,7 +61,7 @@
 					<input type="file" name="photoProduit" id="idPhotoProduit" />
 				</div>
 			</div>
-		</fieldset>
+		
 		
 		
 		<div class="form-group">

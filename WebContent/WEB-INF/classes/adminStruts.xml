@@ -25,6 +25,19 @@
 			<result name="none" type="tiles">ajout-producteur</result>
 		</action>
 
+
+		<!-- LISTE TYPE1 -->
+		<action name="ajout-type1-produit-form" class="fr.cursusSopra.action.admin.Type1Action" 
+			method="createType1Form">
+			<result name="success" type="tiles">ajout-type1-produit</result>
+		</action>
+
+		<action name="ajout-type1-produit" class="fr.cursusSopra.action.admin.Type1Action" 
+			method="createType1">
+			<result name="success" type="tiles">ajout-type1-produit</result>
+			<result name="error" type="tiles">ajout-type1-produit</result>
+			<result name="none" type="tiles">ajout-type1-produit</result>
+		</action>
 	</package>
 
 </struts>
