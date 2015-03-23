@@ -24,7 +24,7 @@ $(function() {
 				elt.description + '</p><p><div class="input-group">' +
 				'<span class="input-group-addon">' + elt.prix + ' &euro;</span>' +
 				'<button type="button" class="btn btn-default">Ajouter au panier</button>' +
-				'<a href="detailsProtuit.action?idProduit=' + elt.idProduit + '"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>' +
+				'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>' +
 				'</div></p></td></tr>'
 			);
 			

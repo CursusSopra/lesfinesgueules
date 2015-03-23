@@ -2,13 +2,13 @@
 <%@ taglib prefix="s"	uri="/struts-tags"%>
 
 <div class="row">
-	<h1 class="h1">Liste des produits</h1>
+	<h1 class="h1"><s:property value="designation" /></h1>
 	
 	<table>
-		<thead>
-			
-		</thead>
-	
+		<tr>
+			<td><img alt="<s:property value="desgination"/>" src="<s:property value="photo"/>"></td>
+			<td></td>
+		</tr>	
 	</table>
 	
 </div>

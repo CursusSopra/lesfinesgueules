@@ -113,7 +113,7 @@ public class Produit {
 		this.description = description;
 	}
 
-	public Number getPrix() {
+	public double getPrix() {
 		return prix;
 	}
 
