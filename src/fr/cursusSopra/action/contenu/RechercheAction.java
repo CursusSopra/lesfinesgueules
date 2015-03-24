@@ -15,7 +15,7 @@ public class RechercheAction extends ActionSupport {
 	
 	static private List<Type1> listeTypes1;
 	private List<Type2> listeTypes2;
-	static private List<Producteur> listeProducteurs;
+	static private List<ProducteurDal> listeProducteurs;
 	
 	private long idType1;
 	private long idType2;
@@ -25,7 +25,7 @@ public class RechercheAction extends ActionSupport {
 	public String execute() {
 
 		listeTypes1 = Type1Dal.getListeType1();
-		listeProducteurs = ProducteurDal.getListeProducteur();
+		listeProducteurs = ProducteurDal.getListeProducteurDal();
 		
 		return SUCCESS;
 	}
@@ -57,11 +57,11 @@ public class RechercheAction extends ActionSupport {
 		this.idType2 = idType2;
 	}
 
-	public List<Producteur> getListeProducteurs() {
+	public List<ProducteurDal> getListeProducteurs() {
 		return listeProducteurs;
 	}
 
-	public void setListeProducteurs(List<Producteur> listeProducteurs) {
+	public void setListeProducteurs(List<ProducteurDal> listeProducteurs) {
 		RechercheAction.listeProducteurs = listeProducteurs;
 	}
 	
