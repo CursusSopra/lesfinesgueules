@@ -23,7 +23,7 @@ public class ProduitAction extends ActionSupportExtended {
 	private String description;
 	private double prix;
 	private String designation;
-	private String photo;
+	private String photo = "image";
 	private boolean disponible;
 	
 	private List<Type1> listeType1;
