@@ -24,8 +24,7 @@ $(function() {
 			}
 			
 			// Description (250) et prix
-			output += '<p>' + elt.description.substring(0,250) + '...</p>' + 
-				'<p><div class="input-group">' +
+			output += '<p>' + elt.description.substring(0,250) + '...</p><p><div class="input-group">' +
 				'<span class="input-group-addon">' + elt.prix + ' &euro;</span>';
 			
 			// Activation / Désactivation du bouton "Ajouter au panier"
@@ -46,7 +45,7 @@ $(function() {
 		$('#listeProduits').html(output);
 		
 	});
-	/*
+/*
 	$.get("ListeProduits.action", function(data) {
 		$("#listeProduits").html(data);
 	});
@@ -71,5 +70,5 @@ $(function() {
 			$("#listeProduits").html(data);
 		});
 	});
-	*/
+*/
 });

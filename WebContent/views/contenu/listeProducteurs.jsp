@@ -1,8 +1,8 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s"	uri="/struts-tags"%>
 
 <div class="row">
-	<h1 class="h1">Liste des produits</h1>
+	<h1 class="h1">Liste des producteurs</h1>
 
 	<table class="table table-stripped table-hover">
 		<thead>
@@ -11,23 +11,13 @@
 				<th class="col-md-10">Description</th>
 			</tr>
 		</thead>
-		<tbody id="listeProduits">
+		<tbody>
 		
-			<!-- Contenu de la liste des produits -->
-		
-		</tbody>
-	</table>
-
-</div>
-
-<!-- LAISSEZ MOI MON ANCIEN CODE SVP, Benoît -->
-
-<%-- 
-			<s:iterator value="listeProduits" status="stat">
+			<s:iterator value="listeProducteurs" status="stat">
 				<s:iterator>
-					<s:url action="detailsProduit" var="dp">
+					<s:url action="detailsProducteur" var="dp">
 						<s:param name="id">
-							<s:property value="idProduit" />
+							<s:property value="idProducteur" />
 						</s:param>
 					</s:url>
 				
@@ -35,15 +25,14 @@
 						<td><img alt="image" class="img-responsive img-thumbnail" width="200px" src="<s:property value="photo"/>" /></td>
 						<td>
 							<h4>
-								<s:property value="designation" />
+								<s:property value="raisonSociale" />
 							</h4>
 							<p>
 								<s:property value="description" />
 							</p>
 							<p>
 								<div class="input-group">
-									<span class="input-group-addon"><s:property value="prix" /> &euro;</span>
-									<button type="button" class="btn btn-default">Ajouter au panier</button>
+									<span class="input-group-addon"><s:property value="delaiLivraison" /> jours</span>
 									<a href="<s:property value='#dp'/>"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>
 								</div>
 							</p>
@@ -51,4 +40,8 @@
 					</tr>
 				</s:iterator>
 			</s:iterator>
---%>
+		
+		</tbody>
+	</table>
+
+</div>

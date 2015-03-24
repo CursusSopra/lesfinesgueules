@@ -17,6 +17,13 @@
  		</put-list-attribute>
 	</definition>
 	
+	<!-- LISTE PRODUCTEURS -->
+	
+	<definition name="listeProducteurs" extends="baseLayout">
+		<put-attribute name="title" value="Liste des producteurs" />
+		<put-attribute name="body" value="/views/contenu/listeProducteurs.jsp" />
+	</definition>
+	
 	<!-- DETAILS PRODUIT -->
 	
 	<definition name="detailsProduit" extends="baseLayout">

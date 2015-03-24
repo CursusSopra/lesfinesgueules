@@ -20,6 +20,12 @@
 			<result name="success" type="tiles">listeProduits</result>
 		</action>
 		
+		<!-- LISTE PRODUCTEURS -->
+		
+		<action name="listeProducteurs" class="fr.cursusSopra.action.contenu.ListeProducteursAction" method="execute">
+			<result name="success" type="tiles">listeProducteurs</result>
+		</action>
+		
 		<!-- RECHERCHE -->
 		
 		<action name="recherche" class="fr.cursusSopra.action.contenu.RechercheAction" method="execute">

@@ -1,3 +1,6 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.json;
 
 import java.sql.SQLException;
@@ -36,11 +39,11 @@ public class JSONListeProduitsAction {
 			type2 = -1;
 			System.out.println("Conversion String > Long impossible pour idType2.");
 		}
-		
+/*		
 		System.out.println("idType1 = " + type1);
 		System.out.println("idType2 = " + type2);
 		System.out.println("idProducteur = " + producteur);
-		
+*/		
 		try {
 			setListeProduits(Produit.getListeProduits(type1, type2, producteur));
 		} catch (Exception e) {

@@ -24,7 +24,12 @@
 				<span class="input-group-addon"><s:property value="raisonSociale" /></span>
 				<span class="input-group-addon"><s:property value="delaiLivraison" /> jours</span>
 				<p><s:property value="description" /></p>
-				<h4><span class="label label-default"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Adresse du producteur</span></h4>
+				<h4>
+					<span class="label label-default">
+						<span class="glyphicon glyphicon-map-marker"></span>
+						&nbsp;Adresse du producteur
+					</span>
+				</h4>
 				<p>
 					<s:property value="raisonSociale"/><br/>
 					<s:property value="ligneAdresse1"/><br/>
