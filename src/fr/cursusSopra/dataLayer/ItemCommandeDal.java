@@ -15,11 +15,8 @@ import fr.cursusSopra.model.ItemCommande;
 import fr.cursusSopra.tech.PostgresConnection;
 
 /**
- *
- * @author julien C
- *
+ * @author Julien Caillon
  */
-
 public class ItemCommandeDal extends DataLayerExtended {
 
 	private final static String rqInsert = "INSERT INTO items_commandes (id_produit, id_commande, quantite) VALUES(?, ?, ?)";
@@ -56,9 +53,13 @@ public class ItemCommandeDal extends DataLayerExtended {
 		ResultSet rs = ps.executeQuery();
 
 		while (rs.next()) {
-			ItemCommande ic = new ItemCommande(rs.getLong("id_item_commande"), rs.getLong("id_produit"), rs.getLong("id_commande"),
-					rs.getInt("quantite"), rs.getTimestamp("ts_creation"), true);
-			myList.add(ic);
+			myList.add(new ItemCommande(
+					rs.getLong("id_item_commande"),
+					rs.getLong("id_produit"),
+					rs.getLong("id_commande"),
+					rs.getInt("quantite"),
+					rs.getTimestamp("ts_creation"),
+					true));
 		}
 
 		ps.close();
@@ -69,7 +70,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 
 	/**
 	 * Sauvegarde d'un nouvel item ou update d'un item deja existant dans la db
-	 * @return long qui contient l'id de l'item sauver (ou -1 si le save est un echec)
+	 * @return long qui contient l'id de l'item sauve (ou -1 si le save est un echec)
 	 * @throws SQLException
 	 */
 	public long save(long idCommande) throws SQLException {

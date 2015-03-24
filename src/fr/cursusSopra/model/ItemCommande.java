@@ -5,8 +5,7 @@ package fr.cursusSopra.model;
 
 import java.sql.Timestamp;
 /**
- * @author Julien C
- *
+ * @author Julien Caillon
  */
 public class ItemCommande {
 

@@ -38,6 +38,7 @@
  = en attente de validation
 1 = valide]]></comment>
 			</column>
+			<column name="ts_creation" type="timestamp" jt="93" />
 			<index name="pk_commentaires" unique="PRIMARY_KEY" >
 				<column name="id_commentaire" />
 			</index>

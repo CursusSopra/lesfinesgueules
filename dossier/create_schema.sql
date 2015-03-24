@@ -11,7 +11,7 @@ COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
--- CREATE TABLEs
+-- CREATE TABLE
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE producteurs ( 
@@ -84,6 +84,7 @@ CREATE TABLE commentaires (
 	avis                 text  ,
 	note                 integer  NOT NULL,
 	etat                 integer  NOT NULL,
+	ts_creation          timestamp  ,
 	CONSTRAINT pk_commentaires PRIMARY KEY ( id_commentaire )
  );
 
@@ -196,11 +197,10 @@ ALTER TABLE types2 ADD CONSTRAINT fk_types2_types1 FOREIGN KEY ( id_type1 ) REFE
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 -- %%%%%%%%
--- ITEMS_COMMANDES
+-- ts_creation for "commentaires" and "items_commandes"
 -- %%%%%%%%
 
--- FUNCTION TRIGGER INSERT BEFORE
-CREATE OR REPLACE FUNCTION items_on_insert_before()
+CREATE OR REPLACE FUNCTION on_insert_before()
 RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -212,16 +212,19 @@ LANGUAGE plpgsql VOLATILE;
 
 -- CREATE THE TRIGGER, ASSOCIATE IT TO THE function
 -- DROP TRIGGER on_insert_before ON items_commandes CASCADE;
-CREATE TRIGGER items_on_insert_before BEFORE INSERT ON items_commandes FOR EACH ROW EXECUTE PROCEDURE public.items_on_insert_before();
+CREATE TRIGGER on_insert_before1 BEFORE INSERT ON items_commandes FOR EACH ROW EXECUTE PROCEDURE public.on_insert_before();
+CREATE TRIGGER on_insert_before2 BEFORE INSERT ON commentaires FOR EACH ROW EXECUTE PROCEDURE public.on_insert_before();
 
--- ACCESSIBLE STUFF :
-/*
-INSERT : new
-UPDATE : new / old
-DELETE : old
-*/
+/* NOTE, ACCESSIBLE STUFF :
+	INSERT : new
+	UPDATE : new / old
+	DELETE : old */
 
--- FUNCTION TRIGGER UPDATE BEFORE
+
+-- %%%%%%%%
+-- ts_validation, ts_archivage for "commandes"
+-- %%%%%%%%
+
 CREATE OR REPLACE FUNCTION commandes_on_update_before()
 RETURNS TRIGGER AS
 $BODY$
@@ -238,14 +241,13 @@ END;
 $BODY$
 LANGUAGE plpgsql VOLATILE;
 
--- CREATE THE TRIGGER, ASSOCIATE IT TO THE function
--- DROP TRIGGER on_update_before ON items_commandes CASCADE;
 CREATE TRIGGER commandes_on_update_before BEFORE UPDATE ON commandes FOR EACH ROW EXECUTE PROCEDURE public.commandes_on_update_before();
 
 
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
--- VIEW
+-- CREATE VIEWS
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
+
 -- USE : "SELECT * FROM v_ispublicholiday"
 -- CREATE OR REPLACE VIEW v_ispublicholiday AS (
 -- 	SELECT calendarday

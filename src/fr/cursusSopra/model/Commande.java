@@ -47,7 +47,7 @@ public class Commande {
 		try {
 			new CommandeDal(this).utilisateur(idUtilisateur);
 		} catch (SQLException e) {
-			System.err.print(String.format("ERREUR : Impossible de trouver la commande l'user id : %d .\n", idUtilisateur));
+			System.err.print(String.format("ERREUR 01 : Impossible de trouver la commande l'user id : %d .\n", idUtilisateur));
 		}
 		// maybe we didn't find the commande panier in the db? np we still have an object "commande" correctly instanciated
 		this.idUtilisateur = idUtilisateur;
@@ -65,7 +65,7 @@ public class Commande {
 		try {
 			new CommandeDal(this).select(idUtilisateur, idCommande);
 		} catch (SQLException e) {
-			System.err.print(String.format("ERREUR : Impossible de trouver la commande id : %d .\n", idCommande));
+			System.err.print(String.format("ERREUR 02 : Impossible de trouver la commande id : %d .\n", idCommande));
 		}
 		// get la liste des items enfants
 		getMyListOfItems();
@@ -80,7 +80,7 @@ public class Commande {
 		try {
 			ListeItems = ItemCommandeDal.getListeItemsCommandes(idCommande);
 		} catch (SQLException e) {
-			System.err.print(String.format("ERREUR : lors de l'importation des items de la commande id : %d .\n", idCommande));
+			System.err.print(String.format("ERREUR 03 : lors de l'importation des items de la commande id : %d .\n", idCommande));
 		}
 	}
 
@@ -94,7 +94,8 @@ public class Commande {
 		try {
 			mylist = CommandeDal.getListeCommandes(idUtilisateur);
 		} catch (SQLException e) {
-			System.err.print(String.format("ERREUR : lors de l'importation des commandes de l'user id : %d .\n", idUtilisateur));
+			System.err.print(String.format("ERREUR 04 : lors de l'importation des commandes passees de l'user id : %d .\n", idUtilisateur));
+			e.printStackTrace();
 		}
 		return mylist;
 	}
@@ -122,7 +123,7 @@ public class Commande {
 		try {
 			new ItemCommandeDal(ic).delete();
 		} catch (SQLException e) {
-			System.err.print(String.format("ERREUR : lors de la suppression de l'item id : %d .\n", idItemCommande));
+			System.err.print(String.format("ERREUR 05 : lors de la suppression de l'item id : %d .\n", idItemCommande));
 		}
 		getMyListOfItems();
 	}
@@ -156,7 +157,7 @@ public class Commande {
 			if (connection != null) {
 	            try {
 	            	// Si il y a eu une erreur durant l'une des requetes "insert into" alors on fait un roll back
-	                System.err.print("La transaction est annulée.\n");
+	                System.err.print("ERREUR 06 : La transaction est annulée.\n");
 	                idCommande = -1;
 	                connection.rollback();
 	    			e.printStackTrace();
@@ -207,7 +208,7 @@ public class Commande {
 			if (connection != null) {
 	            try {
 	            	// Si il y a eu une erreur durant l'une des requetes "insert into" alors on fait un roll back
-	                System.err.print("La transaction est annulée.\n");
+	                System.err.print("ERREUR 07 : La transaction est annulée.\n");
 	                idCommande = -1;
 	                connection.rollback();
 	    			e.printStackTrace();
