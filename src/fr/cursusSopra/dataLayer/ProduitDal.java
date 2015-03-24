@@ -1,3 +1,6 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.dataLayer;
 
 import java.sql.Connection;
@@ -10,9 +13,7 @@ import java.util.List;
 import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.tech.PostgresConnection;
 /**
- * 
  * @author Benoît
- *
  */
 public class ProduitDal extends DataLayerExtended {
 
@@ -22,9 +23,8 @@ public class ProduitDal extends DataLayerExtended {
 	private final static String rqProduit = "SELECT * FROM produits "
 			+ "INNER JOIN types2 USING(id_type2) "
 			+ "INNER JOIN types1 USING(id_type1) " + "WHERE id_produit = ? ";
-	private final static String rqInsert = 
-			"INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) VALUES (?,?,?,?,?,?,?)";
-	
+	private final static String rqInsert = "INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) "
+			+ "VALUES (?,?,?,?,?,?,?)";
 
 	private long idProduit;
 	private String designation;
@@ -68,36 +68,36 @@ public class ProduitDal extends DataLayerExtended {
 		PreparedStatement ps;
 		
 		try {
-			if (idType1 >= (long) 0 && idType2 == (long) -1 && idProducteur == (long) -1) {		// type1
+			if (idType1 >= 0 && idType2 == -1 && idProducteur == -1) {			// type1
 				ps = c.prepareStatement("SELECT id_produit FROM produits "
 						+ "INNER JOIN types2 using(id_type2) "
 						+ "WHERE id_type1 = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idType1);
-			} else if(idType2 >= (long) 0 && idProducteur == (long) -1) {						// type2 (& type1)
+			} else if(idType2 >= 0 && idProducteur == -1) {						// type2 (& type1)
 				ps = c.prepareStatement("SELECT id_produit FROM produits "
 						+ "WHERE id_type2 = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idType2);
-			} else if(idType1 >= (long) 0 && idType2 == (long) -1 && idProducteur >= (long) 0) {// type1 & producteur
+			} else if(idType1 >= 0 && idType2 == -1 && idProducteur >= 0) {		// type1 & producteur
 				ps = c.prepareStatement("SELECT id_produit FROM produits "
 						+ "INNER JOIN types2 using(id_type2) "
 						+ "WHERE id_type1 = ? AND id_producteur = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idType1);
 				ps.setLong(2, idProducteur);
-			} else if(idType2 >= (long) 0 && idProducteur >= (long) 0) {						// type2 & producteur (& type1)
+			} else if(idType2 >= 0 && idProducteur >= 0) {						// type2 & producteur (& type1)
 				ps = c.prepareStatement("SELECT id_produit FROM produits "
 						+ "WHERE id_type2 = ? AND id_producteur = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idType2);
 				ps.setLong(2, idProducteur);
-			} else if(idProducteur >= (long) 0) {												// producteur
+			} else if(idProducteur >= 0) {										// producteur
 				ps = c.prepareStatement("SELECT id_produit FROM produits "
 						+ "WHERE id_producteur = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idProducteur);
-			} else {																			// tous les produits
+			} else {															// tous les produits
 				ps = c.prepareStatement("SELECT id_produit FROM produits ORDER BY designation");
 			}
 
