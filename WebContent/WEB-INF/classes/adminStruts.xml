@@ -25,6 +25,11 @@
 			<result name="none" type="tiles">ajout-producteur</result>
 		</action>
 		
+<!-- 		MODIFICATION PRODUCTEUR -->
+		<action name="detailsProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="createProducteurForm">
+			<result name="success" type="tiles">ajout-producteur</result>
+		</action>
+		
 		<!-- CREATION PRODUIT -->
 		<action name="ajout-produit-form" class="fr.cursusSopra.action.admin.ProduitAction"
 			method="createProduitForm">

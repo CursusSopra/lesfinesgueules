@@ -1,5 +1,5 @@
 /**
- * File modified by : Benoît
+ * Modified by Nicolas
  */
 package fr.cursusSopra.action.admin;
 
@@ -116,4 +116,11 @@ public class ProducteurAction extends ActionSupportExtended {
 		}
 		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
+	
+	@Override
+	public String execute(){
+		
+		return SUCCESS;
+	}
+	
 }

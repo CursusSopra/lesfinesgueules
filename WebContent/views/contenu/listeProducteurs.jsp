@@ -20,6 +20,11 @@
 							<s:property value="idProducteur" />
 						</s:param>
 					</s:url>
+					<s:url action="modifyProducteur" var="mp">
+						<s:param name="idProducteur">
+							<s:property value="idProducteur" />
+						</s:param>
+					</s:url>
 				
 					<tr>
 						<td><img alt="image" class="img-responsive img-thumbnail" width="200px" src="<s:property value="photo"/>" /></td>
@@ -34,6 +39,8 @@
 								<div class="input-group">
 									<span class="input-group-addon"><s:property value="delaiLivraison" /> jours</span>
 									<a href="<s:property value='#dp'/>"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>
+									<a href="<s:property value='#mp'/>"><button type="button" class="btn btn-info">Modifier le Producteur</button></a>
+									
 								</div>
 							</p>
 						</td>
