@@ -1,9 +1,18 @@
--- DELETE EXISTING public
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+-- DELETE EXISTING public And reCREATE public
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+
 DROP SCHEMA public CASCADE;
+
 CREATE SCHEMA public;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO public;
 COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+-- CREATE TABLEs
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE producteurs ( 
 	id_producteur        serial  NOT NULL,
@@ -13,11 +22,11 @@ CREATE TABLE producteurs (
 	ligne_adresse2       varchar(50)  ,
 	code_postal          char(5)  NOT NULL,
 	ville                varchar(50)  NOT NULL,
-	gpslat               varchar(13)  NOT NULL,
-	gpslong              varchar(13)  NOT NULL,
 	description          text  NOT NULL,
 	delai_livraison      integer  NOT NULL,
 	photo                varchar(50)  NOT NULL,
+	gpslat               varchar(13)  NOT NULL,
+	gpslong              varchar(13)  NOT NULL,
 	CONSTRAINT pk_producteurs PRIMARY KEY ( id_producteur )
  );
 
@@ -51,6 +60,23 @@ CREATE TABLE utilisateurs (
 	droits               integer DEFAULT 0 NOT NULL,
 	CONSTRAINT pk_clients PRIMARY KEY ( id_utilisateur )
  );
+
+CREATE TABLE commandes ( 
+	id_commande          serial  NOT NULL,
+	id_utilisateur       bigint  NOT NULL,
+	etat                 integer  NOT NULL,
+	ts_validation        timestamp  ,
+	ts_archivage         timestamp  ,
+	moyen_paiement       integer  NOT NULL,
+	CONSTRAINT idx_commandes PRIMARY KEY ( id_commande ),
+	CONSTRAINT idx_commandes_0 UNIQUE ( id_utilisateur, etat, ts_validation ) 
+ );
+
+CREATE INDEX idx_commandes_1 ON commandes ( id_utilisateur );
+
+COMMENT ON COLUMN commandes.etat IS '-1 = commande dans le panier, non validee
+0 = commande validee en cours de livraison
+1 = commande livree, archivee';
 
 CREATE TABLE commentaires ( 
 	id_commentaire       serial  NOT NULL,
@@ -97,24 +123,23 @@ CREATE INDEX idx_commentaires_produits_0 ON commentaires_produits ( id_produit )
 
 CREATE TABLE items_commandes ( 
 	id_item_commande     serial  NOT NULL,
-	id_utilisateur       bigint  NOT NULL,
 	id_produit           bigint  NOT NULL,
-	etat                 integer  NOT NULL,
+	id_commande          bigint  NOT NULL,
 	quantite             integer  NOT NULL,
-	moyen_paiement       integer  NOT NULL,
 	ts_creation          timestamp  ,
-	ts_validation        timestamp  ,
-	ts_archivage         timestamp  ,
-	CONSTRAINT pk_commandes PRIMARY KEY ( id_item_commande )
+	CONSTRAINT pk_items_commandes PRIMARY KEY ( id_item_commande )
  );
 
-CREATE INDEX idx_commandes_0 ON items_commandes ( id_produit );
+CREATE INDEX idx_items_commandes ON items_commandes ( id_produit );
 
-CREATE INDEX idx_commandes ON items_commandes ( id_utilisateur );
+CREATE INDEX idx_items_commandes_0 ON items_commandes ( id_commande );
 
-COMMENT ON COLUMN items_commandes.etat IS '-1 = commande dans le panier, non validee
-0 = commande validee en cours de livraison
-1 = commande livree, archivee';
+
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+-- ADD CONSTRAINT FOREIGN KEY
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+ALTER TABLE commandes ADD CONSTRAINT fk_commandes_utilisateurs FOREIGN KEY ( id_utilisateur ) REFERENCES utilisateurs( id_utilisateur ) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE commentaires ADD CONSTRAINT fk_commentaires_utilisateurs FOREIGN KEY ( id_utilisateur ) REFERENCES utilisateurs( id_utilisateur ) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -122,9 +147,9 @@ ALTER TABLE commentaires_produits ADD CONSTRAINT fk_commentaires_produits_commen
 
 ALTER TABLE commentaires_produits ADD CONSTRAINT fk_commentaires_produits_produits FOREIGN KEY ( id_produit ) REFERENCES produits( id_produit ) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE items_commandes ADD CONSTRAINT fk_commandes_produits FOREIGN KEY ( id_produit ) REFERENCES produits( id_produit ) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE items_commandes ADD CONSTRAINT fk_items_commandes_produits FOREIGN KEY ( id_produit ) REFERENCES produits( id_produit ) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE items_commandes ADD CONSTRAINT fk_commandes_utilisateurs FOREIGN KEY ( id_utilisateur ) REFERENCES utilisateurs( id_utilisateur ) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE items_commandes ADD CONSTRAINT fk_items_commandes_commandes FOREIGN KEY ( id_commande ) REFERENCES commandes( id_commande ) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE produits ADD CONSTRAINT fk_produits_producteurs FOREIGN KEY ( id_producteur ) REFERENCES producteurs( id_producteur ) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -132,3 +157,65 @@ ALTER TABLE produits ADD CONSTRAINT fk_produits_types2 FOREIGN KEY ( id_type2 ) 
 
 ALTER TABLE types2 ADD CONSTRAINT fk_types2_types1 FOREIGN KEY ( id_type1 ) REFERENCES types1( id_type1 ) ON DELETE CASCADE ON UPDATE CASCADE;
 
+
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+-- CREATE TRIGGERS
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+-- %%%%%%%%
+-- ITEMS_COMMANDES
+-- %%%%%%%%
+
+-- FUNCTION TRIGGER INSERT BEFORE
+CREATE OR REPLACE FUNCTION items_on_insert_before()
+RETURNS TRIGGER AS
+$BODY$
+BEGIN
+	new.ts_creation = now();
+	RETURN new;
+END;
+$BODY$
+LANGUAGE plpgsql VOLATILE;
+
+-- CREATE THE TRIGGER, ASSOCIATE IT TO THE function
+-- DROP TRIGGER on_insert_before ON items_commandes CASCADE;
+CREATE TRIGGER items_on_insert_before BEFORE INSERT ON items_commandes FOR EACH ROW EXECUTE PROCEDURE public.items_on_insert_before();
+
+-- ACCESSIBLE STUFF :
+/*
+INSERT : new
+UPDATE : new / old
+DELETE : old
+*/
+
+-- FUNCTION TRIGGER UPDATE BEFORE
+CREATE OR REPLACE FUNCTION commandes_on_update_before()
+RETURNS TRIGGER AS
+$BODY$
+BEGIN
+	IF old.etat <> new.etat THEN
+		IF new.etat = 0 THEN
+			new.ts_validation = now();
+		ELSIF new.etat = 1 THEN
+			new.ts_archivage = now();
+		END IF;
+	END IF;
+	RETURN new;
+END;
+$BODY$
+LANGUAGE plpgsql VOLATILE;
+
+-- CREATE THE TRIGGER, ASSOCIATE IT TO THE function
+-- DROP TRIGGER on_update_before ON items_commandes CASCADE;
+CREATE TRIGGER commandes_on_update_before BEFORE UPDATE ON commandes FOR EACH ROW EXECUTE PROCEDURE public.commandes_on_update_before();
+
+
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+-- VIEW
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+-- USE : "SELECT * FROM v_ispublicholiday"
+-- CREATE OR REPLACE VIEW v_ispublicholiday AS (
+-- 	SELECT calendarday
+-- 	FROM calendar
+-- 	WHERE ispublicholiday = 1
+-- 	);
