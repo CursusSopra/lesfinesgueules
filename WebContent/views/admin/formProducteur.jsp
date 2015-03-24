@@ -35,15 +35,14 @@
 </s:if>
 
 <s:if test="firstDisplay">
-	<s:if test="idProducteur != 0">
-		<p class="bg-danger"><br/>Bravo, vous êtes référencé(e) parmi nos fines gueules.
-		</p>
-	</s:if>
-	<s:if test="idProducteur = 0">
-		<p class="bg-danger"><br/>Vos données sont correctes mais nous avons rencontré un problème 
-									lors de votre enregistrement.
-		</p>
-	</s:if>
+	<p class="bg-danger">
+		<s:if test="idProducteur > 0">
+			<br/>Bravo, vous êtes référencé(e) parmi nos fines gueules.
+		</s:if>
+		<s:if test="idProducteur <= 0">
+			<br/>Aïaïaï, ça ne marche pas
+		</s:if>
+	</p>
 </s:if>
 
 
@@ -122,7 +121,7 @@
 			<div class="form-group">
 				<label for="idLatitude" class="col-sm-2 control-label">Latitude : </label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-lg" id="idLatitude"
+					<input type="text" class="form-control" id="idLatitude"
 						name="latitude" value="<s:property value="latitude"/>">
 				</div>
 			</div>
@@ -130,7 +129,7 @@
 			<div class="form-group">
 				<label for="idLongitude" class="col-sm-2 control-label">Longitude : </label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control input-lg" id="idLongitude"
+					<input type="text" class="form-control" id="idLongitude"
 						name="longitude" value="<s:property value="longitude"/>">
 				</div>
 			</div>
