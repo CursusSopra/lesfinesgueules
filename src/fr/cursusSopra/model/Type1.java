@@ -82,7 +82,7 @@ public class Type1 {
 		
 		List<Type2> lt2 = t1Dal.getListeType2();
 		listeType2 = new ArrayList<Type2>();
-		for (int i = 0; i< Type1Dal.getListeType1Dal().size();i++ ){
+		for (int i = 0; i< lt2.size();i++ ){
 			
 			String libelle2 = lt2.get(i).getLibelle2();
 			long idType2 = lt2.get(i).getIdType2();
@@ -102,7 +102,7 @@ public class Type1 {
 		listeType1 = new ArrayList<Type1> ();
 		List<Type1> lt1 = Type1Dal.getListeType1Dal();
 		
-		for (int i = 0; i< Type1Dal.getListeType1Dal().size();i++ ){
+		for (int i = 0; i< lt1.size();i++ ){
 			String libelle1 = lt1.get(i).getLibelle1();
 			long idType1 = lt1.get(i).getIdType1();
 			Type1 t1 = new Type1(idType1, libelle1);

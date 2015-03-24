@@ -51,7 +51,7 @@ public class Type1Action extends ActionSupportExtended {
 	 * @return the string
 	 */
 	public String modifyType1Form() {
-		setListeType1(Type1.getListeType1());
+		listeType1 = Type1.getListeType1();
 		return SUCCESS;
 	}
 	
@@ -61,7 +61,7 @@ public class Type1Action extends ActionSupportExtended {
 	 * @return the string
 	 */
 	public String modifyType1() {
-		setListeType1(Type1.getListeType1());
+		listeType1 = Type1.getListeType1();
 		return SUCCESS;
 	}
 
@@ -77,8 +77,5 @@ public class Type1Action extends ActionSupportExtended {
 		return listeType1;
 	}
 
-	public void setListeType1(List<Type1> listeType1) {
-		this.listeType1 = listeType1;
-	}
 
 }

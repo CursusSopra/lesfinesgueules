@@ -26,6 +26,7 @@ public class Type1Dal extends DataLayerExtended {
 	private final static String rq = "SELECT * FROM types1";
 	private final static String rqListeType2 = "SELECT * FROM types2 WHERE id_type1=?";
 	private final static String rqType1 = "SELECT * FROM types1 WHERE id_type1=?";
+	private final static String rqModify = "SELECT * FROM types1 WHERE id_type1=?";
 	
 	private String libelle1;
 	private long idType1;
@@ -77,6 +78,19 @@ public class Type1Dal extends DataLayerExtended {
 		}
 
 		return idType1;
+	}
+	public void modify() throws SQLException {
+
+		// Génération de l'idType1 non utile dans le code, sert au débug
+		PreparedStatement ps = connection.prepareStatement(rqModify);
+		ps.setString(1, libelle1);
+
+		ps.executeUpdate();
+		ResultSet generatedKeys = ps.getGeneratedKeys();
+		if (generatedKeys.next()) {
+			setIdType1(generatedKeys.getLong("id_type1"));
+		}
+
 	}
 
 	public static List<Type1> getListeType1Dal() {
