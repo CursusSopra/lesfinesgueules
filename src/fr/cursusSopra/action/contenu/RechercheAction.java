@@ -1,33 +1,46 @@
+/**
+ * Modified by Nicolas
+ */
 package fr.cursusSopra.action.contenu;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.cursusSopra.dataLayer.ProducteurDal;
-import fr.cursusSopra.dataLayer.Type1Dal;
 import fr.cursusSopra.model.Producteur;
 import fr.cursusSopra.model.Type1;
 import fr.cursusSopra.model.Type2;
 
 public class RechercheAction extends ActionSupport {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6282582080796137016L;
 	static private List<Type1> listeTypes1;
 	private List<Type2> listeTypes2;
-	static private List<ProducteurDal> listeProducteurs;
+	static private List<Producteur> listeProducteurs;
 	
 	private long idType1;
 	private long idType2;
 	private long idProducteur;
 	
 	
+	@Override
 	public String execute() {
 
-		listeTypes1 = Type1Dal.getListeType1();
-		listeProducteurs = ProducteurDal.getListeProducteurDal();
+		listeTypes1 = Type1.getListeType1();
+		listeProducteurs = Producteur.getListeProducteur();
 		
 		return SUCCESS;
+	}
+	
+	public List<Type2> listType2(){
+		
+		Type1 type1 = new Type1(idType1);
+		
+		return type1.getListeType2();
+		
 	}
 	
 	
@@ -57,11 +70,11 @@ public class RechercheAction extends ActionSupport {
 		this.idType2 = idType2;
 	}
 
-	public List<ProducteurDal> getListeProducteurs() {
+	public List<Producteur> getListeProducteurs() {
 		return listeProducteurs;
 	}
 
-	public void setListeProducteurs(List<ProducteurDal> listeProducteurs) {
+	public void setListeProducteurs(List<Producteur> listeProducteurs) {
 		RechercheAction.listeProducteurs = listeProducteurs;
 	}
 	
