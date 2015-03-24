@@ -37,7 +37,6 @@ public class Type2Dal extends DataLayerExtended {
 		} finally {
 			try {
 				connection.close();
-				System.out.println("fermeture de la connexion");
 			} catch (SQLException e) {
 				System.out.println("echec de la fermeture de la connexion");
 			}
@@ -70,7 +69,6 @@ public class Type2Dal extends DataLayerExtended {
 		}finally{
 			try{
 				connection.close();
-				System.out.println("fermeture de la connexion");
 			}catch (SQLException e){
 				System.out.println("echec de la fermeture de la connexion");
 			}

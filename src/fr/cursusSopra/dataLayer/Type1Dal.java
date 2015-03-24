@@ -24,7 +24,7 @@ public class Type1Dal extends DataLayerExtended {
 
 	private final static String rqInsert = "INSERT INTO types1 (libelle1) VALUES(?)";
 	private final static String rq = "SELECT * FROM types1";
-	private final static String rqListeType2 = "SELECT * FROM types1 INNER JOIN types2 USING (id_type1) WHERE id_type1=?";
+	private final static String rqListeType2 = "SELECT * FROM types2 WHERE id_type1=?";
 	private final static String rqType1 = "SELECT * FROM types1 WHERE id_type1=?";
 	
 	private String libelle1;
@@ -36,19 +36,23 @@ public class Type1Dal extends DataLayerExtended {
 		this.idType1 = idType1;
 		listeType2 = this.getListeType2();
 		try {
+			Connection connection = PostgresConnection.GetConnexion();
+			System.out.println("post create Statement");
 			PreparedStatement ps = connection.prepareStatement(rqType1);
+			
 			ps.setLong(1, idType1);
 			ResultSet rs = ps.executeQuery();
+			
 
 			if (rs.next()) {
 				libelle1 = rs.getString("libelle1");
 			}
 		} catch (SQLException e) {
-			System.out.println("Echec de la création de la liste type1");
+			//e.printStackTrace();
+			System.out.println("Echec de la récupération du type1");
 		} finally {
 			try {
 				connection.close();
-				System.out.println("fermeture de la connexion");
 			} catch (SQLException e) {
 				System.out.println("echec de la fermeture de la connexion");
 			}
@@ -93,12 +97,12 @@ public class Type1Dal extends DataLayerExtended {
 						rs.getString("libelle1"));
 				listeType1.add(type1);
 			}
+			
 		} catch (SQLException e) {
 			System.out.println("Echec de la création de la liste type1");
 		} finally {
 			try {
 				connection.close();
-				System.out.println("fermeture de la connexion");
 			} catch (SQLException e) {
 				System.out.println("echec de la fermeture de la connexion");
 			}
@@ -109,7 +113,7 @@ public class Type1Dal extends DataLayerExtended {
 
 	public List<Type2> getListeType2() {
 
-		ArrayList<Type2> listeType2 = new ArrayList<Type2>();
+		ArrayList<Type2> lT2 = new ArrayList<Type2>();
 
 		try {
 			PreparedStatement ps = connection.prepareStatement(rqListeType2);
@@ -118,22 +122,26 @@ public class Type1Dal extends DataLayerExtended {
 			Type2 type2;
 
 			while (rs.next()) {
-				type2 = new Type2(rs.getLong("id_type2"),
-						rs.getString("libelle2"));
-				listeType2.add(type2);
+				
+				String lib2 = rs.getString("libelle2");
+				Long idt2 = rs.getLong("id_type2");
+				
+				type2 = new Type2(idt2,lib2);
+				lT2.add(type2);
+				
 			}
+			
 		} catch (SQLException e) {
-			System.out.println("Echec de la création de la liste type1");
+			System.out.println("Echec de la création de la liste des types 2 de ce type1");
 		} finally {
 			try {
 				connection.close();
-				System.out.println("fermeture de la connexion");
 			} catch (SQLException e) {
 				System.out.println("echec de la fermeture de la connexion");
 			}
 		}
 
-		return listeType2;
+		return lT2;
 	}
 
 	public String getLibelle1() {

@@ -45,6 +45,7 @@ public class Type1 {
 		List<Type2> lt2 = t1Dal.getListeType2();
 		listeType2 = new ArrayList<Type2>();
 		for (int i = 0; i< Type1Dal.getListeType1Dal().size();i++ ){
+			
 			String libelle2 = lt2.get(i).getLibelle2();
 			long idType2 = lt2.get(i).getIdType2();
 			Type2 t2 = new Type2(idType2, libelle2);
