@@ -3,7 +3,14 @@
  */
 package fr.cursusSopra.model;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.cursusSopra.dataLayer.CommentaireDal;
+import fr.cursusSopra.tech.PostgresConnection;
 
 /**
  * @author Julien Caillon
@@ -60,6 +67,106 @@ public class Commentaire {
 		this.isFromDb = isFromDb;
 	}
 
+
+	public static List<Commentaire> getListeCommsProd(long idProduit) {
+		List<Commentaire> mylist = new ArrayList<Commentaire>();
+		try {
+			mylist = CommentaireDal.getListeCommsDal(idProduit);
+		} catch (SQLException e) {
+			System.err.print(String.format("ERREUR 01 : lors de l'importation des commentaires du produit id : %d .\n", idProduit));
+			e.printStackTrace();
+		}
+		return mylist;
+	}
+
+
+	/**
+	 *  Sauvegarde de l'item (ou update si deja existant) dans la db
+	 * @return long qui contient l'id de l'item sauver (ou -1 si le save est un echec)
+	 */
+	public long save() {
+
+		// On obtient l'objet connection à la BDD
+		Connection connection = PostgresConnection.GetConnexion();
+
+		try {
+			// On commence la transaction
+			// On passe en mode non auto-commit
+			connection.setAutoCommit(false);
+
+			// on essaie de sauver la commande
+			idCommentaire = new CommentaireDal(this).save();
+
+			// On committe toutes les mises à jour
+			connection.commit();
+		} catch (SQLException e) {
+			if (connection != null) {
+	            try {
+	            	// Si il y a eu une erreur durant l'une des requetes "insert into" alors on fait un roll back
+	                System.err.print("ERREUR 06 : La transaction est annulée.\n");
+	                connection.rollback();
+	    			e.printStackTrace();
+	            } catch(SQLException e2) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	            }
+			}
+		} finally {
+			try {
+				connection.setAutoCommit(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return idCommentaire;
+	}
+
+
+	/**
+	 *  delete l'itemCommande dans la base
+	 * @return boolean avec true si reussite et false si echec
+	 */
+	public boolean delete() {
+		boolean isDeleted = false;
+
+		// On obtient l'objet connection à la BDD
+		Connection connection = PostgresConnection.GetConnexion();
+
+		try {
+			// On commence la transaction
+			// On passe en mode non auto-commit
+			connection.setAutoCommit(false);
+
+			// ensuite on essaie de delete la commande
+			isDeleted = new CommentaireDal(this).delete();
+
+			// On committe toutes les mises à jour
+			connection.commit();
+		} catch (SQLException e) {
+			if (connection != null) {
+	            try {
+	            	// Si il y a eu une erreur durant l'une des requetes "insert into" alors on fait un roll back
+	                System.err.print("ERREUR 07 : La transaction est annulée.\n");
+	                connection.rollback();
+	    			e.printStackTrace();
+	            } catch(SQLException e2) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	            }
+			}
+		} finally {
+			try {
+				connection.setAutoCommit(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return isDeleted;
+	}
 
 
 	/**

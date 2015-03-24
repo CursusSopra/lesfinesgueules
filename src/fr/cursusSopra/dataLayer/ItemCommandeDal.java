@@ -142,18 +142,4 @@ public class ItemCommandeDal extends DataLayerExtended {
 
 		return isDeleted;
 	}
-
-
-	/**
-	 * GETTERS / SETTERS
-	 */
-
-	public ItemCommande getLocItem() {
-		return LocItem;
-	}
-
-	public void setLocItem(ItemCommande locItem) {
-		LocItem = locItem;
-	}
-
 }

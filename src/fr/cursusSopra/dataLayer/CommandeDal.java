@@ -206,18 +206,4 @@ public class CommandeDal extends DataLayerExtended {
 
 		return isDeleted;
 	}
-
-
-	/**
-	 * GETTERS / SETTERS
-	 */
-
-	public Commande getLocItem() {
-		return LocItem;
-	}
-
-	public void setLocItem(Commande locItem) {
-		LocItem = locItem;
-	}
-
 }

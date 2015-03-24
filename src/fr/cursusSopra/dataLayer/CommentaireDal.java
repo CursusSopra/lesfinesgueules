@@ -63,7 +63,14 @@ public class CommentaireDal extends DataLayerExtended {
 	}
 
 
-	public static List<Commentaire> getListeCommsProd(long idProduit) throws SQLException {
+	/**
+	 * recupere la liste des commentaires appartenant au produit "idProduit"
+	 * SELECT * FROM commentaires WHERE id_commentaire IN(SELECT id_commentaire FROM commentaires_produits WHERE id_produit = ?) ORDER BY ts_creation
+	 * @param idProduit
+	 * @return
+	 * @throws SQLException
+	 */
+	public static List<Commentaire> getListeCommsDal(long idProduit) throws SQLException {
 
 		List<Commentaire> myList = new ArrayList<Commentaire>();
 
@@ -165,10 +172,4 @@ public class CommentaireDal extends DataLayerExtended {
 
 		return isDeleted;
 	}
-
-	/**
-	 * GETTERS / SETTERS
-	 */
-
-
 }

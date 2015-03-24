@@ -158,7 +158,6 @@ public class Commande {
 	            try {
 	            	// Si il y a eu une erreur durant l'une des requetes "insert into" alors on fait un roll back
 	                System.err.print("ERREUR 06 : La transaction est annulée.\n");
-	                idCommande = -1;
 	                connection.rollback();
 	    			e.printStackTrace();
 	            } catch(SQLException e2) {
@@ -194,7 +193,7 @@ public class Commande {
 			// On passe en mode non auto-commit
 			connection.setAutoCommit(false);
 
-			// on essaie de save les items de cette commande
+			// on essaie de delete les items de cette commande
 			for(ItemCommande item : ListeItems) {
 				new ItemCommandeDal(item).delete();
 			}
@@ -209,7 +208,6 @@ public class Commande {
 	            try {
 	            	// Si il y a eu une erreur durant l'une des requetes "insert into" alors on fait un roll back
 	                System.err.print("ERREUR 07 : La transaction est annulée.\n");
-	                idCommande = -1;
 	                connection.rollback();
 	    			e.printStackTrace();
 	            } catch(SQLException e2) {

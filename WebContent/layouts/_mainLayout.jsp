@@ -5,6 +5,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<!-- 
+<!-- File modified by : Julien Caillon -->
+<!-- 
+
 <!DOCTYPE html>
 <html>
 

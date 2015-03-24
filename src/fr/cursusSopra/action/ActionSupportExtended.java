@@ -1,3 +1,6 @@
+/**
+ * File modified by : Julien Caillon
+ */
 package fr.cursusSopra.action;
 
 import java.util.ArrayList;
@@ -8,22 +11,27 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.tech.Breadcrumbs;
 
+/**
+ * @author Julien Caillon
+ */
 public abstract class ActionSupportExtended extends ActionSupport {
 
 	private static final long serialVersionUID = -4931119770070210257L;
 
 	private Date dateDuJour;
 	private final String lang = "en";
-	
+
 	private List<Breadcrumbs> listeBreadcrumbs;
-	
+
+	protected long idUtilisateur = 1;
+
 	public ActionSupportExtended () {
-		
+
 		dateDuJour = new Date();
 		listeBreadcrumbs = new ArrayList<Breadcrumbs>();
-		
+
 		listeBreadcrumbs.add(new Breadcrumbs("Accueil", "retourIndex"));
-		
+
 	}
 
 	public Date getDateDuJour() {
@@ -37,7 +45,6 @@ public abstract class ActionSupportExtended extends ActionSupport {
 	public List<Breadcrumbs> getListeBreadcrumbs() {
 		return listeBreadcrumbs;
 	}
-	
-	
+
+
 }
-	
