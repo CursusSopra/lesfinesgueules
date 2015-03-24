@@ -1,10 +1,12 @@
+/**
+ *  Modified By Julien J
+ */
 package fr.cursusSopra.action.admin;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
-import fr.cursusSopra.dataLayer.Type1Dal;
 import fr.cursusSopra.dataLayer.Type2Dal;
 import fr.cursusSopra.model.Type1;
 
@@ -22,7 +24,7 @@ public class Type2Action extends ActionSupportExtended {
 	
 	public String createType2Form() throws SQLException {
 		
-		listeType1 = Type1Dal.getListeType1();
+		listeType1 = Type1.getListeType1();
 		
 		
 		return SUCCESS;
@@ -30,7 +32,7 @@ public class Type2Action extends ActionSupportExtended {
 	
 	public String createType2() throws SQLException {
 		
-		listeType1 = Type1Dal.getListeType1();
+		listeType1 = Type1.getListeType1();
 		
 		System.out.println(idType1);
 		

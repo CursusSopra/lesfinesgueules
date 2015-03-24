@@ -1,3 +1,6 @@
+/**
+ *  Modified By Julien J
+ */
 package fr.cursusSopra.dataLayer;
 
 import java.sql.Connection;
@@ -49,10 +52,11 @@ public class Type1Dal extends DataLayerExtended{
 		if (generatedKeys.next()) {
 			setIdType1(generatedKeys.getLong("id_type1"));
 		}
+		
 		return idType1;
 	}
 
-	public static List<Type1> getListeType1(){
+	public static List<Type1> getListeType1Dal(){
 		
 		listeType1 = new ArrayList<Type1>();
 		
