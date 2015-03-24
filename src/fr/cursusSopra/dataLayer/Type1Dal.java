@@ -26,38 +26,36 @@ public class Type1Dal extends DataLayerExtended {
 	private final static String rq = "SELECT * FROM types1";
 	private final static String rqListeType2 = "SELECT * FROM types2 WHERE id_type1=?";
 	private final static String rqType1 = "SELECT * FROM types1 WHERE id_type1=?";
-	private final static String rqModify = "SELECT * FROM types1 WHERE id_type1=?";
-	
+	private final static String rqModify = "UPDATE types1 SET libelle1 = ? WHERE id_type1 = ?";
+
 	private String libelle1;
 	private long idType1;
 	private static List<Type1> listeType1;
 	private List<Type2> listeType2;
 
-	public Type1Dal(long idType1) {
+	public Type1Dal(long idType1) throws SQLException {
 		this.idType1 = idType1;
 		setListeType2(this.recupListeType2());
-		try {
-			Connection connection = PostgresConnection.GetConnexion();
-			System.out.println("post create Statement");
-			PreparedStatement ps = connection.prepareStatement(rqType1);
-			
-			ps.setLong(1, idType1);
-			ResultSet rs = ps.executeQuery();
-			
 
-			if (rs.next()) {
-				libelle1 = rs.getString("libelle1");
-			}
-		} catch (SQLException e) {
-			//e.printStackTrace();
-			System.out.println("Echec de la récupération du type1");
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				System.out.println("echec de la fermeture de la connexion");
-			}
+		System.out.println("post create Statement");
+		PreparedStatement ps = connection.prepareStatement(rqType1);
+
+		ps.setLong(1, idType1);
+		ResultSet rs = ps.executeQuery();
+		
+		if (rs.next()) {
+			System.out.println(rs.getString("libelle1"));
+			libelle1 = rs.getString("libelle1");
+
+
 		}
+
+		// try {
+		// connection.close();
+		// } catch (SQLException e) {
+		// System.out.println("echec de la fermeture de la connexion");
+		// }
+
 	}
 
 	public Type1Dal(String libelle1) {
@@ -76,20 +74,19 @@ public class Type1Dal extends DataLayerExtended {
 		if (generatedKeys.next()) {
 			setIdType1(generatedKeys.getLong("id_type1"));
 		}
+		
 
 		return idType1;
 	}
+
 	public void modify() throws SQLException {
 
 		// Génération de l'idType1 non utile dans le code, sert au débug
 		PreparedStatement ps = connection.prepareStatement(rqModify);
 		ps.setString(1, libelle1);
+		ps.setLong(2, idType1);
 
 		ps.executeUpdate();
-		ResultSet generatedKeys = ps.getGeneratedKeys();
-		if (generatedKeys.next()) {
-			setIdType1(generatedKeys.getLong("id_type1"));
-		}
 
 	}
 
@@ -111,7 +108,7 @@ public class Type1Dal extends DataLayerExtended {
 						rs.getString("libelle1"));
 				listeType1.add(type1);
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("Echec de la création de la liste type1");
 		} finally {
@@ -125,34 +122,23 @@ public class Type1Dal extends DataLayerExtended {
 		return listeType1;
 	}
 
-	public List<Type2> recupListeType2() {
+	public List<Type2> recupListeType2() throws SQLException {
 
 		ArrayList<Type2> lT2 = new ArrayList<Type2>();
 
-		try {
-			PreparedStatement ps = connection.prepareStatement(rqListeType2);
-			ps.setLong(1, idType1);
-			ResultSet rs = ps.executeQuery();
-			Type2 type2;
+		PreparedStatement ps = connection.prepareStatement(rqListeType2);
+		ps.setLong(1, idType1);
+		ResultSet rs = ps.executeQuery();
+		Type2 type2;
 
-			while (rs.next()) {
-				
-				String lib2 = rs.getString("libelle2");
-				Long idt2 = rs.getLong("id_type2");
-				
-				type2 = new Type2(idt2,lib2);
-				lT2.add(type2);
-				
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("Echec de la création de la liste des types 2 de ce type1");
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				System.out.println("echec de la fermeture de la connexion");
-			}
+		while (rs.next()) {
+			System.out.println(rs.getString("libelle2"));
+			String lib2 = rs.getString("libelle2");
+			Long idt2 = rs.getLong("id_type2");
+
+			type2 = new Type2(idt2, lib2);
+			lT2.add(type2);
+
 		}
 
 		return lT2;

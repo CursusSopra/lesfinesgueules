@@ -55,7 +55,7 @@
 			<legend> Producteur : </legend>
 			
 			<div class="form-group">
-				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du producteur</label>
+				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du producteur : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idRaisonSociale" maxlength="50"
 						name="raisonSociale" value="<s:property value="raisonSociale"/>"> 
@@ -63,7 +63,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idSiren" class="col-sm-2 control-label">SIREN</label>
+				<label for="idSiren" class="col-sm-2 control-label">SIREN : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idSiren" maxlength="50"
 						name="siren" value="<s:property value="siren"/>"> 
@@ -71,7 +71,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idDelai" class="col-sm-2 control-label">Délai de livraison</label>
+				<label for="idDelai" class="col-sm-2 control-label">Délai de livraison : </label>
 				<div class="col-sm-2">
 					<input type="number" class="form-control" id="idDelai" name="delaiLivraison" min="0"
 						value="<s:property value="delaiLivraison" />" >
@@ -79,7 +79,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idDescription" class="col-sm-2 control-label">Description</label>
+				<label for="idDescription" class="col-sm-2 control-label">Description : </label>
 				<div class="col-sm-6">
 					<textarea class="form-control" name="description" id="idDescription" rows="5"><s:property value="description" /></textarea>
 				</div>
@@ -90,7 +90,7 @@
 		<fieldset>
 			<legend> Adresse : </legend>
 			<div class="form-group">
-				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue</label>
+				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue : </label>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="idLigneAdresse1" maxlength="50"
 						name="ligneAdresse1" value="<s:property value="ligneAdresse1" />">
@@ -102,8 +102,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idCodePostal" class="col-sm-2 control-label">Code
-					Postal</label>
+				<label for="idCodePostal" class="col-sm-2 control-label">Code Postal : </label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" id="idCodePostal"
 						name="codePostal" pattern="\d{5}"
@@ -113,7 +112,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="inputVille" class="col-sm-2 control-label">Ville</label>
+				<label for="inputVille" class="col-sm-2 control-label">Ville : </label>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="idVille" name="ville" maxlength="50"
 						value="<s:property value="ville" />" placeholder="Ville">
@@ -121,7 +120,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idLatitude" class="col-sm-2 control-label">Latitude</label>
+				<label for="idLatitude" class="col-sm-2 control-label">Latitude : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idLatitude"
 						name="latitude" value="<s:property value="latitude"/>">
@@ -129,7 +128,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idLongitude" class="col-sm-2 control-label">Longitude</label>
+				<label for="idLongitude" class="col-sm-2 control-label">Longitude : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idLongitude"
 						name="longitude" value="<s:property value="longitude"/>">

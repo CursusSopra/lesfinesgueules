@@ -7,7 +7,7 @@
 		<fieldset>
 			<legend > Produit :	</legend>
 			<div class="form-group">
-				<label for="idProduit" class="col-sm-2 control-label">Désignation du Produit</label>
+				<label for="idProduit" class="col-sm-2 control-label">Désignation du Produit : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idProduit" name="designation" value="<s:property value="designation"/>"
 						placeholder="Nom du Produit">
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idProducteur" class="col-sm-2 control-label">Producteur:</label>
+				<label for="idProducteur" class="col-sm-2 control-label">Producteur : </label>
 				<div class="col-sm-4">
 					<select name="idProducteur" id="idProducteur" class="form-control">
 						<option value="-1">Sélectionnez un producteur</option>
@@ -30,7 +30,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idType1" class="col-sm-2 control-label">Boutique:</label>
+				<label for="idType1" class="col-sm-2 control-label">Boutique : </label>
 				<div class="col-sm-4">
 					<select name="idType1" id="idType1" class="form-control">
 						<option value="-1">Sélectionnez un type de produit</option>
@@ -44,7 +44,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idListType2" class="col-sm-2 control-label">Type de produit:</label>
+				<label for="idListType2" class="col-sm-2 control-label">Type de produit : </label>
 				<div class="col-sm-4">
 					<select name="idType2" id="idListType2" class="form-control">
 					
@@ -60,9 +60,9 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idPrix" class="col-sm-2 control-label">Prix du produit</label>
+				<label for="idPrix" class="col-sm-2 control-label">Prix du produit : </label>
 				<div class="col-sm-2">
-					<input type="number" class="form-control" id="idPrix" name="prix" value="<s:property value="prix" />" >
+					<input type="number" step="0.01" class="form-control" id="idPrix" name="prix" value="<s:property value="prix" />" >
 				</div>
 			</div>
 			
@@ -77,7 +77,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idDescription" class="col-sm-2 control-label">Description du produit</label>
+				<label for="idDescription" class="col-sm-2 control-label">Description du produit : </label>
 				<div class="col-sm-6">
 					<textarea class="form-control" name="description" id="idDescription" rows="5" placeholder="Vous avez droit à 100 caractères">
 					<s:property value="description" />
@@ -86,7 +86,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idPhotoProduit" class="col-sm-2 control-label">Description du produit</label>
+				<label for="idPhotoProduit" class="col-sm-2 control-label">Photo du produit : </label>
 				<div class="col-sm-6">
 					<input type="file" name="photoProduit" id="idPhotoProduit" />
 				</div>
