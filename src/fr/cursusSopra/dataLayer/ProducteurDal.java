@@ -27,7 +27,7 @@ public class ProducteurDal extends DataLayerExtended {
 			+ "producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
 			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private final static String rqProducteur = 
-			"SELECT raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo "
+			"SELECT id_producteur, raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo "
 			+ "FROM producteurs "
 			+ "WHERE id_producteur = ?";
 	private final static String rqListeProducteurs = 
@@ -105,6 +105,7 @@ public class ProducteurDal extends DataLayerExtended {
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
+				this.idProducteur = rs.getLong("id_producteur");
 				raisonSociale = rs.getString("raison_sociale");
 				siren = rs.getString("siren");
 				ligneAdresse1 = rs.getString("ligne_adresse1");

@@ -74,6 +74,7 @@ public class Producteur {
 	}
 	
 	public Producteur(long idProducteur, String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
+		this.idProducteur = idProducteur;
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 		this.ligneAdresse1 = ligneAdresse1;
