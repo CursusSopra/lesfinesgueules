@@ -1,4 +1,4 @@
-package fr.cursusSopra.dataLayer.contenu;
+package fr.cursusSopra.dataLayer;
 
 
 import java.sql.PreparedStatement;
@@ -8,11 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import fr.cursusSopra.dataLayer.DataLayerExtended;
 import fr.cursusSopra.model.Producteur;
 
 
-public class ProducteurDal extends DataLayerExtended {
+public class ProducteurDal_oldNicolas extends DataLayerExtended {
 	
 	private long idType1Dal;
 	private String libelle1Dal;
@@ -121,7 +120,7 @@ public class ProducteurDal extends DataLayerExtended {
 	}
 	
 	public void setListeProducteurs(HashMap<Integer, String> listeProducteurs) {
-		ProducteurDal.listeProducteurs = listeProducteurs;
+		ProducteurDal_oldNicolas.listeProducteurs = listeProducteurs;
 	}
 	
 	public List<Producteur> getProducteurs() {

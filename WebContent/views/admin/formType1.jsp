@@ -11,7 +11,7 @@
 					<input type="text" class="form-control input-lg" id="idType1"
 						name="type1" placeholder="Type1">
 				</div>
-			</div>	
+			</div>
 		</fieldset>
 
 		<div class="form-group">

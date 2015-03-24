@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.cursusSopra.dataLayer.admin.Type1Dal;
+import fr.cursusSopra.dataLayer.ProducteurDal;
+import fr.cursusSopra.dataLayer.Type1Dal;
+import fr.cursusSopra.model.Producteur;
 import fr.cursusSopra.model.Type1;
 import fr.cursusSopra.model.Type2;
 
@@ -13,7 +15,7 @@ public class RechercheAction extends ActionSupport {
 	
 	static private List<Type1> listeTypes1;
 	private List<Type2> listeTypes2;
-	static private HashMap<Integer, String> listeProducteurs;
+	static private List<ProducteurDal> listeProducteurs;
 	
 	private long idType1;
 	private long idType2;
@@ -23,13 +25,7 @@ public class RechercheAction extends ActionSupport {
 	public String execute() {
 
 		listeTypes1 = Type1Dal.getListeType1();
-		
-		//ProducteurDal rchdal = new ProducteurDal();
-		//rchdal.getListeProducteur();
-				
-		
-		
-		//listeProducteurs = rchdal.getListeProducteurs();
+		listeProducteurs = ProducteurDal.getListeProducteurDal();
 		
 		return SUCCESS;
 	}
@@ -61,11 +57,11 @@ public class RechercheAction extends ActionSupport {
 		this.idType2 = idType2;
 	}
 
-	public HashMap<Integer, String> getListeProducteurs() {
+	public List<ProducteurDal> getListeProducteurs() {
 		return listeProducteurs;
 	}
 
-	public void setListeProducteurs(HashMap<Integer, String> listeProducteurs) {
+	public void setListeProducteurs(List<ProducteurDal> listeProducteurs) {
 		RechercheAction.listeProducteurs = listeProducteurs;
 	}
 	

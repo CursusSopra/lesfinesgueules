@@ -1,9 +1,18 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import fr.cursusSopra.dataLayer.admin.ProducteurDal;
-
+import fr.cursusSopra.dataLayer.ProducteurDal;
+/**
+ * 
+ * @author Nicolas
+ *
+ */
 public class Producteur {
 	
 	private long idProducteur;
@@ -82,6 +91,21 @@ public class Producteur {
 		this.idProducteur = idProducteur;
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
+	}
+	
+	public static List<Producteur> getListeProducteur() {
+		List<Producteur> listeProducteur = new ArrayList<Producteur>();
+		List<ProducteurDal> lpdal = ProducteurDal.getListeProducteurDal();
+		
+		for (int i = 0; i < lpdal.size(); i++) {
+			long idProducteur = lpdal.get(i).getIdProducteur();
+			String raisonSociale = lpdal.get(i).getRaisonSociale();
+			String siren = lpdal.get(i).getSiren();
+			
+			Producteur p = new Producteur(idProducteur, raisonSociale, siren);
+			listeProducteur.add(p);
+		}
+		return listeProducteur;
 	}
 	
 	public void save() throws SQLException{

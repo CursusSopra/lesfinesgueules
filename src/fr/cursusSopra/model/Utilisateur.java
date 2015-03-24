@@ -1,10 +1,16 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
 import java.sql.SQLException;
 
-import fr.cursusSopra.dataLayer.admin.ProducteurDal;
-import fr.cursusSopra.dataLayer.utilisateurs.UtilisateurDal;
-
+import fr.cursusSopra.dataLayer.UtilisateurDal;
+/**
+ * 
+ * @author Cécile
+ *
+ */
 public class Utilisateur {
 	
 private long idUtilisateur;
@@ -25,6 +31,7 @@ private long idUtilisateur;
 	//accesseurs
 	public long getIdUtilisateur() {return idUtilisateur;}
 	public void setIdUtilisateur(long idUtilisateur) {this.idUtilisateur = idUtilisateur;}
+	
 	public String getNom() {return nom;}
 	public void setNom(String nom) {this.nom = nom;}
 	public String getPrenom() {return prenom;}
@@ -52,26 +59,22 @@ private long idUtilisateur;
 	//constructeur
 	public Utilisateur(String nom, String prenom, String ligneAdresse1, String codePostal, String ville, String email, String mdp, String tel,
 			String photo, int droits) {
-		
 		this.nom = nom;
 		this.prenom = prenom;
-		this.email = email;
 		this.ligneAdresse1 = ligneAdresse1;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.mdp = mdp;
 		this.tel = tel;
+		this.mdp = mdp;
+		this.email = email;
 		this.photo = photo;
 		this.droits = droits;
 	}
 	
 	public void save() throws SQLException{
-		
 		UtilisateurDal ud = new UtilisateurDal(nom, prenom, ligneAdresse1, codePostal, ville, email, mdp, tel, photo, droits);
 		ud.save();
 	}
-	
-	
-	
 
+	
 }

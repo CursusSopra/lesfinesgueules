@@ -1,17 +1,22 @@
-package fr.cursusSopra.dataLayer.utilisateurs;
+package fr.cursusSopra.dataLayer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import fr.cursusSopra.dataLayer.DataLayerExtended;
-
+/**
+ * 
+ * @author Cécile
+ *
+ */
 public class UtilisateurDal extends DataLayerExtended {
 
 	
 	private final static String rqInsert = 
 			"INSERT INTO utilisateurs (nom, prenom, ligne_adresse1, code_postal, ville, email, mdp, tel, photo, droits) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	private final static String rqGet = "SELECT * INTO utilisateurs WHERE idUtilisateur";
+	
 	
 	private long idUtilisateur;
 	
@@ -45,27 +50,28 @@ public class UtilisateurDal extends DataLayerExtended {
 		this.droits = droits;
 	}
 	
-	//sauvegarde d'un utilisateur en BDD
-	public long save() throws SQLException {
-		PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
-		ps.setString(1, nom);
-		ps.setString(2, prenom);
-		ps.setString(3, ligneAdresse1);
-		ps.setString(4, codePostal);
-		ps.setString(5, ville);
-		ps.setString(6, email);
-		ps.setString(7, mdp);
-		ps.setString(8, tel);
-		ps.setString(9, "");
-		ps.setInt(10, 0);
-		
-		ps.executeUpdate();
-		
-		ResultSet generatedKeys = ps.getGeneratedKeys();
-		if (generatedKeys.next()) {
-			idUtilisateur = generatedKeys.getLong(1);
-		}
-		return idUtilisateur;
-	}
 
+	//ajout d'un utilisateur en BDD
+		public long save() throws SQLException {
+			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, nom);
+			ps.setString(2, prenom);
+			ps.setString(3, ligneAdresse1);
+			ps.setString(4, codePostal);
+			ps.setString(5, ville);
+			ps.setString(6, email);
+			ps.setString(7, mdp);
+			ps.setString(8, tel);
+			ps.setString(9, "");
+			ps.setInt(10, 0);
+			
+			ps.executeUpdate();
+			
+			ResultSet generatedKeys = ps.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				idUtilisateur = generatedKeys.getLong(1);
+			}
+			return idUtilisateur;
+		}
+				
 }

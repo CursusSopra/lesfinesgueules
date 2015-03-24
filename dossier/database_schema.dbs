@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="finesgueules" id="Project7286647" template="Default" database="PostgreSQL" >
 	<comment><![CDATA[Les fines gueules]]></comment>
-	<schema name="finesgueules" schemaname="finesgueules" defo="y" >
+	<schema name="finesgueules" schemaname="finesgueules" >
+		<table name="commandes" >
+			<column name="id_commande" type="serial" jt="4" mandatory="y" />
+			<column name="id_utilisateur" type="bigint" jt="-5" mandatory="y" />
+			<column name="etat" type="integer" jt="4" mandatory="y" >
+				<comment><![CDATA[-1 = commande dans le panier, non validee
+0 = commande validee en cours de livraison
+1 = commande livree, archivee]]></comment>
+			</column>
+			<column name="ts_validation" type="timestamp" jt="93" />
+			<column name="ts_archivage" type="timestamp" jt="93" />
+			<column name="moyen_paiement" type="integer" jt="4" mandatory="y" />
+			<index name="idx_commandes_1" unique="NORMAL" >
+				<column name="id_utilisateur" />
+			</index>
+			<index name="idx_commandes" unique="PRIMARY_KEY" >
+				<column name="id_commande" />
+			</index>
+			<index name="idx_commandes_0" unique="UNIQUE" >
+				<column name="id_utilisateur" />
+				<column name="etat" />
+				<column name="ts_validation" />
+			</index>
+			<fk name="fk_commandes_utilisateurs" to_schema="finesgueules" to_table="utilisateurs" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_utilisateur" pk="id_utilisateur" />
+			</fk>
+		</table>
 		<table name="commentaires" >
 			<column name="id_commentaire" type="serial" jt="4" mandatory="y" />
 			<column name="id_utilisateur" type="serial" jt="4" mandatory="y" />
@@ -44,46 +70,39 @@
 		</table>
 		<table name="items_commandes" >
 			<column name="id_item_commande" type="serial" jt="4" mandatory="y" />
-			<column name="id_utilisateur" type="bigint" jt="-5" mandatory="y" />
 			<column name="id_produit" type="bigint" jt="-5" mandatory="y" />
-			<column name="etat" type="integer" jt="4" mandatory="y" >
-				<comment><![CDATA[-1 = commande dans le panier, non validee
-0 = commande validee en cours de livraison
-1 = commande livree, archivee]]></comment>
-			</column>
+			<column name="id_commande" type="bigint" jt="-5" mandatory="y" />
 			<column name="quantite" type="integer" jt="4" mandatory="y" />
-			<column name="moyen_paiement" type="integer" jt="4" mandatory="y" />
 			<column name="ts_creation" type="timestamp" jt="93" />
-			<column name="ts_validation" type="timestamp" jt="93" />
-			<column name="ts_archivage" type="timestamp" jt="93" />
-			<index name="pk_commandes" unique="PRIMARY_KEY" >
-				<column name="id_item_commande" />
-			</index>
-			<index name="idx_commandes_0" unique="NORMAL" >
+			<index name="idx_items_commandes" unique="NORMAL" >
 				<column name="id_produit" />
 			</index>
-			<index name="idx_commandes" unique="NORMAL" >
-				<column name="id_utilisateur" />
+			<index name="idx_items_commandes_0" unique="NORMAL" >
+				<column name="id_commande" />
 			</index>
-			<fk name="fk_commandes_produits" to_schema="finesgueules" to_table="produits" delete_action="cascade" update_action="cascade" >
+			<index name="pk_items_commandes" unique="PRIMARY_KEY" >
+				<column name="id_item_commande" />
+			</index>
+			<fk name="fk_items_commandes_produits" to_schema="finesgueules" to_table="produits" delete_action="cascade" update_action="cascade" >
 				<fk_column name="id_produit" pk="id_produit" />
 			</fk>
-			<fk name="fk_commandes_utilisateurs" to_schema="finesgueules" to_table="utilisateurs" delete_action="cascade" update_action="cascade" >
-				<fk_column name="id_utilisateur" pk="id_utilisateur" />
+			<fk name="fk_items_commandes_commandes" to_schema="finesgueules" to_table="commandes" delete_action="cascade" update_action="cascade" >
+				<fk_column name="id_commande" pk="id_commande" />
 			</fk>
 		</table>
 		<table name="producteurs" >
 			<column name="id_producteur" type="serial" jt="4" mandatory="y" />
 			<column name="raison_sociale" type="varchar" length="50" jt="12" mandatory="y" />
-			<column name="siren" type="integer" jt="4" mandatory="y" />
+			<column name="siren" type="varchar" length="50" jt="12" mandatory="y" />
 			<column name="ligne_adresse1" type="varchar" length="50" jt="12" mandatory="y" />
 			<column name="ligne_adresse2" type="varchar" length="50" jt="12" />
 			<column name="code_postal" type="char" length="5" jt="1" mandatory="y" />
 			<column name="ville" type="varchar" length="50" jt="12" mandatory="y" />
-			<column name="gps" type="varchar" length="25" jt="12" mandatory="y" />
 			<column name="description" type="text" jt="12" mandatory="y" />
 			<column name="delai_livraison" type="integer" jt="4" mandatory="y" />
 			<column name="photo" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="gpslat" type="varchar" length="13" jt="12" mandatory="y" />
+			<column name="gpslong" type="varchar" length="13" jt="12" mandatory="y" />
 			<index name="pk_producteurs" unique="PRIMARY_KEY" >
 				<column name="id_producteur" />
 			</index>
@@ -157,13 +176,155 @@
 		</table>
 	</schema>
 	<layout id="Layout7286652" name="finesgueules" show_relation_columns="y" >
-		<entity schema="finesgueules" name="utilisateurs" color="b2cdf7" x="420" y="45" />
-		<entity schema="finesgueules" name="producteurs" color="b2cdf7" x="270" y="105" />
 		<entity schema="finesgueules" name="types2" color="b2cdf7" x="420" y="375" />
 		<entity schema="finesgueules" name="types1" color="b2cdf7" x="570" y="375" />
 		<entity schema="finesgueules" name="commentaires_produits" color="b2cdf7" x="45" y="285" />
 		<entity schema="finesgueules" name="commentaires" color="b2cdf7" x="105" y="60" />
-		<entity schema="finesgueules" name="items_commandes" color="b2cdf7" x="705" y="330" />
+		<entity schema="finesgueules" name="producteurs" color="b2cdf7" x="270" y="105" />
+		<entity schema="finesgueules" name="utilisateurs" color="b2cdf7" x="420" y="45" />
 		<entity schema="finesgueules" name="produits" color="b2cdf7" x="240" y="390" />
+		<entity schema="finesgueules" name="commandes" color="b2cdf7" x="825" y="315" />
+		<entity schema="finesgueules" name="items_commandes" color="b2cdf7" x="600" y="495" />
+		<script name="Sql" id="SQL7239410" >
+			<string><![CDATA[CREATE SCHEMA finesgueules;
+
+CREATE TABLE producteurs ( 
+	id_producteur        serial  NOT NULL,
+	raison_sociale       varchar(50)  NOT NULL,
+	siren                varchar(50)  NOT NULL,
+	ligne_adresse1       varchar(50)  NOT NULL,
+	ligne_adresse2       varchar(50)  ,
+	code_postal          char(5)  NOT NULL,
+	ville                varchar(50)  NOT NULL,
+	description          text  NOT NULL,
+	delai_livraison      integer  NOT NULL,
+	photo                varchar(50)  NOT NULL,
+	gpslat               varchar(13)  NOT NULL,
+	gpslong              varchar(13)  NOT NULL,
+	CONSTRAINT pk_producteurs PRIMARY KEY ( id_producteur )
+ );
+
+CREATE TABLE types1 ( 
+	id_type1             serial  NOT NULL,
+	libelle1             varchar(50)  NOT NULL,
+	CONSTRAINT pk_types1 PRIMARY KEY ( id_type1 )
+ );
+
+CREATE TABLE types2 ( 
+	id_type2             serial  NOT NULL,
+	id_type1             bigint  NOT NULL,
+	libelle2             varchar(50)  NOT NULL,
+	CONSTRAINT pk_types1_0 PRIMARY KEY ( id_type2 )
+ );
+
+CREATE INDEX idx_types2 ON types2 ( id_type1 );
+
+CREATE TABLE utilisateurs ( 
+	id_utilisateur       serial  NOT NULL,
+	nom                  varchar(50)  NOT NULL,
+	prenom               varchar(50)  NOT NULL,
+	ligne_adresse1       varchar(50)  NOT NULL,
+	ligne_adresse2       varchar(50)  ,
+	code_postal          char(5)  NOT NULL,
+	ville                varchar(50)  NOT NULL,
+	email                varchar(50)  NOT NULL,
+	mdp                  varchar(50)  NOT NULL,
+	tel                  char(10)  NOT NULL,
+	photo                varchar(50)  NOT NULL,
+	droits               integer DEFAULT 0 NOT NULL,
+	CONSTRAINT pk_clients PRIMARY KEY ( id_utilisateur )
+ );
+
+CREATE TABLE commandes ( 
+	id_commande          serial  NOT NULL,
+	id_utilisateur       bigint  NOT NULL,
+	etat                 integer  NOT NULL,
+	ts_validation        timestamp  ,
+	ts_archivage         timestamp  ,
+	moyen_paiement       integer  NOT NULL,
+	CONSTRAINT idx_commandes PRIMARY KEY ( id_commande ),
+	CONSTRAINT idx_commandes_0 UNIQUE ( id_utilisateur, etat, ts_validation ) 
+ );
+
+CREATE INDEX idx_commandes_1 ON commandes ( id_utilisateur );
+
+COMMENT ON COLUMN commandes.etat IS '-1 = commande dans le panier, non validee
+0 = commande validee en cours de livraison
+1 = commande livree, archivee';
+
+CREATE TABLE commentaires ( 
+	id_commentaire       serial  NOT NULL,
+	id_utilisateur       serial  NOT NULL,
+	avis                 text  ,
+	note                 integer  NOT NULL,
+	etat                 integer  NOT NULL,
+	CONSTRAINT pk_commentaires PRIMARY KEY ( id_commentaire )
+ );
+
+CREATE INDEX idx_commentaires ON commentaires ( id_utilisateur );
+
+COMMENT ON COLUMN commentaires.etat IS '-1 = comm rejete
+ = en attente de validation
+1 = valide';
+
+CREATE TABLE produits ( 
+	id_produit           serial  NOT NULL,
+	id_producteur        bigint  NOT NULL,
+	id_type2             bigint  NOT NULL,
+	description          text  ,
+	prix                 numeric(10,2)  NOT NULL,
+	designation          varchar(50)  NOT NULL,
+	photo                varchar(50)  ,
+	disponible           bool  NOT NULL,
+	CONSTRAINT pk_produits PRIMARY KEY ( id_produit )
+ );
+
+CREATE INDEX idx_produits ON produits ( id_producteur );
+
+CREATE INDEX idx_produits_0 ON produits ( id_type2 );
+
+COMMENT ON COLUMN produits.prix IS 'prix unitaire';
+
+CREATE TABLE commentaires_produits ( 
+	id_commentaire       bigint  NOT NULL,
+	id_produit           bigint  NOT NULL,
+	CONSTRAINT pk_commentaires_produits PRIMARY KEY ( id_commentaire, id_produit )
+ );
+
+CREATE INDEX idx_commentaires_produits ON commentaires_produits ( id_commentaire );
+
+CREATE INDEX idx_commentaires_produits_0 ON commentaires_produits ( id_produit );
+
+CREATE TABLE items_commandes ( 
+	id_produit           bigint  NOT NULL,
+	id_commande          bigint  NOT NULL,
+	quantite             integer  NOT NULL,
+	ts_creation          timestamp  
+ );
+
+CREATE INDEX idx_items_commandes ON items_commandes ( id_produit );
+
+CREATE INDEX idx_items_commandes_0 ON items_commandes ( id_commande );
+
+ALTER TABLE commandes ADD CONSTRAINT fk_commandes_utilisateurs FOREIGN KEY ( id_utilisateur ) REFERENCES utilisateurs( id_utilisateur ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE commentaires ADD CONSTRAINT fk_commentaires_utilisateurs FOREIGN KEY ( id_utilisateur ) REFERENCES utilisateurs( id_utilisateur ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE commentaires_produits ADD CONSTRAINT fk_commentaires_produits_commentaires FOREIGN KEY ( id_commentaire ) REFERENCES commentaires( id_commentaire ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE commentaires_produits ADD CONSTRAINT fk_commentaires_produits_produits FOREIGN KEY ( id_produit ) REFERENCES produits( id_produit ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE items_commandes ADD CONSTRAINT fk_items_commandes_produits FOREIGN KEY ( id_produit ) REFERENCES produits( id_produit ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE items_commandes ADD CONSTRAINT fk_items_commandes_commandes FOREIGN KEY ( id_commande ) REFERENCES commandes( id_commande ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE produits ADD CONSTRAINT fk_produits_producteurs FOREIGN KEY ( id_producteur ) REFERENCES producteurs( id_producteur ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE produits ADD CONSTRAINT fk_produits_types2 FOREIGN KEY ( id_type2 ) REFERENCES types2( id_type2 ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE types2 ADD CONSTRAINT fk_types2_types1 FOREIGN KEY ( id_type1 ) REFERENCES types1( id_type1 ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+]]></string>
+		</script>
 	</layout>
 </project>

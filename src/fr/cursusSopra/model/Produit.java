@@ -1,11 +1,18 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cursusSopra.dataLayer.contenu.ProduitDal;
-
+import fr.cursusSopra.dataLayer.ProduitDal;
+/**
+ * 
+ * @author Benoît
+ *
+ */
 public class Produit {
 	
 	/* PROPERTIES */

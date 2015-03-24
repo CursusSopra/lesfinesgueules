@@ -49,8 +49,8 @@
 					 <select name="idProducteur" class="form-control">
 						<option value="-1"></option>
 					 	<s:iterator value="listeProducteurs">
-						  <option value="<s:property value="key"/>">
-						  <s:property value="value"/>
+						  <option value="<s:property value="idProducteur"/>">
+						  <s:property value="raisonSociale"/>
 						  </option>
 						</s:iterator>
 					</select> 

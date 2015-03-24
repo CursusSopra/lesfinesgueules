@@ -14,7 +14,7 @@
 		action="<s:url action='inscription'/>">
 		
 		<fieldset>
-			<legend> Vos données personnelles : </legend>
+			<legend> Vos données personnelles</legend>
 			
 			<div class="form-group">
 				<label for="idNom" class="col-sm-2 control-label">Nom</label>
@@ -91,4 +91,5 @@
 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
 			</div>
 		</div>
+	</form>
 </div>

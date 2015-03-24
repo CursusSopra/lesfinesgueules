@@ -1,4 +1,4 @@
-package fr.cursusSopra.dataLayer.contenu;
+package fr.cursusSopra.dataLayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cursusSopra.dataLayer.DataLayerExtended;
 import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.tech.PostgresConnection;
-
+/**
+ * 
+ * @author Benoît
+ *
+ */
 public class ProduitDal extends DataLayerExtended {
 
 	/* Properties */
@@ -19,6 +22,9 @@ public class ProduitDal extends DataLayerExtended {
 	private final static String rqProduit = "SELECT * FROM produits "
 			+ "INNER JOIN types2 USING(id_type2) "
 			+ "INNER JOIN types1 USING(id_type1) " + "WHERE id_produit = ? ";
+	private final static String rqInsert = 
+			"INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) VALUES (?,?,?,?,?,?,?)";
+	
 
 	private long idProduit;
 	private String designation;
@@ -43,7 +49,7 @@ public class ProduitDal extends DataLayerExtended {
 		if (rs.next()) {
 			this.idProduit = rs.getLong("id_produit");
 			designation = rs.getString("designation");
-			description = rs.getString("designation");
+			description = rs.getString("description");
 			prix = rs.getDouble("prix");
 			photo = rs.getString("photo");
 			disponible = rs.getBoolean("disponible");
