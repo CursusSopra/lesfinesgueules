@@ -1,5 +1,5 @@
 /**
- * File modified by : Benoît
+ * Modified by Nicolas
  */
 package fr.cursusSopra.action.admin;
 
@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
-import fr.cursusSopra.dataLayer.Type1Dal;
 import fr.cursusSopra.model.Producteur;
 import fr.cursusSopra.model.Produit;
 import fr.cursusSopra.model.Type1;
@@ -69,7 +68,7 @@ public class ProduitAction extends ActionSupportExtended {
 	//Affichage du formulaire de création de produit
 	public String createProduitForm() throws SQLException {
 		//listeType2 = Type2Dal.getListeType2();
-		listeType1 = Type1Dal.getListeType1();
+		listeType1 = Type1.getListeType1();
 		listeProducteur = Producteur.getListeProducteur();
 		return SUCCESS;
 	}
