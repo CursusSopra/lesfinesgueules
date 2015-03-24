@@ -1,8 +1,10 @@
 package fr.cursusSopra.action.utilisateurs;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
+
 import fr.cursusSopra.model.Utilisateur;
 
 
@@ -27,7 +29,8 @@ public class InscriptionAction extends ActionSupportExtended{
 	private String photo;
 	private int droits;
 	
-	//accesseurs
+	
+	//accesseurs de l'utilisateur
 	public long getIdUtilisateur() {return idUtilisateur;}
 	public void setIdUtilisateur(long idUtilisateur) {this.idUtilisateur = idUtilisateur;}
 	
@@ -62,15 +65,10 @@ public class InscriptionAction extends ActionSupportExtended{
 	
 	//ajout utilisateur en BDD
 	public String createProfil() throws SQLException {
-
-		
 		Utilisateur utilisateur = new Utilisateur(nom, prenom, ligneAdresse1,
 				codePostal, ville, email, mdp, tel, photo, droits);
-		
 		utilisateur.save();
-
 		return SUCCESS;
 	}
 	
-
 }

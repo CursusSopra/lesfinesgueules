@@ -13,11 +13,16 @@
 		<put-attribute name="body" value="/views/utilisateurs/profil.jsp" />
 	</definition>
 	
-	
 	<!-- INSCRIPTION -->
 	<definition name="inscription" extends="baseLayout">
 		<put-attribute name="title" value="Inscription" />
 		<put-attribute name="body" value="/views/utilisateurs/formProfil.jsp" />
+	</definition>
+	
+	<!-- COMMENTAIRE -->
+	<definition name="commentaire" extends="baseLayout">
+		<put-attribute name="title" value="Commentaire" />
+		<put-attribute name="body" value="/views/utilisateurs/formCommentaire.jsp" />
 	</definition>
 
 </tiles-definitions>

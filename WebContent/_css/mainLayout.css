@@ -34,6 +34,10 @@ blockquote {
 	min-width: 250px;
 }
 
+.tableverticalalign {
+	vertical-align: top;
+}
+
 /* .navbar { min-height:45px;   } */
 /* .navbar .navbar-brand{ padding: 0 12px;font-size: 16px;line-height: 45px;height: 45px; } */
 /* .navbar .navbar-nav > li > a {  padding-top: 0px; padding-bottom: 0px; line-height: 45px; } */
