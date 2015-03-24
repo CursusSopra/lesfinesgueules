@@ -3,21 +3,11 @@
 
 <div class="row">
 	<h1 class="h1">Liste des produits</h1>
-
-	<table class="table table-stripped table-hover">
-		<thead>
-			<tr>
-				<th class="col-md-2"></th>
-				<th class="col-md-10">Description</th>
-			</tr>
-		</thead>
-		<tbody id="listeProduits">
-		
-			<!-- Contenu de la liste des produits -->
-		
-		</tbody>
-	</table>
-
+	<div id="listeProduits">
+	
+		<!-- Contenu de la liste des produits -->
+	
+	</div>
 </div>
 
 <!-- LAISSEZ MOI MON ANCIEN CODE SVP, Benoît -->
