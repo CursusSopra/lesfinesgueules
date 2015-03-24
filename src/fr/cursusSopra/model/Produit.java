@@ -70,6 +70,14 @@ public class Produit {
 		
 		listeCommentaires = new ArrayList<Commentaire>();
 	}
+	
+	public Produit(long producteur, long type2, double prix, String designation, boolean disponible) {
+		this.designation = designation;
+		this.prix = prix;
+		this.disponible = disponible;
+		this.type2 = type2;
+		this.producteur = producteur;
+	}
 
 	/* METHODS */
 	
@@ -92,6 +100,21 @@ public class Produit {
 			listeProduits.add(p);
 		}
 		return listeProduits;
+	}
+	
+	public void save() throws SQLException{
+			
+		ProduitDal pd = new ProduitDal(producteur, type2, prix, designation, disponible);
+		
+		if(description != null){
+			pd.setDescription(description);
+		}
+		if(photo != null){
+			pd.setPhoto(photo);
+		}
+		
+		idProduit = pd.save();
+		//System.out.println(idProduit);
 	}
 	
 	/* ACCESSORS */

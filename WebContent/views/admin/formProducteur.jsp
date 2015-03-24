@@ -121,7 +121,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idLatitude" class="col-sm-2 control-label">Coordonnées GPS</label>
+				<label for="idLatitude" class="col-sm-2 control-label">Latitude</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idLatitude"
 						name="latitude" value="<s:property value="latitude"/>">
@@ -129,7 +129,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idLongitude" class="col-sm-2 control-label">Coordonnées GPS</label>
+				<label for="idLongitude" class="col-sm-2 control-label">Longitude</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idLongitude"
 						name="longitude" value="<s:property value="longitude"/>">

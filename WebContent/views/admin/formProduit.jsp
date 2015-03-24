@@ -32,11 +32,11 @@
 			<div class="form-group">
 				<label for="idType1Produit" class="col-sm-2 control-label">Votre type 1 de produit:</label>
 				<div class="col-sm-4">
-					<select name="idTypeProduit" id="idTyp1Produit">
+					<select name="idTypeProduit" id="idType1Produit">
 						<option value="-1">Sélectionnez un type de produit</option>
 						<s:iterator value="listeType1">
-							<option value="<s:property value="idTyp1Produit"/>">
-								<s:property value="type1"/>
+							<option value="<s:property value="idType1"/>">
+								<s:property value="libelle1"/>
 							</option>
 						</s:iterator>
 			        </select>
