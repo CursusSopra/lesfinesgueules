@@ -4,6 +4,7 @@
 <div class="row">
 	<h1 class="h1">
 		<s:property value="designation" />
+		<button type="button" class="btn btn-default" <s:if test="!disponible">disabled="disabled"</s:if>>Ajouter au panier</button>
 	</h1>
 	<h3>
 		<s:if test="disponible"><span class="label label-success">Disponible</span></s:if>
@@ -14,6 +15,11 @@
 		<tr>
 			<td><img alt="<s:property value="desgination"/>" src="<s:property value="photo"/>"></td>
 			<td>
+				<s:url action="" var="dp">
+					<s:param name="id">
+						<s:property value="idProduit" />
+					</s:param>
+				</s:url>
 				<span class="input-group-addon"><s:property value="prix" /> &euro;</span>
 				<span class="input-group-addon"><s:property value="raisonSociale" /></span>
 				<span class="input-group-addon"><s:property value="delaiLivraison" /> jours</span>

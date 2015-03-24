@@ -7,45 +7,43 @@
 $(function() {
 	$.getJSON('getProduitsJSON.action', function(data) {
 		
-		$.each(data.listeProduits, function(index, elt) {	
+		var output = '';
+		
+		$.each(data.listeProduits, function(index, elt) {
+			// Création de la variable chaîne de sortie et ajout de la photo et la désignation
+			output += '<tr><td>' + 
+				'<img alt="image" class="img-responsive img-thumbnail" width="200px" src="' + elt.photo + '"/>' + 
+				'</td><td>' + 
+				'<h4>' + elt.designation + '</h4>';
 			
-			// Mise du contenu dans la balise #listeProduits
-			$('#listeProduits').html();
-			
-			// Ajout du code HTML dans la balise #listeProduits
+			// Label de disponibilité
 			if(elt.disponible) {
-				$("#listeProduits").append(	// Produit disponible
-					'<tr><td>' + 
-						'<img alt="image" class="img-responsive img-thumbnail" width="200px" src="' + elt.photo + '"/>' + 
-					'</td><td>' + 
-						'<h4>' + elt.designation + '</h4>' +
-						'<span class="label label-success">Disponible</span>' +
-						'<p>' + elt.description.substring(0,250) + '...</p>' + 
-						'<p><div class="input-group">' +
-							'<span class="input-group-addon">' + elt.prix + ' &euro;</span>' +
-								'<button type="button" class="btn btn-default">Ajouter au panier</button>' +
-								'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
-								'<button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>' +
-					'</div></p></td></tr>'
-				);
+				output +='<span class="label label-success">Disponible</span>';
 			} else {
-				$("#listeProduits").append( // Produit non disponible
-					'<tr><td>' + 
-						'<img alt="image" class="img-responsive img-thumbnail" width="200px" src="' + elt.photo + '"/>' + 
-					'</td><td>' + 
-						'<h4>' + elt.designation + '</h4>' +
-						'<span class="label label-danger">Non disponible</span>' +
-						'<p>' + elt.description.substring(0,250) + '...</p>' + 
-						'<p><div class="input-group">' +
-							'<span class="input-group-addon">' + elt.prix + ' &euro;</span>' +
-								'<button type="button" class="btn btn-default" disabled="disabled">Ajouter au panier</button>' +
-								'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
-								'<button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>' +
-					'</div></p></td></tr>'
-				);
+				output += '<span class="label label-danger">Non disponible</span>';
 			}
 			
+			// Description (250) et prix
+			output += '<p>' + elt.description.substring(0,250) + '...</p>' + 
+				'<p><div class="input-group">' +
+				'<span class="input-group-addon">' + elt.prix + ' &euro;</span>';
+			
+			// Activation / Désactivation du bouton "Ajouter au panier"
+			if(elt.disponible) {
+				output += '<button type="button" class="btn btn-default">Ajouter au panier</button>';
+			} else {
+				output += '<button type="button" class="btn btn-default" disabled="disabled">Ajouter au panier</button>';
+			}
+			
+			// Bouton "Voir les détails"
+			output += '<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
+				'<button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>' +
+				'</div></p></td></tr>';
+			
 		});
+		
+		// Mise du contenu dans la balise #listeProduits
+		$('#listeProduits').html(output);
 		
 	});
 	/*
