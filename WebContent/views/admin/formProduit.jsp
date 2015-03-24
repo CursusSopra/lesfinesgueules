@@ -18,7 +18,7 @@
 			<div class="form-group">
 				<label for="idProducteur" class="col-sm-2 control-label">Producteur:</label>
 				<div class="col-sm-4">
-					<select name="idProducteur" id="idProducteur">
+					<select name="idProducteur" id="idProducteur" class="form-control">
 						<option value="-1">Sélectionnez un producteur</option>
 						<s:iterator value="listeProducteur">
 							<option value="<s:property value="idProducteur"/>">
@@ -30,9 +30,9 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idType1Produit" class="col-sm-2 control-label">Votre type 1 de produit:</label>
+				<label for="idType1" class="col-sm-2 control-label">Boutique:</label>
 				<div class="col-sm-4">
-					<select name="idTypeProduit" id="idType1Produit">
+					<select name="idType1" id="idType1" class="form-control">
 						<option value="-1">Sélectionnez un type de produit</option>
 						<s:iterator value="listeType1">
 							<option value="<s:property value="idType1"/>">
@@ -44,15 +44,17 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idType2Produit" class="col-sm-2 control-label">Votre type de produit:</label>
+				<label for="idListType2" class="col-sm-2 control-label">Type de produit:</label>
 				<div class="col-sm-4">
-					<select name="idTypeProduit" id="idTyp2Produit">
-						<option value="-1">Sélectionnez un type de produit</option>
-						<s:iterator value="listeType2">
-							<option value="<s:property value="idTyp2Produit"/>">
-								<s:property value="type2"/>
-							</option>
-						</s:iterator>
+					<select name="idType2" id="idListType2" class="form-control">
+					
+					
+<!-- 						<option value="-1">Sélectionnez un type de produit</option> -->
+<%-- 						<s:iterator value="listeType2"> --%>
+<%-- 							<option value="<s:property value="idTyp2Produit"/>"> --%>
+<%-- 								<s:property value="type2"/> --%>
+<!-- 							</option> -->
+<%-- 						</s:iterator> --%>
 			        </select>
 				</div>
 			</div>

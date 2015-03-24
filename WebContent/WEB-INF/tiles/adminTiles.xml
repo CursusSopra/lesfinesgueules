@@ -17,6 +17,9 @@
 	<definition name="ajout-produit" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'un produit" />
 		<put-attribute name="body" value="/views/admin/formProduit.jsp" />
+		<put-list-attribute name="moreScripts">
+ 			<add-attribute value="_js/typeRecherche.js"></add-attribute>
+ 		</put-list-attribute>
 	</definition>
 	
 	<!-- FORM TYPE1 -->
