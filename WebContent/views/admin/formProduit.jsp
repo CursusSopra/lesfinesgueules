@@ -1,6 +1,34 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-		
+
+
+<s:if test="!firstDisplay">
+	<p class="bg-danger"><br/>Il y a des problèmes, voyez les messages ci-dessous:
+		<s:if test="!idProducteurOK">
+			<br/> Veuillez sélectionner un producteur
+		</s:if>
+		<s:if test="!idType2OK">
+			<br/> Sélectionner le type de produit
+		</s:if>
+		<s:if test="!prixOK">
+			<br/> Veuillez saisir un prix correcte
+		</s:if>
+		<s:if test="!designationOK">
+			<br/> Désignez votre produit
+		</s:if>
+	</p>
+</s:if>
+<s:if test="firstDisplay">
+	<s:if test="idProduit != 0">
+		<p class="bg-danger"><br/>Bravo, votre produit a été enregistré
+		</p>
+	</s:if>
+	<s:if test="idProduit = 0">
+		<p class="bg-danger"><br/>Aïaïaï, ça ne marche pas
+		</p>
+	</s:if>
+</s:if>
+
 
 <div class="row" id="divFormProduit" >
 	<form class="form-horizontal" id="formProduit" method="post" action="<s:url action='ajout-produit' />">
@@ -79,9 +107,7 @@
 			<div class="form-group">
 				<label for="idDescription" class="col-sm-2 control-label">Description du produit : </label>
 				<div class="col-sm-6">
-					<textarea class="form-control" name="description" id="idDescription" rows="5" placeholder="Vous avez droit à 100 caractères">
-					<s:property value="description" />
-					</textarea>
+					<textarea class="form-control" name="description" id="idDescription" rows="5" placeholder="Vous avez droit à 100 caractères"><s:property value="description" /></textarea>
 				</div>
 			</div>
 			
