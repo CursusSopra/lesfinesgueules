@@ -1,3 +1,6 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.action.contenu;
 
 import java.sql.SQLException;
@@ -22,9 +25,9 @@ public class DetailsProduitAction extends ActionSupportExtended {
 	private double prix;
 	private String photo;
 	private boolean disponible;
-	private long type1;
-	private long type2;
-	private long producteur;
+	private long idType1;
+	private long idType2;
+	private long idProducteur;
 	private List<Commentaire> listeCommentaires;
 	
 	private String raisonSociale;
@@ -36,6 +39,7 @@ public class DetailsProduitAction extends ActionSupportExtended {
 	
 	/* EXECUTE METHOD */
 	
+	@Override
 	public String execute() throws SQLException {
 		Produit produit = new Produit(idProduit);
 		
@@ -44,13 +48,14 @@ public class DetailsProduitAction extends ActionSupportExtended {
 		prix = produit.getPrix();
 		photo = produit.getPhoto();
 		disponible = produit.isDisponible();
-		type1 = produit.getType1();
-		type2 = produit.getType2();
-		producteur = produit.getProducteur();
+		idType1 = produit.getType1();
+		idType2 = produit.getType2();
+		idProducteur = produit.getProducteur();
 		listeCommentaires = produit.getListeCommentaires();
 		
-		ProducteurDal prod = new ProducteurDal(producteur);
+		ProducteurDal prod = new ProducteurDal(idProducteur);
 		
+		idProducteur = prod.getIdProducteur();
 		raisonSociale = prod.getRaisonSociale();
 		ligneAdresse1 = prod.getLigneAdresse1();
 		ligneAdresse2 = prod.getLigneAdresse2();
@@ -95,16 +100,16 @@ public class DetailsProduitAction extends ActionSupportExtended {
 		return disponible;
 	}
 
-	public long getType1() {
-		return type1;
+	public long getIdType1() {
+		return idType1;
 	}
 
-	public long getType2() {
-		return type2;
+	public long getIdType2() {
+		return idType2;
 	}
 
-	public long getProducteur() {
-		return producteur;
+	public long getIdProducteur() {
+		return idProducteur;
 	}
 
 	public List<Commentaire> getListeCommentaires() {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cursusSopra.dataLayer.ProduitDal;
+import fr.cursusSopra.tech.TypeCommentaire;
 /**
  * 
  * @author Benoît
@@ -68,7 +69,7 @@ public class Produit {
 		this.type2 = pdal.getType2();
 		this.producteur = pdal.getProducteur();
 		
-		listeCommentaires = new ArrayList<Commentaire>();
+		listeCommentaires = Commentaire.getListeCommentaires(idProduit, TypeCommentaire.PRODUIT);
 	}
 	
 	public Produit(long producteur, long type2, double prix, String designation, boolean disponible) {
