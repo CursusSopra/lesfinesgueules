@@ -110,7 +110,7 @@ public class Type1Dal extends DataLayerExtended{
 		return listeType2;
 	}
 	
-	public String getLibelle11() {return libelle1;}
+	public String getLibelle1() {return libelle1;}
 	public long getIdType1() {return idType1;}
 	public void setIdType1(long idType1) {this.idType1 = idType1;}
 	public void setLibelle11(String libelle1) {this.libelle1 = libelle1;}

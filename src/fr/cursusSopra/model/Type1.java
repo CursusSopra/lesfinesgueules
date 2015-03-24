@@ -1,9 +1,11 @@
 package fr.cursusSopra.model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.cursusSopra.dataLayer.admin.Type1Dal;
+import fr.cursusSopra.dataLayer.contenu.ProduitDal;
 
 public class Type1 {
 
@@ -17,6 +19,9 @@ public class Type1 {
 	
 	public Type1 (long idType1){
 		this.idType1=idType1;
+		Type1Dal t1dal = new Type1Dal(idType1);
+		this.libelle1=t1dal.getLibelle1();
+		this.listeType2=t1dal.getListeType2();
 	}
 	
 	public Type1 (long idType1, String libelle1){
@@ -34,4 +39,6 @@ public class Type1 {
 		listeType2 = new Type1Dal(idType1).getListeType2();
 		return listeType2;
 	}
+	
+	
 }
