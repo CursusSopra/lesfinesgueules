@@ -1,12 +1,20 @@
+/**
+ * Modified by Cecile
+ */
 package fr.cursusSopra.action.utilisateurs;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
-
+import fr.cursusSopra.dataLayer.UtilisateurDal;
 import fr.cursusSopra.model.Utilisateur;
 
+/**
+ * 
+ * @author Cécile
+ *
+ */
 
 public class InscriptionAction extends ActionSupportExtended{
 	
@@ -29,7 +37,14 @@ public class InscriptionAction extends ActionSupportExtended{
 	private String photo;
 	private int droits;
 	
+	private List<UtilisateurDal> listeUtilisateurs;
 	
+	public List<UtilisateurDal> getListeUtilisateurs() {
+		return listeUtilisateurs;
+	}
+	public void setListeUtilisateurs(List<UtilisateurDal> listeUtilisateurs) {
+		this.listeUtilisateurs = listeUtilisateurs;
+	}
 	//accesseurs de l'utilisateur
 	public long getIdUtilisateur() {return idUtilisateur;}
 	public void setIdUtilisateur(long idUtilisateur) {this.idUtilisateur = idUtilisateur;}

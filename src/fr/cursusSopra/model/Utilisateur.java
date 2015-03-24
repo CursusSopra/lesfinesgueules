@@ -1,9 +1,11 @@
 /**
- * File modified by : Benoît
+ * Modified by Cecile
  */
 package fr.cursusSopra.model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.cursusSopra.dataLayer.UtilisateurDal;
 /**
@@ -71,10 +73,37 @@ private long idUtilisateur;
 		this.droits = droits;
 	}
 	
+	//ctor 2
+	public Utilisateur(long idUtilisateur, String nom, String prenom,
+			String email) {
+		super();
+		this.idUtilisateur = idUtilisateur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
+	
+	
 	public void save() throws SQLException{
 		UtilisateurDal ud = new UtilisateurDal(nom, prenom, ligneAdresse1, codePostal, ville, email, mdp, tel, photo, droits);
 		ud.save();
 	}
 
+	//liste des utilisateurs
+	public static List<Utilisateur> getListeUtilisateurs() throws SQLException{
+		List<Utilisateur> listeUtilisateurs = new ArrayList<Utilisateur>();
+		List<UtilisateurDal> lud = UtilisateurDal.getListeUtilisateurs();
+		
+		for(int i = 0; i<lud.size(); i++){
+			long idUtilisateur = lud.get(i).getIdUtilisateur();
+			String nom = lud.get(i).getNom();
+			String prenom = lud.get(i).getPrenom();
+			String email = lud.get(i).getEmail();
+			
+			Utilisateur u = new Utilisateur(idUtilisateur, nom, prenom, email);
+			listeUtilisateurs.add(u);
+		}
+		return listeUtilisateurs;
+	}
 	
 }

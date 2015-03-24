@@ -19,6 +19,12 @@
 		<put-attribute name="body" value="/views/utilisateurs/formProfil.jsp" />
 	</definition>
 	
+		<!-- LISTE UTILISATEURS -->
+	<definition name="liste-utilisateurs" extends="baseLayout">
+		<put-attribute name="title" value="Liste des Utilisateurs" />
+		<put-attribute name="body" value="/views/utilisateurs/listeUtilisateurs.jsp" />
+	</definition>
+	
 	<!-- COMMENTAIRE -->
 	<definition name="commentaire" extends="baseLayout">
 		<put-attribute name="title" value="Commentaire" />

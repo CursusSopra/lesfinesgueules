@@ -21,6 +21,11 @@
 			<result name="success" type="tiles">inscription</result>
 		</action>
 		
+		<!-- LISTE DES UTILISATEURS -->
+		<action name="listeUtilisateurs" class="fr.cursusSopra.action.utilisateurs.ListeUtilisateursAction" method="createListProfil">
+			<result name="success" type="tiles">liste-utilisateurs</result>
+		</action>
+		
 		<!-- COMMENTAIRE -->
 		<action name="commentaire" class="fr.cursusSopra.action.utilisateurs.CommentaireAction" method="createCommentaireForm">
 			<result name="success" type="tiles">commentaire</result>
