@@ -1,47 +1,35 @@
 package fr.cursusSopra.model;
 
+import java.sql.SQLException;
+
+import fr.cursusSopra.dataLayer.utilisateurs.CommentaireDal;
+import fr.cursusSopra.dataLayer.utilisateurs.UtilisateurDal;
+
 public class Commentaire {
 	
-	/* PROPERTIES */
 	
-	private String prenom;
 	private String avis;
 	private int note;
+	private int etat;
 	
-	/* CONSTRUCTOR */
 	
-	public Commentaire(String prenom, String avis, int note) {
-		super();
-		this.prenom = prenom;
+	//constructeur
+	public Commentaire(String avis, int note, int etat) {
 		this.avis = avis;
 		this.note = note;
+		this.etat = etat;
 	}
 
-	/* ACCESSORS */
-	
-	public String getPrenom() {
-		return prenom;
+	//accesseurs
+	public String getAvis() {return avis;}
+	public void setAvis(String avis) {this.avis = avis;}
+	public int getNote() {return note;}
+	public void setNote(int note) {this.note = note;}
+
+	//sauvegarde en bdd
+	public void save() throws SQLException{
+		CommentaireDal cd = new CommentaireDal(avis, note, etat);
+		cd.save();
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getAvis() {
-		return avis;
-	}
-
-	public void setAvis(String avis) {
-		this.avis = avis;
-	}
-
-	public int getNote() {
-		return note;
-	}
-
-	public void setNote(int note) {
-		this.note = note;
-	}
-	
-	
 }
