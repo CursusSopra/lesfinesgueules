@@ -1,6 +1,10 @@
-package fr.cursusSopra.dataLayer.utilisateurs;
+package fr.cursusSopra.dataLayer;
 
 import java.sql.Connection;
+
+/**
+ * @author Julien C
+ */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cursusSopra.dataLayer.DataLayerExtended;
 import fr.cursusSopra.model.Commande;
 import fr.cursusSopra.tech.PostgresConnection;
 

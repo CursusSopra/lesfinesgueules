@@ -1,7 +1,13 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
 import java.sql.Timestamp;
-
+/**
+ * @author Julien C
+ *
+ */
 public class ItemCommande {
 
 	private long idItemCommande = -1;

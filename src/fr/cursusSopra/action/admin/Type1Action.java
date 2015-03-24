@@ -3,7 +3,7 @@ package fr.cursusSopra.action.admin;
 import java.sql.SQLException;
 
 import fr.cursusSopra.action.ActionSupportExtended;
-import fr.cursusSopra.dataLayer.admin.Type1Dal;
+import fr.cursusSopra.dataLayer.Type1Dal;
 
 public class Type1Action extends ActionSupportExtended {
 	

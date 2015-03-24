@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.cursusSopra.dataLayer.admin.ProducteurDal;
-import fr.cursusSopra.dataLayer.admin.Type1Dal;
+import fr.cursusSopra.dataLayer.ProducteurDal;
+import fr.cursusSopra.dataLayer.Type1Dal;
 import fr.cursusSopra.model.Producteur;
 import fr.cursusSopra.model.Type1;
 import fr.cursusSopra.model.Type2;

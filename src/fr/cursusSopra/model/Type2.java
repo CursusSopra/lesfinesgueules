@@ -1,5 +1,12 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
-
+/**
+ * 
+ * @author Julien J
+ *
+ */
 public class Type2 {
 
 	private long idType2;

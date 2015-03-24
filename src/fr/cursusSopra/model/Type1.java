@@ -1,12 +1,17 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cursusSopra.dataLayer.admin.Type1Dal;
-import fr.cursusSopra.dataLayer.contenu.ProduitDal;
-
+import fr.cursusSopra.dataLayer.Type1Dal;
+/**
+ * 
+ * @author Julien J
+ *
+ */
 public class Type1 {
 
 	private long idType1;

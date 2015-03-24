@@ -1,11 +1,18 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cursusSopra.dataLayer.admin.ProducteurDal;
-
+import fr.cursusSopra.dataLayer.ProducteurDal;
+/**
+ * 
+ * @author Nicolas
+ *
+ */
 public class Producteur {
 	
 	private long idProducteur;

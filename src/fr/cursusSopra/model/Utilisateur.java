@@ -1,10 +1,16 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
 import java.sql.SQLException;
 
-import fr.cursusSopra.dataLayer.admin.ProducteurDal;
-import fr.cursusSopra.dataLayer.utilisateurs.UtilisateurDal;
-
+import fr.cursusSopra.dataLayer.UtilisateurDal;
+/**
+ * 
+ * @author Cécile
+ *
+ */
 public class Utilisateur {
 	
 private long idUtilisateur;

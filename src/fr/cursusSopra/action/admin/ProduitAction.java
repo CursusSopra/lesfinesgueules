@@ -1,21 +1,17 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.action.admin;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
-import fr.cursusSopra.dataLayer.admin.ProducteurDal;
-import fr.cursusSopra.dataLayer.admin.Type1Dal;
-import fr.cursusSopra.dataLayer.admin.Type2Dal;
 import fr.cursusSopra.model.Producteur;
-import fr.cursusSopra.model.Type1;
 import fr.cursusSopra.model.Type2;
 
 public class ProduitAction extends ActionSupportExtended {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private long idProduit;

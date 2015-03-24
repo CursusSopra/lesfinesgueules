@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
-import fr.cursusSopra.dataLayer.admin.Type1Dal;
-import fr.cursusSopra.dataLayer.admin.Type2Dal;
+import fr.cursusSopra.dataLayer.Type1Dal;
+import fr.cursusSopra.dataLayer.Type2Dal;
 import fr.cursusSopra.model.Type1;
 
 

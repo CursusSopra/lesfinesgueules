@@ -1,12 +1,15 @@
-package fr.cursusSopra.dataLayer.utilisateurs;
+package fr.cursusSopra.dataLayer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import fr.cursusSopra.dataLayer.DataLayerExtended;
-
+/**
+ * 
+ * @author Cécile
+ *
+ */
 public class UtilisateurDal extends DataLayerExtended {
 
 	

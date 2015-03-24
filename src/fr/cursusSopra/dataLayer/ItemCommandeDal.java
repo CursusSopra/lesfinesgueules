@@ -1,4 +1,4 @@
-package fr.cursusSopra.dataLayer.utilisateurs;
+package fr.cursusSopra.dataLayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cursusSopra.dataLayer.DataLayerExtended;
 import fr.cursusSopra.model.ItemCommande;
 import fr.cursusSopra.tech.PostgresConnection;
+
+/**
+ * 
+ * @author julien C
+ *
+ */
 
 public class ItemCommandeDal extends DataLayerExtended {
 

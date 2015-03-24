@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
-import fr.cursusSopra.dataLayer.admin.ProducteurDal;
+import fr.cursusSopra.dataLayer.ProducteurDal;
 import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.model.Produit;
 

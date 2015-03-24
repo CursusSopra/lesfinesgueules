@@ -1,10 +1,15 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
 import java.sql.SQLException;
 
-import fr.cursusSopra.dataLayer.utilisateurs.CommentaireDal;
-
-
+import fr.cursusSopra.dataLayer.CommentaireDal;
+/**
+ * @author Julien C
+ *
+ */
 public class Commentaire {
 	
 	

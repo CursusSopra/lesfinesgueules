@@ -1,3 +1,6 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.model;
 
 import java.sql.Connection;
@@ -6,10 +9,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cursusSopra.dataLayer.utilisateurs.CommandeDal;
-import fr.cursusSopra.dataLayer.utilisateurs.ItemCommandeDal;
+import fr.cursusSopra.dataLayer.CommandeDal;
+import fr.cursusSopra.dataLayer.ItemCommandeDal;
 import fr.cursusSopra.tech.PostgresConnection;
-
+/**
+ * @author Julien C
+ */
 public class Commande {
 
 	private long idCommande = -1;
