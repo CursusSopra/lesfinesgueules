@@ -3,7 +3,7 @@
 		
 
 <div class="row" id="divFormProduit" >
-	<form class="form-horizontal" id="formProduit" method="post" action="<s:url action='createProduit' />">
+	<form class="form-horizontal" id="formProduit" method="post" action="<s:url action='ajout-produit' />">
 		<fieldset>
 			<legend > Produit :	</legend>
 			<div class="form-group">
@@ -16,13 +16,41 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="idTypeProduit" class="col-sm-2 control-label">Votre type de produit:</label>
+				<label for="idProducteur" class="col-sm-2 control-label">Producteur:</label>
 				<div class="col-sm-4">
-					<select name="idTypeProduit" id="idTypeProduit">
+					<select name="idProducteur" id="idProducteur">
+						<option value="-1">Sélectionnez un producteur</option>
+						<s:iterator value="listeProducteur">
+							<option value="<s:property value="idProducteur"/>">
+								<s:property value="siren"/>-<s:property value="raisonSociale"/>
+							</option>
+						</s:iterator>
+			        </select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="idType1Produit" class="col-sm-2 control-label">Votre type 1 de produit:</label>
+				<div class="col-sm-4">
+					<select name="idTypeProduit" id="idTyp1Produit">
 						<option value="-1">Sélectionnez un type de produit</option>
-						<s:iterator value="listeDesTypesProduit">
-							<option value="<s:property value="idTypeProduit"/>">
-								<s:property value="typeProduit"/>
+						<s:iterator value="listeType1">
+							<option value="<s:property value="idTyp1Produit"/>">
+								<s:property value="type1"/>
+							</option>
+						</s:iterator>
+			        </select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="idType2Produit" class="col-sm-2 control-label">Votre type de produit:</label>
+				<div class="col-sm-4">
+					<select name="idTypeProduit" id="idTyp2Produit">
+						<option value="-1">Sélectionnez un type de produit</option>
+						<s:iterator value="listeType2">
+							<option value="<s:property value="idTyp2Produit"/>">
+								<s:property value="type2"/>
 							</option>
 						</s:iterator>
 			        </select>
@@ -61,6 +89,7 @@
 					<input type="file" name="photoProduit" id="idPhotoProduit" />
 				</div>
 			</div>
+		</fieldset>
 		
 		
 		

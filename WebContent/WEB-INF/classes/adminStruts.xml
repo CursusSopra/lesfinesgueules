@@ -12,17 +12,30 @@
 				class="org.apache.struts2.views.tiles.TilesResult" />
 		</result-types>
 
-		<!-- LISTE PRODUITS -->
+		<!-- CEATION PRODUCTEUR -->
 		<action name="ajout-producteur-form" class="fr.cursusSopra.action.admin.ProducteurAction"
 			method="createProducteurForm">
 			<result name="success" type="tiles">ajout-producteur</result>
 		</action>
 		
 		<action name="ajout-producteur" class="fr.cursusSopra.action.admin.ProducteurAction" 
-			method="createProducteur">
+			method="createProduit">
 			<result name="success" type="tiles">ajout-producteur</result>
 			<result name="error" type="tiles">ajout-producteur</result>
 			<result name="none" type="tiles">ajout-producteur</result>
+		</action>
+		
+		<!-- CEATION PRODUIT -->
+		<action name="ajout-produit-form" class="fr.cursusSopra.action.admin.ProduitAction"
+			method="createProduitForm">
+			<result name="success" type="tiles">ajout-produit</result>
+		</action>
+		
+		<action name="ajout-produit" class="fr.cursusSopra.action.admin.ProduitAction" 
+			method="createProduitForm">
+			<result name="success" type="tiles">ajout-produit</result>
+			<result name="error" type="tiles">ajout-produit</result>
+			<result name="none" type="tiles">ajout-produit</result>
 		</action>
 
 

@@ -10,7 +10,6 @@ import java.util.List;
 
 import fr.cursusSopra.dataLayer.DataLayerExtended;
 import fr.cursusSopra.model.Producteur;
-import fr.cursusSopra.model.Type2;
 import fr.cursusSopra.tech.PostgresConnection;
 
 public class ProducteurDal extends DataLayerExtended {
@@ -19,7 +18,7 @@ public class ProducteurDal extends DataLayerExtended {
 		"INSERT INTO producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
 	private final static String rq = "SELECT * FROM producteurs";
-	private final static String rqProducteur = "SELECT * FROM producteurs WHERE id_producteur=?";
+	private final static String rqProducteur = "SELECT * FROM producteurs WHERE id_producteur = ?";
 	
 	private long idProducteur;
 	
@@ -35,7 +34,7 @@ public class ProducteurDal extends DataLayerExtended {
 	private int delaiLivraison;
 	private String photo;
 	
-	private static List<Producteur> listeProducteur;
+	private static List<ProducteurDal> listeProducteurDal;
 	
 	
 	//ACCESSEURS (A Simplifier)
@@ -66,6 +65,11 @@ public class ProducteurDal extends DataLayerExtended {
 	
 	
 	//Constructeur
+	public ProducteurDal(long idProducteur, String raisonSociale, String siren) {
+		this.idProducteur = idProducteur;
+		this.raisonSociale = raisonSociale;
+		this.siren = siren;
+	}
 	public ProducteurDal(String raisonSociale, String siren,
 			String ligneAdresse1, String codePostal, String ville, 
 			String latitude, String longitude, String description,
@@ -82,6 +86,7 @@ public class ProducteurDal extends DataLayerExtended {
 		this.delaiLivraison = delaiLivraison;
 		this.photo = photo;
 	}
+	
 	public ProducteurDal(long idProducteur){
 		try {
 			PreparedStatement ps = connection.prepareStatement(rqProducteur);
@@ -139,10 +144,10 @@ public class ProducteurDal extends DataLayerExtended {
 		return idProducteur;
 	}
 	
-	
-	public static List<Producteur> getListeProducteur(){
+	//Liste de producteur à afficher pour créer un produit
+	public static List<ProducteurDal> getListeProducteurDal(){
 		
-		listeProducteur = new ArrayList<Producteur>();
+		listeProducteurDal = new ArrayList<ProducteurDal>();
 		
 		Connection connection = PostgresConnection.GetConnexion();
 		Statement state;
@@ -150,11 +155,11 @@ public class ProducteurDal extends DataLayerExtended {
 		try {
 			state = connection.createStatement();
 			ResultSet rs = state.executeQuery(rq);
-			Producteur prod;
+			ProducteurDal prod;
 			
 			while (rs.next()) {
-				prod = new Producteur(rs.getLong("id_producteur"), rs.getString("raisonSociale"), rs.getString("siren"));
-				listeProducteur.add(prod);
+				prod = new ProducteurDal(rs.getLong("id_producteur"), rs.getString("raison_sociale"), rs.getString("siren"));
+				listeProducteurDal.add(prod);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -166,6 +171,6 @@ public class ProducteurDal extends DataLayerExtended {
 				
 			}
 		}
-		return listeProducteur;
+		return listeProducteurDal;
 	}
 }
