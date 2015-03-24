@@ -42,9 +42,11 @@ public class Type1 {
 		this.idType1 = idType1;
 		Type1Dal t1Dal = new Type1Dal(idType1);
 		this.libelle1 = t1Dal.getLibelle1();
+		
 		List<Type2> lt2 = t1Dal.getListeType2();
 		listeType2 = new ArrayList<Type2>();
-		for (int i = 0; i< Type1Dal.getListeType1Dal().size();i++ ){
+		
+		for (int i = 0; i< lt2.size();i++ ){
 			
 			String libelle2 = lt2.get(i).getLibelle2();
 			long idType2 = lt2.get(i).getIdType2();
@@ -81,6 +83,7 @@ public class Type1 {
 		List<Type2> lt2 = t1Dal.getListeType2();
 		listeType2 = new ArrayList<Type2>();
 		for (int i = 0; i< Type1Dal.getListeType1Dal().size();i++ ){
+			
 			String libelle2 = lt2.get(i).getLibelle2();
 			long idType2 = lt2.get(i).getIdType2();
 			Type2 t2 = new Type2(idType2, libelle2);
