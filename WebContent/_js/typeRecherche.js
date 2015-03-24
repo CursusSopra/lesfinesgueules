@@ -3,23 +3,24 @@
  * 
  */
 
+$(function () {
+	$('#idType1').change(function() {
+		loadType2();
+	});
+});
 
-
-
-$(function loadSelectType2() {
-	var idType1 = $('#idType1');
+function loadType2() {	
+	var idType1 = $('#idType1').val();
+	console.log(idType1);
 	$.getJSON('getJSONType2?idType1=' + idType1)
-    .success(function (data) {
+	.success(function (data) {
         var szOption = '<option value="">Choisissez...</option>';
         $.each(data.listType2, function (index, elt) {
             szOption += '<option value="' + elt.idType2 + '">' + elt.libelle2 + '</option>';
         });
 
         $('#idListType2').html(szOption);
-        //$('#glyphRightNumReg').toggleClass('fa-asterisk').toggleClass('fa-spinner').toggleClass('fa-spin');
     })
     .fail(function () {
-        //$('#glyphRightNumReg').toggleClass('fa-asterisk').toggleClass('fa-spinner').toggleClass('fa-spin');
     });
-});
-
+}

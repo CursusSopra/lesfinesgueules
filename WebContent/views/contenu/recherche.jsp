@@ -14,7 +14,7 @@
 				<div class="form-group">
 			
 					<label class="control-label">Type 1</label>
-					 <select name="idType1" class="form-control">
+					 <select id="idType1" class="form-control">
 					 	<option value="-1"></option>
 					 	<s:iterator value="listeTypes1">
 						  <option value="<s:property value="idType1"/>">

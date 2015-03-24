@@ -35,15 +35,6 @@ public class RechercheAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public List<Type2> listType2(){
-		
-		Type1 type1 = new Type1(idType1);
-		
-		return type1.getListeType2();
-		
-	}
-	
-	
 
 	public List<Type1>  getListeTypes1() {
 		return listeTypes1;
