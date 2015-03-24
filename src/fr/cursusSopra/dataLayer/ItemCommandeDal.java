@@ -1,3 +1,6 @@
+/**
+ * File modified by : Julien Caillon
+ */
 package fr.cursusSopra.dataLayer;
 
 import java.sql.Connection;
@@ -12,7 +15,7 @@ import fr.cursusSopra.model.ItemCommande;
 import fr.cursusSopra.tech.PostgresConnection;
 
 /**
- * 
+ *
  * @author julien C
  *
  */
@@ -69,7 +72,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 	 * @return long qui contient l'id de l'item sauver (ou -1 si le save est un echec)
 	 * @throws SQLException
 	 */
-	public long save() throws SQLException {
+	public long save(long idCommande) throws SQLException {
 
 		long newId = -1;
 
@@ -92,6 +95,8 @@ public class ItemCommandeDal extends DataLayerExtended {
 		} else {
 
 			// INSERT
+			LocItem.setIdCommande(idCommande);
+
 			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
 			ps.setLong(1, LocItem.getIdProduit());
 			ps.setLong(2, LocItem.getIdCommande());
@@ -113,7 +118,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 
 		return newId;
 	}
-	
+
 
 	/**
 	 * Delete l'item dans la db
@@ -136,7 +141,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 
 		return isDeleted;
 	}
-	
+
 
 	/**
 	 * GETTERS / SETTERS

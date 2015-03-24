@@ -1,5 +1,5 @@
 /**
- * File modified by : Benoît
+ * File modified by : Julien Caillon
  */
 package fr.cursusSopra.model;
 
@@ -13,13 +13,13 @@ import fr.cursusSopra.dataLayer.CommandeDal;
 import fr.cursusSopra.dataLayer.ItemCommandeDal;
 import fr.cursusSopra.tech.PostgresConnection;
 /**
- * @author Julien C
+ * @author Julien Caillon
  */
 public class Commande {
 
 	private long idCommande = -1;
 	private long idUtilisateur;
-	
+
 	/* etat :
 	  -1 = commande dans le panier, non validee
 		0 = commande validee en cours de livraison
@@ -29,16 +29,16 @@ public class Commande {
 	private Timestamp tsValidation;
 	private Timestamp tsArchivage;
 	private int moyenPaiement;
-	
+
 	/* isFromDb :
   		boolean utilise pour savoir si je suis deja present dans la base (true) ou non (false)
 	 */
 	private boolean isFromDb = false;
-	
+
 	// une commande a sa liste des itemsCommandes
 	private List<ItemCommande> ListeItems;
 
-	
+
 	/**
 	 * cree un objet commande PANIER de l'utilisateur (etat = -1)
 	 * @param idCommande
@@ -54,10 +54,10 @@ public class Commande {
 		// get la liste des items enfants
 		getMyListOfItems();
 	}
-	
-	
+
+
 	/**
-	 * recupere un objet commande definie dans la bdd avec l'id id
+	 * recupere un objet commande definie dans la bdd avec l'id idCommande (utilise dans listerCommandesPassees!)
 	 * @param idUtilisateur
 	 * @param idCommande
 	 */
@@ -70,8 +70,8 @@ public class Commande {
 		// get la liste des items enfants
 		getMyListOfItems();
 	}
-	
-	
+
+
 	/**
 	 * enrichie la liste "ListeItems" avec la liste des items appartenant a this Commande
 	 */
@@ -83,8 +83,8 @@ public class Commande {
 			System.err.print(String.format("ERREUR : lors de l'importation des items de la commande id : %d .\n", idCommande));
 		}
 	}
-	
-	
+
+
 	/**
 	 * renvoi une liste des commandes passees par l'utilisateur idUtilisateur (deja validees ou archivees, pas la commande panier)
 	 * @return
@@ -98,20 +98,20 @@ public class Commande {
 		}
 		return mylist;
 	}
-	
-	
+
+
 	/**
 	 * Ajout d'un item a la commande
 	 * @param idProduit
 	 * @param idCommande
 	 * @param quantite
 	 */
-	public void addItemCommande(long idProduit, long idCommande, int quantite) {
+	public void addItemCommande(long idProduit, int quantite) {
 		//TODO : check if etat = -1 otherwise leave
-		ListeItems.add(new ItemCommande(idProduit, idCommande, quantite));
+		ListeItems.add(new ItemCommande(idProduit, quantite));
 	}
-	
-	
+
+
 	/**
 	 * Suppression d'un item de la commande
 	 * @param idItemCommande
@@ -126,8 +126,8 @@ public class Commande {
 		}
 		getMyListOfItems();
 	}
-	
-	
+
+
 	/**
 	 *  Sauvegarde de l'item (ou update si deja existant) dans la db
 	 * @return long qui contient l'id de l'item sauver (ou 0 si le save est un echec)
@@ -136,20 +136,20 @@ public class Commande {
 
 		// On obtient l'objet connection à la BDD
 		Connection connection = PostgresConnection.GetConnexion();
-		
+
 		try {
 			// On commence la transaction
 			// On passe en mode non auto-commit
 			connection.setAutoCommit(false);
 
+			// on essaie de sauver la commande
+			idCommande = new CommandeDal(this).save();
+
 			// on essaie de save les items de cette commande
 			for(ItemCommande item : ListeItems) {
-				new ItemCommandeDal(item).save();
+				new ItemCommandeDal(item).save(idCommande);
 			}
-			
-			// ensuite on essaie de sauver la commande
-			idCommande = new CommandeDal(this).save();
-			
+
 			// On committe toutes les mises à jour
 			connection.commit();
 		} catch (SQLException e) {
@@ -157,7 +157,7 @@ public class Commande {
 	            try {
 	            	// Si il y a eu une erreur durant l'une des requetes "insert into" alors on fait un roll back
 	                System.err.print("La transaction est annulée.\n");
-	                idCommande = -1;	                
+	                idCommande = -1;
 	                connection.rollback();
 	    			e.printStackTrace();
 	            } catch(SQLException e2) {
@@ -173,21 +173,21 @@ public class Commande {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return idCommande;
 	}
-	
-	
+
+
 	/**
 	 *  delete l'itemCommande dans la base
 	 * @return boolean avec true si reussite et false si echec
 	 */
 	public boolean delete() {
 		boolean isDeleted = false;
-		
+
 		// On obtient l'objet connection à la BDD
 		Connection connection = PostgresConnection.GetConnexion();
-		
+
 		try {
 			// On commence la transaction
 			// On passe en mode non auto-commit
@@ -197,10 +197,10 @@ public class Commande {
 			for(ItemCommande item : ListeItems) {
 				new ItemCommandeDal(item).delete();
 			}
-			
+
 			// ensuite on essaie de delete la commande
 			isDeleted = new CommandeDal(this).delete();
-			
+
 			// On committe toutes les mises à jour
 			connection.commit();
 		} catch (SQLException e) {
@@ -208,7 +208,7 @@ public class Commande {
 	            try {
 	            	// Si il y a eu une erreur durant l'une des requetes "insert into" alors on fait un roll back
 	                System.err.print("La transaction est annulée.\n");
-	                idCommande = -1;	                
+	                idCommande = -1;
 	                connection.rollback();
 	    			e.printStackTrace();
 	            } catch(SQLException e2) {
@@ -224,11 +224,11 @@ public class Commande {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return isDeleted;
 	}
 
-	
+
 	/**
 	 * GETTERS / SETTERS
 	 */

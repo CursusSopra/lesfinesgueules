@@ -29,12 +29,18 @@
 				<div class="form-group">
 					<label>Type 2</label>
 					 <select name="idType2" class="form-control">
-					 	<option value="-1"></option>
-					 	<s:iterator value="listeTypes2">
-						  <option value="<s:property value="key"/>">
-						  <s:property value="value"/>
-						  </option>
-						</s:iterator>
+					 
+						<div class="row" id="ListType2"></div>
+							
+						
+					 
+					 
+<!-- 					 	<option value="-1"></option> -->
+<%-- 					 	<s:iterator value="listeTypes2"> --%>
+<%-- 						  <option value="<s:property value="key"/>"> --%>
+<%-- 						  <s:property value="value"/> --%>
+<!-- 						  </option> -->
+<%-- 						</s:iterator> --%>
 					</select> 
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 /**
- * File modified by : Benoît
+ * Modified by Nicolas
  */
 package fr.cursusSopra.action.admin;
 
@@ -8,7 +8,9 @@ import java.util.List;
 
 import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.model.Producteur;
-import fr.cursusSopra.model.Type2;
+import fr.cursusSopra.model.Produit;
+import fr.cursusSopra.model.Type1;
+import fr.cursusSopra.tech.FormTools;
 
 public class ProduitAction extends ActionSupportExtended {
 
@@ -24,7 +26,7 @@ public class ProduitAction extends ActionSupportExtended {
 	private String photo;
 	private boolean disponible;
 	
-	private List<Type2> listeType2;
+	private List<Type1> listeType1;
 	private List<Producteur> listeProducteur;
 	
 	private boolean idProducteurOK;
@@ -49,8 +51,8 @@ public class ProduitAction extends ActionSupportExtended {
 	public void setPhoto(String photo) {this.photo = photo;}
 	public boolean isDisponible() {return disponible;}
 	public void setDisponible(boolean disponible) {this.disponible = disponible;}
-	public List<Type2> getListeType2() {return listeType2;}
-	public void setListeType2(List<Type2> listeType2) {this.listeType2 = listeType2;}
+	public List<Type1> getListeType1() {return listeType1;}
+	public void setListeType1(List<Type1> listeType1) {this.listeType1 = listeType1;}
 	public List<Producteur> getListeProducteur() {return listeProducteur;}
 	public void setListeProducteur(List<Producteur> listeProducteur) {this.listeProducteur = listeProducteur;}
 	
@@ -66,12 +68,13 @@ public class ProduitAction extends ActionSupportExtended {
 	//Affichage du formulaire de création de produit
 	public String createProduitForm() throws SQLException {
 		//listeType2 = Type2Dal.getListeType2();
+		listeType1 = Type1.getListeType1();
 		listeProducteur = Producteur.getListeProducteur();
 		return SUCCESS;
 	}
 	
 	//Fonction d'ajout d'un produit en BDD
-	/*public String createProducteur() throws SQLException {
+	public String createProduit() throws SQLException {
 		
 		idProducteurOK = (idProducteur > 0);
 		idType2OK = (idType2 > 0);
@@ -85,12 +88,19 @@ public class ProduitAction extends ActionSupportExtended {
 		if(firstDisplay){
 			Produit prod = new Produit(idProducteur, idType2, prix, designation, disponible);
 			
+			if(description != null){
+				prod.setDescription(description);
+			}
+			if(photo != null){
+				prod.setPhoto(photo);
+			}
+			
 			prod.save();
 			idProduit = prod.getIdProduit();
 			//System.out.println(idProduit);
 		}
 		
 		return firstDisplay ? (idProduit != 0 ? SUCCESS : NONE) : ERROR;
-	}*/
+	}
 	
 }
