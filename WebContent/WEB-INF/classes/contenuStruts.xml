@@ -32,12 +32,16 @@
 			<result name="success" type="tiles">recherche</result>
 		</action>
 		
-		
-		
 		<!-- DETAIL D'UN PRODUIT -->
 		
-		<action name="detailsProduit" class="fr.cursusSopra.action.contenu.DetailsProduit" method="execute">
+		<action name="detailsProduit" class="fr.cursusSopra.action.contenu.DetailsProduitAction" method="execute">
 			<result name="success" type="tiles">detailsProduit</result>
+		</action>
+		
+		<!-- DETAIL D'UN PRODUCTEUR -->
+		
+		<action name="detailsProducteur" class="fr.cursusSopra.action.contenu.DetailsProducteurAction" method="execute">
+			<result name="success" type="tiles">detailsProducteur</result>
 		</action>
 		
 	</package>

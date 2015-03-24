@@ -8,7 +8,7 @@ import fr.cursusSopra.dataLayer.ProducteurDal;
 import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.model.Produit;
 
-public class DetailsProduit extends ActionSupportExtended {
+public class DetailsProduitAction extends ActionSupportExtended {
 
 	/* SERIAL ID */
 	

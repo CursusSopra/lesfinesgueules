@@ -29,9 +29,13 @@
 	<definition name="detailsProduit" extends="baseLayout">
 		<put-attribute name="title" value="Détails du produit" />
 		<put-attribute name="body" value="/views/contenu/detailsProduit.jsp" />
-<!--  		<put-list-attribute name="moreScripts">
- 			<add-attribute value="_js/recherche.js"></add-attribute>
- 		</put-list-attribute> -->
+	</definition>
+	
+	<!-- DETAILS PRODUCTEUR -->
+	
+	<definition name="detailsProducteur" extends="baseLayout">
+		<put-attribute name="title" value="Détails du producteur" />
+		<put-attribute name="body" value="/views/contenu/detailsProducteur.jsp" />
 	</definition>
 	
 	<!-- RECHERCHE -->
@@ -42,9 +46,6 @@
 		<put-list-attribute name="moreScripts">
  			<add-attribute value="_js/typeRecherche.js"></add-attribute>
  		</put-list-attribute>
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
 	</definition>
 	
 

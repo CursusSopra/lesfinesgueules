@@ -15,14 +15,9 @@
 		<tr>
 			<td><img alt="<s:property value="desgination"/>" src="<s:property value="photo"/>"></td>
 			<td>
-				<s:url action="" var="dp">
-					<s:param name="id">
-						<s:property value="idProduit" />
-					</s:param>
-				</s:url>
 				<span class="input-group-addon"><s:property value="prix" /> &euro;</span>
 				<span class="input-group-addon"><s:property value="raisonSociale" /></span>
-				<span class="input-group-addon"><s:property value="delaiLivraison" /> jours</span>
+				<span class="input-group-addon">Délais de livraison : <s:property value="delaiLivraison" /> jours</span>
 				<p><s:property value="description" /></p>
 				<h4>
 					<span class="label label-default">

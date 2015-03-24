@@ -77,13 +77,7 @@ public class ProducteurDal extends DataLayerExtended {
 	public void		setPhoto(String photo) {this.photo = photo;}
 	
 	/* CONSTRUCTORS */
-/*	
-	public ProducteurDal(long idProducteur, String raisonSociale, String siren) {
-		this.idProducteur = idProducteur;
-		this.raisonSociale = raisonSociale;
-		this.siren = siren;
-	}
-*/
+
 	public ProducteurDal(String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
@@ -122,7 +116,7 @@ public class ProducteurDal extends DataLayerExtended {
 			System.out.println("Echec récupération producteur");
 		} finally {
 			try{
-				System.out.println("Fermeture de la connexion");
+				System.out.println("Fermeture de la connexion (ProducteurDal - ProducteurDal)");
 				connection.close();
 			}catch (SQLException e){
 				System.out.println("Echec de la fermeture de la connexion");
@@ -176,7 +170,7 @@ public class ProducteurDal extends DataLayerExtended {
 			System.out.println("Echec récupération liste des producteurs.");
 		}finally{
 			try{
-				System.out.println("Fermeture de la connexion.");
+				System.out.println("Fermeture de la connexion (ProducteurDal - getListeProducteurDal)");
 				connection.close();
 			}catch (SQLException e){
 				System.out.println("Echec de la fermeture de la connexion.");

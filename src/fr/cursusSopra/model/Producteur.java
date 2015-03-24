@@ -64,6 +64,7 @@ public class Producteur {
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 		this.ligneAdresse1 = ligneAdresse1;
+		this.ligneAdresse2 = ligneAdresse2;
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.latitude = latitude;
@@ -78,6 +79,7 @@ public class Producteur {
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 		this.ligneAdresse1 = ligneAdresse1;
+		this.ligneAdresse2 = ligneAdresse2;
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.latitude = latitude;
@@ -86,25 +88,23 @@ public class Producteur {
 		this.delaiLivraison = delaiLivraison;
 		this.photo = photo;
 	}
-/*
-	public Producteur(String raisonSociale, String siren, String ligneAdresse1, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison) {
-		this.raisonSociale = raisonSociale;
-		this.siren = siren;
-		this.ligneAdresse1 = ligneAdresse1;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.description = description;
-		this.delaiLivraison = delaiLivraison;
+	
+	public Producteur(long idProducteur) {
+		ProducteurDal pdal = new ProducteurDal(idProducteur);
+		
+		this.raisonSociale = pdal.getRaisonSociale();
+		this.siren = pdal.getSiren();
+		this.ligneAdresse1 = pdal.getLigneAdresse1();
+		this.ligneAdresse2 = pdal.getLigneAdresse2();
+		this.codePostal = pdal.getCodePostal();
+		this.ville = pdal.getVille();
+		this.latitude = pdal.getLatitude();
+		this.longitude = pdal.getLongitude();
+		this.description = pdal.getDescription();
+		this.delaiLivraison = pdal.getDelaiLivraison();
+		this.photo = pdal.getPhoto();
 	}
 
-	public Producteur(long idProducteur, String raisonSociale, String siren) {
-		this.idProducteur = idProducteur;
-		this.raisonSociale = raisonSociale;
-		this.siren = siren;
-	}
-*/	
 	/* STATIC METHODS */
 	
 	public static List<Producteur> getListeProducteur() {
@@ -134,13 +134,7 @@ public class Producteur {
 	/* METHODS */
 	
 	public void save() throws SQLException{
-		
 		ProducteurDal pd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
-/*		
-		if(ligneAdresse2 != null){
-			pd.setLigneAdresse2(ligneAdresse2);
-		}
-*/		
 		idProducteur = pd.save();
 	}
 }
