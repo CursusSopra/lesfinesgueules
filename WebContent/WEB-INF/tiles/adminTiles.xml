@@ -11,70 +11,37 @@
 	<definition name="ajout-producteur" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'un producteur" />
 		<put-attribute name="body" value="/views/admin/formProducteur.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
 	</definition>
 	
 	<!-- FORM PRODUITS -->
 	<definition name="ajout-produit" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'un produit" />
 		<put-attribute name="body" value="/views/admin/formProduit.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
 	</definition>
 	
 	<!-- FORM TYPE1 -->
 	<definition name="ajout-type1-produit" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'un type general (type1) à la bdd" />
 		<put-attribute name="body" value="/views/admin/formType1.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
 	</definition>
 	
 	<!-- MODIFY TYPE1 -->
 	<definition name="modification-type1-produit-form" extends="baseLayout">
 		<put-attribute name="title" value="Modification d'un type general (type1) de la bdd" />
 		<put-attribute name="body" value="/views/admin/listeType1.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
+		<put-list-attribute name="moreScripts">
+			<add-attribute value="js/bootstrap-editable.js"></add-attribute>
+			<add-attribute value="_js/inlineEditType1.js"  ></add-attribute>
+		</put-list-attribute>
+		<put-list-attribute name="moreStyles">
+			<add-attribute value="css/bootstrap-editable.css"></add-attribute>
+		</put-list-attribute>
 	</definition>
 	
 	<!-- FORM TYPE2 -->
 	<definition name="ajout-type2-produit" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'un type de produit (type2) à la bdd" />
 		<put-attribute name="body" value="/views/admin/formType2.jsp" />
-<!-- 		<put-list-attribute name="moreScripts"> -->
-<!-- 			<add-attribute value="js/jqueryValidation/jquery.validate.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/additional-methods.min.js"></add-attribute> -->
-<!-- 			<add-attribute value="js/jqueryValidation/localization/messages_fr.min.js"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
-<!-- 		<put-list-attribute name="moreStyles"> -->
-<!-- 			<add-attribute value="_css/jQueryValidation.css"></add-attribute> -->
-<!-- 		</put-list-attribute> -->
 	</definition>
 
 </tiles-definitions>
