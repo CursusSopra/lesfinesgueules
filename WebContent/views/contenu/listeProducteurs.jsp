@@ -16,7 +16,7 @@
 			<s:iterator value="listeProducteurs" status="stat">
 				<s:iterator>
 					<s:url action="detailsProducteur" var="dp">
-						<s:param name="id">
+						<s:param name="idProducteur">
 							<s:property value="idProducteur" />
 						</s:param>
 					</s:url>
