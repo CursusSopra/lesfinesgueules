@@ -39,7 +39,7 @@
 		</action>
 
 
-		<!-- LISTE TYPE1 -->
+		<!-- CREATION TYPE1 -->
 		<action name="ajout-type1-produit-form" class="fr.cursusSopra.action.admin.Type1Action" 
 			method="createType1Form">
 			<result name="success" type="tiles">ajout-type1-produit</result>
@@ -52,7 +52,20 @@
 			<result name="none" type="tiles">ajout-type1-produit</result>
 		</action>
 		
-		<!-- LISTE TYPE2 -->
+		<!-- MODIFICATION TYPE1 -->
+		<action name="modification-type1-produit-form" class="fr.cursusSopra.action.admin.Type1Action" 
+			method="modifyType1Form">
+			<result name="success" type="tiles">modification-type1-produit-form</result>
+		</action>
+		
+		<action name="ajout-type1-produit" class="fr.cursusSopra.action.admin.Type1Action" 
+			method="createType1">
+			<result name="success" type="tiles">modification-type1-produit-form</result>
+			<result name="error" type="tiles">modification-type1-produit-form</result>
+			<result name="none" type="tiles">modification-type1-produit-form</result>
+		</action>
+		
+		<!-- CREATION TYPE2 -->
 		<action name="ajout-type2-produit-form" class="fr.cursusSopra.action.admin.Type2Action" 
 			method="createType2Form">
 			<result name="success" type="tiles">ajout-type2-produit</result>

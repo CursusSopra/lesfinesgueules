@@ -22,14 +22,25 @@ public class Type2Action extends ActionSupportExtended {
 	private List<Type1> listeType1;
 	private long idType1;
 	
+	/**
+	 * Action permettant d'acceder au formulaire d'ajoût d'un type2
+	 * Cette action charge la liste de tous les types1
+	 *
+	 * @return the string
+	 * @throws SQLException the SQL exception
+	 */
 	public String createType2Form() throws SQLException {
-		
 		listeType1 = Type1.getListeType1();
-		
 		
 		return SUCCESS;
 	}
 	
+	/**
+	 * Action permettant de valider un ajoût d'un type2
+	 *
+	 * @return the string
+	 * @throws SQLException the SQL exception
+	 */
 	public String createType2() throws SQLException {
 		
 		listeType1 = Type1.getListeType1();
