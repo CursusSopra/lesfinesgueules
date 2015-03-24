@@ -97,12 +97,12 @@ public class Type1Dal extends DataLayerExtended {
 
 		listeType1 = new ArrayList<Type1>();
 
-		Connection connection = PostgresConnection.GetConnexion();
+		Connection conn = PostgresConnection.GetConnexion();
 		Statement state;
 
 		try {
 
-			state = connection.createStatement();
+			state = conn.createStatement();
 			ResultSet rs = state.executeQuery(rq);
 			Type1 type1;
 
@@ -116,7 +116,7 @@ public class Type1Dal extends DataLayerExtended {
 			System.out.println("Echec de la création de la liste type1");
 		} finally {
 			try {
-				connection.close();
+				conn.close();
 			} catch (SQLException e) {
 				System.out.println("echec de la fermeture de la connexion");
 			}
