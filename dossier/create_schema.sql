@@ -80,7 +80,7 @@ COMMENT ON COLUMN commandes.etat IS '-1 = commande dans le panier, non validee
 
 CREATE TABLE commentaires ( 
 	id_commentaire       serial  NOT NULL,
-	id_utilisateur       serial  NOT NULL,
+	id_utilisateur       bigint  NOT NULL,
 	avis                 text  ,
 	note                 integer  NOT NULL,
 	etat                 integer  NOT NULL,
@@ -133,6 +133,39 @@ CREATE TABLE items_commandes (
 CREATE INDEX idx_items_commandes ON items_commandes ( id_produit );
 
 CREATE INDEX idx_items_commandes_0 ON items_commandes ( id_commande );
+
+
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+-- INSERT INTO
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+-- producteurs
+-- INSERT INTO producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, description, delai_livraison, photo, gpslat, gpslong)
+-- VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- type1
+-- INSERT INTO types1 (libelle1) VALUES (?);
+
+-- type2
+-- INSERT INTO types2 (id_type1, libelle2) VALUES (?, ?);
+
+-- utilisateurs
+-- INSERT INTO utilisateurs (nom, prenom, ligne_adresse1, ligne_adresse2, code_postal, ville, email, mdp, tel, photo, droits) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- produits
+-- INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+-- commentaires
+-- INSERT INTO commentaires (id_utilisateur, avis, note, etat) VALUES (?, ?, ?, ?);
+
+-- commentaires_produits
+-- INSERT INTO commentaires_produits (id_commentaire, id_produit) VALUES (?, ?);
+
+-- commandes
+-- INSERT INTO commandes (id_utilisateur, etat, ts_validation, ts_archivage, moyen_paiement) VALUES (?, ?, ?, ?, ?);
+
+-- items_commandes
+-- INSERT INTO items_commandes (id_produit, id_commande, quantite, ts_creation) VALUES (?, ?, ?, ?);
 
 
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////

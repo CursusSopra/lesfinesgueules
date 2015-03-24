@@ -30,7 +30,7 @@
 		</table>
 		<table name="commentaires" >
 			<column name="id_commentaire" type="serial" jt="4" mandatory="y" />
-			<column name="id_utilisateur" type="serial" jt="4" mandatory="y" />
+			<column name="id_utilisateur" type="bigint" jt="-5" mandatory="y" />
 			<column name="avis" type="text" jt="12" />
 			<column name="note" type="integer" length="600" jt="4" mandatory="y" />
 			<column name="etat" type="integer" jt="4" mandatory="y" >
@@ -179,12 +179,12 @@
 		<entity schema="finesgueules" name="types2" color="b2cdf7" x="420" y="375" />
 		<entity schema="finesgueules" name="types1" color="b2cdf7" x="570" y="375" />
 		<entity schema="finesgueules" name="commentaires_produits" color="b2cdf7" x="45" y="285" />
-		<entity schema="finesgueules" name="commentaires" color="b2cdf7" x="105" y="60" />
 		<entity schema="finesgueules" name="producteurs" color="b2cdf7" x="270" y="105" />
 		<entity schema="finesgueules" name="utilisateurs" color="b2cdf7" x="420" y="45" />
 		<entity schema="finesgueules" name="produits" color="b2cdf7" x="240" y="390" />
 		<entity schema="finesgueules" name="commandes" color="b2cdf7" x="825" y="315" />
 		<entity schema="finesgueules" name="items_commandes" color="b2cdf7" x="600" y="495" />
+		<entity schema="finesgueules" name="commentaires" color="b2cdf7" x="105" y="60" />
 		<script name="Sql" id="SQL7239410" >
 			<string><![CDATA[CREATE SCHEMA finesgueules;
 

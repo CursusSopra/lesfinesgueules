@@ -1,5 +1,5 @@
 /**
- * File modified by : Benoît
+ * File modified by : Julien Caillon
  */
 package fr.cursusSopra.model;
 
@@ -20,21 +20,20 @@ public class ItemCommande {
 	  	boolean utilise pour savoir si je suis deja present dans la base (true) ou non (false)
 	 */
 	private boolean isFromDb = false;
-	
-	
+
+
 	/**
-	 *  constructeur d'un nouvel ItemCommande
+	 *  constructeur d'un nouvel ItemCommande (from scratch)
 	 * @param idUtilisateur
 	 * @param idProduit
 	 * @param quantite
 	 */
-	public ItemCommande(long idProduit, long idCommande, int quantite) {
+	public ItemCommande(long idProduit, int quantite) {
 		this.idProduit = idProduit;
-		this.idCommande = idCommande;
 		this.quantite = quantite;
 	}
-	
-	
+
+
 	/**
 	 * constructeur d'un ItemCommande complet
 	 * @param idItemCommande
@@ -52,8 +51,8 @@ public class ItemCommande {
 		this.tsCreation = tsCreation;
 		this.isFromDb = isFromDb;
 	}
-	
-	
+
+
 	/**
 	 *  constructeur utilise pour le delete
 	 * @param idUtilisateur
@@ -63,12 +62,12 @@ public class ItemCommande {
 	public ItemCommande(long idItemCommande) {
 		this.idItemCommande = idItemCommande;
 	}
-	
-	
+
+
 	/**
 	 * GETTERS / SETTERS
 	 */
-	
+
 	public long getIdItemCommande() {
 		return idItemCommande;
 	}
@@ -116,5 +115,5 @@ public class ItemCommande {
 	public void setFromDb(boolean isFromDb) {
 		this.isFromDb = isFromDb;
 	}
-	
+
 }
