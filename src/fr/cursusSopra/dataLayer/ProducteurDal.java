@@ -1,3 +1,6 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.dataLayer;
 
 import java.sql.Connection;
@@ -8,7 +11,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.cursusSopra.model.Producteur;
 import fr.cursusSopra.tech.PostgresConnection;
 
 /**
@@ -18,70 +20,75 @@ import fr.cursusSopra.tech.PostgresConnection;
  */
 public class ProducteurDal extends DataLayerExtended {
 		
+	/* PROPERTIES */
+	
 	private final static String rqInsert = 
-		"INSERT INTO producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO "
+			+ "producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
+			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private final static String rqProducteur = 
+			"SELECT raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo "
+			+ "FROM producteurs "
+			+ "WHERE id_producteur = ?";
+	private final static String rqListeProducteurs = 
+			"SELECT id_producteur "
+			+ "FROM producteurs";
 	
-	private final static String rq = "SELECT * FROM producteurs";
-	private final static String rqProducteur = "SELECT * FROM producteurs WHERE id_producteur = ?";
+	private long	idProducteur;
+	private String	raisonSociale;
+	private String	siren;
+	private String	ligneAdresse1;
+	private String	ligneAdresse2;
+	private String	codePostal;
+	private String	ville;
+	private String	latitude;
+	private String	longitude;
+	private String	description;
+	private int		delaiLivraison;
+	private String	photo;
 	
-	private long idProducteur;
+	private static List<ProducteurDal> listeProducteursDal;
 	
-	private String raisonSociale;
-	private String siren;
-	private String ligneAdresse1;
-	private String ligneAdresse2;
-	private String codePostal;
-	private String ville;
-	private String latitude;
-	private String longitude;
-	private String description;
-	private int delaiLivraison;
-	private String photo;
+	/* ACCESSORS */
 	
-	private static List<ProducteurDal> listeProducteurDal;
+	public long		getIdProducteur() {return idProducteur;}
+	public void		setIdProducteur(long idProducteur) {this.idProducteur = idProducteur;}
+	public String	getRaisonSociale() {return raisonSociale;}
+	public void		setRaisonSociale(String raisonSociale) {this.raisonSociale = raisonSociale;}
+	public String	getSiren() {return siren;}
+	public void		setSiren(String siren) {this.siren = siren;}
+	public String	getLigneAdresse1() {return ligneAdresse1;}
+	public void		setLigneAdresse1(String ligneAdresse1) {this.ligneAdresse1 = ligneAdresse1;}
+	public String	getLigneAdresse2() {return ligneAdresse2;}
+	public void		setLigneAdresse2(String ligneAdresse2) {this.ligneAdresse2 = ligneAdresse2;}
+	public String	getCodePostal() {return codePostal;}
+	public void		setCodePostal(String codePostal) {this.codePostal = codePostal;}
+	public String	getVille() {return ville;}
+	public void		setVille(String ville) {this.ville = ville;}
+	public String	getLatitude() {return latitude;}
+	public void		setLatitude(String latitude) {this.latitude = latitude;}
+	public String	getLongitude() {return longitude;}
+	public void		setLongitude(String longitude) {this.longitude = longitude;}
+	public String	getDescription() {return description;}
+	public void		setDescription(String description) {this.description = description;}
+	public int		getDelaiLivraison() {return delaiLivraison;}
+	public void		setDelaiLivraison(int delaiLivraison) {this.delaiLivraison = delaiLivraison;}
+	public String	getPhoto() {return photo;}
+	public void		setPhoto(String photo) {this.photo = photo;}
 	
-	
-	//ACCESSEURS (A Simplifier)
-	public long getIdProducteur() {return idProducteur;}
-	public void setIdProducteur(long idProducteur) {this.idProducteur = idProducteur;}
-	public String getRaisonSociale() {return raisonSociale;}
-	public void setRaisonSociale(String raisonSociale) {this.raisonSociale = raisonSociale;}
-	public String getSiren() {return siren;}
-	public void setSiren(String siren) {this.siren = siren;}
-	public String getLigneAdresse1() {return ligneAdresse1;}
-	public void setLigneAdresse1(String ligneAdresse1) {this.ligneAdresse1 = ligneAdresse1;}
-	public String getLigneAdresse2() {return ligneAdresse2;}
-	public void setLigneAdresse2(String ligneAdresse2) {this.ligneAdresse2 = ligneAdresse2;}
-	public String getCodePostal() {return codePostal;}
-	public void setCodePostal(String codePostal) {this.codePostal = codePostal;}
-	public String getVille() {return ville;}
-	public void setVille(String ville) {this.ville = ville;}
-	public String getLatitude() {return latitude;}
-	public void setLatitude(String latitude) {this.latitude = latitude;}
-	public String getLongitude() {return longitude;}
-	public void setLongitude(String longitude) {this.longitude = longitude;}
-	public String getDescription() {return description;}
-	public void setDescription(String description) {this.description = description;}
-	public int getDelaiLivraison() {return delaiLivraison;}
-	public void setDelaiLivraison(int delaiLivraison) {this.delaiLivraison = delaiLivraison;}
-	public String getPhoto() {return photo;}
-	public void setPhoto(String photo) {this.photo = photo;}
-	
-	
-	//Constructeur
+	/* CONSTRUCTORS */
+/*	
 	public ProducteurDal(long idProducteur, String raisonSociale, String siren) {
 		this.idProducteur = idProducteur;
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 	}
-	public ProducteurDal(String raisonSociale, String siren,
-			String ligneAdresse1, String codePostal, String ville, 
-			String latitude, String longitude, String description,
-			int delaiLivraison, String photo) {
-		
+*/
+	public ProducteurDal(String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 		this.ligneAdresse1 = ligneAdresse1;
+		this.ligneAdresse2 = ligneAdresse2;
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.latitude = latitude;
@@ -108,21 +115,21 @@ public class ProducteurDal extends DataLayerExtended {
 				longitude = rs.getString("gpslong");
 				description = rs.getString("description");
 				delaiLivraison = rs.getInt("delai_livraison");
-				photo = rs.getString("raison_sociale");
-				
+				photo = rs.getString("photo");
 			}
 		} catch (SQLException e) {
-			System.out.println("Echec de la création de la liste type1");
-		}finally{
+			System.out.println("Echec récupération producteur");
+		} finally {
 			try{
+				System.out.println("Fermeture de la connexion");
 				connection.close();
-				System.out.println("fermeture de la connexion");
 			}catch (SQLException e){
-				System.out.println("echec de la fermeture de la connexion");
+				System.out.println("Echec de la fermeture de la connexion");
 			}
 		}
-		
 	}
+	
+	/* METHODS */
 	
 	public long save() throws SQLException {
 		PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
@@ -148,33 +155,32 @@ public class ProducteurDal extends DataLayerExtended {
 		return idProducteur;
 	}
 	
-	//Liste de producteur à afficher pour créer un produit
+	/* STATIC METHODS */
+
 	public static List<ProducteurDal> getListeProducteurDal(){
 		
-		listeProducteurDal = new ArrayList<ProducteurDal>();
+		listeProducteursDal = new ArrayList<ProducteurDal>();
 		
 		Connection connection = PostgresConnection.GetConnexion();
 		Statement state;
 		
 		try {
 			state = connection.createStatement();
-			ResultSet rs = state.executeQuery(rq);
-			ProducteurDal prod;
+			ResultSet rs = state.executeQuery(rqListeProducteurs);
 			
 			while (rs.next()) {
-				prod = new ProducteurDal(rs.getLong("id_producteur"), rs.getString("raison_sociale"), rs.getString("siren"));
-				listeProducteurDal.add(prod);
+				listeProducteursDal.add(new ProducteurDal(rs.getLong("id_producteur")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Echec récupération liste des producteurs.");
 		}finally{
 			try{
+				System.out.println("Fermeture de la connexion.");
 				connection.close();
 			}catch (SQLException e){
-				
+				System.out.println("Echec de la fermeture de la connexion.");
 			}
 		}
-		return listeProducteurDal;
+		return listeProducteursDal;
 	}
 }

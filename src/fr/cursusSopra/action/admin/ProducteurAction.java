@@ -1,3 +1,6 @@
+/**
+ * File modified by : Benoît
+ */
 package fr.cursusSopra.action.admin;
 
 import java.sql.SQLException;
@@ -24,7 +27,7 @@ public class ProducteurAction extends ActionSupportExtended {
 	private String description;
 	private int delaiLivraison;
 	private long idProducteur;
-	private String photo = "photo";
+	private String photo;
 	
 	private boolean  raisonSocialeOK;
 	private boolean  sirenOK;
@@ -100,13 +103,13 @@ public class ProducteurAction extends ActionSupportExtended {
 		long idProducteur = 0;
 		
 		if(firstDisplay){
-			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, codePostal, ville, latitude, longitude, 
+			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, 
 						description, delaiLivraison, photo);
-			
+/*
 			if(ligneAdresse2 != null){
 				prod.setLigneAdresse2(ligneAdresse2);
 			}
-			
+*/			
 			prod.save();
 			idProducteur = prod.getIdProducteur();
 			System.out.println(idProducteur);

@@ -15,6 +15,8 @@ import fr.cursusSopra.dataLayer.ProducteurDal;
  */
 public class Producteur {
 	
+	/* PROPERTIES */
+	
 	private long idProducteur;
 	
 	private String raisonSociale;
@@ -29,6 +31,7 @@ public class Producteur {
 	private int delaiLivraison;
 	private String photo;
 	
+	/* ACCESSORS */
 	
 	public String getRaisonSociale() {return raisonSociale;}
 	public void setRaisonSociale(String raisonSociale) {this.raisonSociale = raisonSociale;}
@@ -55,11 +58,9 @@ public class Producteur {
 	public String getPhoto() {return photo;}
 	public void setPhoto(String photo) {this.photo = photo;}
 	
+	/* CONSTRUCTORS */
 	
-	public Producteur(String raisonSociale, String siren, String ligneAdresse1,
-			String codePostal, String ville, String latitude, String longitude, 
-			String description, int delaiLivraison, String photo) {
-		
+	public Producteur(String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 		this.ligneAdresse1 = ligneAdresse1;
@@ -72,10 +73,20 @@ public class Producteur {
 		this.photo = photo;
 	}
 	
-	public Producteur(String raisonSociale, String siren, String ligneAdresse1, 
-			String codePostal, String ville, String latitude, String longitude,
-			String description, int delaiLivraison) {
-		
+	public Producteur(long idProducteur, String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
+		this.raisonSociale = raisonSociale;
+		this.siren = siren;
+		this.ligneAdresse1 = ligneAdresse1;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.description = description;
+		this.delaiLivraison = delaiLivraison;
+		this.photo = photo;
+	}
+/*
+	public Producteur(String raisonSociale, String siren, String ligneAdresse1, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison) {
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 		this.ligneAdresse1 = ligneAdresse1;
@@ -86,12 +97,14 @@ public class Producteur {
 		this.description = description;
 		this.delaiLivraison = delaiLivraison;
 	}
-	
+
 	public Producteur(long idProducteur, String raisonSociale, String siren) {
 		this.idProducteur = idProducteur;
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
 	}
+*/	
+	/* STATIC METHODS */
 	
 	public static List<Producteur> getListeProducteur() {
 		List<Producteur> listeProducteur = new ArrayList<Producteur>();
@@ -101,22 +114,32 @@ public class Producteur {
 			long idProducteur = lpdal.get(i).getIdProducteur();
 			String raisonSociale = lpdal.get(i).getRaisonSociale();
 			String siren = lpdal.get(i).getSiren();
+			String ligneAdresse1 = lpdal.get(i).getLigneAdresse1();
+			String ligneAdresse2 = lpdal.get(i).getLigneAdresse2();
+			String codePostal = lpdal.get(i).getCodePostal();
+			String ville = lpdal.get(i).getVille();
+			String latitude = lpdal.get(i).getLatitude();
+			String longitude = lpdal.get(i).getLongitude();
+			String description = lpdal.get(i).getDescription();
+			int delaiLivraison = lpdal.get(i).getDelaiLivraison();
+			String photo = lpdal.get(i).getPhoto();
 			
-			Producteur p = new Producteur(idProducteur, raisonSociale, siren);
+			Producteur p = new Producteur(idProducteur, raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
 			listeProducteur.add(p);
 		}
 		return listeProducteur;
 	}
 	
+	/* METHODS */
+	
 	public void save() throws SQLException{
-			
-		ProducteurDal pd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
 		
+		ProducteurDal pd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
+/*		
 		if(ligneAdresse2 != null){
 			pd.setLigneAdresse2(ligneAdresse2);
 		}
-		
+*/		
 		idProducteur = pd.save();
-		//System.out.println(idProducteur);
 	}
 }
