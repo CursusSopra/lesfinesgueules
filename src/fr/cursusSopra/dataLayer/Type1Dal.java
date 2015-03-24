@@ -34,7 +34,7 @@ public class Type1Dal extends DataLayerExtended {
 
 	public Type1Dal(long idType1) {
 		this.idType1 = idType1;
-		listeType2 = this.getListeType2();
+		setListeType2(this.recupListeType2());
 		try {
 			Connection connection = PostgresConnection.GetConnexion();
 			System.out.println("post create Statement");
@@ -111,7 +111,7 @@ public class Type1Dal extends DataLayerExtended {
 		return listeType1;
 	}
 
-	public List<Type2> getListeType2() {
+	public List<Type2> recupListeType2() {
 
 		ArrayList<Type2> lT2 = new ArrayList<Type2>();
 
@@ -158,6 +158,14 @@ public class Type1Dal extends DataLayerExtended {
 
 	public void setLibelle11(String libelle1) {
 		this.libelle1 = libelle1;
+	}
+
+	public List<Type2> getListeType2() {
+		return listeType2;
+	}
+
+	public void setListeType2(List<Type2> listeType2) {
+		this.listeType2 = listeType2;
 	}
 
 }
