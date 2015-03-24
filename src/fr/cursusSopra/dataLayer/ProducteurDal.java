@@ -19,7 +19,7 @@ import fr.cursusSopra.tech.PostgresConnection;
  *
  */
 public class ProducteurDal extends DataLayerExtended {
-		
+	
 	/* PROPERTIES */
 	
 	private final static String rqInsert = 
