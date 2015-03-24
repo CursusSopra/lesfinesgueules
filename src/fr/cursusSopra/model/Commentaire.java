@@ -3,7 +3,7 @@ package fr.cursusSopra.model;
 import java.sql.SQLException;
 
 import fr.cursusSopra.dataLayer.utilisateurs.CommentaireDal;
-import fr.cursusSopra.dataLayer.utilisateurs.UtilisateurDal;
+
 
 public class Commentaire {
 	
