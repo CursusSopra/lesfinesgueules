@@ -3,22 +3,23 @@
  * 
  */
 
-$(function() {
-	
-	$.get("ListeProduits.action", function(data) {
-		$("#listeProduits").html(data);
-	});
-});
 
 
-$(function() {
-	$.get("getSVG.action?axis=child", function(data) {
-		$("#graphSvg").html(data);
-	});
-	$("#idAxis").change(function() {
-		var axis = $("#idAxis").val();
-		$.get("getSVG.action?axis=" + axis, function(data) {
-			$("#graphSvg").html(data);
-		});
-	});
+
+$(function loadSelectType2() {
+	var idType1 = $('#idType1');
+	$.getJSON('getJSONType2?idType1=' + idType1)
+    .success(function (data) {
+        var szOption = '<option value="">Choisissez...</option>';
+        $.each(data.listType2, function (index, elt) {
+            szOption += '<option value="' + elt.idType2 + '">' + elt.libelle2 + '</option>';
+        });
+
+        $('#idListType2').html(szOption);
+        //$('#glyphRightNumReg').toggleClass('fa-asterisk').toggleClass('fa-spinner').toggleClass('fa-spin');
+    })
+    .fail(function () {
+        //$('#glyphRightNumReg').toggleClass('fa-asterisk').toggleClass('fa-spinner').toggleClass('fa-spin');
+    });
 });
+

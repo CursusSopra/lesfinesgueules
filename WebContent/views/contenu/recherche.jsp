@@ -28,13 +28,7 @@
 			<div class="col-md-4 col-md-offset-2">
 				<div class="form-group">
 					<label>Type 2</label>
-					 <select name="idType2" class="form-control">
-					 
-						<div class="row" id="ListType2"></div>
-							
-						
-					 
-					 
+					 <select name="idType2" class="form-control" id="idListType2">
 <!-- 					 	<option value="-1"></option> -->
 <%-- 					 	<s:iterator value="listeTypes2"> --%>
 <%-- 						  <option value="<s:property value="key"/>"> --%>
