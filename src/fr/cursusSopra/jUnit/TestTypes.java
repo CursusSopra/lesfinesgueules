@@ -24,7 +24,7 @@ public class TestTypes {
 	}
 	
 	@Test
-	public void testType1() {
+	public void testType1Get() {
 
 		// Creation object type1 de clé 1
 		
@@ -38,4 +38,26 @@ public class TestTypes {
 
 	}
 	
+//	@Test
+//	public void testType1Modify() {
+//
+//		// Creation object type1 de clé 1
+//		
+//		Type1Dal type1 = new Type1Dal (1);
+//	
+//		//Essai de récuperation de valeur
+//		assertEquals("Vin", type1.getLibelle1());
+//		assertEquals("Vin rouge", type1.getListeType2().get(0).getLibelle2());
+//		assertEquals("vin blanc", type1.getListeType2().get(1).getLibelle2());
+//		type1.setLibelle11("vins");
+//		try {
+//			type1.modify();
+//		} catch (SQLException e) {
+//			//System.out.println("echec");
+//			//e.printStackTrace();
+//		}
+//		
+//		assertEquals("vins", type1.getLibelle1());
+//
+//	}
 }
