@@ -4,6 +4,7 @@
 package fr.cursusSopra.jUnit;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
 
@@ -11,8 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.cursusSopra.model.Commande;
+import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.model.ItemCommande;
 import fr.cursusSopra.tech.HostnameConnection;
+import fr.cursusSopra.tech.TypeCommentaire;
 
 public class TestJulien {
 
@@ -23,6 +26,28 @@ public class TestJulien {
 		HostnameConnection hostnameConnexion = HostnameConnection.getInstance();
 		hostnameConnexion.setHostName("localhost");
 	}
+
+	@Test
+	public void testCommentaire() {
+
+		// on cree un nouveau commentaire
+		Commentaire mycom = new Commentaire(2, 1, "blabla mon avis (user1) sur le produit 2 et ma note de 5", 5, TypeCommentaire.PRODUIT);
+
+		// sauvegarde du commentaire
+		mycom.save();
+
+		// on recupere les commentaires sur le produit 1
+		List<Commentaire> mylist = Commentaire.getListeCommentaires(2, TypeCommentaire.PRODUIT);
+
+		System.out.println("____________");
+		for (Commentaire item : mylist) {
+			System.out.println("commentaire id = " + item.getIdCommentaire() + ", avis = " + item.getAvis() + ", ma note = " + item.getNote());
+		}
+
+		// delete le comm
+		mycom.delete();
+	}
+
 
 	@Test
 	public void testCommande() {
@@ -37,6 +62,9 @@ public class TestJulien {
 		mycom.addItemCommande(10, 2);
 		mycom.addItemCommande(2, 5);
 
+		assertEquals(10, mycom.getListeItems().get(0).getIdProduit());
+		assertEquals(5, mycom.getListeItems().get(1).getQuantite());
+
 		// show la liste des itemscommandes
 		listerItems(mycom.getListeItems());
 
@@ -46,8 +74,14 @@ public class TestJulien {
 		// show la liste des itemscommandes
 		listerItems(mycom.getListeItems());
 
+		assertNotEquals(-1, mycom.getIdCommande());
+		assertNotEquals(-1, mycom.getListeItems().get(0).getIdItemCommande());
+		assertEquals(2, mycom.getListeItems().size());
+
 		// delete un item
 		mycom.deleteItemCommande(mycom.getListeItems().get(0).getIdItemCommande());
+
+		assertEquals(1, mycom.getListeItems().size());
 
 		// show la liste des itemscommandes
 		listerItems(mycom.getListeItems());
@@ -63,9 +97,12 @@ public class TestJulien {
 		Commande mycom2 = new Commande(1);
 		listerItems(mycom2.getListeItems());
 
+		assertEquals(true, mycom2.getListeItems().isEmpty());
+
 		// liste des commandes passees
+		System.out.println("____________");
 		for (Commande item : Commande.listerCommandesPassees(1)) {
-			System.out.println("commande n°" + item.getIdCommande() + ", etat: " + item.getEtat() + ", date val=" + item.getTsValidation() + ", date arch=" + item.getTsArchivage());
+			System.out.println(" > commande n°" + item.getIdCommande() + ", etat: " + item.getEtat() + ", date val=" + item.getTsValidation() + ", date arch=" + item.getTsArchivage());
 			listerItems(item.getListeItems());
 		}
 

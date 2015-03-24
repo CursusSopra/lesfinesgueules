@@ -55,7 +55,7 @@
 <tiles:useAttribute name="moreHttpStyles" scope="request" ignore="true" />
 <c:if test="${not empty moreHttpStyles}">
 	<c:forEach items="${moreHttpStyles}" var="cssFile">
-		<link href="./${cssFile}" media="all" rel="stylesheet" type="text/css" />
+		<link href="${cssFile}" media="all" rel="stylesheet" type="text/css" />
 	</c:forEach>
 </c:if>
 

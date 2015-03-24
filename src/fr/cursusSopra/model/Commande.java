@@ -139,8 +139,7 @@ public class Commande {
 		Connection connection = PostgresConnection.GetConnexion();
 
 		try {
-			// On commence la transaction
-			// On passe en mode non auto-commit
+			// On commence la transaction, on passe en mode non auto-commit
 			connection.setAutoCommit(false);
 
 			// on essaie de sauver la commande
@@ -193,7 +192,7 @@ public class Commande {
 			// On passe en mode non auto-commit
 			connection.setAutoCommit(false);
 
-			// on essaie de delete les items de cette commande
+			// on essaie de delete les items de cette commande (inutile avec les delete on cascade des cles etrangeres mais bon..)
 			for(ItemCommande item : ListeItems) {
 				new ItemCommandeDal(item).delete();
 			}

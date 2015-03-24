@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.model.Commentaire;
+import fr.cursusSopra.tech.TypeCommentaire;
 
 public class CommentaireAction extends ActionSupportExtended{
 
@@ -39,7 +40,7 @@ public class CommentaireAction extends ActionSupportExtended{
 
 	//ajout utilisateur en BDD
 	public String createCommentaire() throws SQLException {
-		Commentaire commentaire = new Commentaire(idUtilisateur, avis, note);
+		Commentaire commentaire = new Commentaire(1, idUtilisateur, avis, note, TypeCommentaire.PRODUIT);
 		commentaire.save();
 			return SUCCESS;
 	}

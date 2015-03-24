@@ -128,17 +128,14 @@ public class ItemCommandeDal extends DataLayerExtended {
 	 */
 	public boolean delete() throws SQLException {
 
-		boolean isDeleted = false;
+		boolean isDeleted = true;
 
 		PreparedStatement ps = connection.prepareStatement(rqDelete);
 		ps.setLong(1, LocItem.getIdItemCommande());
-		int i = ps.executeUpdate();
+		isDeleted = isDeleted && (ps.executeUpdate() == 1);
 		ps.close();
 
-		if (i == 1) {
-			isDeleted = true;
-			LocItem.setFromDb(false);
-		}
+		if (isDeleted) LocItem.setFromDb(false);
 
 		return isDeleted;
 	}
