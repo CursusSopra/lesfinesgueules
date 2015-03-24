@@ -20,10 +20,6 @@
 
 </div>
 
-
-
-
-
 <!-- LAISSEZ MOI MON ANCIEN CODE SVP, Benoît -->
 
 <%-- 
