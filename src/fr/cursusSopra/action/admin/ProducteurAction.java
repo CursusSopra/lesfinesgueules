@@ -119,6 +119,19 @@ public class ProducteurAction extends ActionSupportExtended {
 	
 	@Override
 	public String execute(){
+		Producteur producteur = new Producteur(idProducteur);
+		
+		raisonSociale = producteur.getRaisonSociale();
+		siren = producteur.getSiren();
+		ligneAdresse1 = producteur.getLigneAdresse1();
+		ligneAdresse2 = producteur.getLigneAdresse2();
+		codePostal = producteur.getCodePostal();
+		ville = producteur.getVille();
+		latitude = producteur.getLatitude();
+		longitude = producteur.getLongitude();
+		description = producteur.getDescription();
+		delaiLivraison = producteur.getDelaiLivraison();
+		photo = producteur.getPhoto();
 		
 		return SUCCESS;
 	}
