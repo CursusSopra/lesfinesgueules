@@ -36,7 +36,7 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 	private String description;
 	private double prix;
 	private String designation;
-	private String photo = "image";
+	private String photo;
 	private boolean disponible;
 	
 	private List<Type1> listeType1;
@@ -69,6 +69,9 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 	//Fonction d'ajout d'un produit en BDD
 	public String createProduit() throws SQLException {
 		
+		listeType1 = Type1.getListeType1();
+		listeProducteur = Producteur.getListeProducteur();
+		
 		idProducteurOK = (idProducteur > 0);
 		idType2OK = (idType2 > 0);
 		prixOK = (prix > 0);
@@ -84,6 +87,7 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 				String[] tokens = photoProduitFileName.split("\\.(?=[^\\.]+$)");
 				imageName = UUID.randomUUID() + "." + tokens[1];
 				String filePath = servletRequest.getSession().getServletContext().getRealPath("/content/images");
+				System.out.println(filePath);
 				File fileToCreate = new File(filePath, imageName);
 				FileUtils.copyFile(this.photoProduit, fileToCreate);
 				
@@ -91,6 +95,8 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 				// File fileToCreate = new File(filePath, this.photoFileName);
 				// FileUtils.copyFile(this.photo, fileToCreate);
 				lienPhoto = imageName;
+				System.out.println(imageName);
+				System.out.println(lienPhoto);
 //				logger.info(servletRequest.getSession().getServletContext()
 //						.getContextPath());
 			} catch (Exception e) {
@@ -99,14 +105,14 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 				return INPUT;
 			}
 			
-			Produit prod = new Produit(idProducteur, idType2, prix, designation, disponible);
+			Produit prod = new Produit(idProducteur, idType2, prix, designation, disponible, description, lienPhoto);
 			
-			if(description != null){
-				prod.setDescription(description);
-			}
-			if(photo != null){
-				prod.setPhoto(photo);
-			}
+//			if(description != null){
+//				prod.setDescription(description);
+//			}
+//			if(photo != null){
+//				prod.setPhoto(lienPhoto);
+//			}
 			
 			prod.save();
 			idProduit = prod.getIdProduit();
