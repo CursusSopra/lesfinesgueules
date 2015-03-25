@@ -66,7 +66,7 @@
 		</action>
 		
 		<action name="modification-type1-produit" class="fr.cursusSopra.action.admin.Type1Action" 
-			method="createType1">
+			method="modifyType1">
 			<result name="success" type="tiles">modification-type1-produit-form</result>
 			<result name="error" type="tiles">modification-type1-produit-form</result>
 			<result name="none" type="tiles">modification-type1-produit-form</result>

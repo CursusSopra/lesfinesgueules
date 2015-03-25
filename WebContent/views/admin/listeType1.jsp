@@ -7,6 +7,7 @@
 
 
 		<s:iterator value="listeType1">
+	
 			<li class="list-group-item">
 			
 				<!--L'URL après href sert d'a -->
@@ -20,6 +21,7 @@
 				
 				</a>
 			</li>
+			
 		</s:iterator>
 
 
