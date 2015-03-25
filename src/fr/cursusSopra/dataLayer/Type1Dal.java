@@ -95,10 +95,10 @@ public class Type1Dal extends DataLayerExtended {
 		listeType1 = new ArrayList<Type1>();
 
 		Connection conn = PostgresConnection.GetConnexion();
-		Statement state;
+		
 
 		try {
-
+			Statement state;
 			state = conn.createStatement();
 			ResultSet rs = state.executeQuery(rq);
 			Type1 type1;
@@ -148,6 +148,9 @@ public class Type1Dal extends DataLayerExtended {
 		return libelle1;
 	}
 
+	public void setLibelle1(String libelle1) {
+		this.libelle1 = libelle1;
+	}
 	public long getIdType1() {
 		return idType1;
 	}
