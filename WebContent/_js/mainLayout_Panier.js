@@ -70,6 +70,9 @@ function majNavBarPanier() {
 $(function() {
 	
 	majNavBarPanier();
+	
+	// formatte les nombres dans un span avec class="myprice"
+	$('span.myprice').number(true, 2, ',', ' ');
 
 });
 //		var output = '';

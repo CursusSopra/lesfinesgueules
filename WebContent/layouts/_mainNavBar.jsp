@@ -89,7 +89,7 @@
 					<div class="dropdown-menu userdropdown">
 						<div class="row">
 							<div class="col-md-12">
-								<form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+								<form class="form" role="form" method="post" action="loginControl" accept-charset="UTF-8" id="login-nav">
 									<div class="form-group">
 										<label class="sr-only" for="idEmail">Adresse mail</label> <input type="email" class="form-control" id="idEmail"
 											placeholder="Adresse mail" name="email" required>
