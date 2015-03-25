@@ -5,7 +5,7 @@
  */
 
 $(function() {
-	$.getJSON('getProduitsJSON.action', function(data) {
+	$.getJSON('getProduitsJSON?idType1=' + $('#idType1').val() + '&idType2=' + $('#idType2').val() + '&idProducteur=' + $('#idProducteur').val(), function(data) {
 		
 		var output = '';
 		

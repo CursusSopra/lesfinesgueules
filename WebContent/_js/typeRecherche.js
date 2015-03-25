@@ -14,7 +14,7 @@ function loadType2() {
 	console.log(idType1);
 	$.getJSON('getJSONType2?idType1=' + idType1)
 	.success(function (data) {
-        var szOption = '<option value="">Choisissez...</option>';
+        var szOption = '<option value="-1">Choisissez...</option>';
         $.each(data.listType2, function (index, elt) {
             szOption += '<option value="' + elt.idType2 + '">' + elt.libelle2 + '</option>';
         });

@@ -57,7 +57,7 @@
 				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du producteur : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idRaisonSociale" maxlength="50"
-						name="raisonSociale" value="<s:property value="raisonSociale"/>"> 
+						name="raisonSociale" value="<s:property value="producteur.raisonSociale"/>"> 
 				</div>
 			</div>
 			

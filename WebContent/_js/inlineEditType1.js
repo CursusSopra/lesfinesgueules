@@ -1,5 +1,4 @@
 
-
 /*
  * @author Julien J
  * 
@@ -10,5 +9,24 @@
 $.fn.editable.defaults.mode = 'inline';
 
 $(document).ready(function() {
-    $('#libelle1').editable();
+	$('#libelle1').editable();
 });
+
+function modifyType1() {
+	$.getJSON('getProduitsJSON.action', function(data) {
+		
+		var libelle1 = $('#libelle1').val();
+		console.log(libelle1);
+		$.getJSON('getJSONType2?libelle1=' + libelle1).success(
+				function(data) {
+					var szOption = '<option value="">Choisissez...</option>';
+					$.each(data.listType2, function(index, elt) {
+						szOption += '<option value="' + elt.idType2 + '">'
+								+ elt.libelle2 + '</option>';
+					});
+
+					$('#idListType2').html(szOption);
+				}).fail(function() {
+		});
+	});
+}

@@ -46,10 +46,4 @@
 		
 	</package>
 	
-	
-	<package name="jsonAction" extends="json-default">
-		<action name="getJSONType2" class="fr.cursusSopra.json.JSONType2Action">
-			<result type="json" />
-		</action>
-	</package>
 </struts>
