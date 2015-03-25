@@ -32,10 +32,10 @@ public class ProducteurDal extends DataLayerExtended {
 			+ "WHERE id_producteur = ?";
 	private final static String rqListeProducteurs = 
 			"SELECT id_producteur "
-			+ "FROM producteurs";
+			+ "FROM producteurs "
+			+ "ORDER BY raison_sociale";
 	private final static String rqUpdate = 
-			"UPDATE "
-			+ "producteurs SET (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
+			"UPDATE producteurs SET (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
 			+ "= (?,?,?,?,?,?,?,?,?,?,?) "
 			+ "WHERE id_producteur = ?";
 	
@@ -139,47 +139,65 @@ public class ProducteurDal extends DataLayerExtended {
 	
 	/* METHODS */
 	
-	public long save() throws SQLException {
+	public long save() {
 		if(!fromDb){
-			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, raisonSociale);
-			ps.setString(2, siren);
-			ps.setString(3, ligneAdresse1);
-			ps.setString(4, ligneAdresse2);
-			ps.setString(5, codePostal);
-			ps.setString(6, ville);
-			ps.setString(7, latitude);
-			ps.setString(8, longitude);
-			ps.setString(9, description);
-			ps.setInt   (10, delaiLivraison);
-			ps.setString(11, photo);
-			
-			ps.executeUpdate();
-			
-			ResultSet generatedKeys = ps.getGeneratedKeys();
-			if (generatedKeys.next()) {
-				idProducteur = generatedKeys.getLong(1);
-				System.out.println(idProducteur);
+			PreparedStatement ps;
+			try {
+				ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, raisonSociale);
+				ps.setString(2, siren);
+				ps.setString(3, ligneAdresse1);
+				ps.setString(4, ligneAdresse2);
+				ps.setString(5, codePostal);
+				ps.setString(6, ville);
+				ps.setString(7, latitude);
+				ps.setString(8, longitude);
+				ps.setString(9, description);
+				ps.setInt   (10, delaiLivraison);
+				ps.setString(11, photo);
+				
+				ps.executeUpdate();
+				
+				ResultSet generatedKeys = ps.getGeneratedKeys();
+				if (generatedKeys.next()) {
+					idProducteur = generatedKeys.getLong(1);
+					System.out.println(idProducteur);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
 		
 		}else{
 			
-			PreparedStatement ps = connection.prepareStatement(rqUpdate);
+			PreparedStatement ps;
+			try {
+				ps = connection.prepareStatement(rqUpdate);
+
+				ps.setString(1, raisonSociale);
+				ps.setString(2, siren);
+				ps.setString(3, ligneAdresse1);
+				ps.setString(4, ligneAdresse2);
+				ps.setString(5, codePostal);
+				ps.setString(6, ville);
+				ps.setString(7, latitude);
+				ps.setString(8, longitude);
+				ps.setString(9, description);
+				ps.setInt   (10, delaiLivraison);
+				ps.setString(11, photo);
+				ps.setLong(12, idProducteur);
+				
+				try {
+					ps.executeUpdate();
+				}catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			ps.setString(1, raisonSociale);
-			ps.setString(2, siren);
-			ps.setString(3, ligneAdresse1);
-			ps.setString(4, ligneAdresse2);
-			ps.setString(5, codePostal);
-			ps.setString(6, ville);
-			ps.setString(7, latitude);
-			ps.setString(8, longitude);
-			ps.setString(9, description);
-			ps.setInt   (10, delaiLivraison);
-			ps.setString(11, photo);
-			ps.setLong(12, idProducteur);
-			
-			ps.executeUpdate();
 			
 		}
 		return idProducteur;
