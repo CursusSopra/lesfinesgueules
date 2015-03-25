@@ -4,7 +4,6 @@
 <div class="row">
 	<h1 class="h1">
 		<s:property value="designation" />
-		<button type="button" class="btn btn-default" <s:if test="!disponible">disabled="disabled"</s:if>>Ajouter au panier</button>
 	</h1>
 	<h3>
 		<s:if test="disponible"><span class="label label-success">Disponible</span></s:if>
@@ -13,7 +12,12 @@
 	
 	<table class="table tableverticalalign">
 		<tr>
-			<td><img alt="<s:property value="desgination" default="images/default.jpg"/>" src="<s:property value="photo"/>" width="400"></td>
+			<td>
+				<div>
+					<img alt="<s:property value="desgination" default="images/default.jpg" id="idImage1"/>" src="<s:property value="photo"/>" width="400">
+					<button type="button" class="btn btn-default" id="idButton1" <s:if test="!disponible">disabled="disabled"</s:if>>Ajouter au panier</button>
+				</div>
+			</td>
 			<td>
 				<s:url action="detailsProducteur" var="dp">
 					<s:param name="idProducteur">
@@ -40,35 +44,36 @@
 		</tr>	
 	</table>
 	
-	<h3>Avis</h3>
+	<span id="caretComments"><a><h3>Avis <span class="glyphicon glyphicon-chevron-down"></span></h3></a></span>
 	
-	<s:iterator value="listeCommentaires">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-			
-				<div class="panel-heading">
-					<span class="text-capitalize"><s:property value="prenom"/> <s:property value="nom"/></span> | 
-					<s:iterator status="stat" value="(5).{ #this }">
-						<s:if test="note >= #stat.count"><span class="glyphicon glyphicon-star"></span></s:if>
-						<s:else><span class="glyphicon glyphicon-star-empty"></span></s:else>
-					</s:iterator> |
-					<s:date name="tsCreation" format="dd/MM/yyyy hh:mm" />
-				</div>
+	<div id="listeComments">
+		<s:iterator value="listeCommentaires">
+			<div class="col-md-12">
+				<div class="panel panel-default">
 				
-				<div class="panel-body">
-					<div class="media">
-						<div class="media-left">
-							<img width="75" src="<s:property value="listeCommentaires.photo" default="images/default.jpg"/>" alt="Photo utilisateur">
-						</div>
-						<div class="media-body">
-							<s:property value="avis"/>
+					<div class="panel-heading">
+						<span class="text-capitalize"><s:property value="prenom"/> <s:property value="nom"/></span> | 
+						<s:iterator status="stat" value="(5).{ #this }">
+							<s:if test="note >= #stat.count"><span class="glyphicon glyphicon-star"></span></s:if>
+							<s:else><span class="glyphicon glyphicon-star-empty"></span></s:else>
+						</s:iterator> |
+						<s:date name="tsCreation" format="dd/MM/yyyy hh:mm" />
+					</div>
+					
+					<div class="panel-body">
+						<div class="media">
+							<div class="media-left">
+								<img width="75" src="<s:property value="listeCommentaires.photo" default="images/default.jpg"/>" alt="Photo utilisateur">
+							</div>
+							<div class="media-body">
+								<s:property value="avis"/>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</s:iterator>
-	
+		</s:iterator>
+	</div>
 </div>
 
 

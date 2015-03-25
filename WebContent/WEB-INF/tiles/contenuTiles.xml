@@ -29,6 +29,9 @@
 	<definition name="detailsProduit" extends="baseLayout">
 		<put-attribute name="title" value="Détails du produit" />
 		<put-attribute name="body" value="/views/contenu/detailsProduit.jsp" />
+		<put-list-attribute name="moreScripts">
+ 			<add-attribute value="_js/detailsProduit.js"></add-attribute>
+ 		</put-list-attribute>
 	</definition>
 	
 	<!-- DETAILS PRODUCTEUR -->

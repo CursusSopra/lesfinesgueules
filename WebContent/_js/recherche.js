@@ -17,7 +17,7 @@ $(function() {
 			
 			// Création de la variable chaîne de sortie et ajout de la photo et la désignation
 			output += '<div class="col-md-3">' + 
-				'<img alt="image" class="img-responsive img-thumbnail"  src="' + elt.photo + '"/>' + 
+				'<img alt="image" class="img-responsive img-thumbnail" id="idImage' + index + '" src="' + elt.photo + '"/>' + 
 				'<h4>' + elt.designation + ' <span class="badge">' + elt.listeCommentaires.length + ' avis</span></h4>';
 			
 			// Label de disponibilité
@@ -35,7 +35,7 @@ $(function() {
 			// Activation / Désactivation du bouton "Ajouter au panier"
 			if(elt.disponible) {
 				output += '<div class="btn-group" role="group">' + 
-					'<button type="button" class="btn btn-default"><small>Ajouter au panier</small></button>' + 
+					'<button type="button" class="btn btn-default" id="idButton' + index + '><small>Ajouter au panier</small></button>' + 
 					'</div>';
 			} else {
 				output += '<div class="btn-group" role="group">' + 
