@@ -16,6 +16,8 @@ public class ProducteurAction extends ActionSupportExtended {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private Producteur producteur;
+	
 	private String raisonSociale;
 	private String siren;
 	private String ligneAdresse1;
@@ -119,8 +121,8 @@ public class ProducteurAction extends ActionSupportExtended {
 	
 	@Override
 	public String execute(){
-		Producteur producteur = new Producteur(idProducteur);
-		
+		producteur = new Producteur(idProducteur);
+				
 		raisonSociale = producteur.getRaisonSociale();
 		siren = producteur.getSiren();
 		ligneAdresse1 = producteur.getLigneAdresse1();
