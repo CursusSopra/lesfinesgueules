@@ -58,18 +58,13 @@ public class TestJulien {
 		assertEquals(-1, mycom.getEtat());
 		assertEquals(-1, mycom.getIdCommande());
 
-		// produit id = 10, quantite = 2
-		mycom.addItemCommande(10, 2);
-		mycom.addItemCommande(2, 5);
+		// produit id = 1, quantite = 2
+		mycom.addItemCommande(1, 2);
+		mycom.addItemCommande(2, 2);
+		mycom.addItemCommande(2, 3);
 
-		assertEquals(10, mycom.getListeItems().get(0).getIdProduit());
+		assertEquals(1, mycom.getListeItems().get(0).getIdProduit());
 		assertEquals(5, mycom.getListeItems().get(1).getQuantite());
-
-		// show la liste des itemscommandes
-		listerItems(mycom.getListeItems());
-
-		// sauvergarde en db
-		mycom.save();
 
 		// show la liste des itemscommandes
 		listerItems(mycom.getListeItems());
@@ -78,8 +73,11 @@ public class TestJulien {
 		assertNotEquals(-1, mycom.getListeItems().get(0).getIdItemCommande());
 		assertEquals(2, mycom.getListeItems().size());
 
+		// cout total commande
+		System.out.println("mon cout total = " + mycom.totalPrixCommande());
+
 		// delete un item
-		mycom.deleteItemCommande(mycom.getListeItems().get(0).getIdItemCommande());
+		mycom.removeItemCommande(mycom.getListeItems().get(0).getIdProduit(), 999);
 
 		assertEquals(1, mycom.getListeItems().size());
 

@@ -18,20 +18,28 @@
 
 			<ul class="nav navbar-nav">
 				<s:iterator value="listeType1">
+					<s:url action="listeProduits" var="act1">
+						<s:param name="idType1">
+							<s:property value="idType1" />
+						</s:param>
+					</s:url>
 					<li class="dropdown">
-						<a href="<s:property value='#act'/>" class="dropdown-toggle" data-toggle="dropdown" title="">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="">
 							<s:property value="libelle1" /> <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
+							<li><a href="<s:property value='#act1'/>"><i class="fa fa-caret-right"></i> <s:property value="libelle1" /></a></li>
+	 						<li class="divider"></li>
+	 						<li class="dropdown-header">Sous-catégories :</li>
 							<s:iterator value="listeType2">
-								<s:url action="listeProduits" var="act">
-									<s:param name="idtype2">
+								<s:url action="listeProduits" var="act2">
+									<s:param name="categorie">
 										<s:property value="idType2" />
 									</s:param>
 								</s:url>
 								<li>
-									<a href="<s:property value='#act'/>">
-										<i class="fa fa-caret-right"></i> <s:property value="libelle1" />
+									<a href="<s:property value='#act2'/>">
+										<i class="fa fa-caret-right"></i> <s:property value="libelle2" />
 									</a>
 								</li>
 							</s:iterator>
@@ -139,7 +147,7 @@
 					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
 						<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-shopping-cart navbaricon"></i> <span class="badge">4</span>
 					</a>
-					<div class="dropdown-menu table-responsive userdropdown">
+					<div class="dropdown-menu table-responsive userdropdown" id="idMonPanier">
 						<table class="table table-striped table-bordered table-condensed">
 							<tbody>
 								<tr>

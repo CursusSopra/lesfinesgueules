@@ -31,6 +31,8 @@ public class CommandeDal extends DataLayerExtended {
 
 	private final static String rqSelectList = "SELECT id_commande, etat, moyen_paiement, ts_validation, ts_archivage FROM commandes WHERE id_utilisateur = ? ORDER BY ts_validation;";
 
+	private final static String rqCompCout = "SELECT SUM(quantite * prix) as cout_total FROM items_commandes INNER JOIN produits USING(id_produit) WHERE id_commande = ? GROUP BY id_commande;";
+
 	private Commande LocItem;
 
 	/**
@@ -131,6 +133,27 @@ public class CommandeDal extends DataLayerExtended {
 		connection.close();
 
 		return myList;
+	}
+
+
+	/**
+	 * recupere le cout total d'une commande avec une requete
+	 * @return
+	 * @throws SQLException
+	 */
+	public double totalPrixCommande() throws SQLException {
+
+		PreparedStatement ps = connection.prepareStatement(rqCompCout);
+		ps.setLong(1, LocItem.getIdCommande());
+		ResultSet rs = ps.executeQuery();
+		double coutTot = -1;
+		if (rs.next()) {
+			coutTot = rs.getDouble("cout_total");
+		}
+		ps.close();
+		rs.close();
+
+		return coutTot;
 	}
 
 

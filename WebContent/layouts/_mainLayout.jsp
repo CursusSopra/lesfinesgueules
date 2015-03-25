@@ -110,7 +110,7 @@
 			<div class="pull-left">
 				<ul class="list-inline">
 					<li><a href="<s:url action='contact' />">Contact</a></li>
-					<li><a href="<s:url action='contact' />">À propos</a></li>
+					<li><a href="<s:url action='about' />">À propos</a></li>
 				</ul>
 			</div>
 
@@ -139,6 +139,9 @@
 
 	<!-- bootbox.js -->
 	<%--     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.3.0/bootbox.min.js"></script> --%>
+
+	<!-- Javascript pour le panier -->
+	<script src="./_js/mainLayout_Panier.js"></script>
 
 
 	<!-- Extra JavaScript

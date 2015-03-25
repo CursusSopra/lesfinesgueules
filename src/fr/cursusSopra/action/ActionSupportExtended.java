@@ -32,6 +32,7 @@ public abstract class ActionSupportExtended extends ActionSupport {
 		listeBreadcrumbs.add(new Breadcrumbs("Accueil", "retourIndex"));
 
 		listeType1 = Type1.getListeType1();
+
 	}
 
 
