@@ -61,10 +61,10 @@ public class Producteur {
 	
 	/* CONSTRUCTORS */
 	
-	public boolean isFromBd() {
+	public boolean isFromDb() {
 		return fromDb;
 	}
-	public void setFromBd(boolean isFromBd) {
+	public void setFromDb(boolean isFromBd) {
 		this.fromDb = isFromBd;
 	}
 	public Producteur(String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
