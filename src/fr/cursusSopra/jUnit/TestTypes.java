@@ -5,6 +5,8 @@ package fr.cursusSopra.jUnit;
 
 import static org.junit.Assert.assertEquals;
 
+import java.sql.SQLException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,26 +40,23 @@ public class TestTypes {
 
 	}
 	
-//	@Test
-//	public void testType1Modify() {
-//
-//		// Creation object type1 de clé 1
-//		
-//		Type1Dal type1 = new Type1Dal (1);
-//	
-//		//Essai de récuperation de valeur
-//		assertEquals("Vin", type1.getLibelle1());
-//		assertEquals("Vin rouge", type1.getListeType2().get(0).getLibelle2());
-//		assertEquals("vin blanc", type1.getListeType2().get(1).getLibelle2());
-//		type1.setLibelle11("vins");
-//		try {
-//			type1.modify();
-//		} catch (SQLException e) {
-//			//System.out.println("echec");
-//			//e.printStackTrace();
-//		}
-//		
-//		assertEquals("vins", type1.getLibelle1());
-//
-//	}
+	@Test
+	public void testType1Modify() throws SQLException {
+
+		// Creation object type1 de clé 1
+		
+		Type1 type1 = new Type1 (1);
+
+		type1.setLibelle1("vins");
+		
+		try {
+			type1.modify();
+		} catch (SQLException e) {
+			//System.out.println("echec");
+			//e.printStackTrace();
+		}
+		
+		assertEquals("vins", type1.getLibelle1());
+
+	}
 }

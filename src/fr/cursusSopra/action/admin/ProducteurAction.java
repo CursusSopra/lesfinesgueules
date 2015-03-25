@@ -16,6 +16,8 @@ public class ProducteurAction extends ActionSupportExtended {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private Producteur producteur;
+	
 	private String raisonSociale;
 	private String siren;
 	private String ligneAdresse1;
@@ -28,6 +30,7 @@ public class ProducteurAction extends ActionSupportExtended {
 	private int delaiLivraison;
 	private long idProducteur;
 	private String photo;
+	private boolean fromDb;
 	
 	private boolean  raisonSocialeOK;
 	private boolean  sirenOK;
@@ -79,6 +82,12 @@ public class ProducteurAction extends ActionSupportExtended {
 	public boolean isFirstDisplay() {return firstDisplay;}
 	
 	
+	public boolean isFromDb() {
+		return fromDb;
+	}
+	public void setFromDb(boolean fromDb) {
+		this.fromDb = fromDb;
+	}
 	//Fontion qui retournera le formulaire de création de producteur
 	public String createProducteurForm() {
 		return SUCCESS;
@@ -117,9 +126,10 @@ public class ProducteurAction extends ActionSupportExtended {
 		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
 	
-	@Override
-	public String execute(){
-		Producteur producteur = new Producteur(idProducteur);
+	
+	public String modifyProducteur(){
+		producteur = new Producteur(idProducteur);
+		producteur.setFromBd(true);
 		
 		raisonSociale = producteur.getRaisonSociale();
 		siren = producteur.getSiren();

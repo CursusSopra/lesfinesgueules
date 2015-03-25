@@ -41,4 +41,8 @@
 		</tr>	
 	</table>
 	
+	<table class="table table-striped table-hover">
+		<s:iterator value="listeCommentaires"></s:iterator>
+	</table>
+	
 </div>

@@ -3,6 +3,11 @@
 
 <div class="row">
 	<h1 class="h1">Liste des produits</h1>
+	
+	<input type="hidden" id="idType1" name="idType1" value="<s:property value="idType1"/>"/>
+	<input type="hidden" id="idType2" name="idType2" value="<s:property value="idType2"/>"/>
+	<input type="hidden" id="idProducteur" name="idProducteur" value="<s:property value="idProducteur"/>"/>
+	
 	<div id="listeProduits">
 	
 		<!-- Contenu de la liste des produits -->
