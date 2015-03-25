@@ -22,12 +22,12 @@ public abstract class ActionSupportExtended extends ActionSupportExtendedJSONOnl
 	public ActionSupportExtended () {
 
 		// base breadcrumb
-		listeBreadcrumbs.add(new Breadcrumbs("Accueil", "retourIndex"));
+		listeBreadcrumbs.add(new Breadcrumbs("Accueil", "retourIndex", null));
+		
+//		listeBreadcrumbs.add(new Breadcrumbs("fromage", "listeProduits", "?idType2=1"));
 
 		// liste des types (pour le menu navbar)
 		listeType1 = Type1.getListeForNavBar();
-
-		System.out.println(listeType1.get(0).getListeType2().size());
 	}
 
 	public List<Breadcrumbs> getListeBreadcrumbs() {

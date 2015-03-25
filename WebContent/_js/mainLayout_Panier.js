@@ -44,12 +44,12 @@ function majNavBarPanier() {
 			// maj du popup panier
 			var output = '' +
 			'<b class="panier-title"><i class="fa fa-cart-arrow-down"></i> Mon panier</b>' +
-			'<table class="table table-striped table-bordered table-condensed">' +
+			'<table class="table table-striped table-hover table-condensed">' +
 			'	<tbody>' +
-			'		<tr>' +
-			'			<th class="bg-primary panier-produit">Produit</th>' +
-			'			<th class="bg-primary panier-qte">Qte</th>' +
-			'			<th class="bg-primary panier-prix">Prix</th>' +
+			'		<tr class="info">' +
+			'			<th><i class="fa fa-level-down"></i> Produit</th>' +
+			'			<th></th>' +
+			'			<th>Prix</th>' +
 			'		</tr>';
 			
 			
@@ -57,9 +57,9 @@ function majNavBarPanier() {
 			$.each(data.listeItems, function(index, elt) {
 				output += '' +
 				'		<tr>' +
-				'			<th>' + elt.designation + '</th>' +
-				'			<th>' + elt.quantite + '</th>' +
-				'			<th>' + elt.prix + ' &euro;</th>' +
+				'			<td><i class="fa fa-times"></i> <b>' + elt.quantite + '</b></td>' +
+				'			<td><a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + elt.designation + '</a></td>' +
+				'			<td>' + elt.prix + ' &euro;</td>' +
 				'		</tr>';
 			});
 			

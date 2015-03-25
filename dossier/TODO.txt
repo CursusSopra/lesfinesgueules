@@ -1,0 +1,1 @@
+- breadcrumbs quand on est sur un detail de produit avec lien vers l'action

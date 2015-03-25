@@ -67,45 +67,66 @@
 <!-- 			</form> -->
 
 
-<!-- 			UTILISATEUR -->
+<!-- glyphicon glyphicon-wrench -->
+
+<!-- 			RIGHT ALIGN -->
 			<ul class="nav navbar-nav navbar-right">
 
+
+<!-- 				ADMIN -->
+				<li class="dropdown">
+					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+						<b class="caret"></b>&nbsp;&nbsp; <i class="fa fa-cogs navbaricon"></i>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="<s:url action="ajout-producteur-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout Producteur</a></li><!-- PA -->
+						<li><a href="<s:url action="ajout-produit-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout Produit</a></li><!-- PA -->
+						<li><a href="<s:url action="ajout-type1-produit-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout type 1</a></li><!-- JJ -->
+						<li><a href="<s:url action="ajout-type2-produit-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout type 2</a></li><!-- JJ -->
+						<li><a href="<s:url action="modification-type1-produit-form"/>"><i class="fa fa-arrow-circle-right"></i> Modifs type1</a></li><!-- JJ -->
+					</ul>
+				</li>
+				
+				
+<!-- 				UTILISATEUR -->
+				<li class="dropdown">
+					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+						<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
+					</a>
+					<div class="dropdown-menu userdropdown">
 <!-- 				LOGGED IN -->
-				<s:if test="utilisateur != null">
-					<li class="dropdown">
-						<b class="panier-title">
-							<i class="fa fa-child "></i> Bienvenu(e), 
-							<s:property value="utilisateur.prenom" /> <s:property value="utilisateur.nom" />
-						</b>
-						<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
-							<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
-						</a>
-						<div class="dropdown-menu userdropdown">
-							<div class="row addspace">
-								<div class="col-md-12">
-									<a class="btn btn-primary input-block-level form-control" href="<s:url action='mon-compte' />" role="button">
-										Voir mon compte
-									</a>
-								</div>
-							</div>
+						<s:if test="utilisateur != null">
 							<div class="row">
 								<div class="col-md-12">
-									<a class="btn btn-danger input-block-level form-control" href="<s:url action='' />" role="button">
-										Déconnexion
+									<b class="panier-title">
+										<i class="fa fa-child "></i> Bienvenu(e), 
+										<s:property value="utilisateur.prenom" /> <s:property value="utilisateur.nom" />
+									</b>
+									<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+										<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
 									</a>
+									<div class="dropdown-menu userdropdown">
+										<div class="row addspace">
+											<div class="col-md-12">
+												<a class="btn btn-primary input-block-level form-control" href="<s:url action='mon-compte' />" role="button">
+													Voir mon compte
+												</a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<a class="btn btn-danger input-block-level form-control" href="<s:url action='' />" role="button">
+													Déconnexion
+												</a>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</li>
-				</s:if>
+						</s:if>
 				
 <!-- 				NOT LOGGED IN -->
-				<s:else>
-					<li class="dropdown">
-						<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
-							<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
-						</a>
-						<div class="dropdown-menu userdropdown">
+						<s:else>
 							<div class="row">
 								<div class="col-md-12">
 									<form class="form" role="form" method="post" action="loginControl" accept-charset="UTF-8" id="login-nav">
@@ -130,10 +151,10 @@
 							<a class="btn btn-primary input-block-level form-control" href="<s:url action='inscription' />" role="button">
 								Créer un compte
 							</a>
+						</s:else>
 						</div>
 					</li>
-				</s:else>
-				
+					
 
 <!-- 				PANIER -->
 				<li class="dropdown">

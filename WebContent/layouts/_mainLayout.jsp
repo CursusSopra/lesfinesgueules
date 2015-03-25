@@ -27,17 +27,20 @@
 <!-- Bootstrap -->
 <!-- Boostrap linter : http://www.bootlint.com/ -->
 <!-- Boostrap switch : http://www.bootstrap-switch.org/examples.html -->
-<!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 <!-- Bootswatch theme -->
-<link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css" rel="stylesheet"> -->
 
 <!-- Font awesome -->
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <!-- Normalize css (included in boostrap) -->
 <!-- 	<link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet"> -->
+
+<!-- Main css -->
+<link href="./_css/mainLayout.css" rel="stylesheet">
 
 
 <!-- Extra CSS
@@ -88,7 +91,10 @@
 		<ol class="breadcrumb">
 			<s:iterator value="listeBreadcrumbs">
 				<s:set var="targetAction" value="action" />
-				<li><a href="<s:url action="%{#targetAction}" />"><s:property value='nom' /></a></li>
+				<s:set var="myPar" value="queryString" />
+				<s:url action="%{#targetAction}" var="act">
+				</s:url>
+				<li><a href="<s:property value='#act' /><s:property value='queryString' />"><s:property value='nom' /></a></li>
 			</s:iterator>
 			<li class="active"><tiles:getAsString name="title" /></li>
 		</ol>
@@ -137,7 +143,6 @@
 	<!-- jQuery Easing.js utilise pour l'animation des images vers le panier -->
    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 	
-
 	<!-- Angular.js -->
 	<%--     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script> --%>
 
