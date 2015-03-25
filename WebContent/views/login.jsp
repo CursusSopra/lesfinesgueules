@@ -3,7 +3,7 @@
 
 <div class="row">
 
-	<form class="form-horizontal" id="idLogin" method="post" action="<s:url action='login'/>">
+	<form class="form-horizontal" id="idLogin" method="post" action="<s:url action='loginControl'/>">
 		
 		<fieldset>
 			<legend> Vos données personnelles</legend>
@@ -12,7 +12,7 @@
 				<label for="idEmail" class="col-sm-2 control-label">Votre email</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="idEmail"
-						name="email" /> 
+						name="email" value="<s:property value="email" />"/> 
 				</div>
 			</div>
 			<div class="form-group">
