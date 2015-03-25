@@ -1,5 +1,5 @@
 /**
- * File modified by : Benoît
+ * Modified by Nicolas
  */
 package fr.cursusSopra.dataLayer;
 
@@ -33,6 +33,12 @@ public class ProducteurDal extends DataLayerExtended {
 	private final static String rqListeProducteurs = 
 			"SELECT id_producteur "
 			+ "FROM producteurs";
+	private final static String rqUpdate = 
+			"UPDATE "
+			+ "producteurs SET (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
+			+ "= (?,?,?,?,?,?,?,?,?,?,?) "
+			+ "WHERE id_producteur = ?";
+	
 	
 	private long	idProducteur;
 	private String	raisonSociale;
@@ -46,6 +52,7 @@ public class ProducteurDal extends DataLayerExtended {
 	private String	description;
 	private int		delaiLivraison;
 	private String	photo;
+	private boolean fromDb = false;
 	
 	private static List<ProducteurDal> listeProducteursDal;
 	
@@ -78,6 +85,12 @@ public class ProducteurDal extends DataLayerExtended {
 	
 	/* CONSTRUCTORS */
 
+	public boolean isFromDb() {
+		return fromDb;
+	}
+	public void setFromDb(boolean fromDb) {
+		this.fromDb = fromDb;
+	}
 	public ProducteurDal(String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;
@@ -127,25 +140,47 @@ public class ProducteurDal extends DataLayerExtended {
 	/* METHODS */
 	
 	public long save() throws SQLException {
-		PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
-		ps.setString(1, raisonSociale);
-		ps.setString(2, siren);
-		ps.setString(3, ligneAdresse1);
-		ps.setString(4, ligneAdresse2);
-		ps.setString(5, codePostal);
-		ps.setString(6, ville);
-		ps.setString(7, latitude);
-		ps.setString(8, longitude);
-		ps.setString(9, description);
-		ps.setInt   (10, delaiLivraison);
-		ps.setString(11, photo);
+		if(!fromDb){
+			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, raisonSociale);
+			ps.setString(2, siren);
+			ps.setString(3, ligneAdresse1);
+			ps.setString(4, ligneAdresse2);
+			ps.setString(5, codePostal);
+			ps.setString(6, ville);
+			ps.setString(7, latitude);
+			ps.setString(8, longitude);
+			ps.setString(9, description);
+			ps.setInt   (10, delaiLivraison);
+			ps.setString(11, photo);
+			
+			ps.executeUpdate();
+			
+			ResultSet generatedKeys = ps.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				idProducteur = generatedKeys.getLong(1);
+				System.out.println(idProducteur);
+			}
 		
-		ps.executeUpdate();
-		
-		ResultSet generatedKeys = ps.getGeneratedKeys();
-		if (generatedKeys.next()) {
-			idProducteur = generatedKeys.getLong(1);
-			System.out.println(idProducteur);
+		}else{
+			
+			PreparedStatement ps = connection.prepareStatement(rqUpdate);
+			
+			ps.setString(1, raisonSociale);
+			ps.setString(2, siren);
+			ps.setString(3, ligneAdresse1);
+			ps.setString(4, ligneAdresse2);
+			ps.setString(5, codePostal);
+			ps.setString(6, ville);
+			ps.setString(7, latitude);
+			ps.setString(8, longitude);
+			ps.setString(9, description);
+			ps.setInt   (10, delaiLivraison);
+			ps.setString(11, photo);
+			ps.setLong(12, idProducteur);
+			
+			ps.executeUpdate();
+			
 		}
 		return idProducteur;
 	}

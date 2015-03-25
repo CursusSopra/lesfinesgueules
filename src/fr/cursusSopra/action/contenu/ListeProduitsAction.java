@@ -13,9 +13,9 @@ public class ListeProduitsAction extends ActionSupportExtended {
 	
 	/* Properties */
 	
-	private long idType1;
-	private long idType2;
-	private long idProducteur;
+	private long idType1 = -1;
+	private long idType2 = -1;
+	private long idProducteur = -1;
 	
 	/* Execute Method */
 	

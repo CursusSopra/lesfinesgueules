@@ -2,10 +2,10 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- @author : Julien Caillon -->
+
 <!DOCTYPE html>
 <html>
 
@@ -110,7 +110,9 @@
 			<div class="pull-left">
 				<ul class="list-inline">
 					<li><a href="<s:url action='contact' />">Contact</a></li>
-					<li><a href="<s:url action='contact' />">À propos</a></li>
+					<li><a href="<s:url action='about' />">À propos</a></li>
+					<li><a href="#" id="idAddItem"><i class="fa fa-plus-square"></i></a></li>
+					<li><a href="#" id="idRemoveItem"><i class="fa fa-minus-square"></i></a></li>
 				</ul>
 			</div>
 
@@ -134,11 +136,21 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
+	<!-- jQuery Easing.js utilise pour l'animation des images vers le panier -->
+   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	
+
 	<!-- Angular.js -->
 	<%--     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script> --%>
 
 	<!-- bootbox.js -->
 	<%--     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.3.0/bootbox.min.js"></script> --%>
+
+	<!-- Javascript pour le panier -->
+	<script src="./_js/mainLayout_Panier.js"></script>
+
+	<!-- jQuery number format -->
+	<script src="./js/jquery.number.min.js"></script>
 
 
 	<!-- Extra JavaScript

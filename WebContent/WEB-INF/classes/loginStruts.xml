@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="protected" extends="struts-default">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<interceptors>
+			<interceptor name="authInterceptors" class="fr.cursusSopra.tech.AuthInterceptor" />
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="authInterceptors"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="authStack" />
+
+		<action name="login" class="fr.cursusSopra.action.LoginAction"
+			method="execute">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">login</result>
+		</action>
+
+		<action name="loginControl" class="fr.cursusSopra.action.LoginAction"
+			method="control">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="tiles">authenticated</result>
+			<result name="error" type="tiles">login</result>
+		</action>
+
+		<action name="welcome" class="fr.cursusSopra.action.WelcomeAction"
+			method="execute">
+			<result name="success" type="tiles">welcome</result>
+			<result name="failure" type="redirect">login</result>
+		</action>
+	</package>
+
+</struts>

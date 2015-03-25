@@ -24,7 +24,7 @@ CREATE TABLE producteurs (
 	ville                varchar(50)  NOT NULL,
 	description          text  NOT NULL,
 	delai_livraison      integer  NOT NULL,
-	photo                varchar(50)  NOT NULL,
+	photo                varchar(50)  ,
 	gpslat               varchar(13)  NOT NULL,
 	gpslong              varchar(13)  NOT NULL,
 	CONSTRAINT pk_producteurs PRIMARY KEY ( id_producteur )
@@ -56,7 +56,7 @@ CREATE TABLE utilisateurs (
 	email                varchar(50)  NOT NULL,
 	mdp                  varchar(50)  NOT NULL,
 	tel                  char(10)  NOT NULL,
-	photo                varchar(50)  NOT NULL,
+	photo                varchar(50)  ,
 	droits               integer DEFAULT 0 NOT NULL,
 	CONSTRAINT pk_clients PRIMARY KEY ( id_utilisateur )
  );
@@ -137,7 +137,7 @@ CREATE INDEX idx_items_commandes_0 ON items_commandes ( id_commande );
 
 
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
--- INSERT INTO
+-- INSERT INTO (premiere partie)
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 -- producteurs
@@ -161,7 +161,13 @@ INSERT INTO types2 (id_type1, libelle2) VALUES (4, 'Poireaux'), (4, 'Tomates'), 
 INSERT INTO types2 (id_type1, libelle2) VALUES (5, 'Melon'), (5, 'Orange'), (5, 'Pomme');
 
 -- utilisateurs
--- INSERT INTO utilisateurs (nom, prenom, ligne_adresse1, ligne_adresse2, code_postal, ville, email, mdp, tel, photo, droits) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO utilisateurs (nom, prenom, ligne_adresse1, ligne_adresse2, code_postal, ville, email, mdp, tel, photo, droits) VALUES 
+('Admin', 'Sopra', '72 Allée des Noisetiers', 'Parc du Puy d''Or', '69760', 'Limonest', 'admin@mail.fr', '', '0659624137', '', '10'),
+('Ghost', 'ForTests', '72 Allée des Noisetiers', 'Parc du Puy d''Or', '69760', 'Limonest', 'ghost@mail.fr', '', '0659624137', '', '10'),
+('dupont', 'pierre', 'rue de la poste', '', '69001', 'Lyon', 'pdupont@mail.fr', 'dupont69', '0659624137', '', '0'),
+('martin', 'simon', 'impasse du jardin', '', '33002', 'Bordeaux', 'smartin@mail.fr', 'martin33', '0644832015', '', '0'),
+('durant', 'marie', 'avenue de la gare', '', '44003', 'Nantes', 'mdurant@mail.fr', 'durant44', '0613256948', '', '0'),
+('andre', 'céline', 'avenue de la republique', '', '59005', 'Lille', 'candre@mail.fr', 'andre59', '0656947122', '', '0');
 
 -- produits
 INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) VALUES 
@@ -171,18 +177,6 @@ INSERT INTO produits (id_producteur, id_type2, description, prix, designation, p
 (2, 7, 'Le boeuf, c''est bon !', 22.65, 'Côte de boeuf (1kg)', 'images/default.jpg', false),
 (2, 8, 'Les escalope de veau sont...', 7, 'Escalopes de veau (x6)', 'images/default.jpg', false),
 (3, 13, 'Même si ceux de charente sont...', 3.8, 'Melon commun', 'images/default.jpg', true);
-
--- commentaires
--- INSERT INTO commentaires (id_utilisateur, avis, note, etat) VALUES (?, ?, ?, ?);
-
--- commentaires_produits
--- INSERT INTO commentaires_produits (id_commentaire, id_produit) VALUES (?, ?);
-
--- commandes
--- INSERT INTO commandes (id_utilisateur, etat, ts_validation, ts_archivage, moyen_paiement) VALUES (?, ?, ?, ?, ?);
-
--- items_commandes
--- INSERT INTO items_commandes (id_produit, id_commande, quantite, ts_creation) VALUES (?, ?, ?, ?);
 
 
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -270,3 +264,37 @@ CREATE TRIGGER commandes_on_update_before BEFORE UPDATE ON commandes FOR EACH RO
 -- 	FROM calendar
 -- 	WHERE ispublicholiday = 1
 -- 	);
+
+
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+-- INSERT INTO (seconde partie) + UPDATE
+-- ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+-- commentaires
+INSERT INTO commentaires (id_utilisateur, avis, note, etat) VALUES 
+(1, 'Mon avis sur le produit 1 c''est qu''il est bof, note de 2', 2, 1),
+(1, 'j''ai oublie de dire un truc alors je rajouter un second comm avec note 3', 3, 1),
+(2, 'Commentaire de dupont a moderer', 3, 0),
+(2, 'Commentaire de dupont rejete', 3, -1);
+
+-- commentaires_produits
+INSERT INTO commentaires_produits (id_commentaire, id_produit) VALUES 
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1);
+
+-- commandes
+-- INSERT INTO commandes (id_utilisateur, etat, ts_validation, ts_archivage, moyen_paiement) VALUES (?, ?, ?, ?, ?)
+INSERT INTO commandes (id_utilisateur, etat, moyen_paiement) VALUES 
+(1, -1, 0),
+(1, -1, 0);
+UPDATE commandes SET (etat, moyen_paiement) = (0, 0) WHERE id_commande = 2;
+
+-- items_commandes
+INSERT INTO items_commandes (id_produit, id_commande, quantite) VALUES 
+(1, 1, 2),
+(2, 1, 1),
+(3, 1, 5),
+(4, 2, 4),
+(5, 2, 5);

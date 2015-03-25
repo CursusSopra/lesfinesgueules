@@ -39,16 +39,17 @@
 		<s:if test="idProducteur > 0">
 			<br/>Bravo, vous êtes référencé(e) parmi nos fines gueules.
 		</s:if>
-		<s:if test="idProducteur <= 0">
-			<br/>Aïaïaï, ça ne marche pas
-		</s:if>
 	</p>
 </s:if>
 
 
 <div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
-	<form class="form-horizontal" id="FormProducteur" method="post"
-		action="<s:url action='ajout-producteur' />">
+
+<s:actionerror/>
+	<s:form action="ajout-producteur" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+<!-- 	<form class="form-horizontal" id="FormProducteur" method="post" enctype="multipart/form-data" -->
+<%-- 		action="<s:url action='ajout-producteur' />"> --%>
 		<fieldset>
 		
 			<legend> Producteur : </legend>
@@ -57,7 +58,7 @@
 				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du producteur : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idRaisonSociale" maxlength="50"
-						name="raisonSociale" value="<s:property value="producteur.raisonSociale"/>"> 
+						name="raisonSociale" value="<s:property value="raisonSociale"/>">
 				</div>
 			</div>
 			
@@ -83,6 +84,20 @@
 					<textarea class="form-control" name="description" id="idDescription" rows="5"><s:property value="description" /></textarea>
 				</div>
 			</div>
+			
+			
+			<div class="form-group">
+				<div class="col-sm-6">
+					<s:file name="userImage" label="User Image"> <s:property value="imageName" /></s:file>
+				</div>
+			</div>
+			
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label> -->
+<!-- 				<div class="col-sm-6"> -->
+<!-- 					<input type="file" name="photo" id="idPhotoProducteur" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		</fieldset>
 			
 			
@@ -118,6 +133,16 @@
 				</div>
 			</div>
 			
+			
+			<input type="hidden" class="form-control" id="fromDb" name="fromDb" 
+					value="<s:property value="fromDb" />" >
+					
+			
+			<input type="hidden" class="form-control" id="idProducteur" name="idProducteur" 
+									value="<s:property value="idProducteur" />" >
+								
+			
+			
 			<div class="form-group">
 				<label for="idLatitude" class="col-sm-2 control-label">Latitude : </label>
 				<div class="col-sm-6">
@@ -134,12 +159,18 @@
 				</div>
 			</div>
 		</fieldset>
-		
+				
+<!-- 		<div class="form-group"> -->
+<!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
+<!-- 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button>
-			</div>
-		</div>
-	</form>
+				<s:submit value="Upload" align="center"></s:submit>
+			</div> 
+		</div> 
+<!-- 	</form> -->
+</s:form>
 
 </div>

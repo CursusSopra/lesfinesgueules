@@ -27,7 +27,7 @@
 					</s:url>
 				
 					<tr>
-						<td><img alt="image" class="img-responsive img-thumbnail" width="200px" src="<s:property value="photo"/>" /></td>
+						<td><img alt="image" class="img-responsive img-thumbnail" width="200px" src="<s:property value="photo" default="images/default.jpg"/>" /></td>
 						<td>
 							<h4>
 								<s:property value="raisonSociale" />

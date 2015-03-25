@@ -20,6 +20,11 @@
 		
 		<action name="ajout-producteur" class="fr.cursusSopra.action.admin.ProducteurAction" 
 			method="createProducteur">
+			<interceptor-ref name="fileUpload">
+     		   	<param name="maximumSize">2097152</param>
+    			<param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">ajout-producteur</result>
 			<result name="error" type="tiles">ajout-producteur</result>
 			<result name="none" type="tiles">ajout-producteur</result>
@@ -40,6 +45,11 @@
 		
 		<action name="ajout-produit" class="fr.cursusSopra.action.admin.ProduitAction" 
 			method="createProduit">
+			<interceptor-ref name="fileUpload">
+     		   	<param name="maximumSize">2097152</param>
+    			<param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">ajout-produit</result>
 			<result name="error" type="tiles">ajout-produit</result>
 			<result name="none" type="tiles">ajout-produit</result>
@@ -62,14 +72,14 @@
 		<!-- MODIFICATION TYPE1 -->
 		<action name="modification-type1-produit-form" class="fr.cursusSopra.action.admin.Type1Action" 
 			method="modifyType1Form">
-			<result name="success" type="tiles">modification-type1-produit-form</result>
+			<result name="success" type="tiles">modificationType1</result>
 		</action>
 		
-		<action name="modification-type1-produit" class="fr.cursusSopra.action.admin.Type1Action" 
-			method="createType1">
-			<result name="success" type="tiles">modification-type1-produit-form</result>
-			<result name="error" type="tiles">modification-type1-produit-form</result>
-			<result name="none" type="tiles">modification-type1-produit-form</result>
+		<action name="modifType1" class="fr.cursusSopra.action.admin.Type1Action" 
+			method="modifyType1">
+			<result name="success" type="tiles">modificationType1</result>
+			<result name="error" type="tiles">modificationType1</result>
+			<result name="none" type="tiles">modificationType1</result>
 		</action>
 		
 		<!-- CREATION TYPE2 -->
@@ -83,6 +93,27 @@
 			<result name="success" type="tiles">ajout-type2-produit</result>
 			<result name="error" type="tiles">ajout-type2-produit</result>
 			<result name="none" type="tiles">ajout-type2-produit</result>
+		</action>
+		
+		<!-- MODIFICATION TYPE2 -->
+		<action name="modification-type2-produit-form" class="fr.cursusSopra.action.admin.Type2Action" 
+			method="modifyType2Form">
+			<result name="success" type="tiles">modificationType2</result>
+		</action>
+		
+		<action name="modification-type1-produit" class="fr.cursusSopra.action.admin.Type2Action" 
+			method="modifyType2">
+			<result name="success" type="tiles">modificationType2</result>
+			<result name="error" type="tiles">modificationType2</result>
+			<result name="none" type="tiles">modificationType2</result>
+		</action>
+		
+		<!-- Test inlineEdit -->
+		<action name="testInline" class="fr.cursusSopra.action.admin.Type1Action" 
+			method="modifyType1Form">
+			<result name="success" type="tiles">testInlineEdit</result>
+			<result name="error" type="tiles">testInlineEdit</result>
+			<result name="none" type="tiles">testInlineEdit</result>
 		</action>
 	</package>
 

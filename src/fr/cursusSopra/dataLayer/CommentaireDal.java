@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cursusSopra.model.Commentaire;
+import fr.cursusSopra.tech.EtatCommentaire;
 import fr.cursusSopra.tech.PostgresConnection;
 import fr.cursusSopra.tech.TypeCommentaire;
 
@@ -27,7 +28,7 @@ public class CommentaireDal extends DataLayerExtended {
 	private final static String rqGenInsert = "INSERT INTO xTABLEJOINTUREx (id_commentaire, xIDx) VALUES (?, ?)";
 	private final static String rqGenDelete = "DELETE FROM xTABLEJOINTUREx WHERE id_commentaire = ? AND xIDx = ?;";
 
-	private final static String rqSelListCommsProd = "SELECT id_commentaire, id_utilisateur, avis, note, etat, ts_creation FROM commentaires WHERE id_commentaire IN(SELECT id_commentaire FROM xTABLEJOINTUREx WHERE xIDx = ?) ORDER BY ts_creation;";
+	private final static String rqSelListCommsProd = "SELECT id_commentaire, id_utilisateur, avis, note, etat, ts_creation, nom, prenom, photo FROM commentaires INNER JOIN utilisateurs USING(id_utilisateur) WHERE id_commentaire IN(SELECT id_commentaire FROM xTABLEJOINTUREx WHERE xIDx = ?) ORDER BY ts_creation;";
 
 	private Commentaire LocItem;
 
@@ -61,14 +62,17 @@ public class CommentaireDal extends DataLayerExtended {
 
 		while (rs.next()) {
 			myList.add(new Commentaire(
-					idType,
 					rs.getLong("id_commentaire"),
 					rs.getLong("id_utilisateur"),
 					rs.getString("avis"),
 					rs.getInt("note"),
 					rs.getTimestamp("ts_creation"),
-					rs.getInt("etat"),
+					EtatCommentaire.intToEtatCommentaire(rs.getInt("etat")),
+					rs.getString("nom"),
+					rs.getString("prenom"),
+					rs.getString("photo"),
 					true,
+					idType,
 					type));
 		}
 
@@ -95,7 +99,7 @@ public class CommentaireDal extends DataLayerExtended {
 			PreparedStatement ps = connection.prepareStatement(rqUpdate);
 			ps.setString(1,  LocItem.getAvis());
 			ps.setInt(2,  LocItem.getNote());
-			ps.setInt(3,  LocItem.getEtat());
+			ps.setInt(3,  LocItem.getEtat().toInt());
 
 			int i = ps.executeUpdate();
 
@@ -113,7 +117,7 @@ public class CommentaireDal extends DataLayerExtended {
 			ps.setLong(1,  LocItem.getIdUtilisateur());
 			ps.setString(2,  LocItem.getAvis());
 			ps.setInt(3,  LocItem.getNote());
-			ps.setInt(4,  LocItem.getEtat());
+			ps.setInt(4,  LocItem.getEtat().toInt());
 
 			ps.executeUpdate();
 

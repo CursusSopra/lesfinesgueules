@@ -41,7 +41,7 @@ public class TestJulien {
 
 		System.out.println("____________");
 		for (Commentaire item : mylist) {
-			System.out.println("commentaire id = " + item.getIdCommentaire() + ", avis = " + item.getAvis() + ", ma note = " + item.getNote());
+			System.out.println("commentaire id = " + item.getIdCommentaire() + ", avis = " + item.getAvis() + ", ma note = " + item.getNote() + ", mon nom = " + item.getNom() + ", mon prenom = " + item.getPrenom());
 		}
 
 		// delete le comm
@@ -52,24 +52,19 @@ public class TestJulien {
 	@Test
 	public void testCommande() {
 
-		// Creation object Commande de l'user 1, va retourner le panier (vide)
-		Commande mycom = new Commande(1);
+		// Creation object Commande de l'user 2, va retourner le panier (vide)
+		Commande mycom = new Commande(2);
 
 		assertEquals(-1, mycom.getEtat());
 		assertEquals(-1, mycom.getIdCommande());
 
-		// produit id = 10, quantite = 2
-		mycom.addItemCommande(10, 2);
-		mycom.addItemCommande(2, 5);
+		// produit id = 1, quantite = 2
+		mycom.addItemCommande(1, 2);
+		mycom.addItemCommande(2, 2);
+		mycom.addItemCommande(2, 3);
 
-		assertEquals(10, mycom.getListeItems().get(0).getIdProduit());
+		assertEquals(1, mycom.getListeItems().get(0).getIdProduit());
 		assertEquals(5, mycom.getListeItems().get(1).getQuantite());
-
-		// show la liste des itemscommandes
-		listerItems(mycom.getListeItems());
-
-		// sauvergarde en db
-		mycom.save();
 
 		// show la liste des itemscommandes
 		listerItems(mycom.getListeItems());
@@ -78,8 +73,11 @@ public class TestJulien {
 		assertNotEquals(-1, mycom.getListeItems().get(0).getIdItemCommande());
 		assertEquals(2, mycom.getListeItems().size());
 
+		// cout total commande
+		System.out.println("mon cout total = " + mycom.totalPrixCommande());
+
 		// delete un item
-		mycom.deleteItemCommande(mycom.getListeItems().get(0).getIdItemCommande());
+		mycom.removeItemCommande(mycom.getListeItems().get(0).getIdProduit(), 999);
 
 		assertEquals(1, mycom.getListeItems().size());
 
@@ -94,7 +92,7 @@ public class TestJulien {
 		mycom.save();
 
 		// on recupere le panier, devrait etre vide
-		Commande mycom2 = new Commande(1);
+		Commande mycom2 = new Commande(2);
 		listerItems(mycom2.getListeItems());
 
 		assertEquals(true, mycom2.getListeItems().isEmpty());

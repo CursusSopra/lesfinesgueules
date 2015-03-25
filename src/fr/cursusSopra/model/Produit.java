@@ -82,22 +82,12 @@ public class Produit {
 
 	/* METHODS */
 	
-	public static List<Produit> getListeProduits(long idType1, long idType2, long idProducteur) {
+	public static List<Produit> getListeProduits(long idType1, long idType2, long idProducteur) throws SQLException {
 		List<Produit> listeProduits = new ArrayList<Produit>();
 		List<ProduitDal> lpdal = ProduitDal.getListeProduitsDal(idType1, idType2, idProducteur);
 		
 		for (int i = 0; i < lpdal.size(); i++) {
-			long idProduit = lpdal.get(i).getIdProduit();
-			String designation = lpdal.get(i).getDesignation();
-			String description = lpdal.get(i).getDescription();
-			double prix = lpdal.get(i).getPrix();
-			String photo = lpdal.get(i).getPhoto();
-			boolean disponible = lpdal.get(i).isDisponible();
-			long type1 = lpdal.get(i).getType1();
-			long type2 = lpdal.get(i).getType2();
-			long producteur = lpdal.get(i).getProducteur();
-			
-			Produit p = new Produit(idProduit, designation, description, prix, photo, disponible, type1, type2, producteur);
+			Produit p = new Produit(lpdal.get(i).getIdProduit());
 			listeProduits.add(p);
 		}
 		return listeProduits;

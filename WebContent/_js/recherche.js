@@ -10,10 +10,18 @@ $(function() {
 		var output = '';
 		
 		$.each(data.listeProduits, function(index, elt) {
+			// Ajout de l'image par défaut si non présente
+			if(elt.photo.length == 0){
+				elt.photo = 'images/default.jpg';
+			}
+			
 			// Création de la variable chaîne de sortie et ajout de la photo et la désignation
-			output += '<div class="col-md-3">' + 
-				'<img alt="image" class="img-responsive img-thumbnail"  src="' + elt.photo + '"/>' + 
-				'<h4>' + elt.designation + ' <span class="badge">' + elt.listeCommentaires.length + ' avis</span></h4>';
+			output +=
+				'<div class="col-md-3">' + 
+					'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' +
+						'<img alt="image" class="img-responsive img-thumbnail" id="idImage' + index + '" src="' + elt.photo + '"/>' + 
+					'</a>'+
+					'<h4>' + elt.designation + ' <span class="badge">' + elt.listeCommentaires.length + ' avis</span></h4>';
 			
 			// Label de disponibilité
 			if(elt.disponible) {
@@ -23,31 +31,51 @@ $(function() {
 			}
 			
 			// Description (250) et prix
-			output += '<p>' + elt.description.substring(0,250) + '...</p>' + 
-				'<div class="input-group col-md-12"><span class="input-group-addon">' + elt.prix + ' &euro;</span></div>' + 
-				'<div class="btn-group btn-group-justified role="group"">';
+			output +=
+				'<p>' + elt.description.substring(0,250) + '...</p>' + 
+				'<div class="input-group col-md-12">'+
+					'<span class="input-group-addon">' + $.number(elt.prix, 2, ',', ' ') + ' &euro;</span>'+
+				'</div>';	// input-group
+					
+			output += '<div class="btn-group btn-group-justified" role="group">';
 			
 			// Activation / Désactivation du bouton "Ajouter au panier"
 			if(elt.disponible) {
-				output += '<div class="btn-group" role="group">' + 
-					'<button type="button" class="btn btn-default"><small>Ajouter au panier</small></button>' + 
-					'</div>';
+				output +=
+					'<div class="btn-group" role="group">' + 
+						'<button type="button" class="btn btn-default" id="idButton' + index + '">'+
+							'<small>Ajouter au panier</small>'+
+						'</button>' + 
+						'<input type="hidden" id="idQuantite' + index + '" value="1"/>' +
+						'<input type="hidden" id="idProduit' + index + '" value="' + elt.idProduit + '"/>' +
+					'</div>';	// btn-group
 			} else {
-				output += '<div class="btn-group" role="group">' + 
-					'<button type="button" class="btn btn-default" disabled="disabled"><small>Ajouter au panier</small></span></button>' + 
-					'</div>';
+				output +=
+					'<div class="btn-group" role="group">' + 
+						'<button type="button" class="btn btn-default" disabled="disabled">'+
+							'<small>Ajouter au panier</small>'+
+						'</button>' + 
+					'</div>';	// btn-group
 			}
 			
 			// Bouton "Voir les détails"
-			output += '<div class="btn-group" role="group"><a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
-				'<button type="button" class="btn btn-default"><small>D&eacute;tails produit</small></button></div></a></div>' +
-				'</div>';
+			output +=
+						'<div class="btn-group" role="group">'+
+							'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
+								'<button type="button" class="btn btn-default"><small>D&eacute;tails produit</small></button>'+
+							'</a>'+
+						'</div>'+	// btn-group
+					'</div>'+
+				'</div>'+	// btn-group btn-group-justified
+			'</div>';	// col-md-3
 			
 		});
 		
 		// Mise du contenu dans la balise #listeProduits
 		$('#listeProduits').html(output);
 		
+		// Ajout évènement 'onclick' sur tous les boutons 'Ajout produit'
+		addClickEventPanier();
 	});
 });
 

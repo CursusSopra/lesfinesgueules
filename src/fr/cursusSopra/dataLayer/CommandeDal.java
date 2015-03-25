@@ -26,10 +26,12 @@ public class CommandeDal extends DataLayerExtended {
 	private final static String rqSelect = "SELECT etat, moyen_paiement, ts_validation, ts_archivage FROM commandes WHERE id_commande = ? AND id_utilisateur = ?;";
 
 	private final static String rqInsert = "INSERT INTO commandes (id_utilisateur, etat, moyen_paiement) VALUES(?, ?, ?)";
-	private final static String rqUpdate = "UPDATE commandes SET (etat, moyen_paiement) = (?, ?) WHERE id_commande = ?;";
+	private final static String rqUpdate = "UPDATE commandes SET (id_utilisateur, etat, moyen_paiement) = (?, ?, ?) WHERE id_commande = ?;";
 	private final static String rqDelete = "DELETE FROM commandes WHERE id_commande = ?;";
 
 	private final static String rqSelectList = "SELECT id_commande, etat, moyen_paiement, ts_validation, ts_archivage FROM commandes WHERE id_utilisateur = ? ORDER BY ts_validation;";
+
+	private final static String rqCompCout = "SELECT SUM(quantite * prix) as cout_total FROM items_commandes INNER JOIN produits USING(id_produit) WHERE id_commande = ? GROUP BY id_commande;";
 
 	private Commande LocItem;
 
@@ -135,6 +137,27 @@ public class CommandeDal extends DataLayerExtended {
 
 
 	/**
+	 * recupere le cout total d'une commande avec une requete
+	 * @return
+	 * @throws SQLException
+	 */
+	public double totalPrixCommande() throws SQLException {
+
+		PreparedStatement ps = connection.prepareStatement(rqCompCout);
+		ps.setLong(1, LocItem.getIdCommande());
+		ResultSet rs = ps.executeQuery();
+		double coutTot = -1;
+		if (rs.next()) {
+			coutTot = rs.getDouble("cout_total");
+		}
+		ps.close();
+		rs.close();
+
+		return coutTot;
+	}
+
+
+	/**
 	 *  Sauvegarde d'un nouvel item ou update d'un item deja existant dans la db
 	 * @return long qui contient l'id de l'item sauve (ou -1 si le save est un echec)
 	 * @throws SQLException
@@ -148,9 +171,10 @@ public class CommandeDal extends DataLayerExtended {
 
 			// UPDATE
 			PreparedStatement ps = connection.prepareStatement(rqUpdate);
-			ps.setInt(1,  LocItem.getEtat());
-			ps.setInt(2,  LocItem.getMoyenPaiement());
-			ps.setLong(3,  LocItem.getIdCommande());
+			ps.setLong(1,  LocItem.getIdUtilisateur());
+			ps.setInt(2,  LocItem.getEtat());
+			ps.setInt(3,  LocItem.getMoyenPaiement());
+			ps.setLong(4,  LocItem.getIdCommande());
 
 			int i = ps.executeUpdate();
 
