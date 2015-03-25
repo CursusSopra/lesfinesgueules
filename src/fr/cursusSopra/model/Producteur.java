@@ -141,7 +141,16 @@ public class Producteur {
 	/* METHODS */
 	
 	public void save() throws SQLException{
+		if(!fromDb){
+			
 		ProducteurDal pd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
 		idProducteur = pd.save();
+		
+		}else{
+			ProducteurDal pd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
+			pd.setIdProducteur(idProducteur);
+			pd.setFromDb(fromDb);
+			pd.save();
+		}
 	}
 }
