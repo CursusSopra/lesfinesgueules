@@ -39,9 +39,6 @@
 		<s:if test="idProducteur > 0">
 			<br/>Bravo, vous êtes référencé(e) parmi nos fines gueules.
 		</s:if>
-		<s:if test="idProducteur <= 0">
-			<br/>Aïaïaï, ça ne marche pas
-		</s:if>
 	</p>
 </s:if>
 
@@ -87,7 +84,7 @@
 			<div class="form-group">
 				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label>
 				<div class="col-sm-6">
-					<input type="file" name="photoProd" id="idPhotoProducteur" />
+					<input type="file" name="photo" id="idPhotoProducteur" />
 				</div>
 			</div>
 		</fieldset>
