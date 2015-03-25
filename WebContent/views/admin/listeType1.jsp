@@ -21,5 +21,5 @@
 
 		
 	</ul>
-	<a href="<s:url action="modification-type1-produit-form"/>">ggd</a>
+	<a href="<s:url action="modification-type1-produit-form"/>">Liste des Types 1-Modification</a>
 </div>

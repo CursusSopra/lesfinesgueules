@@ -35,8 +35,9 @@ public class Type2 {
 	 * Constructeur récuperant les attributs d'un type2 déja existant depuis la couche d'accès aux données
 	 *
 	 * @param idType2 the id type2
+	 * @throws SQLException 
 	 */
-	public Type2 (long idType2){
+	public Type2 (long idType2) throws SQLException{
 		this.idType2=idType2;
 		Type2Dal t2d= new Type2Dal(idType2);
 		idType1 = t2d.getIdType1();
