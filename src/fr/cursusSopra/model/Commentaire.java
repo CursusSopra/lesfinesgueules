@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cursusSopra.dataLayer.CommentaireDal;
+import fr.cursusSopra.tech.EtatCommentaire;
 import fr.cursusSopra.tech.PostgresConnection;
 import fr.cursusSopra.tech.TypeCommentaire;
 
@@ -23,12 +24,12 @@ public class Commentaire {
 	private String avis;
 	private int note;
 	private Timestamp tsCreation;
+	private EtatCommentaire etat = EtatCommentaire.ENATTENTE;
 
-
-	/* etat :
-	 * -1 comm rejete, 0 en attente de validation, 1 valide et visible
-	 */
-	private int etat = 0;
+	// From utilisateurs
+	private String nom;
+	private String prenom;
+	private String photo;
 
 	/* isFromDb :
 		boolean utilise pour savoir si je suis deja present dans la base (true) ou non (false)
@@ -56,24 +57,32 @@ public class Commentaire {
 
 	/**
 	 * Constructeur utilise lors de la recuperation d'un commentaire depuis la bdd (utilise dans getListeComms du DAL)
-	 * @param idType
 	 * @param idCommentaire
 	 * @param idUtilisateur
 	 * @param avis
 	 * @param note
 	 * @param tsCreation
 	 * @param etat
+	 * @param nom
+	 * @param prenom
+	 * @param photo
 	 * @param isFromDb
+	 * @param idType
+	 * @param type
 	 */
-	public Commentaire(long idType, long idCommentaire, long idUtilisateur, String avis, int note, Timestamp tsCreation, int etat, boolean isFromDb, TypeCommentaire type) {
-		this.idType = idType;
+	public Commentaire(long idCommentaire, long idUtilisateur, String avis, int note, Timestamp tsCreation, EtatCommentaire etat,
+			String nom, String prenom, String photo, boolean isFromDb, long idType, TypeCommentaire type) {
 		this.idCommentaire = idCommentaire;
 		this.idUtilisateur = idUtilisateur;
 		this.avis = avis;
 		this.note = note;
 		this.tsCreation = tsCreation;
 		this.etat = etat;
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.setPhoto(photo);
 		this.isFromDb = isFromDb;
+		this.idType = idType;
 		this.type = type;
 	}
 
@@ -170,14 +179,6 @@ public class Commentaire {
 		this.note = note;
 	}
 
-	public int getEtat() {
-		return etat;
-	}
-
-	public void setEtat(int etat) {
-		this.etat = etat;
-	}
-
 	public boolean isFromDb() {
 		return isFromDb;
 	}
@@ -208,6 +209,38 @@ public class Commentaire {
 
 	public void setType(TypeCommentaire type) {
 		this.type = type;
+	}
+
+	public EtatCommentaire getEtat() {
+		return etat;
+	}
+
+	public void setEtat(EtatCommentaire etat) {
+		this.etat = etat;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 }

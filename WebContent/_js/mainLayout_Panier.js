@@ -6,7 +6,7 @@
 
 function majNavBarPanier() {
 
-	$.getJSON('addItemJSON.action', function(data) {
+	$.getJSON('dataPanierJSON.action', function(data) {
 		
 		// maj du badge "nombre d'items dans le panier"
 		if (data.nbItems == 0) {
@@ -14,7 +14,7 @@ function majNavBarPanier() {
 			
 			// panier vide
 			var output = '' +
-			'' +
+			'<b class="panier-title"><i class="fa fa-cart-arrow-down"></i> Mon panier</b>' +
 			'	Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>' +
 			'';
 			
@@ -24,22 +24,23 @@ function majNavBarPanier() {
 			
 			// maj du popup panier
 			var output = '' +
+			'<b class="panier-title"><i class="fa fa-cart-arrow-down"></i> Mon panier</b>' +
 			'<table class="table table-striped table-bordered table-condensed">' +
 			'	<tbody>' +
 			'		<tr>' +
-			'			<th>Produit</th>' +
-			'			<th>Qte</th>' +
-			'			<th>Prix</th>' +
+			'			<th class="bg-primary panier-produit">Produit</th>' +
+			'			<th class="bg-primary panier-qte">Qte</th>' +
+			'			<th class="bg-primary panier-prix">Prix</th>' +
 			'		</tr>';
 			
 			
 			// liste des items
-			$.each(data.ListeItems, function(index, elt) {
+			$.each(data.listeItems, function(index, elt) {
 				output += '' +
 				'		<tr>' +
-				'			<th>' + elt.idProduit + '</th>' +
+				'			<th>' + elt.designation + '</th>' +
 				'			<th>' + elt.quantite + '</th>' +
-				'			<th>' + elt.quantite + '</th>' +
+				'			<th>' + elt.prix + ' &euro;</th>' +
 				'		</tr>';
 			});
 			
@@ -72,7 +73,7 @@ $(function() {
 	majNavBarPanier();
 	
 	// formatte les nombres dans un span avec class="myprice"
-	$('span.myprice').number(true, 2, ',', ' ');
+	$('span.price').number(true, 2, ',', ' ');
 
 });
 //		var output = '';

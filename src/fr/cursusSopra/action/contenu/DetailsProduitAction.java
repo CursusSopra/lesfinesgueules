@@ -88,8 +88,9 @@ public class DetailsProduitAction extends ActionSupportExtended {
 		return description;
 	}
 
-	public double getPrix() {
-		return prix;
+	// Modif pour l'affichage
+	public String getPrix() {
+		return String.format("%.2f", prix);
 	}
 
 	public String getPhoto() {

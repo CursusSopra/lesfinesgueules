@@ -10,6 +10,11 @@ $(function() {
 		var output = '';
 		
 		$.each(data.listeProduits, function(index, elt) {
+			// Ajout de l'image par défaut si non présente
+			if(elt.photo.length == 0){
+				elt.photo = 'images/default.jpg';
+			}
+			
 			// Création de la variable chaîne de sortie et ajout de la photo et la désignation
 			output += '<div class="col-md-3">' + 
 				'<img alt="image" class="img-responsive img-thumbnail"  src="' + elt.photo + '"/>' + 
@@ -24,7 +29,7 @@ $(function() {
 			
 			// Description (250) et prix
 			output += '<p>' + elt.description.substring(0,250) + '...</p>' + 
-				'<div class="input-group col-md-12"><span class="input-group-addon">' + elt.prix + ' &euro;</span></div>' + 
+				'<div class="input-group col-md-12"><span class="input-group-addon">' + $.number(elt.prix, 2, ',', ' ') + ' &euro;</span></div>' + 
 				'<div class="btn-group btn-group-justified role="group"">';
 			
 			// Activation / Désactivation du bouton "Ajouter au panier"

@@ -101,7 +101,7 @@
 			<column name="ville" type="varchar" length="50" jt="12" mandatory="y" />
 			<column name="description" type="text" jt="12" mandatory="y" />
 			<column name="delai_livraison" type="integer" jt="4" mandatory="y" />
-			<column name="photo" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="photo" type="varchar" length="50" jt="12" />
 			<column name="gpslat" type="varchar" length="13" jt="12" mandatory="y" />
 			<column name="gpslong" type="varchar" length="13" jt="12" mandatory="y" />
 			<index name="pk_producteurs" unique="PRIMARY_KEY" >
@@ -167,7 +167,7 @@
 			<column name="email" type="varchar" length="50" jt="12" mandatory="y" />
 			<column name="mdp" type="varchar" length="50" jt="12" mandatory="y" />
 			<column name="tel" type="char" length="10" jt="1" mandatory="y" />
-			<column name="photo" type="varchar" length="50" jt="12" mandatory="y" />
+			<column name="photo" type="varchar" length="50" jt="12" />
 			<column name="droits" type="integer" jt="4" mandatory="y" >
 				<defo>0</defo>
 			</column>
@@ -180,12 +180,12 @@
 		<entity schema="finesgueules" name="types2" color="b2cdf7" x="420" y="375" />
 		<entity schema="finesgueules" name="types1" color="b2cdf7" x="570" y="375" />
 		<entity schema="finesgueules" name="commentaires_produits" color="b2cdf7" x="45" y="285" />
-		<entity schema="finesgueules" name="producteurs" color="b2cdf7" x="270" y="105" />
-		<entity schema="finesgueules" name="utilisateurs" color="b2cdf7" x="420" y="45" />
-		<entity schema="finesgueules" name="produits" color="b2cdf7" x="240" y="390" />
 		<entity schema="finesgueules" name="commandes" color="b2cdf7" x="825" y="315" />
 		<entity schema="finesgueules" name="items_commandes" color="b2cdf7" x="600" y="495" />
 		<entity schema="finesgueules" name="commentaires" color="b2cdf7" x="105" y="60" />
+		<entity schema="finesgueules" name="producteurs" color="b2cdf7" x="270" y="105" />
+		<entity schema="finesgueules" name="produits" color="b2cdf7" x="240" y="390" />
+		<entity schema="finesgueules" name="utilisateurs" color="b2cdf7" x="420" y="45" />
 		<script name="Sql" id="SQL7239410" >
 			<string><![CDATA[CREATE SCHEMA finesgueules;
 

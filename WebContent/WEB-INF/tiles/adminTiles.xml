@@ -59,5 +59,18 @@
 			<add-attribute value="css/bootstrap-editable.css"></add-attribute>
 		</put-list-attribute>
 	</definition>
+	
+	<!-- Test inlineEdit -->
+	<definition name="testInlineEdit" extends="baseLayout">
+		<put-attribute name="title" value="Test" />
+		<put-attribute name="body" value="/views/admin/inlineEditTest.jsp" />
+		<put-list-attribute name="moreScripts">
+			<add-attribute value="js/bootstrap-editable.js"></add-attribute>
+			<add-attribute value="_js/inlineEditTest.js"  ></add-attribute>
+		</put-list-attribute>
+		<put-list-attribute name="moreStyles">
+			<add-attribute value="css/bootstrap-editable.css"></add-attribute>
+		</put-list-attribute>
+	</definition>
 
 </tiles-definitions>

@@ -23,7 +23,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 	private final static String rqUpdate = "UPDATE items_commandes SET (quantite) = (?) WHERE id_item_commande = ?;";
 	private final static String rqDelete = "DELETE FROM items_commandes WHERE id_item_commande = ?;";
 
-	private final static String rqSelectList = "SELECT id_item_commande, id_produit, id_commande, quantite, ts_creation FROM items_commandes WHERE id_commande = ? ORDER BY ts_creation;";
+	private final static String rqSelectList = "SELECT id_item_commande, id_produit, id_commande, quantite, ts_creation, designation, prix FROM items_commandes INNER JOIN produits USING(id_produit) WHERE id_commande = ? ORDER BY ts_creation;";
 
 	private ItemCommande LocItem;
 
@@ -59,7 +59,9 @@ public class ItemCommandeDal extends DataLayerExtended {
 					rs.getLong("id_commande"),
 					rs.getInt("quantite"),
 					rs.getTimestamp("ts_creation"),
-					true));
+					true,
+					rs.getString("designation"),
+					rs.getDouble("prix")));
 		}
 
 		ps.close();

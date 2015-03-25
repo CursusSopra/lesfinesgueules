@@ -120,7 +120,7 @@
 					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
 						<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-shopping-cart navbaricon"></i> <span class="badge" id="idBadgePanier"></span>
 					</a>
-					<div class="dropdown-menu table-responsive userdropdown" id="idMonPanier">
+					<div class="dropdown-menu table-responsive panier" id="idMonPanier">
 						<!-- 	Contenu de mon panier -->
 					</div>
 				</li>

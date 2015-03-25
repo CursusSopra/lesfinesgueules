@@ -14,8 +14,9 @@
 				<a href="#"
 				   id="<s:property value="libelle1"/>" data-type="text" 
 				   data-pk="<s:property value="idType1" />" 
-				   data-url="<s:url action="modifType1"/>"
-				   data-title="Enter une nouvelle valeur de libelle1" >
+				   data-url="<s:url action="testInline"/>"
+				   data-title="Enter une nouvelle valeur de libelle1"
+				    >
 				
 						<s:property value="libelle1"/>
 				
@@ -27,5 +28,5 @@
 
 		
 	</ul>
-	<a href="<s:url action="modification-type1-produit-form"/>">Liste des Types 1-Modification</a>
+	<a href="<s:url action="testInline"/>">Liste des Types 1-Modification</a>
 </div>

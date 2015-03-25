@@ -19,7 +19,7 @@ public class JSONPanierAction extends ActionSupportExtended {
 	private static final long serialVersionUID = -1505158767409145518L;
 
 	private int nbItems = 0;
-	private List<ItemCommande> ListeItems = new ArrayList<ItemCommande>();
+	private List<ItemCommande> listeItems = new ArrayList<ItemCommande>();
 	private double coutTotal = 0;
 
 	public String addItem() {
@@ -31,10 +31,15 @@ public class JSONPanierAction extends ActionSupportExtended {
 	}
 
 	public String dataPanier() {
+
+		System.out.println("dataPanier??!" + idUtilisateur);
+
 		Commande panier = new Commande(idUtilisateur);
 
-		ListeItems = panier.getListeItems();
-		nbItems = ListeItems.size();
+		listeItems = panier.getListeItems();
+		nbItems = listeItems.size();
+
+		System.out.println(nbItems);
 		coutTotal = panier.totalPrixCommande();
 		return Action.SUCCESS;
 	}
@@ -51,7 +56,7 @@ public class JSONPanierAction extends ActionSupportExtended {
 	}
 
 	public List<ItemCommande> getListeItems() {
-		return ListeItems;
+		return listeItems;
 	}
 
 	public double getCoutTotal() {
