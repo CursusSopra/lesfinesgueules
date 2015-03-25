@@ -122,18 +122,16 @@
 	<footer>
 		<div class="container">
 			<div class="pull-left">
-				<ul class="list-inline">
-					<li><a href="<s:url action='contact' />">Contact</a></li>
-					<li><a href="<s:url action='about' />">À propos</a></li>
-				</ul>
-			</div>
-
-			<!-- 		<div class="clearfix">&nbsp;</div> -->
-
-			<div class="pull-right">
 				<p class="text-muted">
 					<small>Copyright &copy; 2015, SOPRA-STERIA - All Rights Reserved.</small>
 				</p>
+			</div>
+			<!-- 		<div class="clearfix">&nbsp;</div> -->
+			<div class="pull-right">
+				<ul class="list-inline">
+					<li><a href="<s:url action='contact' />" class="label label-warning">Contact</a></li>
+					<li><a href="<s:url action='about' />" class="label label-danger">À propos</a></li>
+				</ul>
 			</div>
 		</div>
 	</footer>

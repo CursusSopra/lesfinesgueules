@@ -165,10 +165,6 @@
 						<!-- 	Contenu de mon panier -->
 						<div id="idMonPanierContent">
 						</div>
-						<!-- 	lien vers panier -->
-						<a href="<s:url action='mon-panier' />" class="btn btn-success input-block-level form-control">
-							Aller au panier
-						</a>
 					</div>
 				</li>
 			</ul>

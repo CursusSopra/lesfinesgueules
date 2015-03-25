@@ -70,14 +70,14 @@ public class Commentaire {
 	 * @param idType
 	 * @param type
 	 */
-	public Commentaire(long idCommentaire, long idUtilisateur, String avis, int note, Timestamp tsCreation, EtatCommentaire etat,
+	public Commentaire(long idCommentaire, long idUtilisateur, String avis, int note, Timestamp tsCreation, int etat,
 			String nom, String prenom, String photo, boolean isFromDb, long idType, TypeCommentaire type) {
 		this.idCommentaire = idCommentaire;
 		this.idUtilisateur = idUtilisateur;
 		this.avis = avis;
 		this.note = note;
 		this.tsCreation = tsCreation;
-		this.etat = etat;
+		this.etat = EtatCommentaire.intToEtatCommentaire(etat);
 		this.setNom(nom);
 		this.setPrenom(prenom);
 		this.setPhoto(photo);

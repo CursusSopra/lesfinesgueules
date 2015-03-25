@@ -21,6 +21,7 @@ public class JSONPanierAction extends ActionSupportExtendedJSONOnly {
 	private int nbItems = 0;
 	private List<ItemCommande> listeItems = new ArrayList<ItemCommande>();
 	private double coutTotal = 0;
+	private double fraisPort = 0;
 
 	// proprietes utilisees pour ajouter et enlever un item
 	private boolean updateSuccessful = false;
@@ -49,7 +50,8 @@ public class JSONPanierAction extends ActionSupportExtendedJSONOnly {
 		Commande panier = new Commande(idUtilisateur);
 		listeItems = panier.getListeItems();
 		nbItems = listeItems.size();
-		coutTotal = panier.totalPrixCommande();
+		coutTotal = panier.calculTotalPrixCommande();
+		fraisPort = panier.calculFraisDePort();
 		return Action.SUCCESS;
 	}
 
@@ -81,4 +83,9 @@ public class JSONPanierAction extends ActionSupportExtendedJSONOnly {
 	public boolean isUpdateSuccessful() {
 		return updateSuccessful;
 	}
+
+	public double getFraisPort() {
+		return fraisPort;
+	}
+	
 }
