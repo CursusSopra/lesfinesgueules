@@ -1,9 +1,22 @@
 package fr.cursusSopra.action;
 
-public class LoginAction extends ActionSupportExtended {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+
+public class LoginAction extends ActionSupportExtended implements
+		ServletRequestAware {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3771868804107524884L;
+
+	private HttpServletRequest request;
+
 	private String email;
 	private String mdp;
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -19,13 +32,21 @@ public class LoginAction extends ActionSupportExtended {
 	public String execute() {
 		return SUCCESS;
 	}
-	
+
 	public String control() {
-		
-		if(email.equals("mail@mail.fr")) {		
+
+		if (email.equals("mail@mail.fr")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("authorized", "yes");
 			return SUCCESS;
 		}
-		
+
 		return ERROR;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+
 	}
 }
