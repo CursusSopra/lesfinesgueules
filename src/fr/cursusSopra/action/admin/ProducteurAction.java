@@ -30,7 +30,7 @@ public class ProducteurAction extends ActionSupportExtended {
 	private int delaiLivraison;
 	private long idProducteur;
 	private String photo;
-	private boolean fromDb;
+	private boolean fromDb = false;
 	
 	private boolean  raisonSocialeOK;
 	private boolean  sirenOK;
@@ -109,11 +109,12 @@ public class ProducteurAction extends ActionSupportExtended {
 		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK && codePostalOK &&
 				villeOK && latitudeOK && longitudeOK && descriptionOK && delaiLivraisonOK;
 		
-		long idProducteur = 0;
+//		long idProducteur = 0;
 		
 		if(firstDisplay){
 			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, 
 						description, delaiLivraison, photo);
+			prod.setFromDb(this.isFromDb());
 /*
 			if(ligneAdresse2 != null){
 				prod.setLigneAdresse2(ligneAdresse2);
@@ -129,8 +130,8 @@ public class ProducteurAction extends ActionSupportExtended {
 	
 	public String modifyProducteur(){
 		producteur = new Producteur(idProducteur);
-		producteur.setFromBd(true);
-		
+		producteur.setFromDb(true);
+		this.fromDb = producteur.isFromDb();
 		raisonSociale = producteur.getRaisonSociale();
 		siren = producteur.getSiren();
 		ligneAdresse1 = producteur.getLigneAdresse1();
