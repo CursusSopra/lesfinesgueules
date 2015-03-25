@@ -17,13 +17,14 @@ public class Type2Dal extends DataLayerExtended {
 
 	private final static String rqInsert = "INSERT INTO types2 (libelle2, id_type1) VALUES(?,?)";
 	private final static String rqType2 = "SELECT * FROM types2 WHERE id_type2=?";
+	private final static String rqModify = "UPDATE types2 SET (libelle2, id_type1) = (?,?) WHERE id_type2 = ?";
 
 	private String libelle2;
 	private long idType2;
 	private long idType1;
 
 	public Type2Dal(long idType2) throws SQLException {
-		this.idType1 = idType2;
+		this.idType2 = idType2;
 
 		PreparedStatement ps = connection.prepareStatement(rqType2);
 		ps.setLong(1, idType2);
@@ -55,6 +56,22 @@ public class Type2Dal extends DataLayerExtended {
 		}
 
 		return idType2;
+	}
+	
+	public void modify() throws SQLException {
+
+		// Génération de l'idType1 non utile dans le code, sert au débug
+		PreparedStatement ps = connection.prepareStatement(rqModify);
+		System.out.println(libelle2);
+		ps.setString(1, libelle2);
+		System.out.println(idType1);
+		ps.setLong(2, idType1);
+		System.out.println(idType2);
+		ps.setLong(3, idType2);
+
+
+		ps.executeUpdate();
+
 	}
 
 	public long getIdType2() {

@@ -66,8 +66,19 @@ public class Type2 {
 		Type2Dal t2Dal = new Type2Dal(idType2);
 		idType2 = t2Dal.save();
 	}
+	
+	public void modify() throws SQLException {
+		Type2Dal t2Dal = new Type2Dal(idType2);
+		t2Dal.setLibelle2(libelle2);
+		t2Dal.setIdType1(idType1);
+
+		t2Dal.modify();
+	}
 
 	public long getIdType2() {return idType2;}
 	public long getIdType1() {return idType1;}
 	public String getLibelle2() {return libelle2;}
+	
+	public void setIdType1(long idType1) {this.idType1 = idType1;}
+	public void setLibelle2(String libelle2) {this.libelle2 = libelle2;}
 }
