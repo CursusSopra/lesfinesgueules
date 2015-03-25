@@ -13,7 +13,7 @@
 	
 	<table class="table tableverticalalign">
 		<tr>
-			<td><img alt="<s:property value="desgination"/>" src="<s:property value="photo"/>"></td>
+			<td><img alt="<s:property value="desgination" default="images/default.jpg"/>" src="<s:property value="photo"/>" width="400"></td>
 			<td>
 				<s:url action="detailsProducteur" var="dp">
 					<s:param name="idProducteur">
@@ -26,8 +26,7 @@
 				<p><s:property value="description" /></p>
 				<h4>
 					<span class="label label-default">
-						<span class="glyphicon glyphicon-map-marker"></span>
-						&nbsp;Adresse du producteur
+						<span class="glyphicon glyphicon-map-marker"></span> &nbsp;Adresse du producteur
 					</span>
 				</h4>
 				<p>
@@ -47,17 +46,19 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 			
-				<div class="panel-heading"><s:property value="idUtilisateur"/> | 
-				<s:iterator status="stat" value="(5).{ #this }">
-					<s:if test="note >= #stat.count"><span class="glyphicon glyphicon-star"></span></s:if>
-					<s:else><span class="glyphicon glyphicon-star-empty"></span></s:else>
-				</s:iterator> |
-				<s:property value="tsCreation"/></div>
+				<div class="panel-heading">
+					<s:property value="idUtilisateur"/> | 
+					<s:iterator status="stat" value="(5).{ #this }">
+						<s:if test="note >= #stat.count"><span class="glyphicon glyphicon-star"></span></s:if>
+						<s:else><span class="glyphicon glyphicon-star-empty"></span></s:else>
+					</s:iterator> |
+					<s:date name="tsCreation" format="dd/MM/yyyy hh:mm" />
+				</div>
 				
 				<div class="panel-body">
 					<div class="media">
 						<div class="media-left">
-							<s:property value=""/>
+							<img width="75" src="<s:property value="photoUtilisateur" default="images/default.jpg"/>" alt="Photo utilisateur">
 						</div>
 						<div class="media-body">
 							<s:property value="avis"/>
