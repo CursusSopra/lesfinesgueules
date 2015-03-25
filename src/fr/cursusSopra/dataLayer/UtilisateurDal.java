@@ -27,6 +27,11 @@ public class UtilisateurDal extends DataLayerExtended {
 	private final static String rqListeUtilisateurs = 
 			"SELECT * FROM utilisateurs";
 	
+	private final static String rqUpdate = 
+			"UPDATE utilisateurs SET (nom, prenom, ligne_adresse1, code_postal, ville, tel) = (?,?,?,?,?,?) WHERE id_utilisateur = ?";
+	
+	private final static String rqSelect =
+			"SELECT id_utilisateur, nom, prenom, ligne_adresse1, code_postal, ville, tel FROM utilisateurs WHERE id_utilisateur = ?";
 	
 	
 	private long idUtilisateur;
@@ -90,13 +95,59 @@ public class UtilisateurDal extends DataLayerExtended {
 	
 	//constructeur 2
 	public UtilisateurDal(Long idUtilisateur, String nom, String prenom, String email) {
-		this.idUtilisateur = this.idUtilisateur;
+		this.idUtilisateur = idUtilisateur;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 	}
+	//ctor3 : update
+	public UtilisateurDal(String nom, String prenom, String ligneAdresse1,
+			String codePostal, String ville, String tel) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.ligneAdresse1 = ligneAdresse1;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.tel = tel;
+	}
+	//ctor3 : select
+	public UtilisateurDal(long idUtilisateur, String nom, String prenom, String ligneAdresse1,
+			String codePostal, String ville, String tel) {
+		this.idUtilisateur = idUtilisateur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.ligneAdresse1 = ligneAdresse1;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.tel = tel;
+	}
+	
+	//ctor4
+	public UtilisateurDal(long idUtilisateur) {
+		
+		try{PreparedStatement ps = connection.prepareStatement(rqSelect);
+		ps.setLong(1, idUtilisateur);
+		ResultSet rs = ps.executeQuery();
+		
+		if (rs.next()) {
+			this.idUtilisateur = rs.getLong("id_utilisateur");
+			nom = rs.getString("nom");
+			prenom = rs.getString("prenom");
+			ligneAdresse1 = rs.getString("ligne_adresse1");
+			codePostal = rs.getString("code_postal");
+			ville = rs.getString("ville");
+			tel = rs.getString("tel");
+			}
+		} catch (SQLException e) {
+		} finally {
+			try{connection.close();
+			}catch (SQLException e){
+			}
+		}	
+	}
+	
 
-	//ajout d'un utilisateur en BDD
+		//sauvegarde de l'utilisateur en BDD
 		public long save() throws SQLException {
 			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, nom);
@@ -115,11 +166,36 @@ public class UtilisateurDal extends DataLayerExtended {
 			ResultSet generatedKeys = ps.getGeneratedKeys();
 			if (generatedKeys.next()) {
 				idUtilisateur = generatedKeys.getLong(1);
+				
+			ps.close();
 			}
 			return idUtilisateur;
 		}
 		
+		//maj des données d'un utilisateur
+		public long update(long idUtilisateur) throws SQLException {
+			PreparedStatement ps = connection.prepareStatement(rqUpdate);
+			ps.setString(1, nom);
+			ps.setString(2, prenom);
+			ps.setString(3, ligneAdresse1);
+			ps.setString(4, codePostal);
+			ps.setString(5, ville);
+			ps.setString(6, tel);
+			ps.setLong(7, idUtilisateur);
+			ps.executeUpdate();
+			ps.close();
+			return idUtilisateur;
+		}
 	
+		//info profil utilisateur
+		public long select() throws SQLException {
+			PreparedStatement ps = connection.prepareStatement(rqSelect);
+			ps.setLong(1, idUtilisateur);
+			ps.executeUpdate();
+			ps.close();
+			return idUtilisateur;
+		}
+		
 		//liste des utilisateurs
 		private static List<UtilisateurDal> listeUtilisateursDal;
 

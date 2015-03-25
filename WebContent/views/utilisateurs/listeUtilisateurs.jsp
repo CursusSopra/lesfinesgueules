@@ -9,7 +9,12 @@
 		<tbody>
 			<s:iterator value="listeUtilisateurs" status="stat">
 				<s:iterator>
-					<s:url action="createListProfil" var="clp">
+					<s:url action="detailProfil" var="dp">
+						<s:param name="idUtilisateur">
+							<s:property value="idUtilisateur" />
+						</s:param>
+					</s:url>
+					<s:url action="modification" var="mp">
 						<s:param name="idUtilisateur">
 							<s:property value="idUtilisateur" />
 						</s:param>
@@ -28,7 +33,8 @@
 							</p>
 							<p>
 								<div class="input-group">
-									<a href="<s:property value='#clp'/>"><button type="button" class="btn btn-default">Modifier</button></a>
+									<a href="<s:property value='#dp'/>"><button type="button" class="btn btn-default">Profil</button></a>
+									<a href="<s:property value='#mp'/>"><button type="button" class="btn btn-info">Modifier</button></a>
 								</div>
 							</p>
 						</td>

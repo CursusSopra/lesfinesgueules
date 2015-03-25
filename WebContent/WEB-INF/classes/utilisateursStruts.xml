@@ -26,6 +26,20 @@
 			<result name="success" type="tiles">liste-utilisateurs</result>
 		</action>
 		
+		<!-- MODIFIER UTILISATEURS -->
+		<action name="modification" class="fr.cursusSopra.action.utilisateurs.InscriptionAction" method="modifyProfilForm">
+			<result name="success" type="tiles">modifier-utilisateurs</result>
+		</action>
+
+		<action name="update" class="fr.cursusSopra.action.utilisateurs.InscriptionAction" method="modifyProfil">
+			<result name="success" type="tiles">modifier-utilisateurs</result>
+		</action>
+
+		
+		<!-- DETAIL DES UTILISATEURS -->
+		
+		
+		
 		<!-- COMMENTAIRE -->
 		<action name="commentaire" class="fr.cursusSopra.action.utilisateurs.CommentaireAction" method="createCommentaireForm">
 			<result name="success" type="tiles">commentaire</result>

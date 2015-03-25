@@ -6,9 +6,12 @@ package fr.cursusSopra.action.utilisateurs;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.dataLayer.UtilisateurDal;
 import fr.cursusSopra.model.Utilisateur;
+
 
 /**
  * 
@@ -22,6 +25,7 @@ public class InscriptionAction extends ActionSupportExtended{
 	 * 
 	 */
 	private static final long serialVersionUID = 5788642102104502456L;
+	private static Logger logger = Logger.getLogger(Utilisateur.class);
 	
 	private long idUtilisateur;
 	
@@ -80,9 +84,41 @@ public class InscriptionAction extends ActionSupportExtended{
 	
 	//ajout utilisateur en BDD
 	public String createProfil() throws SQLException {
+		
 		Utilisateur utilisateur = new Utilisateur(nom, prenom, ligneAdresse1,
 				codePostal, ville, email, mdp, tel, photo, droits);
 		utilisateur.save();
+
+		return SUCCESS;
+	}
+	
+	
+	public String modifyProfilForm() throws SQLException {
+		
+		Utilisateur utilisateur = new Utilisateur(idUtilisateur);
+		
+		nom = utilisateur.getNom();
+		prenom = utilisateur.getPrenom();
+		ligneAdresse1 = utilisateur.getLigneAdresse1();
+		codePostal = utilisateur.getCodePostal();
+		ville = utilisateur.getVille();
+		tel = utilisateur.getTel();
+			
+		return SUCCESS;
+	}
+	
+	public String modifyProfil() throws SQLException {	
+
+		Utilisateur utilisateur = new Utilisateur(idUtilisateur);
+		
+		utilisateur.setNom(nom);
+		utilisateur.setPrenom(prenom);
+		utilisateur.setLigneAdresse1(ligneAdresse1);
+		utilisateur.setCodePostal(codePostal);
+		utilisateur.setVille(ville);
+		utilisateur.setTel(tel);
+		utilisateur.update(idUtilisateur);
+		
 		return SUCCESS;
 	}
 	

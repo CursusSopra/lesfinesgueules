@@ -10,19 +10,25 @@
 	<!-- PROFIL -->
 	<definition name="mon-compte" extends="baseLayout">
 		<put-attribute name="title" value="Mon compte" />
-		<put-attribute name="body" value="/views/utilisateurs/profil.jsp" />
+		<put-attribute name="body" value="/views/utilisateurs/detailUtilisateur.jsp" />
 	</definition>
 	
 	<!-- INSCRIPTION -->
 	<definition name="inscription" extends="baseLayout">
 		<put-attribute name="title" value="Inscription" />
-		<put-attribute name="body" value="/views/utilisateurs/formProfil.jsp" />
+		<put-attribute name="body" value="/views/utilisateurs/formUtilisateur.jsp" />
 	</definition>
 	
-		<!-- LISTE UTILISATEURS -->
+	<!-- LISTE UTILISATEURS -->
 	<definition name="liste-utilisateurs" extends="baseLayout">
 		<put-attribute name="title" value="Liste des Utilisateurs" />
 		<put-attribute name="body" value="/views/utilisateurs/listeUtilisateurs.jsp" />
+	</definition>
+	
+	<!-- MODIFIER UTILISATEURS -->
+	<definition name="modifier-utilisateurs" extends="baseLayout">
+		<put-attribute name="title" value="Liste des Utilisateurs" />
+		<put-attribute name="body" value="/views/utilisateurs/formModifUtilisateur.jsp" />
 	</definition>
 	
 	<!-- COMMENTAIRE -->
