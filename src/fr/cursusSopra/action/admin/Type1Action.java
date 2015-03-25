@@ -16,7 +16,7 @@ public class Type1Action extends ActionSupportExtended {
 	 * 
 	 */
 	private static final long serialVersionUID = 1884153199479981890L;
-
+	private String value;
 	private String libelle1;
 	private List<Type1> listeType1;
 	private long idType1;
@@ -53,6 +53,7 @@ public class Type1Action extends ActionSupportExtended {
 	 * @return the string
 	 */
 	public String modifyType1Form() {
+		System.out.println("Bienvenu dans l'action ModifyType1Form");
 		listeType1 = Type1.getListeType1();
 		return SUCCESS;
 	}
@@ -64,15 +65,14 @@ public class Type1Action extends ActionSupportExtended {
 	 * @throws SQLException 
 	 */
 	public String modifyType1() throws SQLException {
-		
-		System.out.println("Libelle1 :" + libelle1);
-		System.out.println("PK :" + pk);
-		System.out.println("idType1 :" + idType1);
+		System.out.println("méthode modifyType1");
+		idType1 = pk;
+		libelle1=value;
 		
 		long l = libelle1.length();
 
 		if (l > 0) {
-			Type1 type1 = new Type1(pk);
+			Type1 type1 = new Type1(idType1);
 			type1.setLibelle1(libelle1);
 			type1.modify();
 		}
@@ -109,6 +109,15 @@ public class Type1Action extends ActionSupportExtended {
 
 	public void setPk(long pk) {
 		this.pk = pk;
+	}
+
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 

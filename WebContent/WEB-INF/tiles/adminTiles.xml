@@ -29,7 +29,7 @@
 	</definition>
 	
 	<!-- MODIFY TYPE1 -->
-	<definition name="modification-type1-produit-form" extends="baseLayout">
+	<definition name="modificationType1" extends="baseLayout">
 		<put-attribute name="title" value="Modification d'un type general (type1) de la bdd" />
 		<put-attribute name="body" value="/views/admin/listeType1.jsp" />
 		<put-list-attribute name="moreScripts">
@@ -45,6 +45,19 @@
 	<definition name="ajout-type2-produit" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'un type de produit (type2) à la bdd" />
 		<put-attribute name="body" value="/views/admin/formType2.jsp" />
+	</definition>
+	
+	<!-- MODIFY TYPE2 -->
+	<definition name="modificationType2" extends="baseLayout">
+		<put-attribute name="title" value="Modification d'un type précis (type2) de la bdd" />
+		<put-attribute name="body" value="/views/admin/listeType1.jsp" />
+		<put-list-attribute name="moreScripts">
+			<add-attribute value="js/bootstrap-editable.js"></add-attribute>
+			<add-attribute value="_js/inlineEditType1.js"  ></add-attribute>
+		</put-list-attribute>
+		<put-list-attribute name="moreStyles">
+			<add-attribute value="css/bootstrap-editable.css"></add-attribute>
+		</put-list-attribute>
 	</definition>
 
 </tiles-definitions>

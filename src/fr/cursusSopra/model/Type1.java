@@ -108,6 +108,11 @@ public class Type1 {
 
 	}
 	
+	/**
+	 * Méthode modifiant un type1 de la base de donnée pour mettre à jour son libelle
+	 *
+	 * @throws SQLException the SQL exception
+	 */
 	public void modify() throws SQLException {
 		Type1Dal t1Dal = new Type1Dal(idType1);
 		
