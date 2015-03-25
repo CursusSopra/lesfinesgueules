@@ -20,7 +20,7 @@
 						<s:property value="idProducteur" />
 					</s:param>
 				</s:url>
-				<span class="input-group-addon"><span class="myprice"><s:property value="prix" /> &euro;</span></span>
+				<span class="input-group-addon"><span class="price"><s:property value="prix" /> &euro;</span></span>
 				<span class="input-group-addon"><a href="<s:property value='#dp'/>"><s:property value="raisonSociale" /></a></span>
 				<span class="input-group-addon">Délais de livraison : <s:property value="delaiLivraison" /> jours</span>
 				<p><s:property value="description" /></p>
@@ -47,7 +47,12 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 			
-				<div class="panel-heading"><s:property value="idUtilisateur"/> | Note : <s:property value="note"/> | <s:property value="tsCreation"/></div>
+				<div class="panel-heading"><s:property value="idUtilisateur"/> | 
+				<s:iterator status="stat" value="(5).{ #this }">
+					<s:if test="note >= #stat.count"><span class="glyphicon glyphicon-star"></span></s:if>
+					<s:else><span class="glyphicon glyphicon-star-empty"></span></s:else>
+				</s:iterator> |
+				<s:property value="tsCreation"/></div>
 				
 				<div class="panel-body">
 					<div class="media">
