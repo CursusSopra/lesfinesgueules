@@ -44,7 +44,7 @@
 		</tr>	
 	</table>
 	
-	<span id="caretComments"><a><h3>Avis <span class="glyphicon glyphicon-chevron-down"></span></h3></a></span>
+	<span id="caretComments"><a><h3>Avis </h3><span id="chevronListe" class="glyphicon glyphicon-chevron-down"></span></a></span>
 	
 	<div id="listeComments">
 		<s:iterator value="listeCommentaires">
