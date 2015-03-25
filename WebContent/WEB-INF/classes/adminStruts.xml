@@ -20,6 +20,11 @@
 		
 		<action name="ajout-producteur" class="fr.cursusSopra.action.admin.ProducteurAction" 
 			method="createProducteur">
+			<interceptor-ref name="fileUpload">
+     		   	<param name="maximumSize">2097152</param>
+    			<param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">ajout-producteur</result>
 			<result name="error" type="tiles">ajout-producteur</result>
 			<result name="none" type="tiles">ajout-producteur</result>

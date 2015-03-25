@@ -3,18 +3,32 @@
  */
 package fr.cursusSopra.action.admin;
 
+import java.io.File;
 import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.ServletRequestAware;
 
 import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.model.Producteur;
 import fr.cursusSopra.tech.FormTools;
 
-public class ProducteurAction extends ActionSupportExtended {
+public class ProducteurAction extends ActionSupportExtended implements ServletRequestAware {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private File photo;
+    private String photoContentType;
+    private String photoFileName;
+ 
+    private HttpServletRequest servletRequest;
+    private String filePath = servletRequest.getSession().getServletContext().getRealPath("/images");
+    private String lienPhoto;
 	
 	private Producteur producteur;
 	
@@ -29,7 +43,7 @@ public class ProducteurAction extends ActionSupportExtended {
 	private String description;
 	private int delaiLivraison;
 	private long idProducteur;
-	private String photo;
+//	private String photo;
 	private boolean fromDb = false;
 	
 	private boolean  raisonSocialeOK;
@@ -85,8 +99,32 @@ public class ProducteurAction extends ActionSupportExtended {
 	public boolean isFromDb() {
 		return fromDb;
 	}
+	public File getPhoto() {
+		return photo;
+	}
+	public void setPhoto(File photo) {
+		this.photo = photo;
+	}
+	public String getPhotoContentType() {
+		return photoContentType;
+	}
+	public void setPhotoContentType(String photoContentType) {
+		this.photoContentType = photoContentType;
+	}
+	public String getPhotoFileName() {
+		return photoFileName;
+	}
+	public void setPhotoFileName(String photoFileName) {
+		this.photoFileName = photoFileName;
+	}
 	public void setFromDb(boolean fromDb) {
 		this.fromDb = fromDb;
+	}
+	public String getLienPhoto() {
+		return lienPhoto;
+	}
+	public void setLienPhoto(String lienPhoto) {
+		this.lienPhoto = lienPhoto;
 	}
 	//Fontion qui retournera le formulaire de création de producteur
 	public String createProducteurForm() {
@@ -95,6 +133,8 @@ public class ProducteurAction extends ActionSupportExtended {
 	
 	//Fonction d'ajout d'un producteur en BDD
 	public String createProducteur() throws SQLException {
+		
+		
 		
 		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale.length() < 50);
 		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
@@ -112,14 +152,26 @@ public class ProducteurAction extends ActionSupportExtended {
 //		long idProducteur = 0;
 		
 		if(firstDisplay){
+
+			try {
+				
+	            System.out.println("Server path:" + filePath);
+	            File fileToCreate = new File(filePath, this.photoFileName);
+	            FileUtils.copyFile(this.photo, fileToCreate);
+	            
+	            lienPhoto = filePath + this.photoFileName;
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            addActionError(e.getMessage());
+	 
+	            return INPUT;
+	        }
+			
 			Producteur prod = new Producteur(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, 
-						description, delaiLivraison, photo);
+						description, delaiLivraison, lienPhoto);
 			prod.setFromDb(this.isFromDb());
-/*
-			if(ligneAdresse2 != null){
-				prod.setLigneAdresse2(ligneAdresse2);
-			}
-*/			
+			
 			prod.save();
 			idProducteur = prod.getIdProducteur();
 			System.out.println(idProducteur);
@@ -142,9 +194,13 @@ public class ProducteurAction extends ActionSupportExtended {
 		longitude = producteur.getLongitude();
 		description = producteur.getDescription();
 		delaiLivraison = producteur.getDelaiLivraison();
-		photo = producteur.getPhoto();
+		filePath = producteur.getPhoto();
 		
 		return SUCCESS;
 	}
-	
+	@Override
+    public void setServletRequest(HttpServletRequest servletRequest) {
+        this.servletRequest = servletRequest;
+ 
+    }
 }

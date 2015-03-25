@@ -44,7 +44,7 @@
 
 
 <div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
-	<form class="form-horizontal" id="FormProducteur" method="post"
+	<form class="form-horizontal" id="FormProducteur" method="post" enctype="multipart/form-data"
 		action="<s:url action='ajout-producteur' />">
 		<fieldset>
 		
