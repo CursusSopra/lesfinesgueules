@@ -44,8 +44,12 @@
 
 
 <div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
-	<form class="form-horizontal" id="FormProducteur" method="post" enctype="multipart/form-data"
-		action="<s:url action='ajout-producteur' />">
+
+<s:actionerror/>
+	<s:form action="ajout-producteur" method="post" enctype="multipart/form-data">
+
+<!-- 	<form class="form-horizontal" id="FormProducteur" method="post" enctype="multipart/form-data" -->
+<%-- 		action="<s:url action='ajout-producteur' />"> --%>
 		<fieldset>
 		
 			<legend> Producteur : </legend>
@@ -80,13 +84,15 @@
 					<textarea class="form-control" name="description" id="idDescription" rows="5"><s:property value="description" /></textarea>
 				</div>
 			</div>
+			<s:file name="userImage" label="User Image"/>
 			
-			<div class="form-group">
-				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label>
-				<div class="col-sm-6">
-					<input type="file" name="photo" id="idPhotoProducteur" />
-				</div>
-			</div>
+			
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label> -->
+<!-- 				<div class="col-sm-6"> -->
+<!-- 					<input type="file" name="photo" id="idPhotoProducteur" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		</fieldset>
 			
 			
@@ -139,11 +145,14 @@
 			</div>
 		</fieldset>
 		
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button>
-			</div>
-		</div>
-	</form>
+<!-- 		<div class="form-group"> -->
+<!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
+<!-- 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<s:submit value="Upload" align="center">
+						</s:submit>
+<!-- 	</form> -->
+</s:form>
 
 </div>
