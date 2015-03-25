@@ -20,7 +20,7 @@
 						<s:property value="idProducteur" />
 					</s:param>
 				</s:url>
-				<span class="input-group-addon"><span class="price"><s:property value="prix" /> &euro;</span></span>
+				<span class="input-group-addon"><s:property value="prix" /> &euro;</span>
 				<span class="input-group-addon"><a href="<s:property value='#dp'/>"><s:property value="raisonSociale" /></a></span>
 				<span class="input-group-addon">Délais de livraison : <s:property value="delaiLivraison" /> jours</span>
 				<p><s:property value="description" /></p>
