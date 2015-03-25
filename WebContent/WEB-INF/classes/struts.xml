@@ -10,13 +10,6 @@
 	<!-- <constant name="struts.convention.default.parent.package" -->
 	<!-- value="tiles-default" /> -->
 
-	<!-- <package name="lesfinesgueules" extends="struts-default"> -->
-	<!-- <result-types> -->
-	<!-- <result-type name="tiles" -->
-	<!-- class="org.apache.struts2.views.tiles.TilesResult" /> -->
-	<!-- </result-types> -->
-	<!-- </package> -->
-
 	<!-- OTHER STRUTS PACKAGES -->
 	<include file="adminStruts.xml" />
 	<include file="contenuStruts.xml" />
@@ -24,14 +17,14 @@
 	<include file="strutsJSON.xml" />
 	<include file="loginStruts.xml" />
 
-<!-- 	<constant name="struts.convention.default.parent.package" -->
-<!-- 		value="tiles-default" /> -->
-<!-- 	<package name="test" extends="struts-default"> -->
-<!-- 		<result-types> -->
-<!-- 			<result-type name="tiles" -->
-<!-- 				class="org.apache.struts2.views.tiles.TilesResult" /> -->
-<!-- 		</result-types> -->
-<!-- 	</package> -->
+	<!-- <constant name="struts.convention.default.parent.package" -->
+	<!-- value="tiles-default" /> -->
+	<!-- <package name="test" extends="struts-default"> -->
+	<!-- <result-types> -->
+	<!-- <result-type name="tiles" -->
+	<!-- class="org.apache.struts2.views.tiles.TilesResult" /> -->
+	<!-- </result-types> -->
+	<!-- </package> -->
 
 	<!-- DEFAULT PACKAGE -->
 	<package name="default" extends="struts-default">

@@ -14,5 +14,10 @@
 		<put-attribute name="title" value="Authentification" />
 		<put-attribute name="body" value="/views/loginOK.jsp" />
 	</definition>
+	
+	<definition name="welcome" extends="baseLayout">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body" value="/views/welcome.jsp" />
+	</definition>
 
 </tiles-definitions>
