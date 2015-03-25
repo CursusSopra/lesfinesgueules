@@ -21,6 +21,7 @@ public abstract class ActionSupportExtended extends ActionSupport {
 
 	private List<Type1> listeType1;
 	private List<Breadcrumbs> listeBreadcrumbs;
+
 	private Utilisateur utilisateur;
 
 	protected long idUtilisateur = 1;

@@ -1,15 +1,77 @@
 /*
- * @author Benoît
+ * @author Julien Caillon
  * 
- * Fichier de fonctions javascript pour l'affichage de la liste des produits
+ * Fonctions de Màj du panier
  */
 
-$(function() {
+function majNavBarPanier() {
+
 	$.getJSON('addItemJSON.action', function(data) {
 		
-		$('#idMonPanier').html(data.val);
+		// maj du badge "nombre d'items dans le panier"
+		if (data.nbItems == 0) {
+			var strbadge = '';
+			
+			// panier vide
+			var output = '' +
+			'' +
+			'	Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>' +
+			'';
+			
+		} else {
 
+			var strbadge = data.nbItems;
+			
+			// maj du popup panier
+			var output = '' +
+			'<table class="table table-striped table-bordered table-condensed">' +
+			'	<tbody>' +
+			'		<tr>' +
+			'			<th>Produit</th>' +
+			'			<th>Qte</th>' +
+			'			<th>Prix</th>' +
+			'		</tr>';
+			
+			
+			// liste des items
+			$.each(data.ListeItems, function(index, elt) {
+				output += '' +
+				'		<tr>' +
+				'			<th>' + elt.idProduit + '</th>' +
+				'			<th>' + elt.quantite + '</th>' +
+				'			<th>' + elt.quantite + '</th>' +
+				'		</tr>';
+			});
+			
+			
+			// cout total
+			output += '' +
+			'		<tr class="warning">' +
+			'			<td colspan="2">Total</td>' +
+			'			<td>' + $.number(data.coutTotal, 2, ',', ' ') + ' &euro;</td>' +
+			'		</tr>' +
+			'	</tbody>' +
+			'</table>';
+			
+			// lien vers panier
+			output += '' +
+			'<a href="" class="btn btn-success input-block-level form-control">' +
+			'	Aller au panier' +
+			'</a>';
+			
+		}
 		
+		$('#idBadgePanier').html(strbadge);
+		$('#idMonPanier').html(output);
+
+	});
+}
+
+$(function() {
+	
+	majNavBarPanier();
+
+});
 //		var output = '';
 //		
 //		$.each(data.listeProduits, function(index, elt) {
@@ -50,8 +112,7 @@ $(function() {
 //		
 //		// Mise du contenu dans la balise #listeProduits
 //		$('#listeProduits').html(output);
-		
-	});
+
 /*
 	$.get("ListeProduits.action", function(data) {
 		$("#listeProduits").html(data);
@@ -77,39 +138,4 @@ $(function() {
 			$("#listeProduits").html(data);
 		});
 	});
-*/
-});
-
-/*
-		$.each(data.listeProduits, function(index, elt) {
-			// Création de la variable chaîne de sortie et ajout de la photo et la désignation
-			output += '<tr><td>' + 
-				'<img alt="image" class="img-responsive img-thumbnail" width="200px" src="' + elt.photo + '"/>' + 
-				'</td><td>' + 
-				'<h4>' + elt.designation + '</h4>';
-			
-			// Label de disponibilité
-			if(elt.disponible) {
-				output +='<span class="label label-success">Disponible</span>';
-			} else {
-				output += '<span class="label label-danger">Non disponible</span>';
-			}
-			
-			// Description (250) et prix
-			output += '<p>' + elt.description.substring(0,250) + '...</p><p><div class="input-group">' +
-				'<span class="input-group-addon">' + elt.prix + ' &euro;</span>';
-			
-			// Activation / Désactivation du bouton "Ajouter au panier"
-			if(elt.disponible) {
-				output += '<button type="button" class="btn btn-default">Ajouter au panier</button>';
-			} else {
-				output += '<button type="button" class="btn btn-default" disabled="disabled">Ajouter au panier</button>';
-			}
-			
-			// Bouton "Voir les détails"
-			output += '<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
-				'<button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>' +
-				'</div></p></td></tr>';
-			
-		});
 */

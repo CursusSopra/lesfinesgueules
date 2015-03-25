@@ -3,9 +3,14 @@
  */
 package fr.cursusSopra.json;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.opensymphony.xwork2.Action;
 
 import fr.cursusSopra.action.ActionSupportExtended;
+import fr.cursusSopra.model.Commande;
+import fr.cursusSopra.model.ItemCommande;
 /**
  * @author Julien Caillon
  */
@@ -13,33 +18,44 @@ public class JSONPanierAction extends ActionSupportExtended {
 
 	private static final long serialVersionUID = -1505158767409145518L;
 
-	private String val;
+	private int nbItems = 0;
+	private List<ItemCommande> ListeItems = new ArrayList<ItemCommande>();
+	private double coutTotal = 0;
 
 	public String addItem() {
-		System.out.println("2");
-		val = "additem";
 		return Action.SUCCESS;
 	}
 
 	public String removeItem() {
-		System.out.println("3");
-		val = "removeItem";
 		return Action.SUCCESS;
 	}
 
 	public String dataPanier() {
-		System.out.println("4");
-		val = "YOOO";
+		Commande panier = new Commande(idUtilisateur);
+
+		ListeItems = panier.getListeItems();
+		nbItems = ListeItems.size();
+		coutTotal = panier.totalPrixCommande();
 		return Action.SUCCESS;
 	}
+
+
 
 
 	/**
 	 * GETTERS / SETTERS
 	 */
 
-	public String getVal() {
-		return val;
+	public int getNbItems() {
+		return nbItems;
+	}
+
+	public List<ItemCommande> getListeItems() {
+		return ListeItems;
+	}
+
+	public double getCoutTotal() {
+		return coutTotal;
 	}
 
 }

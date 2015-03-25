@@ -143,6 +143,9 @@
 	<!-- Javascript pour le panier -->
 	<script src="./_js/mainLayout_Panier.js"></script>
 
+	<!-- jQuery number format -->
+	<script src="./js/jquery.number.min.js"></script>
+
 
 	<!-- Extra JavaScript
     ================================================== -->
