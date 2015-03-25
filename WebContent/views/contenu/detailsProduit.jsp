@@ -14,7 +14,7 @@
 		<tr>
 			<td>
 				<div>
-					<img alt="<s:property value="desgination" default="images/default.jpg" id="idImage1"/>" src="<s:property value="photo"/>" width="400">
+					<img alt="<s:property value="desgination" default="images/default.jpg"/>" id="idImage1" src="<s:property value="photo"/>" width="400">
 					<button type="button" class="btn btn-default" id="idButton1" <s:if test="!disponible">disabled="disabled"</s:if>>Ajouter au panier</button>
 				</div>
 			</td>
