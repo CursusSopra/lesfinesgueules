@@ -35,7 +35,7 @@ $(function() {
 			// Activation / Désactivation du bouton "Ajouter au panier"
 			if(elt.disponible) {
 				output += '<div class="btn-group" role="group">' + 
-					'<button type="button" class="btn btn-default" id="idButton' + index + '><small>Ajouter au panier</small></button>' + 
+					'<button type="button" class="btn btn-default" id="idButton' + index + '"><small>Ajouter au panier</small></button>' + 
 					'</div>';
 			} else {
 				output += '<div class="btn-group" role="group">' + 
