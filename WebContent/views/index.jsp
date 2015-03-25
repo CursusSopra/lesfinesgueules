@@ -9,5 +9,5 @@
 	
 	<p><a href="<s:url action="ajout-producteur-form"/>">Ajout Producteur</a></p><!-- PA -->
 	<p><a href="<s:url action="ajout-produit-form"/>">Ajout Produit</a></p><!-- PA -->
-	
+	<p><a href="<s:url action="modification-type1-produit-form"/>">Liste des Types 1-Modification</a></p>
 </div>

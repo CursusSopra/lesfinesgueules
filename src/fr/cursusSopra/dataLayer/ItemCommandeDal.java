@@ -64,6 +64,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 
 		ps.close();
 		rs.close();
+		connection.close();
 
 		return myList;
 	}

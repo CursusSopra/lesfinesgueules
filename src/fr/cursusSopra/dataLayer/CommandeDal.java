@@ -128,6 +128,7 @@ public class CommandeDal extends DataLayerExtended {
 
 		ps.close();
 		rs.close();
+		connection.close();
 
 		return myList;
 	}

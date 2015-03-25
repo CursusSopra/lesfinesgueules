@@ -93,7 +93,7 @@ public class Type1 {
 	 *             the SQL exception
 	 */
 	public void save() throws SQLException {
-		Type1Dal t1Dal = new Type1Dal(idType1);
+		Type1Dal t1Dal = new Type1Dal(libelle1);
 		idType1 = t1Dal.save();
 
 		List<Type2> lt2 = t1Dal.getListeType2();
@@ -106,6 +106,13 @@ public class Type1 {
 			listeType2.add(t2);
 		}
 
+	}
+	
+	public void modify() throws SQLException {
+		Type1Dal t1Dal = new Type1Dal(idType1);
+		
+		t1Dal.setLibelle1(libelle1);
+		t1Dal.modify();
 	}
 
 	/**
@@ -142,4 +149,17 @@ public class Type1 {
 		return listeType2;
 	}
 
+	public void setIdType1(long idType1) {
+		this.idType1 = idType1;
+	}
+
+	public void setListeType2(List<Type2> listeType2) {
+		this.listeType2 = listeType2;
+	}
+
+	public void setLibelle1(String libelle1) {
+		this.libelle1 = libelle1;
+	}
+
+	
 }
