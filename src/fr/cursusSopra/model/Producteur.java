@@ -30,7 +30,7 @@ public class Producteur {
 	private String description;
 	private int delaiLivraison;
 	private String photo;
-	private boolean FromBd = false;
+	private boolean fromDb = false;
 	
 	/* ACCESSORS */
 	
@@ -62,10 +62,10 @@ public class Producteur {
 	/* CONSTRUCTORS */
 	
 	public boolean isFromBd() {
-		return FromBd;
+		return fromDb;
 	}
 	public void setFromBd(boolean isFromBd) {
-		this.FromBd = isFromBd;
+		this.fromDb = isFromBd;
 	}
 	public Producteur(String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
 		this.raisonSociale = raisonSociale;
