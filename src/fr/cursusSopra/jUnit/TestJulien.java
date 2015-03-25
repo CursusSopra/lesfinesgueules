@@ -41,7 +41,7 @@ public class TestJulien {
 
 		System.out.println("____________");
 		for (Commentaire item : mylist) {
-			System.out.println("commentaire id = " + item.getIdCommentaire() + ", avis = " + item.getAvis() + ", ma note = " + item.getNote());
+			System.out.println("commentaire id = " + item.getIdCommentaire() + ", avis = " + item.getAvis() + ", ma note = " + item.getNote() + ", mon nom = " + item.getNom() + ", mon prenom = " + item.getPrenom());
 		}
 
 		// delete le comm
@@ -52,8 +52,8 @@ public class TestJulien {
 	@Test
 	public void testCommande() {
 
-		// Creation object Commande de l'user 1, va retourner le panier (vide)
-		Commande mycom = new Commande(1);
+		// Creation object Commande de l'user 2, va retourner le panier (vide)
+		Commande mycom = new Commande(2);
 
 		assertEquals(-1, mycom.getEtat());
 		assertEquals(-1, mycom.getIdCommande());
@@ -92,7 +92,7 @@ public class TestJulien {
 		mycom.save();
 
 		// on recupere le panier, devrait etre vide
-		Commande mycom2 = new Commande(1);
+		Commande mycom2 = new Commande(2);
 		listerItems(mycom2.getListeItems());
 
 		assertEquals(true, mycom2.getListeItems().isEmpty());

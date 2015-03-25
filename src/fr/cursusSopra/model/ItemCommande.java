@@ -20,6 +20,9 @@ public class ItemCommande {
 	 */
 	private boolean isFromDb = false;
 
+	// from produit
+	private String designation;
+	private double prix;
 
 	/**
 	 *  constructeur d'un nouvel ItemCommande (from scratch)
@@ -41,16 +44,20 @@ public class ItemCommande {
 	 * @param quantite
 	 * @param tsCreation
 	 * @param isFromDb
+	 * @param designation
+	 * @param prix
 	 */
-	public ItemCommande(long idItemCommande, long idProduit, long idCommande, int quantite, Timestamp tsCreation, boolean isFromDb) {
+	public ItemCommande(long idItemCommande, long idProduit, long idCommande, int quantite, Timestamp tsCreation, boolean isFromDb,
+			String designation, double prix) {
 		this.idItemCommande = idItemCommande;
 		this.idProduit = idProduit;
 		this.idCommande = idCommande;
 		this.quantite = quantite;
 		this.tsCreation = tsCreation;
 		this.isFromDb = isFromDb;
+		this.designation = designation;
+		this.prix = prix;
 	}
-
 
 	/**
 	 *  constructeur utilise pour le delete
@@ -113,6 +120,22 @@ public class ItemCommande {
 
 	public void setFromDb(boolean isFromDb) {
 		this.isFromDb = isFromDb;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
 	}
 
 }
