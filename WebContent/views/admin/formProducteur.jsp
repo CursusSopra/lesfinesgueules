@@ -135,8 +135,13 @@
 			
 			
 			<input type="hidden" class="form-control" id="fromDb" name="fromDb" 
-								value="<s:property value="fromDb" />" >
-			
+					value="<s:property value="fromDb" />" >
+					
+			<s:if test="fromDb">
+				<input type="hidden" class="form-control" id="idProducteur" name="idProducteur" 
+									value="<s:property value="idProducteur" />" >
+								
+			</s:if>
 			
 			<div class="form-group">
 				<label for="idLatitude" class="col-sm-2 control-label">Latitude : </label>
