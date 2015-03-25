@@ -84,7 +84,10 @@
 					<textarea class="form-control" name="description" id="idDescription" rows="5"><s:property value="description" /></textarea>
 				</div>
 			</div>
-			<s:file name="userImage" label="User Image"/>
+			
+			
+			
+			<s:file name="userImage" label="User Image"> <s:property value="imageName" /></s:file>
 			
 			
 <!-- 			<div class="form-group"> -->
@@ -128,6 +131,11 @@
 				</div>
 			</div>
 			
+			
+			<input type="hidden" class="form-control" id="fromDb" name="fromDb" 
+								value="<s:property value="fromDb" />" >
+			
+			
 			<div class="form-group">
 				<label for="idLatitude" class="col-sm-2 control-label">Latitude : </label>
 				<div class="col-sm-6">
@@ -144,7 +152,7 @@
 				</div>
 			</div>
 		</fieldset>
-		
+				
 <!-- 		<div class="form-group"> -->
 <!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
 <!-- 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button> -->

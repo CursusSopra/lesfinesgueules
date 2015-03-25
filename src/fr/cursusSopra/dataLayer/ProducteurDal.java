@@ -35,8 +35,8 @@ public class ProducteurDal extends DataLayerExtended {
 			+ "FROM producteurs";
 	private final static String rqUpdate = 
 			"UPDATE "
-			+ "producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
-			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?) "
+			+ "producteurs SET (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
+			+ "= (?,?,?,?,?,?,?,?,?,?,?) "
 			+ "WHERE id_producteur = ?";
 	
 	
@@ -141,31 +141,30 @@ public class ProducteurDal extends DataLayerExtended {
 	
 	public long save() throws SQLException {
 		if(!fromDb){
-		PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
-		ps.setString(1, raisonSociale);
-		ps.setString(2, siren);
-		ps.setString(3, ligneAdresse1);
-		ps.setString(4, ligneAdresse2);
-		ps.setString(5, codePostal);
-		ps.setString(6, ville);
-		ps.setString(7, latitude);
-		ps.setString(8, longitude);
-		ps.setString(9, description);
-		ps.setInt   (10, delaiLivraison);
-		ps.setString(11, photo);
-		
-		ps.executeUpdate();
-		
-		ResultSet generatedKeys = ps.getGeneratedKeys();
-		if (generatedKeys.next()) {
-			idProducteur = generatedKeys.getLong(1);
-			System.out.println(idProducteur);
-		}
-		
-		}
-		else{
+			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, raisonSociale);
+			ps.setString(2, siren);
+			ps.setString(3, ligneAdresse1);
+			ps.setString(4, ligneAdresse2);
+			ps.setString(5, codePostal);
+			ps.setString(6, ville);
+			ps.setString(7, latitude);
+			ps.setString(8, longitude);
+			ps.setString(9, description);
+			ps.setInt   (10, delaiLivraison);
+			ps.setString(11, photo);
 			
-			PreparedStatement ps = connection.prepareStatement(rqInsert);
+			ps.executeUpdate();
+			
+			ResultSet generatedKeys = ps.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				idProducteur = generatedKeys.getLong(1);
+				System.out.println(idProducteur);
+			}
+		
+		}else{
+			
+			PreparedStatement ps = connection.prepareStatement(rqUpdate);
 			
 			ps.setString(1, raisonSociale);
 			ps.setString(2, siren);

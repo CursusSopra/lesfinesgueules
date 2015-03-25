@@ -73,8 +73,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private String imageName;
 
 	private HttpServletRequest servletRequest;
-	String filePath = servletRequest.getSession()
-			.getServletContext().getRealPath("/content/images");
+	
 	// private String filePath =
 	// servletRequest.getSession().getServletContext().getRealPath("/images");
 	private String lienPhoto;
@@ -103,10 +102,11 @@ public class ProducteurAction extends ActionSupportExtended implements
 		if (firstDisplay) {
 
 			try {
-
+				
 				String[] tokens = userImageFileName.split("\\.(?=[^\\.]+$)");
 				imageName = UUID.randomUUID() + "." + tokens[1];
-				
+				String filePath = servletRequest.getSession()
+						.getServletContext().getRealPath("/content/images");
 				File fileToCreate = new File(filePath, imageName);
 				FileUtils.copyFile(this.userImage, fileToCreate);
 
