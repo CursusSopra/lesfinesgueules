@@ -8,7 +8,7 @@
 	
 	<table class="table tableverticalalign">
 		<tr>
-			<td><img alt="<s:property value="raisonSociale"/>" src="<s:property value="photo"/>"></td>
+			<td><img alt="<s:property value="raisonSociale"/>" src="<s:property value="photo" default="images/default.jpg"/>" width="400"></td>
 			<td>
 				<span class="input-group-addon">Délais de livraison : <s:property value="delaiLivraison" /> jours</span>
 				<p><s:property value="description" /></p>
