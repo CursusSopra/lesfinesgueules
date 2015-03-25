@@ -1,5 +1,5 @@
 /**
- * File modified by : Benoît
+ * Modified by Nicolas
  */
 package fr.cursusSopra.model;
 
@@ -30,6 +30,7 @@ public class Producteur {
 	private String description;
 	private int delaiLivraison;
 	private String photo;
+	private boolean FromBd = false;
 	
 	/* ACCESSORS */
 	
@@ -60,6 +61,12 @@ public class Producteur {
 	
 	/* CONSTRUCTORS */
 	
+	public boolean isFromBd() {
+		return FromBd;
+	}
+	public void setFromBd(boolean isFromBd) {
+		this.FromBd = isFromBd;
+	}
 	public Producteur(String raisonSociale, String siren, String ligneAdresse1, String ligneAdresse2, String codePostal, String ville, String latitude, String longitude, String description, int delaiLivraison, String photo) {
 		this.raisonSociale = raisonSociale;
 		this.siren = siren;

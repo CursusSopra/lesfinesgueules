@@ -122,7 +122,7 @@ public class ProducteurAction extends ActionSupportExtended {
 	
 	public String modifyProducteur(){
 		producteur = new Producteur(idProducteur);
-				
+		producteur.setFromBd(true);
 		raisonSociale = producteur.getRaisonSociale();
 		siren = producteur.getSiren();
 		ligneAdresse1 = producteur.getLigneAdresse1();
