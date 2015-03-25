@@ -10,6 +10,11 @@ $(function() {
 		var output = '';
 		
 		$.each(data.listeProduits, function(index, elt) {
+			// Ajout de l'image par défaut si non présente
+			if(elt.photo.length == 0){
+				elt.photo = 'images/default.jpg';
+			}
+			
 			// Création de la variable chaîne de sortie et ajout de la photo et la désignation
 			output += '<div class="col-md-3">' + 
 				'<img alt="image" class="img-responsive img-thumbnail"  src="' + elt.photo + '"/>' + 

@@ -47,7 +47,7 @@
 			<div class="panel panel-default">
 			
 				<div class="panel-heading">
-					<s:property value="idUtilisateur"/> | 
+					<span class="text-capitalize"><s:property value="prenom"/> <s:property value="nom"/></span> | 
 					<s:iterator status="stat" value="(5).{ #this }">
 						<s:if test="note >= #stat.count"><span class="glyphicon glyphicon-star"></span></s:if>
 						<s:else><span class="glyphicon glyphicon-star-empty"></span></s:else>
@@ -58,7 +58,7 @@
 				<div class="panel-body">
 					<div class="media">
 						<div class="media-left">
-							<img width="75" src="<s:property value="photoUtilisateur" default="images/default.jpg"/>" alt="Photo utilisateur">
+							<img width="75" src="<s:property value="listeCommentaires.photo" default="images/default.jpg"/>" alt="Photo utilisateur">
 						</div>
 						<div class="media-body">
 							<s:property value="avis"/>
