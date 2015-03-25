@@ -83,6 +83,13 @@
 					<textarea class="form-control" name="description" id="idDescription" rows="5"><s:property value="description" /></textarea>
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label>
+				<div class="col-sm-6">
+					<input type="file" name="photoProd" id="idPhotoProducteur" />
+				</div>
+			</div>
 		</fieldset>
 			
 			
