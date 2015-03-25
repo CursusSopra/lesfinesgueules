@@ -60,6 +60,102 @@ public class ProducteurAction extends ActionSupportExtended implements
 
 	private boolean firstDisplay = true;
 
+	
+
+	// Fontion qui retournera le formulaire de création de producteur
+	public String createProducteurForm() {
+		return SUCCESS;
+	}
+
+	private File userImage;
+	private String userImageContentType;
+	private String userImageFileName;
+	private String imageName;
+
+	private HttpServletRequest servletRequest;
+	String filePath = servletRequest.getSession()
+			.getServletContext().getRealPath("/content/images");
+	// private String filePath =
+	// servletRequest.getSession().getServletContext().getRealPath("/images");
+	private String lienPhoto;
+
+	// Fonction d'ajout d'un producteur en BDD
+	public String createProducteur() throws SQLException {
+
+		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
+				.length() < 50);
+		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
+		ligneAdresse1OK = (FormTools.isStrNotEmpty(ligneAdresse1) && ligneAdresse1
+				.length() < 50);
+		codePostalOK = FormTools.isZipValid(codePostal);
+		villeOK = (FormTools.isStrNotEmpty(ville) && ville.length() < 50);
+		latitudeOK = (FormTools.isStrNotEmpty(latitude) && latitude.length() < 13);
+		longitudeOK = (FormTools.isStrNotEmpty(longitude) && longitude.length() < 13);
+		descriptionOK = FormTools.isStrNotEmpty(description);
+		delaiLivraisonOK = (delaiLivraison > 0);
+
+		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
+				&& codePostalOK && villeOK && latitudeOK && longitudeOK
+				&& descriptionOK && delaiLivraisonOK;
+
+		// long idProducteur = 0;
+
+		if (firstDisplay) {
+
+			try {
+
+				String[] tokens = userImageFileName.split("\\.(?=[^\\.]+$)");
+				imageName = UUID.randomUUID() + "." + tokens[1];
+				
+				File fileToCreate = new File(filePath, imageName);
+				FileUtils.copyFile(this.userImage, fileToCreate);
+
+				// System.out.println("Server path:" + filePath);
+				// File fileToCreate = new File(filePath, this.photoFileName);
+				// FileUtils.copyFile(this.photo, fileToCreate);
+				//
+				lienPhoto = imageName;
+//				logger.info(servletRequest.getSession().getServletContext()
+//						.getContextPath());
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				addActionError(e.getMessage());
+
+				return INPUT;
+			}
+
+			Producteur prod = new Producteur(raisonSociale, siren,
+					ligneAdresse1, ligneAdresse2, codePostal, ville, latitude,
+					longitude, description, delaiLivraison, lienPhoto);
+			prod.setFromDb(this.isFromDb());
+
+			prod.save();
+			idProducteur = prod.getIdProducteur();
+			System.out.println(idProducteur);
+		}
+		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
+	}
+
+	public String modifyProducteur() {
+		producteur = new Producteur(idProducteur);
+		producteur.setFromDb(true);
+		this.fromDb = producteur.isFromDb();
+		raisonSociale = producteur.getRaisonSociale();
+		siren = producteur.getSiren();
+		ligneAdresse1 = producteur.getLigneAdresse1();
+		ligneAdresse2 = producteur.getLigneAdresse2();
+		codePostal = producteur.getCodePostal();
+		ville = producteur.getVille();
+		latitude = producteur.getLatitude();
+		longitude = producteur.getLongitude();
+		description = producteur.getDescription();
+		delaiLivraison = producteur.getDelaiLivraison();
+		imageName = producteur.getPhoto();
+
+		return SUCCESS;
+	}
+	
 	public String getRaisonSociale() {
 		return raisonSociale;
 	}
@@ -230,98 +326,6 @@ public class ProducteurAction extends ActionSupportExtended implements
 
 	public void setLienPhoto(String lienPhoto) {
 		this.lienPhoto = lienPhoto;
-	}
-
-	// Fontion qui retournera le formulaire de création de producteur
-	public String createProducteurForm() {
-		return SUCCESS;
-	}
-
-	private File userImage;
-	private String userImageContentType;
-	private String userImageFileName;
-
-	private HttpServletRequest servletRequest;
-	// private String filePath =
-	// servletRequest.getSession().getServletContext().getRealPath("/images");
-	private String lienPhoto;
-
-	// Fonction d'ajout d'un producteur en BDD
-	public String createProducteur() throws SQLException {
-
-		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
-				.length() < 50);
-		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
-		ligneAdresse1OK = (FormTools.isStrNotEmpty(ligneAdresse1) && ligneAdresse1
-				.length() < 50);
-		codePostalOK = FormTools.isZipValid(codePostal);
-		villeOK = (FormTools.isStrNotEmpty(ville) && ville.length() < 50);
-		latitudeOK = (FormTools.isStrNotEmpty(latitude) && latitude.length() < 13);
-		longitudeOK = (FormTools.isStrNotEmpty(longitude) && longitude.length() < 13);
-		descriptionOK = FormTools.isStrNotEmpty(description);
-		delaiLivraisonOK = (delaiLivraison > 0);
-
-		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
-				&& codePostalOK && villeOK && latitudeOK && longitudeOK
-				&& descriptionOK && delaiLivraisonOK;
-
-		// long idProducteur = 0;
-
-		if (firstDisplay) {
-
-			try {
-
-				String[] tokens = userImageFileName.split("\\.(?=[^\\.]+$)");
-				String imageName = UUID.randomUUID() + "." + tokens[1];
-				String filePath = servletRequest.getSession()
-						.getServletContext().getRealPath("/content/images");
-				File fileToCreate = new File(filePath, imageName);
-				FileUtils.copyFile(this.userImage, fileToCreate);
-
-				// System.out.println("Server path:" + filePath);
-				// File fileToCreate = new File(filePath, this.photoFileName);
-				// FileUtils.copyFile(this.photo, fileToCreate);
-				//
-				lienPhoto = imageName;
-//				logger.info(servletRequest.getSession().getServletContext()
-//						.getContextPath());
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				addActionError(e.getMessage());
-
-				return INPUT;
-			}
-
-			Producteur prod = new Producteur(raisonSociale, siren,
-					ligneAdresse1, ligneAdresse2, codePostal, ville, latitude,
-					longitude, description, delaiLivraison, lienPhoto);
-			prod.setFromDb(this.isFromDb());
-
-			prod.save();
-			idProducteur = prod.getIdProducteur();
-			System.out.println(idProducteur);
-		}
-		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
-	}
-
-	public String modifyProducteur() {
-		producteur = new Producteur(idProducteur);
-		producteur.setFromDb(true);
-		this.fromDb = producteur.isFromDb();
-		raisonSociale = producteur.getRaisonSociale();
-		siren = producteur.getSiren();
-		ligneAdresse1 = producteur.getLigneAdresse1();
-		ligneAdresse2 = producteur.getLigneAdresse2();
-		codePostal = producteur.getCodePostal();
-		ville = producteur.getVille();
-		latitude = producteur.getLatitude();
-		longitude = producteur.getLongitude();
-		description = producteur.getDescription();
-		delaiLivraison = producteur.getDelaiLivraison();
-		// filePath = producteur.getPhoto();
-
-		return SUCCESS;
 	}
 
 	@Override
