@@ -28,13 +28,15 @@ public class JSONPanierAction extends ActionSupportExtended {
 	private int quantite;
 
 	public String addItem() {
-		System.out.println("je dois ajouter " + quantite + " fois, le produit id " + idProduit);
+		Commande panier = new Commande(idUtilisateur);
+		panier.addItemCommande(idProduit, quantite);
 		updateSuccessful = true;
 		return Action.SUCCESS;
 	}
 
 	public String removeItem() {
-		System.out.println("je dois enlever " + quantite + " fois, le produit id " + idProduit);
+		Commande panier = new Commande(idUtilisateur);
+		panier.removeItemCommande(idProduit, quantite);
 		updateSuccessful = true;
 		return Action.SUCCESS;
 	}

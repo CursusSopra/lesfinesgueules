@@ -21,6 +21,7 @@
 
 <!-- 			MENU PRINCIPAL -->
 			<ul class="nav navbar-nav">
+				<li><a href="<s:url action='listeProduits' />" title="Liste de tous nos produits">Tous nos produits</a></li>
 				<s:iterator value="listeType1">
 					<s:url action="listeProduits" var="act1">
 						<s:param name="idType1">
@@ -49,7 +50,7 @@
 						</ul>
 					</li>
 				</s:iterator>
-				<li><a href="#" title="nos prod">Producteurs</a></li>
+				<li><a href="<s:url action='listeProducteurs' />" title="Liste de nos producteurs">Producteurs</a></li>
 			</ul>
 
 			
