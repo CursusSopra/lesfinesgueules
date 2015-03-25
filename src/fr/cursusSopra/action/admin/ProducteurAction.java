@@ -79,7 +79,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private String lienPhoto;
 
 	// Fonction d'ajout d'un producteur en BDD
-	public String createProducteur() throws SQLException {
+	public String createProducteur() {
 
 		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
 				.length() < 50);
@@ -129,8 +129,14 @@ public class ProducteurAction extends ActionSupportExtended implements
 					ligneAdresse1, ligneAdresse2, codePostal, ville, latitude,
 					longitude, description, delaiLivraison, lienPhoto);
 			prod.setFromDb(this.isFromDb());
+			prod.setIdProducteur(idProducteur);
 
-			prod.save();
+			try {
+				prod.save();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			idProducteur = prod.getIdProducteur();
 			System.out.println(idProducteur);
 		}
