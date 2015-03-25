@@ -149,4 +149,17 @@ public class Type1 {
 		return listeType2;
 	}
 
+	public void setIdType1(long idType1) {
+		this.idType1 = idType1;
+	}
+
+	public void setListeType2(List<Type2> listeType2) {
+		this.listeType2 = listeType2;
+	}
+
+	public void setLibelle1(String libelle1) {
+		this.libelle1 = libelle1;
+	}
+
+	
 }

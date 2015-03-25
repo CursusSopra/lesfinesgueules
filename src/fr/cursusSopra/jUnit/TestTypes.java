@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.cursusSopra.dataLayer.Type1Dal;
 import fr.cursusSopra.model.Type1;
 import fr.cursusSopra.tech.HostnameConnection;
 
@@ -34,7 +33,7 @@ public class TestTypes {
 		Type1 type1 = new Type1 (1);
 
 		//Essai de récuperation de valeur
-		assertEquals("vins", type1.getLibelle1());
+		assertEquals("Vin", type1.getLibelle1());
 		System.out.println(type1.getListeType2());
 		assertEquals("Vin rouge", type1.getListeType2().get(0).getLibelle2());
 		assertEquals("vin blanc", type1.getListeType2().get(1).getLibelle2());
@@ -46,13 +45,10 @@ public class TestTypes {
 
 		// Creation object type1 de clé 1
 		
-		Type1Dal type1 = new Type1Dal (1);
-		Type1.getListeType1();
-		//Essai de récuperation de valeur
-		assertEquals("vins", type1.getLibelle1());
-		assertEquals("Vin rouge", type1.getListeType2().get(0).getLibelle2());
-		assertEquals("vin blanc", type1.getListeType2().get(1).getLibelle2());
-		type1.setLibelle11("vins");
+		Type1 type1 = new Type1 (1);
+
+		type1.setLibelle1("vins");
+		
 		try {
 			type1.modify();
 		} catch (SQLException e) {
