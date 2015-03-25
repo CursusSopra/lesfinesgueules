@@ -12,12 +12,18 @@
 	
 	<table class="table tableverticalalign">
 		<tr>
-			<td>
+			<td class="col-md-3">
 				<div>
-					<input type="hidden" id="idQuantite1" value="1"/>
 					<input type="hidden" id="idProduit1" value="<s:property value="idProduit"/>"/>
-					<img alt="<s:property value="desgination" default="images/default.jpg"/>" id="idImage1" src="<s:property value="photo"/>" width="400">
-					<button type="button" class="btn btn-default btn-block" id="idButton1" <s:if test="!disponible">disabled="disabled"</s:if>>Ajouter au panier</button>
+					<img alt="<s:property value="desgination" default="images/default.jpg"/>" id="idImage1" src="<s:property value="photo"/>" width="300">
+					<div class="input-group">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" id="idButton1" <s:if test="!disponible">disabled="disabled"</s:if>>
+								Ajouter au panier
+							</button>
+						</span>
+						<input type="number" class="form-control" id="idQuantite1" value="1" min="1" step="1"/>
+					</div>
 				</div>
 			</td>
 			<td>
