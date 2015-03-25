@@ -70,7 +70,7 @@
 			<result name="success" type="tiles">modificationType1</result>
 		</action>
 		
-		<action name="modification-type1-produit" class="fr.cursusSopra.action.admin.Type1Action" 
+		<action name="modifType1" class="fr.cursusSopra.action.admin.Type1Action" 
 			method="modifyType1">
 			<result name="success" type="tiles">modificationType1</result>
 			<result name="error" type="tiles">modificationType1</result>
@@ -101,6 +101,14 @@
 			<result name="success" type="tiles">modificationType2</result>
 			<result name="error" type="tiles">modificationType2</result>
 			<result name="none" type="tiles">modificationType2</result>
+		</action>
+		
+		<!-- Test inlineEdit -->
+		<action name="testInline" class="fr.cursusSopra.action.admin.Type1Action" 
+			method="modifyType1Form">
+			<result name="success" type="tiles">testInlineEdit</result>
+			<result name="error" type="tiles">testInlineEdit</result>
+			<result name="none" type="tiles">testInlineEdit</result>
 		</action>
 	</package>
 
