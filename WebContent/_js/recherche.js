@@ -24,7 +24,7 @@ $(function() {
 			
 			// Description (250) et prix
 			output += '<p>' + elt.description.substring(0,250) + '...</p>' + 
-				'<div class="input-group col-md-12"><span class="input-group-addon">' + elt.prix + ' &euro;</span></div>' + 
+				'<div class="input-group col-md-12"><span class="input-group-addon">' + $.number(elt.prix, 2, ',', ' ') + ' &euro;</span></div>' + 
 				'<div class="btn-group btn-group-justified role="group"">';
 			
 			// Activation / Désactivation du bouton "Ajouter au panier"

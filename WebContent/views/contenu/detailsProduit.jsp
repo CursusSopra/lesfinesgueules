@@ -20,7 +20,7 @@
 						<s:property value="idProducteur" />
 					</s:param>
 				</s:url>
-				<span class="input-group-addon"><s:property value="prix" /> &euro;</span>
+				<span class="input-group-addon"><span class="myprice"><s:property value="prix" /> &euro;</span></span>
 				<span class="input-group-addon"><a href="<s:property value='#dp'/>"><s:property value="raisonSociale" /></a></span>
 				<span class="input-group-addon">Délais de livraison : <s:property value="delaiLivraison" /> jours</span>
 				<p><s:property value="description" /></p>
@@ -41,9 +41,27 @@
 		</tr>	
 	</table>
 	
-	<table class="table table-striped table-hover">
-		<s:iterator value="listeCommentaires"></s:iterator>
-	</table>
+	<h3>Avis</h3>
+	
+	<s:iterator value="listeCommentaires">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+			
+				<div class="panel-heading"><s:property value="idUtilisateur"/> | Note : <s:property value="note"/> | <s:property value="tsCreation"/></div>
+				
+				<div class="panel-body">
+					<div class="media">
+						<div class="media-left">
+							<s:property value=""/>
+						</div>
+						<div class="media-body">
+							<s:property value="avis"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</s:iterator>
 	
 </div>
 
