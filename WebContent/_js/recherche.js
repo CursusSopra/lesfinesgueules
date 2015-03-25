@@ -36,6 +36,8 @@ $(function() {
 			if(elt.disponible) {
 				output += '<div class="btn-group" role="group">' + 
 					'<button type="button" class="btn btn-default" id="idButton' + index + '"><small>Ajouter au panier</small></button>' + 
+					'<input type="hidden" id="idQuantite' + index + '" value="1"/>' +
+					'<input type="hidden" id="idProduit' + index + '" value="' + elt.idProduit + '"/>' +
 					'</div>';
 			} else {
 				output += '<div class="btn-group" role="group">' + 

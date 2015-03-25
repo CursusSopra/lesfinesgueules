@@ -14,6 +14,8 @@
 		<tr>
 			<td>
 				<div>
+					<input type="hidden" id="idQuantite1" value="1"/>
+					<input type="hidden" id="idProduit1" value="<s:property value="idProduit"/>"/>
 					<img alt="<s:property value="desgination" default="images/default.jpg"/>" id="idImage1" src="<s:property value="photo"/>" width="400">
 					<button type="button" class="btn btn-default btn-block" id="idButton1" <s:if test="!disponible">disabled="disabled"</s:if>>Ajouter au panier</button>
 				</div>
