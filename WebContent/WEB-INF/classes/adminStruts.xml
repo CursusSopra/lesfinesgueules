@@ -26,7 +26,7 @@
 		</action>
 		
 <!-- 		MODIFICATION PRODUCTEUR -->
-		<action name="modifyProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="execute">
+		<action name="modifyProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteur">
 			<result name="success" type="tiles">ajout-producteur</result>
 		</action>
 		

@@ -119,8 +119,8 @@ public class ProducteurAction extends ActionSupportExtended {
 		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
 	
-	@Override
-	public String execute(){
+	
+	public String modifyProducteur(){
 		producteur = new Producteur(idProducteur);
 				
 		raisonSociale = producteur.getRaisonSociale();
