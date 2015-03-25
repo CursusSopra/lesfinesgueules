@@ -1,6 +1,3 @@
-/**
- * File modified by : Benoît
- */
 package fr.cursusSopra.action;
 
 public class ContactAction extends ActionSupportExtended {

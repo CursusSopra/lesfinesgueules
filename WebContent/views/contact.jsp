@@ -6,26 +6,25 @@
 	
 	<p>Pour nous contacter, rien de plus simple : les coordonnées sont ci-dessous.</p>
 	
-	<table>
-		<tr>
-			<td></td>
-			<td>CursusSopra</td>
-		</tr>
-		<tr>
-			<td>Adresse</td>
-			<td>66, cours Charlemagne</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>2ème étage</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>69002 Lyon</td>
-		</tr>
-		<tr>
-			<td>Mail :</td>
-			<td>cursussopra@gmail.com</td>
-		</tr>
-	</table>
+	<div class="col-md-3">
+		<table class="table">
+			<tr>
+				<td class="text-right col-md-2">Adresse</td>
+				<td>
+					<strong>CursusSopra</strong><br/>
+					66, cours Charlemagne<br/>
+					2ème étage<br/>
+					69002 Lyon
+				</td>
+			</tr>
+			<tr>
+				<td class="text-right">Mail</td>
+				<td><a href="mailto:cursussopra@gmail.com">cursussopra@gmail.com</a></td>
+			</tr>
+			<tr>
+				<td class="text-right">Téléphone</td>
+				<td><a href="tel:+33473000000">04 73 00 00 00</a></td>
+			</tr>
+		</table>
+	</div>
 </div>
