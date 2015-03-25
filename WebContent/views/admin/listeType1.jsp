@@ -8,12 +8,16 @@
 
 		<s:iterator value="listeType1">
 			<li class="list-group-item">
-				<a href="<s:url action="modification-type1-produit-form"/>"
+			
+				<!--L'URL après href sert d'a -->
+				<a href="#"
 				   id="libelle1" data-type="text" 
 				   data-pk="<s:property value="idType1" />" 
-				   data-url="/post"
-				   data-title="Enter une nouvelle valeur de libelle1">
-					<s:property value="libelle1" />
+				   data-url="<s:url action="modification-type1-produit"/>"
+				   data-title="Enter une nouvelle valeur de libelle1"  >
+				
+						<s:property value="libelle1"/>
+				
 				</a>
 			</li>
 		</s:iterator>

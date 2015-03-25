@@ -65,7 +65,7 @@
 			<result name="success" type="tiles">modification-type1-produit-form</result>
 		</action>
 		
-		<action name="ajout-type1-produit" class="fr.cursusSopra.action.admin.Type1Action" 
+		<action name="modification-type1-produit" class="fr.cursusSopra.action.admin.Type1Action" 
 			method="createType1">
 			<result name="success" type="tiles">modification-type1-produit-form</result>
 			<result name="error" type="tiles">modification-type1-produit-form</result>

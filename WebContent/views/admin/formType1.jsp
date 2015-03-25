@@ -9,7 +9,7 @@
 			<div class="form-group">
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idType1"
-						name="type1" placeholder="Type1">
+						name="libelle1" placeholder="Type1">
 				</div>
 			</div>
 		</fieldset>

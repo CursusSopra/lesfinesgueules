@@ -7,5 +7,9 @@
 		<action name="getProduitsJSON" class="fr.cursusSopra.json.JSONListeProduitsAction">
 			<result type="json" />
 		</action>
+		
+		<action name="getJSONType2" class="fr.cursusSopra.json.JSONType2Action">
+			<result type="json" />
+		</action>
 	</package>
 </struts>
