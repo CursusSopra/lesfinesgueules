@@ -104,28 +104,74 @@ public class Commande {
 	/**
 	 * Ajout d'un item a la commande
 	 * @param idProduit
-	 * @param idCommande
 	 * @param quantite
 	 */
 	public void addItemCommande(long idProduit, int quantite) {
-		//TODO : check if etat = -1 otherwise leave
-		ListeItems.add(new ItemCommande(idProduit, quantite));
+		// can only modify the panier! :p
+		if (etat != -1) return;
+
+		// soit on ajoute la nouvelle quantite a un item existant, soit un cree un item
+		boolean found = false;
+		for (ItemCommande item : ListeItems) {
+			if (item.getIdProduit() == idProduit) {
+				found = true;
+				quantite = quantite + item.getQuantite();
+				if (quantite <= 999) {
+					item.setQuantite(quantite);
+				}
+			}
+		}
+		if (!found) {
+			ListeItems.add(new ItemCommande(idProduit, quantite));
+		}
+
+		this.save();
 	}
 
 
 	/**
 	 * Suppression d'un item de la commande
-	 * @param idItemCommande
+	 * @param idProduit
+	 * @param quantite
 	 */
-	public void deleteItemCommande(long idItemCommande) {
-		//  on supprime l'item de la base et on recree la liste des items de cette commande ensuite
-		ItemCommande ic = new ItemCommande(idItemCommande);
-		try {
-			new ItemCommandeDal(ic).delete();
-		} catch (SQLException e) {
-			System.err.print(String.format("ERREUR 05 : lors de la suppression de l'item id : %d .\n", idItemCommande));
+	public void removeItemCommande(long idProduit, int quantite) {
+		// can only modify the panier! :p
+		if (etat != -1) return;
+
+		for (ItemCommande item : ListeItems) {
+			if (item.getIdProduit() == idProduit) {
+				quantite = item.getQuantite() - quantite;
+				if (quantite > 0) {
+					item.setQuantite(quantite);
+				} else {
+					//  on supprime l'item de la base et on recree la liste des items de cette commande ensuite
+					try {
+						new ItemCommandeDal(new ItemCommande(item.getIdItemCommande())).delete();
+					} catch (SQLException e) {
+						System.err.print(String.format("ERREUR 05 : lors de la suppression de l'item id : %d .\n", item.getIdItemCommande()));
+					}
+				}
+			}
 		}
+
 		getMyListOfItems();
+
+		this.save();
+	}
+
+
+	/**
+	 * calcul le prix total de this commande
+	 * @return
+	 */
+	public double totalPrixCommande() {
+		double coutTot = -1;
+		try {
+			coutTot = new CommandeDal(this).totalPrixCommande();
+		} catch (SQLException e) {
+			System.err.print(String.format("ERREUR 08 : lors du calcul du prix de la commande id : %d .\n", this.getIdCommande()));
+		}
+		return coutTot;
 	}
 
 

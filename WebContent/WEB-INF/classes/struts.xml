@@ -48,5 +48,15 @@
 			method="execute">
 			<result name="success" type="tiles">index</result>
 		</action>
+		
+		<action name="contact" class="fr.cursusSopra.action.ContactAction"
+			method="execute">
+			<result name="success" type="tiles">contact</result>
+		</action>
+		
+		<action name="about" class="fr.cursusSopra.action.AboutAction"
+			method="execute">
+			<result name="success" type="tiles">about</result>
+		</action>
 	</package>
 </struts>

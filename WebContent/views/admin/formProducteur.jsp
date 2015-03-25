@@ -39,9 +39,6 @@
 		<s:if test="idProducteur > 0">
 			<br/>Bravo, vous êtes référencé(e) parmi nos fines gueules.
 		</s:if>
-		<s:if test="idProducteur <= 0">
-			<br/>Aïaïaï, ça ne marche pas
-		</s:if>
 	</p>
 </s:if>
 
@@ -57,7 +54,7 @@
 				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du producteur : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idRaisonSociale" maxlength="50"
-						name="raisonSociale" value="<s:property value="producteur.raisonSociale"/>"> 
+						name="raisonSociale" value="<s:property value="raisonSociale"/>"> 
 				</div>
 			</div>
 			
@@ -81,6 +78,13 @@
 				<label for="idDescription" class="col-sm-2 control-label">Description : </label>
 				<div class="col-sm-6">
 					<textarea class="form-control" name="description" id="idDescription" rows="5"><s:property value="description" /></textarea>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label>
+				<div class="col-sm-6">
+					<input type="file" name="photo" id="idPhotoProducteur" />
 				</div>
 			</div>
 		</fieldset>

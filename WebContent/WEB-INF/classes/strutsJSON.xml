@@ -11,5 +11,16 @@
 		<action name="getJSONType2" class="fr.cursusSopra.json.JSONType2Action">
 			<result type="json" />
 		</action>
+		
+		<!-- Action JSON pour le panier -->
+		<action name="dataPanierJSON" class="fr.cursusSopra.json.JSONPanierAction" method="dataPanier">
+			<result name="success" type="json" />
+		</action>
+		<action name="addItemJSON" class="fr.cursusSopra.json.JSONPanierAction" method="addItem">
+			<result name="success" type="json" />
+		</action>
+		<action name="removeItemJSON" class="fr.cursusSopra.json.JSONPanierAction" method="removeItem">
+			<result name="success" type="json" />
+		</action>
 	</package>
 </struts>
