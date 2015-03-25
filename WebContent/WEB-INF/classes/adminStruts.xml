@@ -28,6 +28,8 @@
 <!-- 		MODIFICATION PRODUCTEUR -->
 		<action name="modifyProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteur">
 			<result name="success" type="tiles">ajout-producteur</result>
+			<result name="error" type="tiles">ajout-producteur</result>
+			<result name="none" type="tiles">ajout-producteur</result>
 		</action>
 		
 		<!-- CREATION PRODUIT -->
