@@ -45,6 +45,11 @@
 		
 		<action name="ajout-produit" class="fr.cursusSopra.action.admin.ProduitAction" 
 			method="createProduit">
+			<interceptor-ref name="fileUpload">
+     		   	<param name="maximumSize">2097152</param>
+    			<param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg</param>
+    		</interceptor-ref>
+    		<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="tiles">ajout-produit</result>
 			<result name="error" type="tiles">ajout-produit</result>
 			<result name="none" type="tiles">ajout-produit</result>

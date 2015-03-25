@@ -46,7 +46,7 @@
 <div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
 
 <s:actionerror/>
-	<s:form action="ajout-producteur" method="post" enctype="multipart/form-data">
+	<s:form action="ajout-producteur" method="post" enctype="multipart/form-data" class="form-horizontal">
 
 <!-- 	<form class="form-horizontal" id="FormProducteur" method="post" enctype="multipart/form-data" -->
 <%-- 		action="<s:url action='ajout-producteur' />"> --%>
@@ -58,7 +58,7 @@
 				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du producteur : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idRaisonSociale" maxlength="50"
-						name="raisonSociale" value="<s:property value="raisonSociale"/>"> 
+						name="raisonSociale" value="<s:property value="raisonSociale"/>">
 				</div>
 			</div>
 			
@@ -86,9 +86,11 @@
 			</div>
 			
 			
-			
-			<s:file name="userImage" label="User Image"> <s:property value="imageName" /></s:file>
-			
+			<div class="form-group">
+				<div class="col-sm-6">
+					<s:file name="userImage" label="User Image"> <s:property value="imageName" /></s:file>
+				</div>
+			</div>
 			
 <!-- 			<div class="form-group"> -->
 <!-- 				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label> -->
@@ -158,8 +160,11 @@
 <!-- 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button> -->
 <!-- 			</div> -->
 <!-- 		</div> -->
-		<s:submit value="Upload" align="center">
-						</s:submit>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<s:submit value="Upload" align="center"></s:submit>
+			</div> 
+		</div> 
 <!-- 	</form> -->
 </s:form>
 
