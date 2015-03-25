@@ -1,5 +1,11 @@
+/**
+ * File modified by : Julien Caillon
+ */
 package fr.cursusSopra.tech;
 
+/**
+ * @author Julien Caillon
+ */
 public class FormTools {
 
 	/*
@@ -8,7 +14,7 @@ public class FormTools {
 	public static boolean isStrNotEmpty(String str) {
 		return str != null && !str.isEmpty();
 	}
-	
+
 	/*
 	 * Return true if zip code is valid
 	 */

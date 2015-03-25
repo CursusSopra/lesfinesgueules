@@ -111,8 +111,6 @@
 				<ul class="list-inline">
 					<li><a href="<s:url action='contact' />">Contact</a></li>
 					<li><a href="<s:url action='about' />">À propos</a></li>
-					<li><a href="#" id="idAddItem"><i class="fa fa-plus-square"></i></a></li>
-					<li><a href="#" id="idRemoveItem"><i class="fa fa-minus-square"></i></a></li>
 				</ul>
 			</div>
 

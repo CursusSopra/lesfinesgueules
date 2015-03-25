@@ -49,6 +49,11 @@
 			<result name="success" type="tiles">commentaire</result>
 		</action>
 
+	
+		<!-- ALLER AU PANIER -->
+        <action name="mon-panier" class="fr.cursusSopra.action.utilisateurs.PanierAction">
+            <result name="success" type="tiles">mon-panier</result>
+        </action>
 	</package>
 
 </struts>

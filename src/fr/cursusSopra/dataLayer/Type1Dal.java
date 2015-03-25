@@ -1,5 +1,5 @@
 /**
- *  Modified By Julien J
+ * File modified by : Julien Joly
  */
 package fr.cursusSopra.dataLayer;
 
@@ -16,7 +16,7 @@ import fr.cursusSopra.model.Type2;
 import fr.cursusSopra.tech.PostgresConnection;
 
 /**
- * 
+ *
  * @author Julien J
  *
  */
@@ -27,6 +27,8 @@ public class Type1Dal extends DataLayerExtended {
 	private final static String rqListeType2 = "SELECT * FROM types2 WHERE id_type1=?";
 	private final static String rqType1 = "SELECT * FROM types1 WHERE id_type1=?";
 	private final static String rqModify = "UPDATE types1 SET libelle1 = ? WHERE id_type1 = ?";
+
+	private final static String rqSelAll = "SELECT libelle1, libelle2, id_type1, id_type2 FROM types2 INNER JOIN types1 USING(id_type1)";
 
 	private String libelle1;
 	private long idType1;
@@ -42,12 +44,10 @@ public class Type1Dal extends DataLayerExtended {
 
 		ps.setLong(1, idType1);
 		ResultSet rs = ps.executeQuery();
-		
+
 		if (rs.next()) {
 			System.out.println(rs.getString("libelle1"));
 			libelle1 = rs.getString("libelle1");
-
-
 		}
 
 		// try {
@@ -74,7 +74,7 @@ public class Type1Dal extends DataLayerExtended {
 		if (generatedKeys.next()) {
 			setIdType1(generatedKeys.getLong("id_type1"));
 		}
-		
+
 
 		return idType1;
 	}
@@ -95,7 +95,7 @@ public class Type1Dal extends DataLayerExtended {
 		listeType1 = new ArrayList<Type1>();
 
 		Connection conn = PostgresConnection.GetConnexion();
-		
+
 
 		try {
 			Statement state;
@@ -143,6 +143,43 @@ public class Type1Dal extends DataLayerExtended {
 
 		return lT2;
 	}
+
+	public static List<Type1> getListeForNavBar() throws SQLException {
+
+		listeType1 = new ArrayList<Type1>();
+		List<Type2> listeType2 = new ArrayList<Type2>();
+
+		Connection conn = PostgresConnection.GetConnexion();
+
+		Statement state;
+		state = conn.createStatement();
+		ResultSet rs = state.executeQuery(rqSelAll);
+
+		while (rs.next()) {
+			Type2 type2 = new Type2(rs.getLong("id_type2"), rs.getLong("id_type1"), rs.getString("libelle2"), rs.getString("libelle1"));
+			listeType2.add(type2);
+		}
+
+		rs = state.executeQuery(rq);
+		while (rs.next()) {
+			Type1 type1 = new Type1(rs.getLong("id_type1"), rs.getString("libelle1"));
+			List<Type2> listeType2Temp = new ArrayList<Type2>();
+			for (Type2 item : listeType2) {
+				if (item.getIdType1() == type1.getIdType1()) {
+					listeType2Temp.add(item);
+				}
+			}
+			type1.setListeType2(listeType2Temp);
+			listeType1.add(type1);
+		}
+
+		rs.close();
+		state.close();
+		conn.close();
+
+		return listeType1;
+	}
+
 
 	public String getLibelle1() {
 		return libelle1;

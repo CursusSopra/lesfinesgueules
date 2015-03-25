@@ -1,5 +1,5 @@
 /**
- *  Modified By Julien J
+ * File modified by : Julien Joly
  */
 
 package fr.cursusSopra.model;
@@ -11,7 +11,7 @@ import java.util.List;
 import fr.cursusSopra.dataLayer.Type1Dal;
 
 /**
- * 
+ *
  * @author Julien J
  *
  */
@@ -20,6 +20,7 @@ public class Type1 {
 	private long idType1;
 	private List<Type2> listeType2;
 	private String libelle1;
+
 	private static List<Type1> listeType1;
 
 	/**
@@ -88,7 +89,7 @@ public class Type1 {
 	 * Méthode sauvegardant un objet Type1 à partir de son libellé pour préparer
 	 * son enregistrement.
 	 *
-	 * 
+	 *
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
@@ -107,7 +108,7 @@ public class Type1 {
 		}
 
 	}
-	
+
 	/**
 	 * Méthode modifiant un type1 de la base de donnée pour mettre à jour son libelle
 	 *
@@ -115,7 +116,7 @@ public class Type1 {
 	 */
 	public void modify() throws SQLException {
 		Type1Dal t1Dal = new Type1Dal(idType1);
-		
+
 		t1Dal.setLibelle1(libelle1);
 		t1Dal.modify();
 	}
@@ -128,6 +129,7 @@ public class Type1 {
 	 */
 	public static List<Type1> getListeType1() {
 		listeType1 = new ArrayList<Type1>();
+
 		List<Type1> lt1 = Type1Dal.getListeType1Dal();
 
 		for (int i = 0; i < lt1.size(); i++) {
@@ -138,8 +140,26 @@ public class Type1 {
 		}
 
 		return listeType1;
-
 	}
+
+
+	/**
+	 * Methode getteur retournant la liste de tous les types 1 stockés en base
+	 * de donnée
+	 *
+	 * @return la liste de tous les type1
+	 */
+	public static List<Type1> getListeForNavBar() {
+		listeType1 = new ArrayList<Type1>();
+		try {
+			listeType1 = Type1Dal.getListeForNavBar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.err.println("ERREUR : impossible de recuperer la liste des types!");
+		}
+		return listeType1;
+	}
+
 
 	// liste des getters de la classe
 	public long getIdType1() {
@@ -166,5 +186,5 @@ public class Type1 {
 		this.libelle1 = libelle1;
 	}
 
-	
+
 }

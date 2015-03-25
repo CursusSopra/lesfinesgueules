@@ -1,4 +1,6 @@
-package fr.cursusSopra.action;
+package fr.cursusSopra.action.utilisateurs;
+
+import fr.cursusSopra.action.ActionSupportExtended;
 
 public class PanierAction extends ActionSupportExtended {
 

@@ -73,16 +73,10 @@ function majNavBarPanier() {
 			'	</tbody>' +
 			'</table>';
 			
-			// lien vers panier
-			output += '' +
-			'<a href="" class="btn btn-success input-block-level form-control">' +
-			'	Aller au panier' +
-			'</a>';
-			
 		}
 		
 		$('#idBadgePanier').html(strbadge);
-		$('#idMonPanier').html(output);
+		$('#idMonPanierContent').html(output);
 
 	});
 }

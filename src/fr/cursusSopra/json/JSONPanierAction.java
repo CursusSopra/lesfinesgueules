@@ -8,13 +8,13 @@ import java.util.List;
 
 import com.opensymphony.xwork2.Action;
 
-import fr.cursusSopra.action.ActionSupportExtended;
+import fr.cursusSopra.action.ActionSupportExtendedJSONOnly;
 import fr.cursusSopra.model.Commande;
 import fr.cursusSopra.model.ItemCommande;
 /**
  * @author Julien Caillon
  */
-public class JSONPanierAction extends ActionSupportExtended {
+public class JSONPanierAction extends ActionSupportExtendedJSONOnly {
 
 	private static final long serialVersionUID = -1505158767409145518L;
 

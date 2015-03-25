@@ -33,17 +33,17 @@
 							<s:property value="libelle1" /> <i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="<s:property value='#act1'/>"><i class="fa fa-caret-right"></i> <s:property value="libelle1" /></a></li>
+							<li><a href="<s:property value='#act1'/>"><i class="fa fa-arrow-circle-down"></i> <s:property value="libelle1" /></a></li>
 	 						<li class="dropdown-header">Sous-catégories :</li>
 							<s:iterator value="listeType2">
 								<s:url action="listeProduits" var="act2">
-									<s:param name="categorie">
+									<s:param name="idType2">
 										<s:property value="idType2" />
 									</s:param>
 								</s:url>
 								<li>
 									<a href="<s:property value='#act2'/>">
-										<i class="fa fa-caret-right"></i> <s:property value="libelle2" />
+										<i class="fa fa-arrow-circle-right"></i> <s:property value="libelle2" />
 									</a>
 								</li>
 							</s:iterator>
@@ -142,6 +142,12 @@
 					</a>
 					<div class="dropdown-menu table-responsive panier" id="idMonPanier">
 						<!-- 	Contenu de mon panier -->
+						<div id="idMonPanierContent">
+						</div>
+						<!-- 	lien vers panier -->
+						<a href="<s:url action='mon-panier' />" class="btn btn-success input-block-level form-control">
+							Aller au panier
+						</a>
 					</div>
 				</li>
 			</ul>
