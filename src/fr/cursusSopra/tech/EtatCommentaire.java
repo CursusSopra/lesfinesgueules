@@ -3,6 +3,9 @@
  */
 package fr.cursusSopra.tech;
 
+/**
+ * @author Julien Caillon
+ */
 public enum EtatCommentaire {
 	// Les objets énumérés sont forcément au début de la déclaration, ils doivent faire appel à un des constructeurs définis
 	REJETE(-1), ENATTENTE(0), VALIDE(1);

@@ -1,9 +1,28 @@
 /*
  * @author Julien Caillon
  * 
- * Fonctions de Màj du panier
+ * Fonctions du panier
  */
 
+// on page load
+$(function() {
+	
+	majNavBarPanier();
+	
+	$( "#idAddItem" ).click(function() {
+		addItem(1, 1);
+	});
+	$( "#idRemoveItem" ).click(function() {
+		removeItem(1, 1);
+	});
+	
+	// formatte les nombres dans un span avec class="myprice"
+	$('span.price').number(true, 2, ',', ' ');
+
+	addClickEventPanier();
+});
+
+// Met a jour le panier dans la navbar
 function majNavBarPanier() {
 
 	$.getJSON('dataPanierJSON.action', function(data) {
@@ -68,78 +87,70 @@ function majNavBarPanier() {
 	});
 }
 
-$(function() {
+// Ajout d'un item produit dans le panier avec une certaine quantite
+function addItem(idProduit, quantite) {
+	$.getJSON('addItemJSON.action?idProduit=' + idProduit + '&quantite=' + quantite, function(data) {
+		if(data.updateSuccessful) {
+			// maj du panier dans la navbar!
+			majNavBarPanier();
+			
+			// on affiche le popup panier!
+			sleep(800);
+			$('#idMonPanier').dropdown('toggle');
+		}
+	});
 	
-	majNavBarPanier();
-	
-	// formatte les nombres dans un span avec class="myprice"
-	$('span.price').number(true, 2, ',', ' ');
+	addClickEventPanier();
+}
 
-});
-//		var output = '';
-//		
-//		$.each(data.listeProduits, function(index, elt) {
-//			// Création de la variable chaîne de sortie et ajout de la photo et la désignation
-//			output += '<div class="col-md-3">' + 
-//				'<img alt="image" class="img-responsive img-thumbnail"  src="' + elt.photo + '"/>' + 
-//				'<h4>' + elt.designation + '</h4>';
-//			
-//			// Label de disponibilité
-//			if(elt.disponible) {
-//				output += '<p><span class="label label-success">Disponible</span></p>';
-//			} else {
-//				output += '<p><span class="label label-danger">Non disponible</span></p>';
-//			}
-//			
-//			// Description (250) et prix
-//			output += '<p>' + elt.description.substring(0,250) + '...</p>' + 
-//				'<div class="input-group col-md-12"><span class="input-group-addon">' + elt.prix + ' &euro;</span></div>' + 
-//				'<div class="btn-group btn-group-justified role="group"">';
-//			
-//			// Activation / Désactivation du bouton "Ajouter au panier"
-//			if(elt.disponible) {
-//				output += '<div class="btn-group" role="group">' + 
-//					'<button type="button" class="btn btn-default"><small>Ajouter au panier</small></button>' + 
-//					'</div>';
-//			} else {
-//				output += '<div class="btn-group" role="group">' + 
-//					'<button type="button" class="btn btn-default" disabled="disabled"><small>Ajouter au panier</small></span></button>' + 
-//					'</div>';
-//			}
-//			
-//			// Bouton "Voir les détails"
-//			output += '<div class="btn-group" role="group"><a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
-//				'<button type="button" class="btn btn-default"><small>D&eacute;tails produit</small></button></div></a></div>' +
-//				'</div>';
-//			
-//		});
-//		
-//		// Mise du contenu dans la balise #listeProduits
-//		$('#listeProduits').html(output);
+// Retrait d'un item produit dans le panier avec une certaine quantite
+function removeItem(idProduit, quantite) {
+	$.getJSON('removeItemJSON.action?idProduit=' + idProduit + '&quantite=' + quantite, function(data) {
+		if(data.updateSuccessful) {
+			// maj du panier dans la navbar!
+			majNavBarPanier();
+			
+			// on affiche le popup panier!
+			sleep(800);
+			$('#idMonPanier').dropdown('toggle');
+		}
+	});
+}
 
-/*
-	$.get("ListeProduits.action", function(data) {
-		$("#listeProduits").html(data);
-	});
-	
-	$("#idType1").change(function() {
-		var idType1 = $("idType1").val();
-		$.get("ListeProduits.action?idType1=" + idType1, function(data) {
-			$("#listeProduits").html(data);
-		});
-	});
-	
-	$("#idType2").change(function() {
-		var idType2 = $("idType2").val();
-		$.get("ListeProduits.action?idType2=" + idType2, function(data) {
-			$("#listeProduits").html(data);
-		});
-	});
-	
-	$("#idProducteur").change(function() {
-		var idProducteur = $("idProducteur").val();
-		$.get("ListeProduits.action?idProducteur=" + idProducteur, function(data) {
-			$("#listeProduits").html(data);
-		});
-	});
-*/
+// Ajout des events click sur les boutons de gestion du panier
+function addClickEventPanier() {
+    $("button[id^='idButton']").unbind('click').click(function() {
+    	var monId = $(this).attr("id");
+    	
+    	// animation de l'image vers le panier
+		var cart = $('#idPanierIcon');
+	    var imgtofly = $("#" + monId.replace("idButton", "idImage"));
+		if (imgtofly) {
+			var imgclone = imgtofly.clone()
+				.offset({ top:imgtofly.offset().top, left:imgtofly.offset().left })
+				.css({'opacity':'0.7', 'position':'absolute', 'height':'150px', 'width':'150px', 'z-index':'1000'})
+			.appendTo($('body'))
+			.animate({
+				'top':cart.offset().top + 10,
+				'left':cart.offset().left + 30,
+				'width':55,
+				'height':55
+			}, 800, 'easeInElastic');
+			imgclone.animate({'width':0, 'height':0}, function(){ $(this).detach() });
+		}
+
+		// on recupere l'id produit, la quantite voulue et go
+    	var idProduit = $("#" + monId.replace("idButton", "idProduit")).attr("value");
+    	var quantite = $("#" + monId.replace("idButton", "idQuantite")).attr("value");
+    	addItem(idProduit, quantite);
+    });
+}
+
+function sleep(milliseconds) {
+	  var start = new Date().getTime();
+	  for (var i = 0; i < 1e7; i++) {
+		    if ((new Date().getTime() - start) > milliseconds) {
+			break;
+		}
+	}
+}

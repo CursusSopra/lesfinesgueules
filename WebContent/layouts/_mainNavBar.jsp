@@ -1,5 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
+<!-- @author Julien Caillon -->
+
 <!-- NAVIGATION -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
@@ -52,73 +54,90 @@
 
 			
 <!-- 			RECHERCHE -->
-			<form class="navbar-form navbar-left" role="search">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Rechercher" name="id" id="idrech">
-					<div class="input-group-btn">
-						<button class="btn btn-default" type="submit">
-							<i class="glyphicon glyphicon-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
+<!-- 			<form class="navbar-form navbar-left" role="search"> -->
+<!-- 				<div class="input-group"> -->
+<!-- 					<input type="text" class="form-control" placeholder="Rechercher" name="id" id="idrech"> -->
+<!-- 					<div class="input-group-btn"> -->
+<!-- 						<button class="btn btn-default" type="submit"> -->
+<!-- 							<i class="glyphicon glyphicon-search"></i> -->
+<!-- 						</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</form> -->
 
 
 <!-- 			UTILISATEUR -->
 			<ul class="nav navbar-nav navbar-right">
 
-				<li class="dropdown">
-					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
-						<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
-					</a>
-					<div class="dropdown-menu userdropdown">
-						<a class="btn btn-primary input-block-level form-control" href="<s:url action='mon-compte' />" role="button">
-							Voir mon compte
+<!-- 				LOGGED IN -->
+				<s:if test="utilisateur != null">
+					<li class="dropdown">
+						<b class="panier-title">
+							<i class="fa fa-child "></i> Bienvenu(e), 
+							<s:property value="utilisateur.prenom" /> <s:property value="utilisateur.nom" />
+						</b>
+						<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+							<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
 						</a>
-						<hr>
-						<a class="btn btn-danger input-block-level form-control" href="<s:url action='' />" role="button">
-							Déconnexion
-						</a>
-					</div>
-				</li>
-
-				<li class="dropdown">
-					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
-						<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
-					</a>
-					<div class="dropdown-menu userdropdown">
-						<div class="row">
-							<div class="col-md-12">
-								<form class="form" role="form" method="post" action="loginControl" accept-charset="UTF-8" id="login-nav">
-									<div class="form-group">
-										<label class="sr-only" for="idEmail">Adresse mail</label> <input type="email" class="form-control" id="idEmail"
-											placeholder="Adresse mail" name="email" required>
-									</div>
-									<div class="form-group">
-										<label class="sr-only" for="idMdp">Mot de passe</label> <input type="password" class="form-control" id="idMdp"
-											placeholder="Mot de passe" name="mdp" required>
-									</div>
-									<div class="checkbox">
-										<label> <input type="checkbox"> Se souvenir de moi
-										</label>
-									</div>
-									<div class="form-group">
-										<button type="submit" class="btn btn-success btn-block">S'identifier</button>
-									</div>
-								</form>
+						<div class="dropdown-menu userdropdown">
+							<div class="row addspace">
+								<div class="col-md-12">
+									<a class="btn btn-primary input-block-level form-control" href="<s:url action='mon-compte' />" role="button">
+										Voir mon compte
+									</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<a class="btn btn-danger input-block-level form-control" href="<s:url action='' />" role="button">
+										Déconnexion
+									</a>
+								</div>
 							</div>
 						</div>
-						<a class="btn btn-primary input-block-level form-control" href="<s:url action='inscription' />" role="button">
-							Créer un compte
+					</li>
+				</s:if>
+				
+<!-- 				NOT LOGGED IN -->
+				<s:else>
+					<li class="dropdown">
+						<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+							<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
 						</a>
-					</div>
-				</li>
-
+						<div class="dropdown-menu userdropdown">
+							<div class="row">
+								<div class="col-md-12">
+									<form class="form" role="form" method="post" action="loginControl" accept-charset="UTF-8" id="login-nav">
+										<div class="form-group">
+											<label class="sr-only" for="idEmail">Adresse mail</label> <input type="email" class="form-control" id="idEmail"
+												placeholder="Adresse mail" name="email" required>
+										</div>
+										<div class="form-group">
+											<label class="sr-only" for="idMdp">Mot de passe</label> <input type="password" class="form-control" id="idMdp"
+												placeholder="Mot de passe" name="mdp" required>
+										</div>
+										<div class="checkbox">
+											<label> <input type="checkbox"> Se souvenir de moi
+											</label>
+										</div>
+										<div class="form-group">
+											<button type="submit" class="btn btn-success btn-block">S'identifier</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<a class="btn btn-primary input-block-level form-control" href="<s:url action='inscription' />" role="button">
+								Créer un compte
+							</a>
+						</div>
+					</li>
+				</s:else>
+				
 
 <!-- 				PANIER -->
 				<li class="dropdown">
 					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
-						<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-shopping-cart navbaricon"></i> <span class="badge" id="idBadgePanier"></span>
+						<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-shopping-cart navbaricon" id="idPanierIcon"></i> <span class="badge" id="idBadgePanier"></span>
 					</a>
 					<div class="dropdown-menu table-responsive panier" id="idMonPanier">
 						<!-- 	Contenu de mon panier -->

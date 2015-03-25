@@ -22,29 +22,34 @@ public class JSONPanierAction extends ActionSupportExtended {
 	private List<ItemCommande> listeItems = new ArrayList<ItemCommande>();
 	private double coutTotal = 0;
 
+	// proprietes utilisees pour ajouter et enlever un item
+	private boolean updateSuccessful = false;
+	private long idProduit;
+	private int quantite;
+
 	public String addItem() {
+		System.out.println("je dois ajouter " + quantite + " fois, le produit id " + idProduit);
+		updateSuccessful = true;
 		return Action.SUCCESS;
 	}
 
 	public String removeItem() {
+		System.out.println("je dois enlever " + quantite + " fois, le produit id " + idProduit);
+		updateSuccessful = true;
 		return Action.SUCCESS;
 	}
 
+	/**
+	 * envoi les data necessaire pour creer le panier de l'utilisateur dans la navBar
+	 * @return
+	 */
 	public String dataPanier() {
-
-		System.out.println("dataPanier??!" + idUtilisateur);
-
 		Commande panier = new Commande(idUtilisateur);
-
 		listeItems = panier.getListeItems();
 		nbItems = listeItems.size();
-
-		System.out.println(nbItems);
 		coutTotal = panier.totalPrixCommande();
 		return Action.SUCCESS;
 	}
-
-
 
 
 	/**
@@ -63,4 +68,15 @@ public class JSONPanierAction extends ActionSupportExtended {
 		return coutTotal;
 	}
 
+	public void setIdProduit(long idProduit) {
+		this.idProduit = idProduit;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+	public boolean isUpdateSuccessful() {
+		return updateSuccessful;
+	}
 }

@@ -26,7 +26,7 @@ public class CommandeDal extends DataLayerExtended {
 	private final static String rqSelect = "SELECT etat, moyen_paiement, ts_validation, ts_archivage FROM commandes WHERE id_commande = ? AND id_utilisateur = ?;";
 
 	private final static String rqInsert = "INSERT INTO commandes (id_utilisateur, etat, moyen_paiement) VALUES(?, ?, ?)";
-	private final static String rqUpdate = "UPDATE commandes SET (etat, moyen_paiement) = (?, ?) WHERE id_commande = ?;";
+	private final static String rqUpdate = "UPDATE commandes SET (id_utilisateur, etat, moyen_paiement) = (?, ?, ?) WHERE id_commande = ?;";
 	private final static String rqDelete = "DELETE FROM commandes WHERE id_commande = ?;";
 
 	private final static String rqSelectList = "SELECT id_commande, etat, moyen_paiement, ts_validation, ts_archivage FROM commandes WHERE id_utilisateur = ? ORDER BY ts_validation;";
@@ -171,9 +171,10 @@ public class CommandeDal extends DataLayerExtended {
 
 			// UPDATE
 			PreparedStatement ps = connection.prepareStatement(rqUpdate);
-			ps.setInt(1,  LocItem.getEtat());
-			ps.setInt(2,  LocItem.getMoyenPaiement());
-			ps.setLong(3,  LocItem.getIdCommande());
+			ps.setLong(1,  LocItem.getIdUtilisateur());
+			ps.setInt(2,  LocItem.getEtat());
+			ps.setInt(3,  LocItem.getMoyenPaiement());
+			ps.setLong(4,  LocItem.getIdCommande());
 
 			int i = ps.executeUpdate();
 
