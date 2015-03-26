@@ -31,6 +31,13 @@
 		<put-attribute name="body" value="/views/utilisateurs/formModifUtilisateur.jsp" />
 	</definition>
 	
+	<!-- DETAILS UTILISATEURS -->
+	<definition name="details-utilisateurs" extends="baseLayout">
+		<put-attribute name="title" value="Information Profil" />
+		<put-attribute name="body" value="/views/utilisateurs/detailsUtilisateur.jsp" />
+	</definition>
+	
+	
 	<!-- COMMENTAIRE -->
 	<definition name="commentaire" extends="baseLayout">
 		<put-attribute name="title" value="Commentaire" />

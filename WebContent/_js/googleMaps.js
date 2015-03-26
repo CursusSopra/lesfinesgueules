@@ -10,12 +10,21 @@ function initialize(){
 	
 	// c'est l'emplacement du paysan
 	var mapOptions = {
-    center: new google.maps.LatLng(44.5403, -78.5463),
-    zoom: 8,
+    center: new google.maps.LatLng($('#latitude').attr('value'), $(longitude).attr('value')),
+    zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
-  var map = new google.maps.Map(mapCanvas, mapOptions)
-	$('#map-canvas').html('haha');
+	
+	var map = new google.maps.Map(mapCanvas, mapOptions);
+	
+	var marqueur = new google.maps.Marker({
+
+        position: new google.maps.LatLng($('#latitude').attr('value'), $(longitude).attr('value')),
+
+        map: map
+
+    });
+	
 
 };
 

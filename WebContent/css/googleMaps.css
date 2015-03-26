@@ -1,0 +1,8 @@
+ /*
+ * Cette balise sert à définir la taille de la fenetre googleMaps
+ */
+ 
+ #map-canvas {
+        width: 500px;
+        height: 400px;
+      }

@@ -18,15 +18,30 @@
 						<span class="glyphicon glyphicon-map-marker"></span>&nbsp;Adresse
 					</span>
 				</h4>
-				<div id="map-canvas"  class="bg-primary"></div>
-				<p>
+				
+			</td>
+		</tr>	
+	</table>
+	
+	<input type="hidden" class="form-control" id="latitude" name="latitude" 
+					value="<s:property value="latitude" />" >
+	<input type="hidden" class="form-control" id="longitude" name="longitude" 
+					value="<s:property value="longitude" />" >
+					
+					
+	<div class="media">
+		<div class="media-left media-top">
+			<div id="map-canvas" class="bg-primary">
+			</div>
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading">Middle aligned media</h4>
+			<p>
 					<s:property value="ligneAdresse1"/><br/>
 					<s:property value="ligneAdresse2"/><br/>
 					<s:property value="codePostal"/><br/>
 					<s:property value="ville"/>
 				</p>
-			</td>
-		</tr>	
-	</table>
-	
+		</div>
+	</div>
 </div>

@@ -12,17 +12,26 @@
 	<table class="table tableverticalalign">
 		<tr>
 			<td>
-				<s:property value="nom" />
-				<s:property value="prenom" />
-				<s:property value="ligneAdresse1" />
-				<s:property value="codePostal" />
-				<s:property value="ville" />
-				<s:property value="tel" />
-				<s:property value="email" />
-				<s:property value="mdp" />
+				<p>
+				Nom : <s:property value="nom" />
+				</p>
+				<p>
+				Prenom : <s:property value="prenom" />
+				</p>
+				<p>
+				Rue : <s:property value="ligneAdresse1" />
+				</p>
+				<p>
+				Code postal : <s:property value="codePostal" />
+				</p>
+				<p>
+				Ville : <s:property value="ville" />
+				</p>
+				<p>
+				Téléphone : <s:property value="tel" />
+				</p>
 			</td>
 		</tr>	
 	</table>
 	
 </div>
-

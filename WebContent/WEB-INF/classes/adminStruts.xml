@@ -25,7 +25,8 @@
     			<param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg</param>
     		</interceptor-ref>
     		<interceptor-ref name="defaultStack"></interceptor-ref>
-			<result name="success" type="tiles">ajout-producteur</result>
+    		 <result name="success" type="redirect">listeProducteurs</result>
+<!-- 			<result name="success" type="tiles">listeProducteurs</result> -->
 			<result name="error" type="tiles">ajout-producteur</result>
 			<result name="none" type="tiles">ajout-producteur</result>
 		</action>
@@ -96,19 +97,19 @@
 		</action>
 		
 		<!-- MODIFICATION TYPE2 -->
-		<action name="modification-type2-produit-form" class="fr.cursusSopra.action.admin.Type2Action" 
+		<action name="modifType2Form" class="fr.cursusSopra.action.admin.Type2Action" 
 			method="modifyType2Form">
 			<result name="success" type="tiles">modificationType2</result>
 		</action>
 		
-		<action name="modification-type1-produit" class="fr.cursusSopra.action.admin.Type2Action" 
+		<action name="modifType2" class="fr.cursusSopra.action.admin.Type2Action" 
 			method="modifyType2">
 			<result name="success" type="tiles">modificationType2</result>
 			<result name="error" type="tiles">modificationType2</result>
 			<result name="none" type="tiles">modificationType2</result>
 		</action>
 		
-		<!-- Test inlineEdit -->
+		<!-- Test inlineEdit  - A SUPPRIMER A TERME-->
 		<action name="testInline" class="fr.cursusSopra.action.admin.Type1Action" 
 			method="modifyType1Form">
 			<result name="success" type="tiles">testInlineEdit</result>
