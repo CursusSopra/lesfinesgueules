@@ -33,11 +33,25 @@ $(function() {
 			// Description (250) et prix
 			output +=
 				'<p>' + elt.description.substring(0,250) + '...</p>' + 
-				'<div class="input-group col-md-12">'+
-					'<span class="input-group-addon">' + $.number(elt.prix, 2, ',', ' ') + ' &euro;</span>'+
+				'<div class="input-group">'+
+					'<span class="input-group-addon">' + $.number(elt.prix, 2, ',', ' ') + ' &euro;</span>';
+			
+			if(elt.disponible) {
+				output += '<input type="number" class="form-control" id="idQuantite1" value="1" min="1" step="1"/>';
+			} else {
+				output += '<input type="number" class="form-control" id="idQuantite1" value="" disabled="disabled"/>';
+			}
+			output +=
 				'</div>';	// input-group
 					
 			output += '<div class="btn-group btn-group-justified" role="group">';
+			
+			// Bouton "Voir les détails"
+			output +=	'<div class="btn-group" role="group">'+
+							'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
+								'<button type="button" class="btn btn-default"><small>D&eacute;tails produit</small></button>'+
+							'</a>'+
+						'</div>';	// btn-group
 			
 			// Activation / Désactivation du bouton "Ajouter au panier"
 			if(elt.disponible) {
@@ -58,14 +72,10 @@ $(function() {
 					'</div>';	// btn-group
 			}
 			
-			// Bouton "Voir les détails"
-			output +=
-						'<div class="btn-group" role="group">'+
-							'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + 
-								'<button type="button" class="btn btn-default"><small>D&eacute;tails produit</small></button>'+
-							'</a>'+
-						'</div>'+	// btn-group
-					'</div>'+
+			
+			
+			// Fermeture des 'div'
+			output +='</div>'+
 				'</div>'+	// btn-group btn-group-justified
 			'</div>';	// col-md-3
 			
