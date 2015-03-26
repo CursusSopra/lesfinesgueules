@@ -25,9 +25,14 @@
 							<s:property value="idProducteur" />
 						</s:param>
 					</s:url>
+					<s:url action="modifyPhotoProducteur" var="mphoto">
+						<s:param name="idProducteur">
+							<s:property value="idProducteur" />
+						</s:param>
+					</s:url>
 				
 					<tr>
-						<td><img alt="image" class="img-responsive img-thumbnail" width="200px" src="/lesfinesgueules/content/images/<s:property value="photo" default="default.jpg"/>" /></td>
+						<td><a href="<s:property value='#mphoto'/>"><img  alt="image" class="img-responsive img-thumbnail" width="200px" src="/lesfinesgueules/content/images/<s:property value="photo" default="default.jpg"/>" /></a></td>
 						<td>
 							<h4>
 								<s:property value="raisonSociale" />

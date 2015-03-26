@@ -26,7 +26,6 @@
     		</interceptor-ref>
     		<interceptor-ref name="defaultStack"></interceptor-ref>
     		 <result name="success" type="redirect">listeProducteurs</result>
-<!-- 			<result name="success" type="tiles">listeProducteurs</result> -->
 			<result name="error" type="tiles">ajout-producteur</result>
 			<result name="none" type="tiles">ajout-producteur</result>
 		</action>
@@ -34,8 +33,14 @@
 <!-- 		MODIFICATION PRODUCTEUR -->
 		<action name="modifyProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteur">
 			<result name="success" type="tiles">ajout-producteur</result>
-			<result name="error" type="tiles">ajout-producteur</result>
-			<result name="none" type="tiles">ajout-producteur</result>
+			<result name="error" type="redirect">listeProducteurs</result>
+			<result name="none" type="redirect">listeProducteurs</result>
+		</action>
+		
+		<action name="modifyPhotoProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteur">
+			<result name="success" type="tiles">modifyPhotoProducteur</result>
+			<result name="error" type="redirect">listeProducteurs</result>
+			<result name="none" type="redirect">listeProducteurs</result>
 		</action>
 		
 		<!-- CREATION PRODUIT -->
