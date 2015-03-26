@@ -23,13 +23,15 @@ public class ProduitDal extends DataLayerExtended {
 
 	/* Properties */
 	private static List<ProduitDal> listeProduitsDal;
+	private static List<ProduitDal> listeProduitsDalRandom;
 	
 	private final static String rqProduit = "SELECT * FROM produits "
 			+ "INNER JOIN types2 USING(id_type2) "
 			+ "INNER JOIN types1 USING(id_type1) " + "WHERE id_produit = ? ";
 	private final static String rqInsert = 
 			"INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) VALUES (?,?,?,?,?,?,?)";
-
+	private final static String rqRandom= "SELECT * FROM produits WHERE disponible=true ORDER BY RANDOM() LIMIT 5";
+	
 	private long idProduit;
 	private String designation;
 	private String description;
@@ -152,7 +154,38 @@ public class ProduitDal extends DataLayerExtended {
 			return listeProduitsDal;
 		}
 	}
+	
+	
 
+
+	public static List<ProduitDal> getListeProduitsDalRandom() {
+		
+		listeProduitsDalRandom = new ArrayList<ProduitDal>();
+		Connection connec = PostgresConnection.GetConnexion();
+		PreparedStatement ps;
+		
+		try{
+			ps = connec.prepareStatement(rqRandom);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				long idProd=rs.getLong("id_produit");
+				//System.out.println(idProd);
+				listeProduitsDalRandom.add(new ProduitDal(idProd));
+				//System.out.println("------------");
+			}
+		}catch (SQLException e) {
+			System.out.println("Connexion BDD impossible !");
+		}finally{
+			System.out.println("Fermeture de la connexion.");
+			try {
+				connec.close();
+			} catch (Exception e1) {
+				System.out.println("Fermeture de la connexion suite problème impossible !");
+			}
+		}
+		return listeProduitsDalRandom;
+	}
 
 	/* Accessors */
 	public long getIdProduit() {
