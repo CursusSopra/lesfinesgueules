@@ -35,6 +35,7 @@
 								<div class="input-group">
 									<a href="<s:property value='#dp'/>"><button type="button" class="btn btn-default">Profil</button></a>
 									<a href="<s:property value='#mp'/>"><button type="button" class="btn btn-info">Modifier</button></a>
+									<a href="<s:property value='#sp'/>"><button type="button" class="btn btn-info">Supprimer</button></a>
 								</div>
 							</p>
 						</td>
