@@ -13,6 +13,12 @@ $(function() {
 	
 });
 
+function majNavBarPanierJSON() {
+	$.getJSON('dataPanierJSON.action', function(data) {
+		majNavBarPanier(data)
+	});
+}
+
 // Met a jour le panier dans la navbar
 function majNavBarPanier(data) {
 
@@ -96,8 +102,6 @@ function addItem(idProduit, quantite) {
 			$('#idMonPanier').dropdown('toggle');
 		}
 	});
-	
-	addClickEventPanier();
 }
 
 // Ajout des events click sur les boutons de gestion du panier

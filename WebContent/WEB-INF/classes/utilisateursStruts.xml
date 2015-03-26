@@ -50,10 +50,21 @@
 		</action>
 
 	
-		<!-- ALLER AU PANIER -->
-        <action name="mon-panier" class="fr.cursusSopra.action.utilisateurs.PanierAction">
-            <result name="success" type="tiles">mon-panier</result>
-        </action>
+		<!-- MON-PANIER -->
+		<action name="mon-panier" class="fr.cursusSopra.action.utilisateurs.PanierAction">
+		    <result name="success" type="tiles">mon-panier</result>
+		</action>
+        
+		<!-- JSP PROPRES AU PANIER (ONGETS/TABS) -->
+		<action name="loginHtml" class="fr.cursusSopra.action.utilisateurs.PanierAction">
+		    <result>/views/utilisateurs/panier/loginHtml.jsp</result>
+		</action>
+		<action name="paiementHtml" class="fr.cursusSopra.action.utilisateurs.PanierAction">
+		    <result>/views/utilisateurs/panier/paiementHtml.jsp</result>
+		</action>
+		<action name="validerCommandeHtml" class="fr.cursusSopra.action.utilisateurs.PanierAction" method="validerCommande">
+		    <result>/views/utilisateurs/panier/validerCommandeHtml.jsp</result>
+		</action>
 	</package>
 
 </struts>

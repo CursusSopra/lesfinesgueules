@@ -90,7 +90,7 @@
 				
 <!-- 				UTILISATEUR -->
 				<li class="dropdown">
-					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
+					<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown" id="idNavBarLogin">
 						<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
 					</a>
 					<div class="dropdown-menu userdropdown">
@@ -102,23 +102,18 @@
 										<i class="fa fa-child "></i> Bienvenu(e), 
 										<s:property value="utilisateur.prenom" /> <s:property value="utilisateur.nom" />
 									</b>
-									<a class="dropdown-toggle btn btn-default navbarbutton" data-toggle="dropdown">
-										<b class="caret"></b>&nbsp;&nbsp; <i class="glyphicon glyphicon-user navbaricon"></i>
-									</a>
-									<div class="dropdown-menu userdropdown">
-										<div class="row addspace">
-											<div class="col-md-12">
-												<a class="btn btn-primary input-block-level form-control" href="<s:url action='mon-compte' />" role="button">
-													Voir mon compte
-												</a>
-											</div>
+									<div class="row addspace">
+										<div class="col-md-12">
+											<a class="btn btn-primary input-block-level form-control" href="<s:url action='mon-compte' />" role="button">
+												Voir mon compte
+											</a>
 										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<a class="btn btn-danger input-block-level form-control" href="<s:url action='' />" role="button">
-													Déconnexion
-												</a>
-											</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<a class="btn btn-danger input-block-level form-control" href="<s:url action='' />" role="button">
+												Déconnexion
+											</a>
 										</div>
 									</div>
 								</div>
