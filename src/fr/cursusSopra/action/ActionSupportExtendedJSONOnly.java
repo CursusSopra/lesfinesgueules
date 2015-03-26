@@ -3,16 +3,20 @@
  */
 package fr.cursusSopra.action;
 
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.cursusSopra.model.Utilisateur;
-
 /**
  * @author Julien Caillon
  */
-public abstract class ActionSupportExtendedJSONOnly extends ActionSupport {
+public abstract class ActionSupportExtendedJSONOnly extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 9179808291856964976L;
+	private Map<String, Object> sessionMap;
 
 	// Utilisateur est valorise uniquement si l'user est logge
 	private Utilisateur utilisateur = null;
@@ -21,6 +25,9 @@ public abstract class ActionSupportExtendedJSONOnly extends ActionSupport {
 	protected long idUtilisateur = -1;
 
 	public ActionSupportExtendedJSONOnly() {
+
+//		sessionMap.put("LocEditId", 2);
+//		int id = (Integer) sessionMap.get("LocEditId");
 
 		//TODO: en attendant le login fonctionnel, on set l'utilisateur a admin par defaut
 		/*
@@ -45,6 +52,32 @@ public abstract class ActionSupportExtendedJSONOnly extends ActionSupport {
 		*/
 		idUtilisateur = 1;
 
+	}
+
+	public String prepareEditCustomLocationForm()throws Exception{
+	    //----some code here------//
+		sessionMap.put("LocEditId", 2);
+	    return SUCCESS;
+	}
+
+	public String editCustomLocation() throws Exception{
+	  int id = (Integer) sessionMap.get("LocEditId");
+//	  sessionMap.remove("LocEditId");
+
+	  return SUCCESS;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> map) {
+		this.sessionMap = map;
+	}
+
+	public Map<String, Object> getSessionMap() {
+		return sessionMap;
+	}
+
+	public void setSessionMap(Map<String, Object> sessionMap) {
+		this.sessionMap = sessionMap;
 	}
 
 	public long getIdUtilisateur() {

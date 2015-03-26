@@ -61,7 +61,13 @@ function majMonPanier(data) {
 
     	if (data.nbItems == 0) {
     		// panier vide
-    		recapHtml += 'Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>';
+    		recapHtml += '<br>Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>';
+        	var pagerHtml = '' +
+        	'<nav>' +
+        	'  <ul class="pager">' +
+        	'    <li class="previous"><a href="listeProduits"><span aria-hidden="true">&larr;</span> Continuer mon shopping</a></li>' +
+        	'  </ul>' +
+        	'</nav>';
     	} else {
     		// maj du popup panier
     		recapHtml += '' +
@@ -103,14 +109,14 @@ function majMonPanier(data) {
     		'		</tr>' +
     		'	</tbody>' +
     		'</table>';
+        	var pagerHtml = '' +
+        	'<nav>' +
+        	'  <ul class="pager">' +
+        	'    <li class="previous"><a href="listeProduits"><span aria-hidden="true">&larr;</span> Continuer mon shopping</a></li>' +
+        	'    <li class="next"><a role="button" id="idAfter1">Procéder au paiement <span aria-hidden="true">&rarr;</span></a></li>' +
+        	'  </ul>' +
+        	'</nav>';
     	}
-    	var pagerHtml = '' +
-    	'<nav>' +
-    	'  <ul class="pager">' +
-    	'    <li class="previous"><a href="listeProduits"><span aria-hidden="true">&larr;</span> Continuer mon shopping</a></li>' +
-    	'    <li class="next"><a role="button" id="idAfter1">Procéder au paiement <span aria-hidden="true">&rarr;</span></a></li>' +
-    	'  </ul>' +
-    	'</nav>';
     	
     	$('#idPanier1').html(recapHtml + pagerHtml);
     	

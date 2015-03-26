@@ -67,8 +67,6 @@
 <!-- 			</form> -->
 
 
-<!-- glyphicon glyphicon-wrench -->
-
 <!-- 			RIGHT ALIGN -->
 			<ul class="nav navbar-nav navbar-right">
 
@@ -79,11 +77,17 @@
 						<b class="caret"></b>&nbsp;&nbsp; <i class="fa fa-cogs navbaricon"></i>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="<s:url action="ajout-producteur-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout Producteur</a></li><!-- PA -->
+						<li class="dropdown-header">Utilisateurs :</li>
+						<li><a href="<s:url action="liste-utilisateurs"/>"><i class="fa fa-arrow-circle-right"></i> Liste des utilisateurs</a></li>
+						<li class="divider"></li>
+						<li class="dropdown-header">Contenu du site :</li>
 						<li><a href="<s:url action="ajout-produit-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout Produit</a></li><!-- PA -->
 						<li><a href="<s:url action="ajout-type1-produit-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout type 1</a></li><!-- JJ -->
 						<li><a href="<s:url action="ajout-type2-produit-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout type 2</a></li><!-- JJ -->
 						<li><a href="<s:url action="modification-type1-produit-form"/>"><i class="fa fa-arrow-circle-right"></i> Modifs type1</a></li><!-- JJ -->
+						<li><a href="<s:url action="ajout-producteur-form"/>"><i class="fa fa-arrow-circle-right"></i> Ajout Producteur</a></li><!-- PA -->
+						<li class="divider"></li>
+						<li class="dropdown-header">Autres? :</li>
 					</ul>
 				</li>
 				
@@ -143,7 +147,7 @@
 									</form>
 								</div>
 							</div>
-							<a class="btn btn-primary input-block-level form-control" href="<s:url action='inscription' />" role="button">
+							<a class="btn btn-primary input-block-level form-control" href="<s:url action='formulaire-inscription' />" role="button">
 								Créer un compte
 							</a>
 						</s:else>

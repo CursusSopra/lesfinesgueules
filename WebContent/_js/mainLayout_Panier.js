@@ -30,9 +30,7 @@ function majNavBarPanier(data) {
 		var strbadge = '';
 		
 		// panier vide
-		output += '' +
-		'	Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>' +
-		'';
+		output += '<br>Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>';
 		
 	} else {
 
