@@ -15,15 +15,29 @@
 			<td class="col-md-3">
 				<div>
 					<input type="hidden" id="idProduit1" value="<s:property value="idProduit"/>"/>
-					<img alt="<s:property value="desgination" default="images/default.jpg"/>" id="idImage1" src="<s:property value="photo"/>" width="300">
-					<div class="input-group">
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-default" id="idButton1" <s:if test="!disponible">disabled="disabled"</s:if>>
-								Ajouter au panier
-							</button>
-						</span>
-						<input type="number" class="form-control" id="idQuantite1" value="1" min="1" step="1"/>
+					<img alt="<s:property value="desgination"/>" id="idImage1" src="<s:property value="photo"  default="images/default.jpg"/>" width="300">
+					
+					<div class="col-md-6">
+						<button type="button" class="btn btn-default" id="idButton1" <s:if test="!disponible">disabled="disabled"</s:if>>
+							Ajouter au panier
+						</button>
 					</div>
+					<div class="col-md-6">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" id="buttonPlus" <s:if test="!disponible">disabled="disabled"</s:if>>
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</span>
+							<input type="text" class="form-control" id="idQuantite1" value="1" disabled="disabled"/>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" id="buttonMoins" <s:if test="!disponible">disabled="disabled"</s:if>>
+									<span class="glyphicon glyphicon-minus"></span>
+								</button>
+							</span>
+						</div>
+					</div>
+						
 				</div>
 			</td>
 			<td>
