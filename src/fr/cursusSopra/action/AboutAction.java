@@ -50,7 +50,7 @@ public class AboutAction extends ActionSupportExtended {
 		listCollab.add(new Collaborateurs("Lyon_vue.jpg", "jc.jpg",
 				"Julien Caillon", "Bootstrap Techical Engineer",
 				"Doit bien être de quelque part", "jc@lesfinesgueules.fr", "",
-				"N'a pas pu supporter Romain plus de six semaines.",
+				"N'a pas pu supporter Romain plus de six semaines. Spécialiste des paniers sans fonds.",
 				"Javascript, surtout la partie Java. Mais CSS ou les emoticons."));
 
 		listCollab
@@ -62,13 +62,13 @@ public class AboutAction extends ActionSupportExtended {
 						"Clermont, France",
 						"bl@lesfinesgueules.fr",
 						"",
-						"A enfin compris que l'intelligence informatique était à Lyon, engage un business d'import-export avec Gergovie.",
+						"A enfin compris que l'intelligence informatique était à Lyon, engage un business d'import-export de fromages avec Gergovie.",
 						"JavaScript, Division entière."));
 
 		listCollab.add(new Collaborateurs("montagne-neige.jpg", "jj.jpg",
 				"Julien Joly", "Tempo Manager", "Annecy, France",
 				"jj@lesfinesgueules.fr", "",
-				"A compris qu'il y avait une vie après Alès.",
+				"A compris qu'il y avait une vie après Alès. Julien rejoint notre agence d'Annecy dès le 30 mars afin d'approcher les rudes montagnards et leur fromages forts.",
 				"Spécialiste du micro-editing."));
 
 		listCollab
