@@ -10,6 +10,14 @@
 <html>
 
 <head>
+<style>
+      #map-canvas {
+        width: 500px;
+        height: 400px;
+      }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,17 +35,20 @@
 <!-- Bootstrap -->
 <!-- Boostrap linter : http://www.bootlint.com/ -->
 <!-- Boostrap switch : http://www.bootstrap-switch.org/examples.html -->
-<!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 <!-- Bootswatch theme -->
-<link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cosmo/bootstrap.min.css" rel="stylesheet"> -->
 
 <!-- Font awesome -->
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <!-- Normalize css (included in boostrap) -->
 <!-- 	<link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet"> -->
+
+<!-- Main css -->
+<link href="./_css/mainLayout.css" rel="stylesheet">
 
 
 <!-- Extra CSS
@@ -88,7 +99,10 @@
 		<ol class="breadcrumb">
 			<s:iterator value="listeBreadcrumbs">
 				<s:set var="targetAction" value="action" />
-				<li><a href="<s:url action="%{#targetAction}" />"><s:property value='nom' /></a></li>
+				<s:set var="myPar" value="queryString" />
+				<s:url action="%{#targetAction}" var="act">
+				</s:url>
+				<li><a href="<s:property value='#act' /><s:property value='queryString' />"><s:property value='nom' /></a></li>
 			</s:iterator>
 			<li class="active"><tiles:getAsString name="title" /></li>
 		</ol>
@@ -108,20 +122,16 @@
 	<footer>
 		<div class="container">
 			<div class="pull-left">
-				<ul class="list-inline">
-					<li><a href="<s:url action='contact' />">Contact</a></li>
-					<li><a href="<s:url action='about' />">À propos</a></li>
-					<li><a href="#" id="idAddItem"><i class="fa fa-plus-square"></i></a></li>
-					<li><a href="#" id="idRemoveItem"><i class="fa fa-minus-square"></i></a></li>
-				</ul>
-			</div>
-
-			<!-- 		<div class="clearfix">&nbsp;</div> -->
-
-			<div class="pull-right">
 				<p class="text-muted">
 					<small>Copyright &copy; 2015, SOPRA-STERIA - All Rights Reserved.</small>
 				</p>
+			</div>
+			<!-- 		<div class="clearfix">&nbsp;</div> -->
+			<div class="pull-right">
+				<ul class="list-inline">
+					<li><a href="<s:url action='contact' />" class="label label-warning">Contact</a></li>
+					<li><a href="<s:url action='about' />" class="label label-danger">À propos</a></li>
+				</ul>
 			</div>
 		</div>
 	</footer>
@@ -139,7 +149,6 @@
 	<!-- jQuery Easing.js utilise pour l'animation des images vers le panier -->
    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 	
-
 	<!-- Angular.js -->
 	<%--     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script> --%>
 

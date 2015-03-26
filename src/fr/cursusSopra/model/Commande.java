@@ -11,6 +11,7 @@ import java.util.List;
 
 import fr.cursusSopra.dataLayer.CommandeDal;
 import fr.cursusSopra.dataLayer.ItemCommandeDal;
+import fr.cursusSopra.tech.EtatCommande;
 import fr.cursusSopra.tech.PostgresConnection;
 /**
  * @author Julien Caillon
@@ -19,13 +20,7 @@ public class Commande {
 
 	private long idCommande = -1;
 	private long idUtilisateur;
-
-	/* etat :
-	  -1 = commande dans le panier, non validee
-		0 = commande validee en cours de livraison
-		1 = commande livree, archivee
-	 */
-	private int etat = -1;
+	private EtatCommande etat = EtatCommande.PANIER;
 	private Timestamp tsValidation;
 	private Timestamp tsArchivage;
 	private int moyenPaiement;
@@ -108,7 +103,7 @@ public class Commande {
 	 */
 	public void addItemCommande(long idProduit, int quantite) {
 		// can only modify the panier! :p
-		if (etat != -1) return;
+		if (etat != EtatCommande.PANIER) return;
 
 		// soit on ajoute la nouvelle quantite a un item existant, soit un cree un item
 		boolean found = false;
@@ -136,7 +131,7 @@ public class Commande {
 	 */
 	public void removeItemCommande(long idProduit, int quantite) {
 		// can only modify the panier! :p
-		if (etat != -1) return;
+		if (etat != EtatCommande.PANIER) return;
 
 		for (ItemCommande item : ListeItems) {
 			if (item.getIdProduit() == idProduit) {
@@ -164,7 +159,7 @@ public class Commande {
 	 * calcul le prix total de this commande
 	 * @return
 	 */
-	public double totalPrixCommande() {
+	public double calculTotalPrixCommande() {
 		double coutTot = -1;
 		try {
 			coutTot = new CommandeDal(this).totalPrixCommande();
@@ -172,6 +167,16 @@ public class Commande {
 			System.err.print(String.format("ERREUR 08 : lors du calcul du prix de la commande id : %d .\n", this.getIdCommande()));
 		}
 		return coutTot;
+	}
+	
+	
+	/** calcul les frais de port
+	 * frais de port = 5% du prix total, ou 0 apres 50euros
+	 * @return
+	 */
+	public double calculFraisDePort() {
+		double coutTot = this.calculTotalPrixCommande();
+		return (coutTot > 50) ? 0 : coutTot * 0.05;
 	}
 
 
@@ -293,14 +298,6 @@ public class Commande {
 		this.idUtilisateur = idUtilisateur;
 	}
 
-	public int getEtat() {
-		return etat;
-	}
-
-	public void setEtat(int etat) {
-		this.etat = etat;
-	}
-
 	public Timestamp getTsValidation() {
 		return tsValidation;
 	}
@@ -336,4 +333,18 @@ public class Commande {
 	public List<ItemCommande> getListeItems() {
 		return ListeItems;
 	}
+
+	public EtatCommande getEtat() {
+		return etat;
+	}
+
+	public void setEtat(EtatCommande etat) {
+		this.etat = etat;
+	}
+	
+	public void setEtat(int etat) {
+		this.etat = EtatCommande.intToEtatCommande(etat);
+	}
+	
+	
 }

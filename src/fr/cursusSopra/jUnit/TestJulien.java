@@ -14,6 +14,7 @@ import org.junit.Test;
 import fr.cursusSopra.model.Commande;
 import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.model.ItemCommande;
+import fr.cursusSopra.tech.EtatCommande;
 import fr.cursusSopra.tech.HostnameConnection;
 import fr.cursusSopra.tech.TypeCommentaire;
 
@@ -55,7 +56,7 @@ public class TestJulien {
 		// Creation object Commande de l'user 2, va retourner le panier (vide)
 		Commande mycom = new Commande(2);
 
-		assertEquals(-1, mycom.getEtat());
+		assertEquals(EtatCommande.PANIER, mycom.getEtat());
 		assertEquals(-1, mycom.getIdCommande());
 
 		// produit id = 1, quantite = 2
@@ -74,7 +75,7 @@ public class TestJulien {
 		assertEquals(2, mycom.getListeItems().size());
 
 		// cout total commande
-		System.out.println("mon cout total = " + mycom.totalPrixCommande());
+		System.out.println("mon cout total = " + mycom.calculTotalPrixCommande());
 
 		// delete un item
 		mycom.removeItemCommande(mycom.getListeItems().get(0).getIdProduit(), 999);
@@ -85,7 +86,7 @@ public class TestJulien {
 		listerItems(mycom.getListeItems());
 
 		// changer l'etat de la commande
-		mycom.setEtat(0);
+		mycom.setEtat(EtatCommande.VALIDEE);
 		mycom.setMoyenPaiement(1);
 
 		// sauver

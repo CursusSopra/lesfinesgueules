@@ -72,12 +72,14 @@ public class Produit {
 		listeCommentaires = Commentaire.getListeCommentaires(idProduit, TypeCommentaire.PRODUIT);
 	}
 	
-	public Produit(long producteur, long type2, double prix, String designation, boolean disponible) {
+	public Produit(long producteur, long type2, double prix, String designation, boolean disponible, String description, String photo) {
 		this.designation = designation;
 		this.prix = prix;
 		this.disponible = disponible;
 		this.type2 = type2;
 		this.producteur = producteur;
+		this.description = description;
+		this.photo = photo;
 	}
 
 	/* METHODS */
@@ -95,14 +97,14 @@ public class Produit {
 	
 	public void save() throws SQLException{
 			
-		ProduitDal pd = new ProduitDal(producteur, type2, prix, designation, disponible);
+		ProduitDal pd = new ProduitDal(producteur, type2, prix, designation, disponible, description, photo);
 		
-		if(description != null){
-			pd.setDescription(description);
-		}
-		if(photo != null){
-			pd.setPhoto(photo);
-		}
+//		if(description != null){
+//			pd.setDescription(description);
+//		}
+//		if(photo != null){
+//			pd.setPhoto(photo);
+//		}
 		
 		idProduit = pd.save();
 		//System.out.println(idProduit);

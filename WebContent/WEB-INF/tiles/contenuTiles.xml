@@ -31,6 +31,7 @@
 		<put-attribute name="body" value="/views/contenu/detailsProduit.jsp" />
 		<put-list-attribute name="moreScripts">
  			<add-attribute value="_js/detailsProduit.js"></add-attribute>
+ 			
  		</put-list-attribute>
 	</definition>
 	
@@ -39,6 +40,9 @@
 	<definition name="detailsProducteur" extends="baseLayout">
 		<put-attribute name="title" value="Détails du producteur" />
 		<put-attribute name="body" value="/views/contenu/detailsProducteur.jsp" />
+		<put-list-attribute name="moreScripts">
+ 			<add-attribute value="_js/googleMaps.js"></add-attribute>
+ 		</put-list-attribute>
 	</definition>
 	
 	<!-- RECHERCHE -->

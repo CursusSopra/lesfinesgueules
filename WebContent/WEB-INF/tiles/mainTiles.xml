@@ -9,9 +9,6 @@
 	<!-- BASE LAYOUT -->
 	<definition name="baseLayout" template="/layouts/_mainLayout.jsp">
 		<put-attribute name="navbar" value="/layouts/_mainNavBar.jsp" />
-		<put-list-attribute name="moreStyles">
-			<add-attribute value="_css/mainLayout.css"></add-attribute>
-		</put-list-attribute>
 	</definition>
 
 	<!-- INDEX -->

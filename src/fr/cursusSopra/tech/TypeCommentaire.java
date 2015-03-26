@@ -14,10 +14,6 @@ public enum TypeCommentaire {
 	private final String nomTable;
 	private final String nomId;
 
-	/**
-	 * Le constructeur ne peut pas être protected ou public
-	 * @param text
-	 */
 	private TypeCommentaire(final String nomTable, final String nomId) {
 		this.nomTable = nomTable;
 		this.nomId = nomId;

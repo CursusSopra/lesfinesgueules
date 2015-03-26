@@ -31,10 +31,16 @@
 
 
 <div class="row" id="divFormProduit" >
-	<form class="form-horizontal" id="formProduit" method="post" action="<s:url action='ajout-produit' />">
+	
+	
+	<s:actionerror/>
+	<s:form action="ajout-produit" method="post" enctype="multipart/form-data">
+<%-- 	<form class="form-horizontal" id="formProduit" method="post" action="<s:url action='ajout-produit' />"> --%>
+
+
 		<fieldset>
 			<legend > Produit :	</legend>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idProduit" class="col-sm-2 control-label">Désignation du Produit : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idProduit" name="designation" value="<s:property value="designation"/>"
@@ -43,7 +49,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idProducteur" class="col-sm-2 control-label">Producteur : </label>
 				<div class="col-sm-4">
 					<select name="idProducteur" id="idProducteur" class="form-control">
@@ -57,7 +63,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idType1" class="col-sm-2 control-label">Boutique : </label>
 				<div class="col-sm-4">
 					<select name="idType1" id="idType1" class="form-control">
@@ -71,30 +77,22 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idListType2" class="col-sm-2 control-label">Type de produit : </label>
 				<div class="col-sm-4">
 					<select name="idType2" id="idListType2" class="form-control">
-					
-					
-<!-- 						<option value="-1">Sélectionnez un type de produit</option> -->
-<%-- 						<s:iterator value="listeType2"> --%>
-<%-- 							<option value="<s:property value="idTyp2Produit"/>"> --%>
-<%-- 								<s:property value="type2"/> --%>
-<!-- 							</option> -->
-<%-- 						</s:iterator> --%>
 			        </select>
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idPrix" class="col-sm-2 control-label">Prix du produit : </label>
 				<div class="col-sm-2">
 					<input type="number" step="0.01" class="form-control" id="idPrix" name="prix" value="<s:property value="prix" />" >
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-6">
 					<div class="checkbox">
 						<label> <input type="checkbox"id="idDisponible" name="disponible" value="1"
@@ -104,27 +102,41 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idDescription" class="col-sm-2 control-label">Description du produit : </label>
 				<div class="col-sm-6">
 					<textarea class="form-control" name="description" id="idDescription" rows="5" placeholder="Vous avez droit à 100 caractères"><s:property value="description" /></textarea>
 				</div>
 			</div>
 			
-			<div class="form-group">
-				<label for="idPhotoProduit" class="col-sm-2 control-label">Photo du produit : </label>
+			<div class="form-group row">
 				<div class="col-sm-6">
-					<input type="file" name="photoProduit" id="idPhotoProduit" />
+					<s:file name="photoProduit" label="User Image"> <s:property value="imageName" /></s:file>
 				</div>
 			</div>
+			
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="idPhotoProduit" class="col-sm-2 control-label">Photo du produit : </label> -->
+<!-- 				<div class="col-sm-6"> -->
+<!-- 					<input type="file" name="photoProduit" id="idPhotoProduit" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		</fieldset>
-		
-		
 		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
-			</div>
-		</div>
-	</form>
+				<s:submit value="Upload" align="center"></s:submit>
+			</div> 
+		</div> 
+		
+		
+		
+<!-- 		<div class="form-group"> -->
+<!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
+<!-- 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		
+<!-- 	</form> -->
+	</s:form>
 </div>

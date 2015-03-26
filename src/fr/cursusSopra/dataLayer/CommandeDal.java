@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cursusSopra.model.Commande;
+import fr.cursusSopra.tech.EtatCommande;
 import fr.cursusSopra.tech.PostgresConnection;
 /**
  * @author Julien Caillon
@@ -53,10 +54,10 @@ public class CommandeDal extends DataLayerExtended {
 	 * @throws SQLException
 	 */
 	public void utilisateur(long idUtilisateur) throws SQLException {
-		int etat = -1;
+		EtatCommande etat = EtatCommande.PANIER;
 		PreparedStatement ps = connection.prepareStatement(rqSelPanier);
 		ps.setLong(1, idUtilisateur);
-		ps.setInt(2, etat);
+		ps.setInt(2, etat.toInt());
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
 			LocItem.setIdCommande(rs.getLong("id_commande"));
@@ -172,7 +173,7 @@ public class CommandeDal extends DataLayerExtended {
 			// UPDATE
 			PreparedStatement ps = connection.prepareStatement(rqUpdate);
 			ps.setLong(1,  LocItem.getIdUtilisateur());
-			ps.setInt(2,  LocItem.getEtat());
+			ps.setInt(2,  LocItem.getEtat().toInt());
 			ps.setInt(3,  LocItem.getMoyenPaiement());
 			ps.setLong(4,  LocItem.getIdCommande());
 
@@ -189,7 +190,7 @@ public class CommandeDal extends DataLayerExtended {
 			// INSERT
 			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
 			ps.setLong(1,  LocItem.getIdUtilisateur());
-			ps.setInt(2,  LocItem.getEtat());
+			ps.setInt(2,  LocItem.getEtat().toInt());
 			ps.setInt(3,  LocItem.getMoyenPaiement());
 
 			ps.executeUpdate();

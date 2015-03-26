@@ -6,13 +6,13 @@ package fr.cursusSopra.tech;
 /**
  * @author Julien Caillon
  */
-public enum EtatCommentaire {
+public enum EtatCommande {
 	// Les objets énumérés sont forcément au début de la déclaration, ils doivent faire appel à un des constructeurs définis
-	REJETE(-1), ENATTENTE(0), VALIDE(1);
+	PANIER(-1), VALIDEE(0), ARCHIVEE(1);
 
 	private final int etat;
 
-	private EtatCommentaire(int etat) {
+	private EtatCommande(int etat) {
 		this.etat = etat;
 	}
 
@@ -20,17 +20,17 @@ public enum EtatCommentaire {
 		return etat;
 	}
 
-	public static EtatCommentaire intToEtatCommentaire(int i) {
-		EtatCommentaire state;
+	public static EtatCommande intToEtatCommande(int i) {
+		EtatCommande state;
 		switch (i) {
 			case -1:
-				state = REJETE;
+				state = PANIER;
 				break;
 			case 0:
-				state = ENATTENTE;
+				state = VALIDEE;
 				break;
 			default:
-				state = VALIDE;
+				state = ARCHIVEE;
 				break;
 		}
 		return state;

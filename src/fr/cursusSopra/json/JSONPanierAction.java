@@ -8,19 +8,20 @@ import java.util.List;
 
 import com.opensymphony.xwork2.Action;
 
-import fr.cursusSopra.action.ActionSupportExtended;
+import fr.cursusSopra.action.ActionSupportExtendedJSONOnly;
 import fr.cursusSopra.model.Commande;
 import fr.cursusSopra.model.ItemCommande;
 /**
  * @author Julien Caillon
  */
-public class JSONPanierAction extends ActionSupportExtended {
+public class JSONPanierAction extends ActionSupportExtendedJSONOnly {
 
 	private static final long serialVersionUID = -1505158767409145518L;
 
 	private int nbItems = 0;
 	private List<ItemCommande> listeItems = new ArrayList<ItemCommande>();
 	private double coutTotal = 0;
+	private double fraisPort = 0;
 
 	// proprietes utilisees pour ajouter et enlever un item
 	private boolean updateSuccessful = false;
@@ -49,7 +50,8 @@ public class JSONPanierAction extends ActionSupportExtended {
 		Commande panier = new Commande(idUtilisateur);
 		listeItems = panier.getListeItems();
 		nbItems = listeItems.size();
-		coutTotal = panier.totalPrixCommande();
+		coutTotal = panier.calculTotalPrixCommande();
+		fraisPort = panier.calculFraisDePort();
 		return Action.SUCCESS;
 	}
 
@@ -81,4 +83,9 @@ public class JSONPanierAction extends ActionSupportExtended {
 	public boolean isUpdateSuccessful() {
 		return updateSuccessful;
 	}
+
+	public double getFraisPort() {
+		return fraisPort;
+	}
+	
 }

@@ -10,11 +10,13 @@ public class Breadcrumbs {
 
 	private String nom;
 	private String action;
+	private String queryString;
 
-	public Breadcrumbs(String nom, String action) {
+	public Breadcrumbs(String nom, String action, String queryString) {
 		super();
 		this.nom = nom;
 		this.action = action;
+		this.queryString = queryString;
 	}
 
 	public String getNom() {
@@ -23,6 +25,10 @@ public class Breadcrumbs {
 
 	public String getAction() {
 		return action;
+	}
+
+	public String getQueryString() {
+		return queryString;
 	}
 
 }

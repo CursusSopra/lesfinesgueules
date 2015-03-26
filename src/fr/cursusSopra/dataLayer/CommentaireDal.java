@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.cursusSopra.model.Commentaire;
-import fr.cursusSopra.tech.EtatCommentaire;
 import fr.cursusSopra.tech.PostgresConnection;
 import fr.cursusSopra.tech.TypeCommentaire;
 
@@ -67,7 +66,7 @@ public class CommentaireDal extends DataLayerExtended {
 					rs.getString("avis"),
 					rs.getInt("note"),
 					rs.getTimestamp("ts_creation"),
-					EtatCommentaire.intToEtatCommentaire(rs.getInt("etat")),
+					rs.getInt("etat"),
 					rs.getString("nom"),
 					rs.getString("prenom"),
 					rs.getString("photo"),
