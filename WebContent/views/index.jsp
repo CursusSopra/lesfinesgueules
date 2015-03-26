@@ -13,4 +13,8 @@
 	<p><a href="<s:url action="ajout-type2-produit-form"/>">Ajout type 2</a></p><!-- JJ -->
 	<p><a href="<s:url action="modification-type1-produit-form"/>">Liste des Types 1-Modification</a></p><!-- JJ -->
 	<p><a href="<s:url action="testInline"/>">Test Inline</a></p>
+	
+	<p><a href="<s:url action="listeUtilisateurs"/>"> Liste des utilisateurs</a></p><!-- CECILE -->
+	<p><a href="<s:url action="formulaire"/>"> Ajout Utilisateur</a></p><!-- CECILE -->
+	
 </div>

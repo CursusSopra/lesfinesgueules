@@ -9,7 +9,7 @@
 		<tbody>
 			<s:iterator value="listeUtilisateurs" status="stat">
 				<s:iterator>
-					<s:url action="detailProfil" var="dp">
+					<s:url action="details" var="dp">
 						<s:param name="idUtilisateur">
 							<s:property value="idUtilisateur" />
 						</s:param>
@@ -45,7 +45,7 @@
 		</tbody>
 	</table>
 <!-- lien pour obtenir la page (à placer dans l'index) -->
-<a href="<s:url action="listeUtilisateurs"/>"> lien</a>
+<!--<a href="<s:url action="listeUtilisateurs"/>"> lien</a>-->
 </div>
 
 
