@@ -95,7 +95,8 @@ public class ProducteurAction extends ActionSupportExtended implements
 				&& codePostalOK && villeOK && latitudeOK && longitudeOK
 				&& descriptionOK && delaiLivraisonOK && imageOK;
 		
-		long idProducteur = 0;
+		// ça m'écrase mon idProducteur
+//		long idProducteur = 0;
 		
 		if (firstDisplay) {
 			try {

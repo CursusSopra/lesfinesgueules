@@ -40,14 +40,12 @@
 							<p>
 								<s:property value="description" />
 							</p>
-							<p>
 								<div class="input-group">
 									<span class="input-group-addon"><s:property value="delaiLivraison" /> jours</span>
 									<a href="<s:property value='#dp'/>"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>
 									<a href="<s:property value='#mp'/>"><button type="button" class="btn btn-info">Modifier le Producteur</button></a>
 									
 								</div>
-							</p>
 						</td>
 					</tr>
 				</s:iterator>
