@@ -18,6 +18,7 @@
 		<put-attribute name="body" value="/views/admin/formPhotoProducteur.jsp" />
 	</definition>
 	
+		
 	<!-- FORM PRODUITS -->
 	<definition name="ajout-produit" extends="baseLayout">
 		<put-attribute name="title" value="Ajout d'un produit" />
