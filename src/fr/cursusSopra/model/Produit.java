@@ -95,6 +95,17 @@ public class Produit {
 		return listeProduits;
 	}
 	
+	public static List<Produit> getListeProduitsRandom() throws SQLException {
+		List<Produit> listeProduitsRandom = new ArrayList<Produit>();
+		List<ProduitDal> lpdalr = ProduitDal.getListeProduitsDalRandom();
+		
+		for (int i = 0; i < lpdalr.size(); i++) {
+			Produit prod = new Produit( lpdalr.get(i).getIdProduit() );
+			listeProduitsRandom.add(prod);
+		}
+		return listeProduitsRandom;
+	}
+	
 	public void save() throws SQLException{
 			
 		ProduitDal pd = new ProduitDal(producteur, type2, prix, designation, disponible, description, photo);
