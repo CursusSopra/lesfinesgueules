@@ -1,7 +1,7 @@
 /*
  * @author Julien Caillon
  * 
- * Fonctions du panier
+ * Fonctions du panier dans la navBar
  */
 
 // on page load
@@ -11,10 +11,6 @@ $(function() {
 		majNavBarPanier(data)
 	});
 	
-	// formatte les nombres dans un span avec class="myprice"
-	$('span.price').number(true, 2, ',', ' ');
-
-	addClickEventPanier();
 });
 
 // Met a jour le panier dans la navbar
@@ -28,7 +24,7 @@ function majNavBarPanier(data) {
 		var strbadge = '';
 		
 		// panier vide
-		var output = '' +
+		output += '' +
 		'	Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>' +
 		'';
 		
@@ -37,7 +33,7 @@ function majNavBarPanier(data) {
 		var strbadge = data.nbItems;
 		
 		// maj du popup panier
-		var output = '' +
+		output += '' +
 		'<table class="table table-striped table-hover table-condensed tablepanier">' +
 		'	<tbody>' +
 		'		<tr class="info">' +
