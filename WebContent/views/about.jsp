@@ -43,7 +43,7 @@
 				<!-- end front panel -->
 				<div class="back">
 					<div class="header">
-						<h5 class="motto"><s:property value="motto" /></h5>
+						<h5 class="motto"><s:property value="profession" /></h5>
 					</div>
 					<div class="content">
 						<div class="main">

@@ -42,41 +42,60 @@ public class AboutAction extends ActionSupportExtended {
 						"Après avoir géré les trains à l'heure de la SNCF, Cécile a décidé de se consacrer au bien et bon manger de sa région.",
 						"Développement d'interfaces Struts."));
 
-		listCollab.add(new Collaborateurs("menthon-st-bernard02.jpg", "nm.jpg",
-				"Nicolas Métifiot", "Google Maps Chief-Engineer",
-				"Menthon-Saint-Bernard, France", "nm@lesfinesgueules.fr", "",
-				"Après avoir ravaillé à l'intérieur des nano-composants, essaie de les maîtriser de l'extérieur. Il y arrive le bougre !", "Polymorphisme, Java, = et ==, ..."));
+		listCollab
+				.add(new Collaborateurs(
+						"menthon-st-bernard02.jpg",
+						"nm.jpg",
+						"Nicolas Métifiot",
+						"Google Maps Chief-Engineer",
+						"Menthon-Saint-Bernard, France",
+						"nm@lesfinesgueules.fr",
+						"",
+						"Après avoir travaillé à l'intérieur des nano-composants, essaie de les maîtriser de l'extérieur. Il y arrive le bougre !",
+						"Polymorphisme, Java, = et ==, ..."));
 
-		listCollab.add(new Collaborateurs("Lyon_vue.jpg", "jc.jpg",
-				"Julien Caillon", "Bootstrap Techical Engineer",
-				"Doit bien être de quelque part", "jc@lesfinesgueules.fr", "",
-				"N'a pas pu supporter Romain plus de six semaines. Spécialiste des paniers sans fonds.",
-				"Javascript, surtout la partie Java. Mais CSS ou les emoticons."));
+		listCollab
+				.add(new Collaborateurs(
+						"Lyon_vue.jpg",
+						"jc.jpg",
+						"Julien Caillon",
+						"Bootstrap Techical Engineer",
+						"London (MI6), UK",
+						"jc@lesfinesgueules.fr",
+						"",
+						"N'a pas pu supporter Romain plus de six semaines. Spécialiste des paniers sans fonds.",
+						"Javascript, surtout la partie Java. Mais aussi CSS et les emoticons."));
 
 		listCollab
 				.add(new Collaborateurs(
 						"clermont.jpg",
 						"bl.jpg",
 						"Benoît Lacroix",
-						"Lead",
+						"Leader",
 						"Clermont, France",
 						"bl@lesfinesgueules.fr",
 						"",
 						"A enfin compris que l'intelligence informatique était à Lyon, engage un business d'import-export de fromages avec Gergovie.",
 						"JavaScript, Division entière."));
 
-		listCollab.add(new Collaborateurs("montagne-neige.jpg", "jj.jpg",
-				"Julien Joly", "Tempo Manager", "Annecy, France",
-				"jj@lesfinesgueules.fr", "",
-				"A compris qu'il y avait une vie après Alès. Julien rejoint notre agence d'Annecy dès le 30 mars afin d'approcher les rudes montagnards et leur fromages forts.",
-				"Spécialiste du micro-editing."));
+		listCollab
+				.add(new Collaborateurs(
+						"montagne-neige.jpg",
+						"jj.jpg",
+						"Julien Joly",
+						"Tempo Manager",
+						"Annecy, France",
+						"jj@lesfinesgueules.fr",
+						"",
+						"A compris qu'il y avait une vie après Alès. Julien rejoint notre agence d'Annecy dès le 30 mars afin d'approcher les rudes montagnards et leur fromages forts.",
+						"Spécialiste du micro-editing."));
 
 		listCollab
 				.add(new Collaborateurs(
 						"lyon-quai-saone-julien-reboulet-300x200.jpg",
 						"rg.png",
 						"Romain Guigard",
-						"Responsable BDD",
+						"Responsable BDD (Bonne-mère, Détente, Déjeuner)",
 						"Lyon, France",
 						"rg@lesfinesgueules.fr",
 						"",
@@ -84,11 +103,15 @@ public class AboutAction extends ActionSupportExtended {
 						"COBOL, Pac, POO, un peu de Java aussi mais que le jeudi soir..."));
 
 		listCollab
-				.add(new Collaborateurs("CoucherSoleilMinimes.jpg",
-						"gavroche.jpg", "Gavroche",
+				.add(new Collaborateurs(
+						"CoucherSoleilMinimes.jpg",
+						"gavroche.jpg",
+						"Gavroche",
 						"Responsable du bien-être et des approvisionnements",
-						"Morlaix, France", "gavroche@lesfinesgueules.fr", "",
-						"A testé pour vous tous les bouchons lyonnais",
+						"Morlaix, France",
+						"gavroche@lesfinesgueules.fr",
+						"",
+						"A testé pour vous tous les bouchons lyonnais, afin de trouver les meilleurs producteurs de France et surtout de Navarre",
 						"Sommeil flash, veille technologique sur les bons plats lyonnais, gardiennage des zones sensibles (salle de déjeuner,...)."));
 
 		listCollab.add(new Collaborateurs("CharlieHebdo.png", "dl.png",
