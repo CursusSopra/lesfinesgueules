@@ -25,12 +25,7 @@
     			<param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg</param>
     		</interceptor-ref>
     		<interceptor-ref name="defaultStack"></interceptor-ref>
-    		 <result name="success" type="redirectAction">
-    			<param name="fr.cursusSopra.action.contenu.ListeProducteursAction"></param>
-           		<param name="execute"></param>
-           		<param name="success"></param>
-          		<param name="tiles">listeProducteurs</param>
-       		 </result>
+    		 <result name="success" type="redirect">listeProducteurs</result>
 <!-- 			<result name="success" type="tiles">listeProducteurs</result> -->
 			<result name="error" type="tiles">ajout-producteur</result>
 			<result name="none" type="tiles">ajout-producteur</result>
