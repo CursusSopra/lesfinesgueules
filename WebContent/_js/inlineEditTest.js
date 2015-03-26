@@ -10,17 +10,17 @@ $.fn.editable.defaults.mode = 'popup';
 // Zone de test
 $(document).ready(function() {
 	
+	
 	$('#produit').click(function() {
 		loadProduit();
 	});
 	
-	
-	var idType1 = $('#designation').val();
+	//Liste de parametres utilisés dans l'action
 	var designation = $('#hiddenData').attr("data-designation");
 	var description = $('#hiddenData').attr("data-description");
 	var prix = $('#hiddenData').attr("data-prix");
 	var action = $('#hiddenData').attr("data-lienUrl");
-	 $('#address').editable({
+	 $('.address a').editable({
 		 url: '/post',
 		 title: 'Enter city, street and building #',
 		 value: {
@@ -34,31 +34,53 @@ $(document).ready(function() {
 });
 
 
-function loadType2() {	
-	var idType1 = $('#type1').val();
-	var action = $('#hiddenData').attr("data-lienUrl");
-	console.log(idType1);
-	$.getJSON('getJSONType2?idType1=' + idType1)
+function loadProduit() {	
+	
+	var idProduit= $('#this').attr("id");
+	$.getJSON('getJSONTest?idProduit=' + idProduit)
 	.success(function (data) {
         var szOption = '';
-        $.each(data.listType2, function (index, elt) {
-        	
+        $.each(data.p, function (index, elt) {
+	        szOption += '<span id="hiddenData"';
+	        szOption +=	'data-lienUrl=""/>" ';
+	        szOption +=	'data-designation="'+ elt.designation +'" ';
+	        szOption +=	'data-description="' + elt.description + '" ';
+	        szOption +=	'data-prix="' + elt.prix + '" ';
+	        szOption += 'data-idProduit="' + elt.idProduit +'" ';
+	        szOption +=	'></span>';
+	        
+	        $('#retourJSON').html(szOption);
         });
-
-        $('#retourJSON').html(szOption);
-        $('.list-group-item a').editable({
-    		
-    		clear : false,
-    	    params: function(params) {
-    	        //originally params contain pk, name and value
-    	        params.a = 1;
-    	        return params;
-    	        }
-
-    	});
+        //AJOUTER LA FONCTION EDITABLE ICI
+//        $('.list-group-item a').editable({
+//    		
+//    		clear : false,
+//    	    params: function(params) {
+//    	        //originally params contain pk, name and value
+//    	        params.a = 1;
+//    	        return params;
+//    	        }
+//
+//    	});
     })
     .fail(function () {
     });
+	var idProduit = $('#hiddenData').attr("data-idProduit");
+	var designation = $('#hiddenData').attr("data-designation");
+	var description = $('#hiddenData').attr("data-description");
+	var prix = $('#hiddenData').attr("data-prix");
+	
+	$('#'+idProduit).editable({
+		
+		 url: '/post',
+		 title: 'Enter city, street and building #',
+		 value: {
+
+			designation: designation,
+			description: description,
+			prix: prix
+		 }
+		 });
 }
 
 //Fonction permettant de créer le formulaire à champs multiples en popup

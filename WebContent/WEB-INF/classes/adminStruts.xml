@@ -115,8 +115,8 @@
 		</action>
 		
 		<!-- Test inlineEdit  - A SUPPRIMER A TERME-->
-		<action name="testInline" class="fr.cursusSopra.action.admin.Type1Action" 
-			method="modifyType1Form">
+		<action name="testInline" class="fr.cursusSopra.action.tests.InlineFormAction" 
+			method="execute">
 			<result name="success" type="tiles">testInlineEdit</result>
 			<result name="error" type="tiles">testInlineEdit</result>
 			<result name="none" type="tiles">testInlineEdit</result>

@@ -22,5 +22,10 @@
 		<action name="removeItemJSON" class="fr.cursusSopra.json.JSONPanierAction" method="removeItem">
 			<result name="success" type="json" />
 		</action>
+		
+		<!-- Action JSON pour les tests -->
+		<action name="getJSONTest" class="fr.cursusSopra.json.JSONTestAction">
+			<result type="json" />
+		</action>
 	</package>
 </struts>
