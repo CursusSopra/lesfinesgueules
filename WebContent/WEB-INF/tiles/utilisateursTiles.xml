@@ -47,10 +47,10 @@
 	<!-- PANIER -->
 	<definition name="mon-panier" extends="baseLayout">
 		<put-attribute name="title" value="Mon panier" />
-		<put-attribute name="body" value="/views/utilisateurs/monPanier.jsp" />
+		<put-attribute name="body" value="/views/utilisateurs/panier/monPanier.jsp" />
 		<put-list-attribute name="moreScripts">
  			<add-attribute value="_js/monPanier.js"></add-attribute>
  		</put-list-attribute>
 	</definition>
-
+	
 </tiles-definitions>

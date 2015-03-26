@@ -113,14 +113,17 @@ public class Commande {
 				quantite = quantite + item.getQuantite();
 				if (quantite <= 999) {
 					item.setQuantite(quantite);
+				} else {
+					quantite = 999;
 				}
+				this.save();
 			}
 		}
 		if (!found) {
 			ListeItems.add(new ItemCommande(idProduit, quantite));
+			this.save();
+			getMyListOfItems();
 		}
-
-		this.save();
 	}
 
 

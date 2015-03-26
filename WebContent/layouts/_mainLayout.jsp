@@ -16,7 +16,7 @@
 
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="images/favicon.ico">
+<link rel="icon" href="images/site/favicon.ico">
 
 <!-- PAGE TITLE -->
 <title><tiles:getAsString name="title" /></title>
@@ -75,8 +75,8 @@
 	<!-- HEADER -->
 	<header>
 		<div class="container">
-			<object type="image/svg+xml" data="images/logo_lfg_new.svg">
-				<img src="images/logo_lfg.png" />
+			<object type="image/svg+xml" data="images/site/logo_lfg_new.svg">
+				<img src="images/site/logo_lfg.png" />
 			</object>
 			<!-- 		<p class="text-muted text-right">Vente en ligne de produits régionaux en Rhône-Alpes</p> -->
 		</div>
