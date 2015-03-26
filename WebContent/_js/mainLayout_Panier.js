@@ -7,7 +7,9 @@
 // on page load
 $(function() {
 	
-	majNavBarPanier();
+	$.getJSON('dataPanierJSON.action', function(data) {
+		majNavBarPanier(data)
+	});
 	
 	// formatte les nombres dans un span avec class="myprice"
 	$('span.price').number(true, 2, ',', ' ');
@@ -16,73 +18,74 @@ $(function() {
 });
 
 // Met a jour le panier dans la navbar
-function majNavBarPanier() {
+function majNavBarPanier(data) {
 
-	$.getJSON('dataPanierJSON.action', function(data) {
+	var output = '' +
+	'<b class="panier-title"><i class="fa fa-cart-arrow-down"></i> Mon panier</b>';
+	
+	// maj du badge "nombre d'items dans le panier"
+	if (data.nbItems == 0) {
+		var strbadge = '';
 		
+		// panier vide
 		var output = '' +
-		'<b class="panier-title"><i class="fa fa-cart-arrow-down"></i> Mon panier</b>';
+		'	Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>' +
+		'';
 		
-		// maj du badge "nombre d'items dans le panier"
-		if (data.nbItems == 0) {
-			var strbadge = '';
-			
-			// panier vide
-			var output = '' +
-			'	Oups! Mon panier est vide! Il est temps que je commence à acheter <i class="fa fa-heart"></i>' +
-			'';
-			
-		} else {
+	} else {
 
-			var strbadge = data.nbItems;
-			
-			// maj du popup panier
-			var output = '' +
-			'<table class="table table-striped table-hover table-condensed tablepanier">' +
-			'	<tbody>' +
-			'		<tr class="info">' +
-			'			<th><i class="fa fa-level-down"></i></th>' +
-			'			<th>Produit</th>' +
-			'			<th class="text-right">Prix</th>' +
+		var strbadge = data.nbItems;
+		
+		// maj du popup panier
+		var output = '' +
+		'<table class="table table-striped table-hover table-condensed tablepanier">' +
+		'	<tbody>' +
+		'		<tr class="info">' +
+		'			<th><i class="fa fa-level-down"></i></th>' +
+		'			<th>Produit</th>' +
+		'			<th class="text-right">Prix</th>' +
+		'		</tr>';
+		
+		
+		// liste des items
+		$.each(data.listeItems, function(index, elt) {
+			output += '' +
+			'		<tr>' +
+			'			<td><i class="fa fa-times"></i> <b>' + elt.quantite + '</b></td>' +
+			'			<td><a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + elt.designation + '</a></td>' +
+			'			<td class="text-right">' +  $.number(elt.prix, 2, ',', ' ') + ' &euro;</td>' +
 			'		</tr>';
-			
-			
-			// liste des items
-			$.each(data.listeItems, function(index, elt) {
-				output += '' +
-				'		<tr>' +
-				'			<td><i class="fa fa-times"></i> <b>' + elt.quantite + '</b></td>' +
-				'			<td><a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + elt.designation + '</a></td>' +
-				'			<td class="text-right">' +  $.number(elt.prix, 2, ',', ' ') + ' &euro;</td>' +
-				'		</tr>';
-			});
-			
-			
-			// cout total & frais de port
-			output += '' +
-			'		<tr class="warning">' +
-			'			<td colspan="2">Total</td>' +
-			'			<td class="text-right">' + $.number(data.coutTotal, 2, ',', ' ') + ' &euro;</td>' +
-			'		</tr>' +
-			'		<tr class="warning">' +
-			'			<td colspan="2">Frais de port</td>' +
-			'			<td class="text-right">' + $.number(data.fraisPort, 2, ',', ' ') + ' &euro;</td>' +
-			'		</tr>' +
-			'	</tbody>' +
-			'</table>';
-			
-			//lien vers panier
-			output += '' +
-			'<a href="mon-panier" class="btn btn-success input-block-level form-control">' +
-			'Aller au panier' +
-			'</a>';
-				
-		}
+		});
 		
-		$('#idBadgePanier').html(strbadge);
-		$('#idMonPanierContent').html(output);
+		
+		// cout total & frais de port
+		output += '' +
+		'		<tr class="warning">' +
+		'			<td colspan="2">Total</td>' +
+		'			<td class="text-right">' + $.number(data.coutTotal, 2, ',', ' ') + ' &euro;</td>' +
+		'		</tr>' +
+		'		<tr class="warning">' +
+		'			<td colspan="2">Frais de port</td>' +
+		'			<td class="text-right">' + $.number(data.fraisPort, 2, ',', ' ') + ' &euro;</td>' +
+		'		</tr>' +
+		'	</tbody>' +
+		'</table>';
+		
+		//lien vers panier
+		output += '' +
+		'<a href="mon-panier" id="idLienPanier" class="btn btn-success input-block-level form-control">' +
+		'Aller au panier' +
+		'</a>';
+			
+	}
+	
+	$('#idBadgePanier').html(strbadge);
+	$('#idMonPanierContent').html(output);
+	
+	$("#idLienPanier").unbind('click').click(function() {
+		window.location.replace($(this).attr("href"));
+    });
 
-	});
 }
 
 // Ajout d'un item produit dans le panier avec une certaine quantite
@@ -90,7 +93,7 @@ function addItem(idProduit, quantite) {
 	$.getJSON('addItemJSON.action?idProduit=' + idProduit + '&quantite=' + quantite, function(data) {
 		if(data.updateSuccessful) {
 			// maj du panier dans la navbar!
-			majNavBarPanier();
+			majNavBarPanier(data);
 			
 			// on affiche le popup panier!
 			sleep(800);

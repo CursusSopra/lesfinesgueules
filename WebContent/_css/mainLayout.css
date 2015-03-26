@@ -3,20 +3,13 @@
  */
 
 /* Global Styles */
-html, body {
-	height: 100%;
-/* 	background-color: #222222; */
-/* 	background-image:url(../images/body_background.jpg); */
-/* 	background-repeat:repeat; */
-}
-
 body {
 	padding-top: 50px;
 	/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 .bodycontent {
-	margin: 0px 15px;
+	margin: 5px 20px;
 }
 
 header {
@@ -76,6 +69,14 @@ blockquote {
 	vertical-align: top;
 }
 
+.monpanier-iconsize {
+	-webkit-transform: scaleX(1.5) scaleY(1.5);
+	-moz-transform: scaleX(1.5) scaleY(1.5);
+}
+
+.monpanier-table-buttons {
+	width:120px;
+}
 
 /* ################################################################################################### */
 /* START OF BOOTSWATCH THEME */

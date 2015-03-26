@@ -101,10 +101,8 @@
 
 
 		<!-- PAGE BODY -->
-		<div class="row">
-			<div class="col-lg-12 bodycontent">
+		<div class="bodycontent">
 				<tiles:insertAttribute name="body" />
-			</div>
 		</div>
 
 	</div>

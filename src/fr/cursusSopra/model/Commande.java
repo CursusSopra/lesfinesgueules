@@ -138,6 +138,8 @@ public class Commande {
 				quantite = item.getQuantite() - quantite;
 				if (quantite > 0) {
 					item.setQuantite(quantite);
+					System.out.println(quantite);
+					this.save();
 				} else {
 					//  on supprime l'item de la base et on recree la liste des items de cette commande ensuite
 					try {
@@ -145,13 +147,10 @@ public class Commande {
 					} catch (SQLException e) {
 						System.err.print(String.format("ERREUR 05 : lors de la suppression de l'item id : %d .\n", item.getIdItemCommande()));
 					}
+					getMyListOfItems();
 				}
 			}
 		}
-
-		getMyListOfItems();
-
-		this.save();
 	}
 
 
@@ -168,8 +167,8 @@ public class Commande {
 		}
 		return coutTot;
 	}
-	
-	
+
+
 	/** calcul les frais de port
 	 * frais de port = 5% du prix total, ou 0 apres 50euros
 	 * @return
@@ -341,10 +340,10 @@ public class Commande {
 	public void setEtat(EtatCommande etat) {
 		this.etat = etat;
 	}
-	
+
 	public void setEtat(int etat) {
 		this.etat = EtatCommande.intToEtatCommande(etat);
 	}
-	
-	
+
+
 }
