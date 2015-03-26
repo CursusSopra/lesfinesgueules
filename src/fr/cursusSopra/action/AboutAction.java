@@ -89,7 +89,7 @@ public class AboutAction extends ActionSupportExtended {
 						"Responsable du bien-être et des approvisionnements",
 						"Morlaix, France", "gavroche@lesfinesgueules.fr", "",
 						"A testé pour vous tous les bouchons lyonnais",
-						"Sommeil flash, veille technologique sur les bons plats lyonnais"));
+						"Sommeil flash, veille technologique sur les bons plats lyonnais, gardiennage des zones sensibles (salle de déjeuner,...)."));
 
 		listCollab.add(new Collaborateurs("CharlieHebdo.png", "dl.png",
 				"Daniel Lucazeau", "Grande Gueule en Chef",
