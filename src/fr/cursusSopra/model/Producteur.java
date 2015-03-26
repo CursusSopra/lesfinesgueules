@@ -97,6 +97,8 @@ public class Producteur {
 	}
 	
 	public Producteur(long idProducteur) {
+		this.idProducteur = idProducteur;
+		
 		ProducteurDal pdal = new ProducteurDal(idProducteur);
 		
 		this.raisonSociale = pdal.getRaisonSociale();

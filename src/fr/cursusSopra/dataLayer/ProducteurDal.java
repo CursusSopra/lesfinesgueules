@@ -106,13 +106,13 @@ public class ProducteurDal extends DataLayerExtended {
 	}
 	
 	public ProducteurDal(long idProducteur){
+		this.idProducteur = idProducteur;
 		try {
 			PreparedStatement ps = connection.prepareStatement(rqProducteur);
 			ps.setLong(1, idProducteur);
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
-				this.idProducteur = rs.getLong("id_producteur");
 				raisonSociale = rs.getString("raison_sociale");
 				siren = rs.getString("siren");
 				ligneAdresse1 = rs.getString("ligne_adresse1");

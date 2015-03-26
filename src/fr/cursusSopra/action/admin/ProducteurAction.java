@@ -43,7 +43,8 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private String latitude;
 	private String description;
 	private int delaiLivraison;
-	private long idProducteur = 0;
+	//Pareil ne pas setter l'id à 0 sinon on peut pas modifier
+	private long idProducteur;
 	// private String photo;
 	private boolean fromDb = false;
 
@@ -95,8 +96,6 @@ public class ProducteurAction extends ActionSupportExtended implements
 				&& codePostalOK && villeOK && latitudeOK && longitudeOK
 				&& descriptionOK && delaiLivraisonOK && imageOK;
 		
-		// ça m'écrase mon idProducteur
-//		long idProducteur = 0;
 		
 		if (firstDisplay) {
 			try {
@@ -134,7 +133,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			idProducteur = prod.getIdProducteur();
+//			idProducteur = prod.getIdProducteur();
 			System.out.println(idProducteur);
 		}
 		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
