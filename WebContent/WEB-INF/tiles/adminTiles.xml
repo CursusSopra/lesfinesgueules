@@ -50,10 +50,10 @@
 	<!-- MODIFY TYPE2 -->
 	<definition name="modificationType2" extends="baseLayout">
 		<put-attribute name="title" value="Modification d'un type précis (type2) de la bdd" />
-		<put-attribute name="body" value="/views/admin/listeType1.jsp" />
+		<put-attribute name="body" value="/views/admin/listeType2.jsp" />
 		<put-list-attribute name="moreScripts">
 			<add-attribute value="js/bootstrap-editable.js"></add-attribute>
-			<add-attribute value="_js/inlineEditType1.js"  ></add-attribute>
+			<add-attribute value="_js/inlineEditType2.js"  ></add-attribute>
 		</put-list-attribute>
 		<put-list-attribute name="moreStyles">
 			<add-attribute value="css/bootstrap-editable.css"></add-attribute>

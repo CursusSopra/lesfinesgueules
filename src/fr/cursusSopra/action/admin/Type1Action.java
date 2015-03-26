@@ -53,7 +53,7 @@ public class Type1Action extends ActionSupportExtended {
 	 * @return the string
 	 */
 	public String modifyType1Form() {
-		System.out.println("Bienvenu dans l'action ModifyType1Form");
+
 		listeType1 = Type1.getListeType1();
 		return SUCCESS;
 	}
@@ -65,7 +65,7 @@ public class Type1Action extends ActionSupportExtended {
 	 * @throws SQLException 
 	 */
 	public String modifyType1() throws SQLException {
-		System.out.println("méthode modifyType1");
+
 		idType1 = pk;
 		libelle1=value;
 		
