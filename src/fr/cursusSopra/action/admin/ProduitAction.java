@@ -46,6 +46,7 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 	private boolean idType2OK;
 	private boolean prixOK;
 	private boolean designationOK;
+	private boolean imageOK;
 	
 	private boolean firstDisplay = true;
 	
@@ -68,7 +69,7 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 	
 	//Fonction d'ajout d'un produit en BDD
 	public String createProduit() throws SQLException {
-		
+		System.out.println("-----------createProduit----------0");
 		listeType1 = Type1.getListeType1();
 		listeProducteur = Producteur.getListeProducteur();
 		
@@ -76,6 +77,7 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 		idType2OK = (idType2 > 0);
 		prixOK = (prix > 0);
 		designationOK = (FormTools.isStrNotEmpty(designation) && designation.length() < 50);
+		imageOK = FormTools.isStrNotEmpty(photoProduitFileName);
 		
 		firstDisplay = idProducteurOK && idType2OK && prixOK && designationOK;
 		
@@ -83,26 +85,32 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 		
 		if(firstDisplay){
 			
-			try {
-				String[] tokens = photoProduitFileName.split("\\.(?=[^\\.]+$)");
-				imageName = UUID.randomUUID() + "." + tokens[1];
-				String filePath = servletRequest.getSession().getServletContext().getRealPath("/content/images");
-				System.out.println(filePath);
-				File fileToCreate = new File(filePath, imageName);
-				FileUtils.copyFile(this.photoProduit, fileToCreate);
-				
-				// System.out.println("Server path:" + filePath);
-				// File fileToCreate = new File(filePath, this.photoFileName);
-				// FileUtils.copyFile(this.photo, fileToCreate);
-				lienPhoto = imageName;
-				System.out.println(imageName);
-				System.out.println(lienPhoto);
-//				logger.info(servletRequest.getSession().getServletContext()
-//						.getContextPath());
-			} catch (Exception e) {
-				e.printStackTrace();
-				addActionError(e.getMessage());
-				return INPUT;
+			if(imageOK){
+				try {
+					System.out.println("-----------00----------0");
+					String[] tokens = photoProduitFileName.split("\\.(?=[^\\.]+$)");
+					System.out.println("----------1-----------1");
+					imageName = UUID.randomUUID() + "." + tokens[1];
+					
+					
+					System.out.println(imageName);
+					String filePath = servletRequest.getSession().getServletContext().getRealPath("/content/images");
+					System.out.println(filePath);
+					File fileToCreate = new File(filePath, imageName);
+					FileUtils.copyFile(this.photoProduit, fileToCreate);
+					
+					// System.out.println("Server path:" + filePath);
+					// File fileToCreate = new File(filePath, this.photoFileName);
+					// FileUtils.copyFile(this.photo, fileToCreate);
+					lienPhoto = imageName;
+					System.out.println(imageName);
+					System.out.println(lienPhoto);
+					//logger.info(servletRequest.getSession().getServletContext().getContextPath());
+				} catch (Exception e) {
+					e.printStackTrace();
+					addActionError(e.getMessage());
+					return INPUT;
+				}
 			}
 			
 			Produit prod = new Produit(idProducteur, idType2, prix, designation, disponible, description, lienPhoto);

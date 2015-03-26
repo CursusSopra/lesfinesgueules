@@ -5,28 +5,36 @@
 <s:if test="!firstDisplay">
 	<p class="bg-danger"><br/>Il y a des problèmes, voyez les messages ci-dessous:
 		<s:if test="!idProducteurOK">
-			<br/> Veuillez sélectionner un producteur
+			<br/> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+					Veuillez sélectionner un producteur
 		</s:if>
 		<s:if test="!idType2OK">
-			<br/> Sélectionner le type de produit
+			<br/> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+					Sélectionner le type de produit
 		</s:if>
 		<s:if test="!prixOK">
-			<br/> Veuillez saisir un prix correcte
+			<br/><span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+					 Veuillez saisir un prix correcte
 		</s:if>
 		<s:if test="!designationOK">
-			<br/> Désignez votre produit
+			<br/> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+					Désignez votre produit
 		</s:if>
+		<br/><br/>
 	</p>
 </s:if>
 <s:if test="firstDisplay">
 	<s:if test="idProduit != 0">
-		<p class="bg-danger"><br/>Bravo, votre produit a été enregistré
+		<p class="bg-danger"><br/><span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+									Bravo, votre produit a été enregistré
 		</p>
 	</s:if>
 	<s:if test="idProduit = 0">
-		<p class="bg-danger"><br/>Aïaïaï, ça ne marche pas
+		<p class="bg-danger"><br/><span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+									Aïaïaï, ça ne marche pas
 		</p>
 	</s:if>
+	<br/><br/>
 </s:if>
 
 
@@ -34,8 +42,8 @@
 	
 	
 	<s:actionerror/>
-	<s:form action="ajout-produit" method="post" enctype="multipart/form-data">
-<%-- 	<form class="form-horizontal" id="formProduit" method="post" action="<s:url action='ajout-produit' />"> --%>
+<%-- 	<s:form action="ajout-produit" method="post" enctype="multipart/form-data"> --%>
+	<form class="form-horizontal" id="formProduit" method="post" enctype="multipart/form-data" action="<s:url action='ajout-produit' />">
 
 
 		<fieldset>
@@ -88,7 +96,7 @@
 			<div class="form-group row">
 				<label for="idPrix" class="col-sm-2 control-label">Prix du produit : </label>
 				<div class="col-sm-2">
-					<input type="number" step="0.01" class="form-control" id="idPrix" name="prix" value="<s:property value="prix" />" >
+					<input type="number" step="0.01" min="0" class="form-control" id="idPrix" name="prix" value="<s:property value="prix" />" >
 				</div>
 			</div>
 			
@@ -109,34 +117,37 @@
 				</div>
 			</div>
 			
-			<div class="form-group row">
-				<div class="col-sm-6">
-					<s:file name="photoProduit" label="User Image"> <s:property value="imageName" /></s:file>
-				</div>
-			</div>
-			
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="idPhotoProduit" class="col-sm-2 control-label">Photo du produit : </label> -->
+<!-- 			<div class="form-group row"> -->
 <!-- 				<div class="col-sm-6"> -->
-<!-- 					<input type="file" name="photoProduit" id="idPhotoProduit" /> -->
+<%-- 					<s:file name="photoProduit" label="User Image"> <s:property value="imageName" /></s:file> --%>
 <!-- 				</div> -->
 <!-- 			</div> -->
+			
+			<div class="form-group">
+				<label for="idPhotoProduit" class="col-sm-2 control-label">Photo du produit : </label>
+				<div class="col-sm-6">
+					<input type="file" name="photoProduit" id="idPhotoProduit" />
+				</div>
+			</div>
 		</fieldset>
-		
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<s:submit value="Upload" align="center"></s:submit>
-			</div> 
-		</div> 
-		
-		
+		<br/>
 		
 <!-- 		<div class="form-group"> -->
 <!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
-<!-- 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
+<%-- 				<s:submit value="Upload" align="center"></s:submit> --%>
+<!-- 			</div>  -->
+<!-- 		</div>  -->
 		
-<!-- 	</form> -->
-	</s:form>
+		
+		
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
+			</div>
+		</div>
+		
+		
+		
+	</form>
+<%-- 	</s:form> --%>
 </div>
