@@ -40,6 +40,9 @@
 	<definition name="detailsProducteur" extends="baseLayout">
 		<put-attribute name="title" value="Détails du producteur" />
 		<put-attribute name="body" value="/views/contenu/detailsProducteur.jsp" />
+		<put-list-attribute name="moreHTTPScripts">
+ 			<add-attribute value="https://maps.googleapis.com/maps/api/js"></add-attribute>
+ 		</put-list-attribute>
 		<put-list-attribute name="moreScripts">
  			<add-attribute value="_js/googleMaps.js"></add-attribute>
  		</put-list-attribute>

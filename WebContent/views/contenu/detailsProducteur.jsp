@@ -18,7 +18,7 @@
 						<span class="glyphicon glyphicon-map-marker"></span>&nbsp;Adresse
 					</span>
 				</h4>
-				<div id="map-canvas"  class="bg-primary"></div>
+				<div id="map-canvas"   width="500px"  height="400px" class="bg-primary"></div>
 				<p>
 					<s:property value="ligneAdresse1"/><br/>
 					<s:property value="ligneAdresse2"/><br/>
