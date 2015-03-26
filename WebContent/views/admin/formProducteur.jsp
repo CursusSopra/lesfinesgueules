@@ -158,7 +158,7 @@
 				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo
 					de votre producteur : </label>
 				<div class="col-sm-6">
-					<input type="file" name="userImage" id="idPhotoProducteur"/>
+					<input type="file" name="userImage" id="idPhotoProducteur" />
 				</div>
 			</div>
 		</fieldset>

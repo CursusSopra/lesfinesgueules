@@ -7,8 +7,7 @@
 
 
 		<h1 class="text-center">Modification Photo</h1>
-		<input type="hidden" class="form-control" id="idProducteur" name="idProducteur" 
-				value="<s:property value="idProducteur" />" >
+		
 		<input type="hidden" class="form-control" id="idProducteur" name="idProducteur" 
 				value="<s:property value="idProducteur" />" >
 		<input type="hidden" class="form-control input-lg" id="idRaisonSociale" maxlength="50"
@@ -38,7 +37,7 @@
 				<label for="idPhotoProducteur">Photo de votre producteur : </label>
 				<img  alt="image" class="img-responsive img-thumbnail" width="200px" src="/lesfinesgueules/content/images/<s:property value="imageName" default="default.jpg"/>" />
 				<div class="">
-					<input class="control-label" type="file" name="userImage" id="idPhotoProducteur" />
+					<input class="control-label" type="file" name="userImage" id="idPhotoProducteur"/>
 				</div>
 			</div>	
 		

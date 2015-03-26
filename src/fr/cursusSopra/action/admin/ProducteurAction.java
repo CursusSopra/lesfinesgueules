@@ -339,4 +339,12 @@ public class ProducteurAction extends ActionSupportExtended implements
 		this.servletRequest = servletRequest;
 
 	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 }
