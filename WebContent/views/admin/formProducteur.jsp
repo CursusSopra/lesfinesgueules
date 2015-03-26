@@ -5,56 +5,99 @@
 <s:if test="!firstDisplay">
 	<p class="bg-danger"><br/>Il y a des problèmes, voyez les messages ci-dessous:
 		<s:if test="!raisonSocialeOK">
-			<br/> La raison sociale de votre exploitation est obligatoire
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 La raison sociale de votre exploitation est obligatoire
 		</s:if>
 		<s:if test="!sirenOK">
-			<br/> Votre code siren est obligatoire
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Votre code siren est obligatoire
 		</s:if>
 		<s:if test="!ligneAdresse1OK">
-			<br/> Vous devez saisir votre adresse
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Vous devez saisir votre adresse
 		</s:if>
 		<s:if test="!codePostalOK">
-			<br/> Votre code postal contient des erreurs
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Votre code postal contient des erreurs
 		</s:if>
 		<s:if test="!villeOK">
-			<br/> Vous devez saisir une ville
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Vous devez saisir une ville
 		</s:if>
 		<s:if test="!latitudeOK">
-			<br/> Problème de latitude
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Problème de latitude
 		</s:if>
 		<s:if test="!longitudeOK">
-			<br/> Problème de longitude
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Problème de longitude
 		</s:if>
 		<s:if test="!descriptionOK">
-			<br/> Veuillez décrire votre exploitation
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Veuillez décrire votre exploitation
 		</s:if>
 		<s:if test="!delaiLivraisonOK">
-			<br/> Votre délai n'est pas correct
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Votre délai n'est pas correct
 		</s:if>
+		<s:if test="!imageOK">
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Veuillez nous fournir une photo de votre production
+		</s:if>
+		<br/><br/>
 	</p>
 </s:if>
 
-<s:if test="firstDisplay">
-	<p class="bg-danger">
-		<s:if test="idProducteur > 0">
-			<br/>Bravo, vous êtes référencé(e) parmi nos fines gueules.
-		</s:if>
-	</p>
+<s:if test="saisieOK">
+<p class="bg-danger">
+	<br/><span class="glyphicon glyphicon-save"></span>&nbsp;
+		Bravo, vous êtes référencé(e) parmi nos fines gueules.
+		Vous pouvez ajouter un nouveau producteur
+</p>
 </s:if>
+<s:else>
+<p class="bg-danger">
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+				L'enregistrement de vos paramètres a échoué.
+		</p>
+	<br/><br/>
+</s:else>
+
+<%-- <s:if test="firstDisplay"> --%>
+<%-- 	<s:if test="idProducteur > 0"> --%>
+<!-- 		<p class="bg-danger"> -->
+<%-- 			<br/><span class="glyphicon glyphicon-save"></span>&nbsp; --%>
+<!-- 				Bravo, vous êtes référencé(e) parmi nos fines gueules. -->
+<!-- 				Vous pouvez ajouter un nouveau producteur -->
+<!-- 		</p> -->
+<%-- 	</s:if> --%>
+<%-- 	<s:else> --%>
+<!-- 		<p class="bg-danger"> -->
+<%-- 			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
+<!-- 				L'enregistrement de vos paramètres a échoué. -->
+<!-- 		</p> -->
+<%-- 	</s:else> --%>
+<!-- 	<br/><br/> -->
+<%-- </s:if> --%>
 
 
 <div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
 
-<s:actionerror/>
-	<s:form action="ajout-producteur" method="post" enctype="multipart/form-data" class="form-horizontal">
+<p>
+Pour saisir un producteur, tous les champs du formulaire sont obligatoires, excepté la seconde ligne
+d'adresse.
+</p>
 
-<!-- 	<form class="form-horizontal" id="FormProducteur" method="post" enctype="multipart/form-data" -->
-<%-- 		action="<s:url action='ajout-producteur' />"> --%>
+<s:actionerror/>
+<%-- 	<s:form action="ajout-producteur" method="post" enctype="multipart/form-data" class="form-horizontal"> --%>
+
+	<form class="form-horizontal" id="FormProducteur" method="post" enctype="multipart/form-data"
+		action="<s:url action='ajout-producteur' />">
 		<fieldset>
 		
 			<legend> Producteur : </legend>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison sociale du producteur : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idRaisonSociale" maxlength="50"
@@ -62,7 +105,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idSiren" class="col-sm-2 control-label">SIREN : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control input-lg" id="idSiren" maxlength="50"
@@ -70,7 +113,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idDelai" class="col-sm-2 control-label">Délai de livraison : </label>
 				<div class="col-sm-2">
 					<input type="number" class="form-control" id="idDelai" name="delaiLivraison" min="0"
@@ -78,7 +121,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idDescription" class="col-sm-2 control-label">Description : </label>
 				<div class="col-sm-6">
 					<textarea class="form-control" name="description" id="idDescription" rows="5"><s:property value="description" /></textarea>
@@ -86,24 +129,24 @@
 			</div>
 			
 			
-			<div class="form-group">
-				<div class="col-sm-6">
-					<s:file name="userImage" label="User Image"> <s:property value="imageName" /></s:file>
-				</div>
-			</div>
-			
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label> -->
+<!-- 			<div class="form-group row"> -->
 <!-- 				<div class="col-sm-6"> -->
-<!-- 					<input type="file" name="photo" id="idPhotoProducteur" /> -->
+<%-- 					<s:file name="userImage" label="User Image"> <s:property value="imageName" /></s:file> --%>
 <!-- 				</div> -->
 <!-- 			</div> -->
+			
+			<div class="form-group">
+				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo de votre producteur : </label>
+				<div class="col-sm-6">
+					<input type="file" name="userImage" id="idPhotoProducteur" />
+				</div>
+			</div>
 		</fieldset>
 			
 			
 		<fieldset>
 			<legend> Adresse : </legend>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue : </label>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="idLigneAdresse1" maxlength="50"
@@ -115,7 +158,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idCodePostal" class="col-sm-2 control-label">Code Postal : </label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" id="idCodePostal"
@@ -125,7 +168,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="inputVille" class="col-sm-2 control-label">Ville : </label>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="idVille" name="ville" maxlength="50"
@@ -143,7 +186,7 @@
 								
 			
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idLatitude" class="col-sm-2 control-label">Latitude : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="idLatitude"
@@ -151,7 +194,7 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="idLongitude" class="col-sm-2 control-label">Longitude : </label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="idLongitude"
@@ -159,18 +202,22 @@
 				</div>
 			</div>
 		</fieldset>
+		<br/>
 				
-<!-- 		<div class="form-group"> -->
-<!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
-<!-- 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<s:submit value="Upload" align="center"></s:submit>
-			</div> 
-		</div> 
-<!-- 	</form> -->
-</s:form>
+				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button>
+			</div>
+		</div>
+
+<!-- 		<div class="form-group row"> -->
+<!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
+<%-- 				<s:submit value="Upload" align="center"></s:submit> --%>
+<!-- 			</div>  -->
+<!-- 		</div>  -->
+		
+		
+	</form>
+<%-- </s:form> --%>
 
 </div>
