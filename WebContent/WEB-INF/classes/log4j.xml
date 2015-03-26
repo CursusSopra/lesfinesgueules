@@ -26,7 +26,7 @@
 		<level value="OFF" />
 	</logger>
 
-	<logger name="freemarker.beans">
+	<logger name="freemarker">
 		<level value="OFF" />
 	</logger>
 
