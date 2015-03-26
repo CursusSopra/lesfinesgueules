@@ -1,25 +1,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<div class="row" data-lienUrl="<s:url action="testInline"/>" id="hiddenData">
-	<h2>Liste des Types1</h2>
-	<form>
-		<select id="type1">
-			<s:iterator value="listeType1">
-				<option value="<s:property value="idType1" />">
-					<s:property value="libelle1" />
-				</option>
-			</s:iterator>
-		</select>
-	</form>
-	
-	<ul id="retourJSON">
-	</ul>
-
-	<a href="<s:url action="testInline"/>">Liste des Types
-		1-Modification</a>
+<div class="row">
+	<h2>Testing is awesome !</h2>
+	<a href="#" id="address" data-type="address" data-pk="1">awesome</a>
 </div>
-
+<span id="hiddenData" 
+	data-lienUrl="<s:url action="testInline"/>"
+	data-designation="Designation"
+	data-description="Description"
+	data-prix="16"
+			></span>
 <!-- //Rempli par JSON -->
 <!-- <a id="Boeuf"  -->
 <!--    data-url="/00-Template/testInline.action"  -->

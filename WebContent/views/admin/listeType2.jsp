@@ -17,3 +17,4 @@
 	<ul id="retourJSON">
 	</ul>
 </div>
+<span id="hiddenPath" data-lienUrl="<s:url action="testInline"/>"></span>
