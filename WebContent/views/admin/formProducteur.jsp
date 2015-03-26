@@ -48,50 +48,39 @@
 	</p>
 </s:if>
 
-<s:if test="saisieOK">
-<p class="bg-danger">
-	<br/><span class="glyphicon glyphicon-save"></span>&nbsp;
-		Bravo, vous êtes référencé(e) parmi nos fines gueules.
-		Vous pouvez ajouter un nouveau producteur
-</p>
-</s:if>
-<s:else>
-<p class="bg-danger">
-			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
-				L'enregistrement de vos paramètres a échoué.
-		</p>
+	<s:if test="fromdB">
+<s:if test="firstDisplay">
+		<s:if test="idProducteur > 0">
+			<p class="bg-danger">
+				<br/><span class="glyphicon glyphicon-save"></span>&nbsp;
+					Bravo, vous êtes référencé(e) parmi nos fines gueules.
+					Vous pouvez ajouter un nouveau producteur
+			</p>
+		</s:if>
+		<s:if test="idProducteur = 0">
+			<p class="bg-danger">
+				<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+					L'enregistrement de vos paramètres a échoué.
+			</p>
+		</s:if>
+	</s:if>
 	<br/><br/>
-</s:else>
+</s:if>
 
-<%-- <s:if test="firstDisplay"> --%>
-<%-- 	<s:if test="idProducteur > 0"> --%>
-<!-- 		<p class="bg-danger"> -->
-<%-- 			<br/><span class="glyphicon glyphicon-save"></span>&nbsp; --%>
-<!-- 				Bravo, vous êtes référencé(e) parmi nos fines gueules. -->
-<!-- 				Vous pouvez ajouter un nouveau producteur -->
-<!-- 		</p> -->
-<%-- 	</s:if> --%>
-<%-- 	<s:else> --%>
-<!-- 		<p class="bg-danger"> -->
-<%-- 			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 				L'enregistrement de vos paramètres a échoué. -->
-<!-- 		</p> -->
-<%-- 	</s:else> --%>
-<!-- 	<br/><br/> -->
-<%-- </s:if> --%>
-
+<div class="col-md-8 col-md-offset-2 row">
+	<span class="glyphicon glyphicon-map-marker" style="font-size: 2em;color:red"></span>
+	<p>
+	Pour saisir un producteur, tous les champs du formulaire sont obligatoires, exceptée la seconde ligne
+	d'adresse.
+	</p>
+</div>
 
 <div class="row" id="divFormProducteur" data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
-
-<p>
-Pour saisir un producteur, tous les champs du formulaire sont obligatoires, excepté la seconde ligne
-d'adresse.
-</p>
 
 <s:actionerror/>
 <%-- 	<s:form action="ajout-producteur" method="post" enctype="multipart/form-data" class="form-horizontal"> --%>
 
-	<form class="form-horizontal" id="FormProducteur" method="post" enctype="multipart/form-data"
+	<form class="form-horizontal row" id="FormProducteur" method="post" enctype="multipart/form-data"
 		action="<s:url action='ajout-producteur' />">
 		<fieldset>
 		
@@ -209,7 +198,7 @@ d'adresse.
 				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button>
 			</div>
 		</div>
-
+		
 <!-- 		<div class="form-group row"> -->
 <!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
 <%-- 				<s:submit value="Upload" align="center"></s:submit> --%>

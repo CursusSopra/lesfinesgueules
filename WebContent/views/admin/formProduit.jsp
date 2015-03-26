@@ -29,21 +29,28 @@
 				Bravo, votre produit a été enregistré
 		</p>
 	</s:if>
-	<s:else>
+	<s:if test="idProduit > 0">
 		<p class="bg-danger"><br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
 				L'enregistrement des paramètres de votre produit a échoué.
 		</p>
-	</s:else>
+	</s:if>
 	<br/><br/>
 </s:if>
 
+<div class="col-md-8 col-md-offset-2 row" style="display: inline-block;">
+	<span class="glyphicon glyphicon-map-marker" style="font-size: 2em;color:red"></span>
+	<div><p>
+	Vous allez saisir un produit. Nous vous informons que seul la photo et la description ne sont pas obligatoire.
+	Cepandant, nous vous conseillons de fournir ces informations, cela donnera une meilleur visibilité à votre produit.
+	</p></div>
+</div>
 
 <div class="row" id="divFormProduit" >
 	
 	
 	<s:actionerror/>
 <%-- 	<s:form action="ajout-produit" method="post" enctype="multipart/form-data"> --%>
-	<form class="form-horizontal" id="formProduit" method="post" enctype="multipart/form-data" action="<s:url action='ajout-produit' />">
+	<form class="form-horizontal row" id="formProduit" method="post" enctype="multipart/form-data" action="<s:url action='ajout-produit' />">
 
 
 		<fieldset>

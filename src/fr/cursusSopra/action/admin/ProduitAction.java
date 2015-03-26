@@ -69,7 +69,6 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 	
 	//Fonction d'ajout d'un produit en BDD
 	public String createProduit() throws SQLException {
-		System.out.println("-----------createProduit----------0");
 		listeType1 = Type1.getListeType1();
 		listeProducteur = Producteur.getListeProducteur();
 		
@@ -87,9 +86,7 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 			
 			if(imageOK){
 				try {
-					System.out.println("-----------00----------0");
 					String[] tokens = photoProduitFileName.split("\\.(?=[^\\.]+$)");
-					System.out.println("----------1-----------1");
 					imageName = UUID.randomUUID() + "." + tokens[1];
 					
 					
@@ -103,8 +100,6 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 					// File fileToCreate = new File(filePath, this.photoFileName);
 					// FileUtils.copyFile(this.photo, fileToCreate);
 					lienPhoto = imageName;
-					System.out.println(imageName);
-					System.out.println(lienPhoto);
 					//logger.info(servletRequest.getSession().getServletContext().getContextPath());
 				} catch (Exception e) {
 					e.printStackTrace();

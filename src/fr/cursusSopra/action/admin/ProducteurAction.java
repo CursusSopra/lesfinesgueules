@@ -60,11 +60,6 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private boolean imageOK;
 
 	private boolean firstDisplay = true;
-	private boolean saisieOK = false;
-
-	public boolean isSaisieOK() {
-		return saisieOK;
-	}
 
 	// Fontion qui retournera le formulaire de création de producteur
 	public String createProducteurForm() {
@@ -100,10 +95,9 @@ public class ProducteurAction extends ActionSupportExtended implements
 				&& codePostalOK && villeOK && latitudeOK && longitudeOK
 				&& descriptionOK && delaiLivraisonOK && imageOK;
 		
-		// long idProducteur = 0;
+		long idProducteur = 0;
 		
 		if (firstDisplay) {
-			saisieOK = true;
 			try {
 				
 				String[] tokens = userImageFileName.split("\\.(?=[^\\.]+$)");
