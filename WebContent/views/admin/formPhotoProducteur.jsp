@@ -31,6 +31,8 @@
 						name="latitude" value="<s:property value="latitude"/>">
 		<input type="hidden" class="form-control" id="idLongitude"
 						name="longitude" value="<s:property value="longitude"/>">
+		<input type="hidden" class="form-control" id="idFromDb"
+						name="fromDb" value="<s:property value="fromDb"/>">
 		
 		<div class="row">				
 			<div class="form-group">
