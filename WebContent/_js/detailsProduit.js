@@ -3,7 +3,9 @@
 
 $(function() {
 	// Default comments display : comments hidden
-	$('#listeComments').hide();
+	if(parseInt($('#hasComments').val()) == 1) {
+		$('#listeComments').hide();
+	}
 	
 	// Show/Hide comments
 	$('#caretComments').click(function () {

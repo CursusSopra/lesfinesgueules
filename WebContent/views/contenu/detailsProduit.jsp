@@ -69,32 +69,37 @@
 	<span id="caretComments"><a><h3>Avis </h3><span id="chevronListe" class="glyphicon glyphicon-chevron-down"></span></a></span>
 	
 	<div id="listeComments">
-		<s:iterator value="listeCommentaires">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-				
-					<div class="panel-heading">
-						<span class="text-capitalize"><s:property value="prenom"/> <s:property value="nom"/></span> | 
-						<s:iterator status="stat" value="(5).{ #this }">
-							<s:if test="note >= #stat.count"><span class="glyphicon glyphicon-star"></span></s:if>
-							<s:else><span class="glyphicon glyphicon-star-empty"></span></s:else>
-						</s:iterator> |
-						<s:date name="tsCreation" format="dd/MM/yyyy hh:mm" />
-					</div>
+		<s:if test="listeCommentaires.size() > 0">
+			<s:iterator value="listeCommentaires">
+				<div class="col-md-12">
+					<div class="panel panel-default">
 					
-					<div class="panel-body">
-						<div class="media">
-							<div class="media-left">
-								<img width="75" src="<s:property value="listeCommentaires.photo" default="images/default.jpg"/>" alt="Photo utilisateur">
-							</div>
-							<div class="media-body">
-								<s:property value="avis"/>
+						<div class="panel-heading">
+							<span class="text-capitalize"><s:property value="prenom"/> <s:property value="nom"/></span> | 
+							<s:iterator status="stat" value="(5).{ #this }">
+								<s:if test="note >= #stat.count"><span class="glyphicon glyphicon-star"></span></s:if>
+								<s:else><span class="glyphicon glyphicon-star-empty"></span></s:else>
+							</s:iterator> |
+							<s:date name="tsCreation" format="dd/MM/yyyy hh:mm" />
+						</div>
+						
+						<div class="panel-body">
+							<div class="media">
+								<div class="media-left">
+									<img width="75" src="<s:property value="listeCommentaires.photo" default="images/default.jpg"/>" alt="Photo utilisateur">
+								</div>
+								<div class="media-body">
+									<s:property value="avis"/>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</s:iterator>
+			</s:iterator>
+		</s:if>
+		<s:else>
+			<p>Il n'y a pas encore de commentaires.</p>
+		</s:else>
 	</div>
 </div>
 
