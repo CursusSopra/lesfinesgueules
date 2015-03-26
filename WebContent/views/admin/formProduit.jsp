@@ -5,35 +5,35 @@
 <s:if test="!firstDisplay">
 	<p class="bg-danger"><br/>Il y a des problèmes, voyez les messages ci-dessous:
 		<s:if test="!idProducteurOK">
-			<br/> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+			<br/> <span class="glyphicon glyphicon-remove"></span>&nbsp;
 					Veuillez sélectionner un producteur
 		</s:if>
 		<s:if test="!idType2OK">
-			<br/> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+			<br/> <span class="glyphicon glyphicon-remove"></span>&nbsp;
 					Sélectionner le type de produit
 		</s:if>
 		<s:if test="!prixOK">
-			<br/><span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
 					 Veuillez saisir un prix correcte
 		</s:if>
 		<s:if test="!designationOK">
-			<br/> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+			<br/> <span class="glyphicon glyphicon-fire"></span>&nbsp;
 					Désignez votre produit
 		</s:if>
 		<br/><br/>
 	</p>
 </s:if>
 <s:if test="firstDisplay">
-	<s:if test="idProduit != 0">
-		<p class="bg-danger"><br/><span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+	<s:if test="idProduit > 0">
+		<p class="bg-danger"><br/><span class="glyphicon glyphicon-save"></span>&nbsp;
 									Bravo, votre produit a été enregistré
 		</p>
 	</s:if>
-	<s:if test="idProduit = 0">
-		<p class="bg-danger"><br/><span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+	<s:else>
+		<p class="bg-danger"><br/><span class="glyphicon glyphicon-alert"></span>&nbsp;
 									Aïaïaï, ça ne marche pas
 		</p>
-	</s:if>
+	</s:else>
 	<br/><br/>
 </s:if>
 
