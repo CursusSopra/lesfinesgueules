@@ -1,16 +1,75 @@
-<%@ taglib prefix="fmt"	uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="s"	uri="/struts-tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<h1>La DreamTeam de "LesFinesGueules"</h1>
 
 <div class="row">
-	<h1>A propos</h1>
+<s:iterator value="listCollab">
+	<div class="col-md-4 col-sm-6">
+		<div class="card-container">
+			<div class="card">
+				<div class="front">
+					<div class="cover">
+						<img src="_pictures/<s:property value="coverPictures" />" />
+					</div>
+					<div class="user">
+						<img class="img-circle" src="_pictures/<s:property value="identityPictures" />" />
+					</div>
+					<div class="content">
+						<div class="main">
+							<h3 class="name"><s:property value="completeName" /></h3>
+							<p class="profession"><s:property value="profession" /></p>
+							<h5>
+								<i class="fa fa-map-marker fa-fw text-muted"></i>
+								<s:property value="location" />
+							</h5>
+							<h5>
+								<i class="fa fa-building-o fa-fw text-muted"></i>
+								LesFinesGueules Inc.
+							</h5>
+							<h5>
+								<i class="fa fa-envelope-o fa-fw text-muted"></i>
+								<s:property value="email" />
+							</h5>
+						</div>
+						<div class="footer">
+							<div class="rating">
+								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+									class="fa fa-star"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end front panel -->
+				<div class="back">
+					<div class="header">
+						<h5 class="motto"><s:property value="motto" /></h5>
+					</div>
+					<div class="content">
+						<div class="main">
+							<h4 class="text-center">Expérience</h4>
+							<p><s:property value="experience" /></p>
+							<h4 class="text-center">Domaines d'expertise</h4>
+							<p><s:property value="skills" /></p>
+						</div>
+					</div>
+					<div class="footer">
+						<div class="social-links text-center">
+							<a href="http://cretive-tim.com" class="facebook"><i
+								class="fa fa-facebook fa-fw"></i></a> <a
+								href="http://cretive-tim.com" class="google"><i
+								class="fa fa-google-plus fa-fw"></i></a> <a
+								href="http://cretive-tim.com" class="twitter"><i
+								class="fa fa-twitter fa-fw"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- end back panel -->
+			</div>
+			<!-- end card -->
+		</div>
+		<!-- end card-container -->
+	</div>
+</s:iterator>
 	
-	<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet consequat enim, eu ornare dolor. Integer ornare fringilla molestie. Nulla ut vulputate nisi, nec ornare metus. Etiam vel purus felis. Nunc ut tortor dolor. Nullam varius tempor ipsum vitae egestas. Nulla luctus lorem a bibendum imperdiet.</p>
-
-	<p class="text-justify">Vivamus vitae maximus tortor, id feugiat metus. Ut pharetra metus molestie lacinia vehicula. Morbi enim ante, dapibus eu metus a, fringilla tempor orci. Morbi accumsan sit amet mi at blandit. Vestibulum ullamcorper congue leo, eget ultrices lorem vulputate ut. Donec scelerisque non turpis consequat varius. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec iaculis justo id purus congue aliquam. Mauris a malesuada leo, eu ultricies risus. Cras felis orci, aliquam ac tempor dictum, auctor quis tortor. Aliquam fringilla augue sed ex efficitur, vitae consectetur metus auctor. Maecenas risus lacus, sollicitudin eu purus quis, pulvinar scelerisque ante. Praesent sit amet vehicula neque. Nulla facilisi. Praesent euismod, diam bibendum vulputate volutpat, neque quam porttitor velit, in pharetra diam felis ut elit.</p>
-
-	<p class="text-justify">Maecenas consectetur justo sed orci auctor, sed rutrum urna tempor. Praesent in maximus nisi. Sed id porta orci. Etiam cursus rutrum pretium. Mauris tristique laoreet justo id fermentum. Morbi tincidunt imperdiet porttitor. Integer purus nibh, viverra volutpat eleifend vitae, ultricies ut quam. In dui dolor, aliquam ut nulla eget, vestibulum consectetur velit. Vestibulum euismod et mauris bibendum iaculis. Aliquam tempor orci finibus, efficitur mauris sit amet, gravida risus. Integer dictum fermentum lacus, vitae semper dui tristique nec. Etiam pulvinar lorem leo, sed placerat ante rhoncus nec. Pellentesque non erat magna. Suspendisse potenti. Cras imperdiet libero a nibh consectetur, nec consequat metus maximus.</p>
-
-	<p class="text-justify">Fusce tempus metus vitae sapien ornare, id semper mauris sodales. Morbi et placerat libero, ut ornare tellus. Sed aliquam libero quis lorem vestibulum iaculis. Nulla quis est nisi. Aenean venenatis dui aliquam porttitor accumsan. Nam eu ante placerat augue consequat bibendum. Proin ultrices urna et dolor posuere, condimentum laoreet augue consectetur. Nunc ipsum lacus, faucibus in convallis nec, laoreet vel arcu. Duis sed pulvinar lacus. Nullam a tempus dolor. Quisque pharetra consequat est, sed dictum lacus vulputate id. Phasellus sollicitudin rutrum accumsan. Nunc eget quam iaculis, viverra nulla nec, bibendum purus. Vestibulum mattis tortor ipsum, et faucibus ex laoreet vitae. Integer orci quam, dictum id ante at, sodales ornare neque.</p>
-
-	<p class="text-justify">Aliquam sollicitudin mi fringilla mi iaculis tempus. Mauris auctor ipsum quis neque commodo, sit amet ultrices nibh auctor. Ut maximus consectetur augue vel pulvinar. Donec scelerisque vitae velit ut volutpat. Duis magna leo, dapibus eget justo et, varius dignissim est. Ut neque augue, sollicitudin et congue in, congue vel ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 </div>

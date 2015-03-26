@@ -27,6 +27,15 @@
 	<definition name="about" extends="baseLayout">
 		<put-attribute name="title" value="A propos" />
 		<put-attribute name="body" value="/views/about.jsp" />
+		<put-list-attribute name="moreStyles">
+ 			<add-attribute value="css/rotating-card.css"></add-attribute>
+ 		</put-list-attribute>
+		<put-list-attribute name="moreHttpScripts">
+ 			<add-attribute value="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></add-attribute>
+ 		</put-list-attribute>
+		<put-list-attribute name="moreScripts">
+ 			<add-attribute value="_js/rotatingCard.js"></add-attribute>
+ 		</put-list-attribute>
 	</definition>
 
 </tiles-definitions>
