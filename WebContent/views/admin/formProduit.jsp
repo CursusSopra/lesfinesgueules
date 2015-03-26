@@ -17,7 +17,7 @@
 					 Veuillez saisir un prix correcte
 		</s:if>
 		<s:if test="!designationOK">
-			<br/> <span class="glyphicon glyphicon-fire"></span>&nbsp;
+			<br/> <span class="glyphicon glyphicon-remove"></span>&nbsp;
 					Désignez votre produit
 		</s:if>
 		<br/><br/>
@@ -25,13 +25,13 @@
 </s:if>
 <s:if test="firstDisplay">
 	<s:if test="idProduit > 0">
-		<p class="bg-danger"><br/><span class="glyphicon glyphicon-save"></span>&nbsp;
-									Bravo, votre produit a été enregistré
+		<p class="bg-success"><br/><span class="glyphicon glyphicon-save"></span>&nbsp;
+				Bravo, votre produit a été enregistré
 		</p>
 	</s:if>
 	<s:else>
-		<p class="bg-danger"><br/><span class="glyphicon glyphicon-alert"></span>&nbsp;
-									Aïaïaï, ça ne marche pas
+		<p class="bg-danger"><br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+				L'enregistrement des paramètres de votre produit a échoué.
 		</p>
 	</s:else>
 	<br/><br/>
