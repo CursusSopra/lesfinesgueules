@@ -47,12 +47,13 @@ public class LoginAction extends ActionSupportExtended implements
 
 	public String control() {
 		HttpSession session = request.getSession();
-
+		// Vérification ./. à la BDD
+		
 		if (email.equals("mail@mail.fr")) {
 			session.setAttribute("authorized", "yes");
-			savedURL = session.getAttribute("savedUrl").toString();
+			//savedURL = session.getAttribute("savedUrl").toString();
 			//savedURL = "/views/welcome.jsp";
-			logger.info(savedURL);
+			//logger.info(savedURL);
 			return SUCCESS;
 		}
 

@@ -23,7 +23,7 @@
 		
 		
 <global-results>
-   <result name="login">/admin/login.jsp</result>
+   <result name="failure" type="redirect">login</result>
 </global-results>
 
 		<action name="login" class="fr.cursusSopra.action.LoginAction"
