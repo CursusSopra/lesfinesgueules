@@ -141,7 +141,6 @@ public class Commande {
 				quantite = item.getQuantite() - quantite;
 				if (quantite > 0) {
 					item.setQuantite(quantite);
-					System.out.println(quantite);
 					this.save();
 				} else {
 					//  on supprime l'item de la base et on recree la liste des items de cette commande ensuite
@@ -200,7 +199,7 @@ public class Commande {
 
 			// on essaie de save les items de cette commande
 			for(ItemCommande item : ListeItems) {
-				new ItemCommandeDal(item).save(idCommande);
+				new ItemCommandeDal(item).save(idCommande, connection);
 			}
 
 			// On committe toutes les mises à jour
@@ -220,6 +219,7 @@ public class Commande {
 		} finally {
 			try {
 				connection.setAutoCommit(true);
+				connection.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

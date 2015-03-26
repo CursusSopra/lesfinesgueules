@@ -1,9 +1,6 @@
 - breadcrumbs quand on est sur un detail de produit avec lien vers l'action
 
-http://www.programcreek.com/java-api-examples/index.php?api=com.opensymphony.xwork2.ActionContext
+CONNECTIONS POOL : 
+http://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html
 
-http://www.developpez.net/forums/d1442871/java/developpement-web-java/frameworks/struts/struts-2/nullpointerexception-actioncontext-getcontext-getsession/
-
-http://docs.oracle.com/javase/tutorial/deployment/doingMoreWithRIA/accessingCookies.html
-
-http://stackoverflow.com/questions/24222845/how-can-i-set-a-session-variable-in-a-servlet-and-get-it-in-a-jsp
+changer produitDal, ne plus heriter de datalayerextended et ouvrir/fermer une connection pour chaque méthodE...

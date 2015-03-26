@@ -76,7 +76,7 @@ public class ItemCommandeDal extends DataLayerExtended {
 	 * @return long qui contient l'id de l'item sauve (ou -1 si le save est un echec)
 	 * @throws SQLException
 	 */
-	public long save(long idCommande) throws SQLException {
+	public long save(long idCommande, Connection connection) throws SQLException {
 
 		long newId = -1;
 
