@@ -1,9 +1,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-
+<div class="col-md-8 col-md-offset-2 row">
 <s:if test="!firstDisplay">
-	<p class="bg-danger"><br/>Il y a des problèmes, voyez les messages ci-dessous:
+	<p class="alert alert-warning" role="alert"><br/>Il y a des problèmes, voyez les messages ci-dessous:
 		<s:if test="!raisonSocialeOK">
 			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
 			 La raison sociale de votre exploitation est obligatoire
@@ -47,27 +47,28 @@
 		<br/><br/>
 	</p>
 </s:if>
+</div>
 
-	<s:if test="fromdB">
+<div class="col-md-8 col-md-offset-2 row">
 <s:if test="firstDisplay">
-		<s:if test="idProducteur > 0">
-			<p class="bg-danger">
-				<br/><span class="glyphicon glyphicon-save"></span>&nbsp;
-					Bravo, vous êtes référencé(e) parmi nos fines gueules.
-					Vous pouvez ajouter un nouveau producteur
-			</p>
-		</s:if>
-		<s:if test="idProducteur = 0">
-			<p class="bg-danger">
-				<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
-					L'enregistrement de vos paramètres a échoué.
-			</p>
-		</s:if>
+	<s:if test="idProducteur > 0">
+		<p class="bg-danger">
+			<br/><span class="glyphicon glyphicon-save"></span>&nbsp;
+				Bravo, vous êtes référencé(e) parmi nos fines gueules.
+				Vous pouvez ajouter un nouveau producteur
+		</p>
+	</s:if>
+	<s:if test="idProducteur = 0">
+		<p class="bg-danger">
+			<br/><span class="glyphicon glyphicon-remove"></span>&nbsp;
+				Problème serveur. L'enregistrement de vos paramètres a échoué. Vous pourrez essayer plus tard.
+		</p>
 	</s:if>
 	<br/><br/>
 </s:if>
+</div>
 
-<div class="col-md-8 col-md-offset-2 row">
+<div class="col-md-10 col-md-offset-1 row">
 	<span class="glyphicon glyphicon-map-marker" style="font-size: 2em;color:red"></span>
 	<p>
 	Pour saisir un producteur, tous les champs du formulaire sont obligatoires, exceptée la seconde ligne

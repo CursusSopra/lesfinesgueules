@@ -106,7 +106,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 						.getServletContext().getRealPath("/content/images");
 				File fileToCreate = new File(filePath, imageName);
 				FileUtils.copyFile(this.userImage, fileToCreate);
-
+				
 				// System.out.println("Server path:" + filePath);
 				// File fileToCreate = new File(filePath, this.photoFileName);
 				// FileUtils.copyFile(this.photo, fileToCreate);
@@ -118,16 +118,15 @@ public class ProducteurAction extends ActionSupportExtended implements
 			} catch (Exception e) {
 				e.printStackTrace();
 				addActionError(e.getMessage());
-
 				return INPUT;
 			}
-
+			
 			Producteur prod = new Producteur(raisonSociale, siren,
 					ligneAdresse1, ligneAdresse2, codePostal, ville, latitude,
 					longitude, description, delaiLivraison, lienPhoto);
 			prod.setFromDb(this.isFromDb());
 			prod.setIdProducteur(idProducteur);
-
+			
 			try {
 				prod.save();
 			} catch (SQLException e) {
@@ -139,7 +138,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 		}
 		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
-
+	
 	public String modifyProducteur() {
 		producteur = new Producteur(idProducteur);
 		producteur.setFromDb(true);
@@ -155,7 +154,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 		description = producteur.getDescription();
 		delaiLivraison = producteur.getDelaiLivraison();
 		imageName = producteur.getPhoto();
-
+		
 		return SUCCESS;
 	}
 	
