@@ -29,7 +29,7 @@
 									<span class="glyphicon glyphicon-plus"></span>
 								</button>
 							</span>
-							<input type="text" class="form-control" id="idQuantite1" value="1" disabled="disabled"/>
+							<input type="text" class="form-control" id="idQuantite1" value="1" readonly/>
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" id="buttonMoins" <s:if test="!disponible">disabled="disabled"</s:if>>
 									<span class="glyphicon glyphicon-minus"></span>
