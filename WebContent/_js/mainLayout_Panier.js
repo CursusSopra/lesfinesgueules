@@ -6,14 +6,10 @@
 
 // on page load
 $(function() {
-	
-	$.getJSON('dataPanierJSON.action', function(data) {
-		majNavBarPanier(data)
-	});
+	majNavBarPanierJSON();
 	
 	// for the details produit page
 	addClickEventPanier();
-	
 });
 
 function majNavBarPanierJSON() {

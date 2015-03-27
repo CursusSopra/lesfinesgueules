@@ -53,4 +53,10 @@
  		</put-list-attribute>
 	</definition>
 	
+	<!-- MES-COMMANDES PASSEES -->
+	<definition name="mes-commandes-passees" extends="baseLayout">
+		<put-attribute name="title" value="Mes commandes passées" />
+		<put-attribute name="body" value="/views/utilisateurs/mesCommandesPassees.jsp" />
+	</definition>
+	
 </tiles-definitions>
