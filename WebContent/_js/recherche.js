@@ -129,6 +129,7 @@ function displayList(data) {
 	// Ecriture des propriété d'affichage dans les champs cachés
 	$('#numberOfPages').val(data.numberOfPages);
 	$('#pageNumber').val(data.pageNumber);
+	console.log($('#pageNumber').val());
 	
 	// Affichage de la navigation des pages
 	$('#nbPages').html(data.pageNumber + '/' + data.numberOfPages);
