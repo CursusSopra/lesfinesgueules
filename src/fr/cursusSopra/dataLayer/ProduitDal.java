@@ -125,31 +125,31 @@ public class ProduitDal {
 		// Getting information from database
 		try {
 			if (idType1 >= 0 && idType2 == -1 && idProducteur == -1) {			// type1
-				ps = c.prepareStatement("SELECT id_produit FROM produits "
+				ps = c.prepareStatement("SELECT * FROM produits "
 						+ "INNER JOIN types2 using(id_type2) "
 						+ "WHERE id_type1 = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idType1);
 			} else if(idType2 >= 0 && idProducteur == -1) {						// type2 (& type1)
-				ps = c.prepareStatement("SELECT id_produit FROM produits "
+				ps = c.prepareStatement("SELECT * FROM produits "
 						+ "WHERE id_type2 = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idType2);
 			} else if(idType1 >= 0 && idType2 == -1 && idProducteur >= 0) {		// type1 & producteur
-				ps = c.prepareStatement("SELECT id_produit FROM produits "
+				ps = c.prepareStatement("SELECT * FROM produits "
 						+ "INNER JOIN types2 using(id_type2) "
 						+ "WHERE id_type1 = ? AND id_producteur = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idType1);
 				ps.setLong(2, idProducteur);
 			} else if(idType2 >= 0 && idProducteur >= 0) {						// type2 & producteur (& type1)
-				ps = c.prepareStatement("SELECT id_produit FROM produits "
+				ps = c.prepareStatement("SELECT * FROM produits "
 						+ "WHERE id_type2 = ? AND id_producteur = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idType2);
 				ps.setLong(2, idProducteur);
 			} else if(idProducteur >= 0) {										// producteur
-				ps = c.prepareStatement("SELECT id_produit FROM produits "
+				ps = c.prepareStatement("SELECT * FROM produits "
 						+ "WHERE id_producteur = ? "
 						+ "ORDER BY designation");
 				ps.setLong(1, idProducteur);
