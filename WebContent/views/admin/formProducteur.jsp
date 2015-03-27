@@ -60,7 +60,7 @@
 	</s:if>
 </div>
 
-<div class="col-md-8 col-md-offset-2 row">
+<div >
 	<s:if test="firstDisplay">
 		<s:if test="idProducteur > 0">
 			<p class="bg-danger">
@@ -81,17 +81,6 @@
 	</s:if>
 </div>
 
-<div class="row">
-	<div class="col-md-10 col-md-offset-1">
-
-		<h4 class="bg-primary text-center">
-			<span class="glyphicon glyphicon-map-marker"
-				style="font-size: 2em; color: red"></span>Veuillez saisir tous les
-			champs, seul la deuxième ligne d'adresse est facultative
-		</h4>
-
-	</div>
-</div>
 
 <div class="row" id="divFormProducteur"
 	data-messErrorCodePostal="<s:property value="messErrorCodePostal"/>">
@@ -112,7 +101,7 @@
 			<legend> Producteur : </legend>
 
 			<div class="form-group">
-				<label for="idRaisonSociale" class="col-md-2 control-label">Raison sociale : </label>
+				<label for="idRaisonSociale" class="col-md-2 control-label">Raison sociale : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 
 				<div class="col-md-4">
 					<input type="text" class="form-control input-lg"
@@ -122,7 +111,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="idSiren" class="col-md-2 control-label">SIREN :</label>
+				<label for="idSiren" class="col-md-2 control-label">SIREN : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-md-4">
 					<input type="text" class="form-control input-lg" id="idSiren"
 						maxlength="50" name="siren" value="<s:property value="siren"/>"/>
@@ -131,7 +120,7 @@
 
 
 			<div class="form-group">
-				<label for="idDelai" class="col-md-2 control-label">Délai de livraison :</label>
+				<label for="idDelai" class="col-md-2 control-label">Délai de livraison : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-md-4">
 					<input type="number" class="form-control" id="idDelai"
 						name="delaiLivraison" min="0"
@@ -140,7 +129,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="idDescription" class="col-md-2 control-label">Description : </label>
+				<label for="idDescription" class="col-md-2 control-label">Description : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-md-4">
 					<textarea class="form-control" name="description"
 						id="idDescription" rows="5"><s:property
@@ -150,7 +139,7 @@
 
 
 			<div class="form-group">
-				<label for="idPhotoProducteur" class="col-md-2 control-label">Photo : </label>
+				<label for="idPhotoProducteur" class="col-md-2 control-label">Photo : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-md-4">
 					<input type="file" name="userImage" id="idPhotoProducteur" />
 				</div>
@@ -161,8 +150,7 @@
 		<fieldset>
 			<legend> Adresse : </legend>
 			<div class="form-group ">
-				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue
-					: </label>
+				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="idLigneAdresse1"
 						maxlength="50" name="ligneAdresse1"
@@ -176,8 +164,7 @@
 			</div>
 
 			<div class="form-group ">
-				<label for="idCodePostal" class="col-sm-2 control-label">Code
-					Postal : </label>
+				<label for="idCodePostal" class="col-sm-2 control-label">Code Postal : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" id="idCodePostal"
 						name="codePostal" pattern="\d{5}"
@@ -187,8 +174,7 @@
 			</div>
 
 			<div class="form-group ">
-				<label for="inputVille" class="col-sm-2 control-label">Ville
-					: </label>
+				<label for="inputVille" class="col-sm-2 control-label">Ville : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="idVille" name="ville"
 						maxlength="50" value="<s:property value="ville" />"
@@ -198,8 +184,7 @@
 
 
 			<div class="form-group ">
-				<label for="idLatitude" class="col-sm-2 control-label">Latitude
-					: </label>
+				<label for="idLatitude" class="col-sm-2 control-label">Latitude	: <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="idLatitude"
 						name="latitude" value="<s:property value="latitude"/>">
@@ -207,8 +192,7 @@
 			</div>
 
 			<div class="form-group ">
-				<label for="idLongitude" class="col-sm-2 control-label">Longitude
-					: </label>
+				<label for="idLongitude" class="col-sm-2 control-label">Longitude : <span class="glyphicon glyphicon-asterisk" style=" color: red"></span></label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="idLongitude"
 						name="longitude" value="<s:property value="longitude"/>">
@@ -219,8 +203,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-primary btn-lg">Enregistrer
-					Producteur</button>
+				<button type="submit" class="btn btn-primary btn-lg">Enregistrer Producteur</button>
 			</div>
 		</div>
 
