@@ -51,12 +51,12 @@ public class Type1Dal {
 			libelle1 = rs.getString("libelle1");
 		}
 
-		 try {
-			 ps.close();
-			 connection.close();
-		 } catch (SQLException e) {
-			 System.out.println("echec de la fermeture de la connexion");
-		 }
+		try {
+			ps.close();
+			connection.close();
+		} catch (SQLException e) {
+			System.out.println("echec de la fermeture de la connexion");
+		}
 
 	}
 
@@ -173,9 +173,9 @@ public class Type1Dal {
 			// Si rupture sur id_type1, on crée un nouvel objet
 			long idt1 = rs.getLong("id_type1");
 			if (idt1Prev != idt1) {
-				if(idt1Prev != -1) {
-				// On ajoute type1 à la collection finale
-				listeType1.add(type1);
+				if (idt1Prev != -1) {
+					// On ajoute type1 à la collection finale
+					listeType1.add(type1);
 				}
 
 				// On en créé un nouveau
@@ -194,6 +194,8 @@ public class Type1Dal {
 			// Et on l'ajoute à la collection
 			type1.getListeType2().add(type2);
 		}
+		// On ajoute type1 à la collection finale
+		listeType1.add(type1);
 
 		rs.close();
 		state.close();
