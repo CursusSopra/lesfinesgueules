@@ -2,11 +2,11 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <form class="form-horizontal row" id="FormPhotoProducteur" method="post" enctype="multipart/form-data"
-		action="<s:url action='ajout-producteur' />">
+		action="<s:url action='modifyPhotoProducteur' />">
 	<div class="row">
 
 
-		<h1 class="text-center">Modification Photo</h1>
+		<h1 class="text-center">Modification Photo de: <s:property value="raisonSociale"/></h1>
 		
 		<input type="hidden" class="form-control" id="idProducteur" name="idProducteur" 
 				value="<s:property value="idProducteur" />" >
@@ -31,8 +31,6 @@
 						name="latitude" value="<s:property value="latitude"/>">
 		<input type="hidden" class="form-control" id="idLongitude"
 						name="longitude" value="<s:property value="longitude"/>">
-		<input type="hidden" class="form-control" id="idFromDb"
-						name="fromDb" value="<s:property value="fromDb"/>">
 		
 		<div class="row">				
 			<div class="form-group">
