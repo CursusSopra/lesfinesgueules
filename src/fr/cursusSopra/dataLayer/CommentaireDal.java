@@ -77,6 +77,7 @@ public class CommentaireDal {
 
 		ps.close();
 		rs.close();
+		connection.close();
 
 		return myList;
 	}

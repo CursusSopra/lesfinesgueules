@@ -91,6 +91,8 @@ public class Produit {
 		this.producteur = producteur;
 		this.description = description;
 		this.photo = photo;
+		
+		this.listeCommentaires = Commentaire.getListeCommentaires(idProduit, TypeCommentaire.PRODUIT);
 	}
 
 	/* METHODS */
