@@ -15,9 +15,14 @@ public class PanierAction extends ActionSupportExtended {
 	private Commande panier;
 	private int moyenPaiement;
 
+	private double coutTotal = 0;
+	private double fraisPort = 0;
+
 	public String validerCommande() {
 		// changer l'etat de la commande
 		panier = new Commande(idUtilisateur);
+		coutTotal = panier.calculTotalPrixCommande();
+		fraisPort = panier.calculFraisDePort();
 		panier.setEtat(EtatCommande.VALIDEE);
 		panier.setMoyenPaiement(moyenPaiement);
 		panier.save();
@@ -37,8 +42,15 @@ public class PanierAction extends ActionSupportExtended {
 		return moyenPaiement;
 	}
 
+	public double getCoutTotal() {
+		return coutTotal;
+	}
+
+	public double getFraisPort() {
+		return fraisPort;
+	}
+
 	public void setMoyenPaiement(int moyenPaiement) {
 		this.moyenPaiement = moyenPaiement;
 	}
-
 }

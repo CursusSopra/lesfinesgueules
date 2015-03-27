@@ -1,5 +1,5 @@
 /**
- * Modified by Nicolas
+ * File modified by : Julien Caillon
  */
 package fr.cursusSopra.dataLayer;
 
@@ -14,32 +14,32 @@ import java.util.List;
 import fr.cursusSopra.tech.PostgresConnection;
 
 /**
- * 
+ *
  * @author Nicolas
  *
  */
-public class ProducteurDal extends DataLayerExtended {
-	
+public class ProducteurDal {
+
 	/* PROPERTIES */
-	
-	private final static String rqInsert = 
+
+	private final static String rqInsert =
 			"INSERT INTO "
 			+ "producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
 			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private final static String rqProducteur = 
+	private final static String rqProducteur =
 			"SELECT id_producteur, raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo "
 			+ "FROM producteurs "
 			+ "WHERE id_producteur = ?";
-	private final static String rqListeProducteurs = 
+	private final static String rqListeProducteurs =
 			"SELECT id_producteur "
 			+ "FROM producteurs "
 			+ "ORDER BY raison_sociale";
-	private final static String rqUpdate = 
+	private final static String rqUpdate =
 			"UPDATE producteurs SET (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, gpslat, gpslong, description, delai_livraison, photo) "
 			+ "= (?,?,?,?,?,?,?,?,?,?,?) "
 			+ "WHERE id_producteur = ?";
-	
-	
+
+
 	private long	idProducteur;
 	private String	raisonSociale;
 	private String	siren;
@@ -53,11 +53,11 @@ public class ProducteurDal extends DataLayerExtended {
 	private int		delaiLivraison;
 	private String	photo;
 	private boolean fromDb = false;
-	
+
 	private static List<ProducteurDal> listeProducteursDal;
-	
+
 	/* ACCESSORS */
-	
+
 	public long		getIdProducteur() {return idProducteur;}
 	public void		setIdProducteur(long idProducteur) {this.idProducteur = idProducteur;}
 	public String	getRaisonSociale() {return raisonSociale;}
@@ -82,7 +82,7 @@ public class ProducteurDal extends DataLayerExtended {
 	public void		setDelaiLivraison(int delaiLivraison) {this.delaiLivraison = delaiLivraison;}
 	public String	getPhoto() {return photo;}
 	public void		setPhoto(String photo) {this.photo = photo;}
-	
+
 	/* CONSTRUCTORS */
 
 	public boolean isFromDb() {
@@ -104,14 +104,17 @@ public class ProducteurDal extends DataLayerExtended {
 		this.delaiLivraison = delaiLivraison;
 		this.photo = photo;
 	}
-	
+
 	public ProducteurDal(long idProducteur){
 		this.idProducteur = idProducteur;
+		Connection connection = null;
+		PreparedStatement ps = null;
 		try {
-			PreparedStatement ps = connection.prepareStatement(rqProducteur);
+			connection = PostgresConnection.GetConnexion();
+			ps = connection.prepareStatement(rqProducteur);
 			ps.setLong(1, idProducteur);
 			ResultSet rs = ps.executeQuery();
-			
+
 			if (rs.next()) {
 				raisonSociale = rs.getString("raison_sociale");
 				siren = rs.getString("siren");
@@ -130,18 +133,21 @@ public class ProducteurDal extends DataLayerExtended {
 		} finally {
 			try{
 				System.out.println("Fermeture de la connexion (ProducteurDal - ProducteurDal)");
+				ps.close();
 				connection.close();
 			}catch (SQLException e){
 				System.out.println("Echec de la fermeture de la connexion");
 			}
 		}
 	}
-	
+
 	/* METHODS */
-	
+
 	public long save() {
-			PreparedStatement ps;
+			PreparedStatement ps = null;;
+			Connection connection = null;
 			try {
+				connection = PostgresConnection.GetConnexion();
 				ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
 				ps.setString(1, raisonSociale);
 				ps.setString(2, siren);
@@ -154,9 +160,9 @@ public class ProducteurDal extends DataLayerExtended {
 				ps.setString(9, description);
 				ps.setInt   (10, delaiLivraison);
 				ps.setString(11, photo);
-				
+
 				ps.executeUpdate();
-				
+
 				ResultSet generatedKeys = ps.getGeneratedKeys();
 				if (generatedKeys.next()) {
 					idProducteur = generatedKeys.getLong(1);
@@ -165,14 +171,23 @@ public class ProducteurDal extends DataLayerExtended {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+				try {
+					ps.close();
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		return idProducteur;
 	}
-	
+
 	public void modify() {
-		
-		PreparedStatement ps;
+		PreparedStatement ps = null;;
+		Connection connection = null;
 		try {
+			connection = PostgresConnection.GetConnexion();
 			ps = connection.prepareStatement(rqUpdate);
 
 			ps.setString(1, raisonSociale);
@@ -187,7 +202,7 @@ public class ProducteurDal extends DataLayerExtended {
 			ps.setInt   (10, delaiLivraison);
 			ps.setString(11, photo);
 			ps.setLong(12, idProducteur);
-			
+
 			try {
 				ps.executeUpdate();
 			}catch (SQLException e) {
@@ -196,37 +211,46 @@ public class ProducteurDal extends DataLayerExtended {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
+
 	}
-	
+
 	/* STATIC METHODS */
 
 	public static List<ProducteurDal> getListeProducteurDal(){
-		
+
 		listeProducteursDal = new ArrayList<ProducteurDal>();
-		
+
 		Connection connection = PostgresConnection.GetConnexion();
-		Statement state;
-		
+		Statement state = null;
+
 		try {
 			state = connection.createStatement();
 			ResultSet rs = state.executeQuery(rqListeProducteurs);
-			
+
 			while (rs.next()) {
 				listeProducteursDal.add(new ProducteurDal(rs.getLong("id_producteur")));
 			}
 		} catch (SQLException e) {
 			System.out.println("Echec récupération liste des producteurs.");
 		}finally{
-			try{
-				System.out.println("Fermeture de la connexion (ProducteurDal - getListeProducteurDal)");
+			try {
+				state.close();
 				connection.close();
-			}catch (SQLException e){
-				System.out.println("Echec de la fermeture de la connexion.");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		return listeProducteursDal;
 	}
-	
+
 }

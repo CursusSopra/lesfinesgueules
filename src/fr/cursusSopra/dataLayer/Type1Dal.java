@@ -1,5 +1,5 @@
 /**
- * File modified by : Julien Joly
+ * File modified by : Julien Caillon
  */
 package fr.cursusSopra.dataLayer;
 
@@ -20,7 +20,7 @@ import fr.cursusSopra.tech.PostgresConnection;
  * @author Julien J
  *
  */
-public class Type1Dal extends DataLayerExtended {
+public class Type1Dal {
 
 	private final static String rqInsert = "INSERT INTO types1 (libelle1) VALUES(?)";
 	private final static String rq = "SELECT * FROM types1";
@@ -40,6 +40,7 @@ public class Type1Dal extends DataLayerExtended {
 		setListeType2(this.recupListeType2());
 
 		System.out.println("post create Statement");
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqType1);
 
 		ps.setLong(1, idType1);
@@ -50,11 +51,12 @@ public class Type1Dal extends DataLayerExtended {
 			libelle1 = rs.getString("libelle1");
 		}
 
-		// try {
-		// connection.close();
-		// } catch (SQLException e) {
-		// System.out.println("echec de la fermeture de la connexion");
-		// }
+		 try {
+			 ps.close();
+			 connection.close();
+		 } catch (SQLException e) {
+			 System.out.println("echec de la fermeture de la connexion");
+		 }
 
 	}
 
@@ -65,6 +67,7 @@ public class Type1Dal extends DataLayerExtended {
 	public long save() throws SQLException {
 
 		// Génération de l'idType1 non utile dans le code, sert au débug
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqInsert,
 				Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, libelle1);
@@ -75,17 +78,24 @@ public class Type1Dal extends DataLayerExtended {
 			setIdType1(generatedKeys.getLong("id_type1"));
 		}
 
+		ps.close();
+		connection.close();
+
 		return idType1;
 	}
 
 	public void modify() throws SQLException {
 
 		// Génération de l'idType1 non utile dans le code, sert au débug
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqModify);
 		ps.setString(1, libelle1);
 		ps.setLong(2, idType1);
 
 		ps.executeUpdate();
+
+		ps.close();
+		connection.close();
 
 	}
 
@@ -124,6 +134,7 @@ public class Type1Dal extends DataLayerExtended {
 
 		ArrayList<Type2> lT2 = new ArrayList<Type2>();
 
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqListeType2);
 		ps.setLong(1, idType1);
 		ResultSet rs = ps.executeQuery();
@@ -138,6 +149,9 @@ public class Type1Dal extends DataLayerExtended {
 			lT2.add(type2);
 
 		}
+
+		ps.close();
+		connection.close();
 
 		return lT2;
 	}

@@ -20,7 +20,7 @@ import fr.cursusSopra.tech.PostgresConnection;
 /**
  * @author Julien Caillon
  */
-public class CommandeDal extends DataLayerExtended {
+public class CommandeDal {
 
 	private final static String rqSelPanier = "SELECT id_commande, moyen_paiement, ts_validation, ts_archivage FROM commandes WHERE id_utilisateur = ? AND etat = ?;";
 
@@ -55,6 +55,7 @@ public class CommandeDal extends DataLayerExtended {
 	 */
 	public void utilisateur(long idUtilisateur) throws SQLException {
 		EtatCommande etat = EtatCommande.PANIER;
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqSelPanier);
 		ps.setLong(1, idUtilisateur);
 		ps.setInt(2, etat.toInt());
@@ -70,6 +71,7 @@ public class CommandeDal extends DataLayerExtended {
 		}
 		rs.close();
 		ps.close();
+		connection.close();
 	}
 
 
@@ -81,6 +83,7 @@ public class CommandeDal extends DataLayerExtended {
 	 * @throws SQLException
 	 */
 	public void select(long idUtilisateur, long idCommande) throws SQLException {
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqSelect);
 		ps.setLong(1, idCommande);
 		ps.setLong(2, idUtilisateur);
@@ -96,6 +99,7 @@ public class CommandeDal extends DataLayerExtended {
 		}
 		rs.close();
 		ps.close();
+		connection.close();
 	}
 
 
@@ -143,7 +147,7 @@ public class CommandeDal extends DataLayerExtended {
 	 * @throws SQLException
 	 */
 	public double totalPrixCommande() throws SQLException {
-
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqCompCout);
 		ps.setLong(1, LocItem.getIdCommande());
 		ResultSet rs = ps.executeQuery();
@@ -153,6 +157,7 @@ public class CommandeDal extends DataLayerExtended {
 		}
 		ps.close();
 		rs.close();
+		connection.close();
 
 		return coutTot;
 	}
@@ -171,6 +176,7 @@ public class CommandeDal extends DataLayerExtended {
 		if(LocItem.isFromDb()) {
 
 			// UPDATE
+			Connection connection = PostgresConnection.GetConnexion();
 			PreparedStatement ps = connection.prepareStatement(rqUpdate);
 			ps.setLong(1,  LocItem.getIdUtilisateur());
 			ps.setInt(2,  LocItem.getEtat().toInt());
@@ -184,10 +190,12 @@ public class CommandeDal extends DataLayerExtended {
 			}
 
 			ps.close();
+			connection.close();
 
 		} else {
 
 			// INSERT
+			Connection connection = PostgresConnection.GetConnexion();
 			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
 			ps.setLong(1,  LocItem.getIdUtilisateur());
 			ps.setInt(2,  LocItem.getEtat().toInt());
@@ -205,6 +213,7 @@ public class CommandeDal extends DataLayerExtended {
 
 			ps.close();
 			rs.close();
+			connection.close();
 		}
 
 		return newId;
@@ -220,10 +229,12 @@ public class CommandeDal extends DataLayerExtended {
 
 		boolean isDeleted = true;
 
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqDelete);
 		ps.setLong(1,  LocItem.getIdCommande());
 		isDeleted = isDeleted && (ps.executeUpdate() == 1);
 		ps.close();
+		connection.close();
 
 		if (isDeleted) LocItem.setFromDb(false);
 

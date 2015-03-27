@@ -17,7 +17,7 @@ import fr.cursusSopra.tech.PostgresConnection;
 /**
  * @author Julien Caillon
  */
-public class ItemCommandeDal extends DataLayerExtended {
+public class ItemCommandeDal {
 
 	private final static String rqInsert = "INSERT INTO items_commandes (id_produit, id_commande, quantite) VALUES(?, ?, ?)";
 	private final static String rqUpdate = "UPDATE items_commandes SET (quantite) = (?) WHERE id_item_commande = ?;";
@@ -133,10 +133,12 @@ public class ItemCommandeDal extends DataLayerExtended {
 
 		boolean isDeleted = true;
 
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqDelete);
 		ps.setLong(1, LocItem.getIdItemCommande());
 		isDeleted = isDeleted && (ps.executeUpdate() == 1);
 		ps.close();
+		connection.close();
 
 		if (isDeleted) LocItem.setFromDb(false);
 

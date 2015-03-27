@@ -18,13 +18,14 @@ public abstract class DataLayerExtended {
 	public DataLayerExtended() {
 		connection = PostgresConnection.GetConnexion();
 	}
-	
-	protected void finalize() throws Throwable {  
-	    try { 
-	   	 connection.close(); 
-   	 } catch (SQLException e) { 
-	        e.printStackTrace();
-	    }
-	    super.finalize();  
-	}  
+
+	@Override
+	protected void finalize() throws Throwable {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		super.finalize();
+	}
 }

@@ -18,7 +18,7 @@ import fr.cursusSopra.tech.TypeCommentaire;
 /**
  * @author Julien Caillon
  */
-public class CommentaireDal extends DataLayerExtended {
+public class CommentaireDal {
 
 	private final static String rqInsert = "INSERT INTO commentaires (id_utilisateur, avis, note, etat) VALUES (?, ?, ?, ?)";
 	private final static String rqUpdate = "UPDATE commentaires SET (avis, note, etat) = (?, ?, ?) WHERE id_commentaire = ?;";
@@ -95,6 +95,7 @@ public class CommentaireDal extends DataLayerExtended {
 		if(LocItem.isFromDb()) {
 
 			// UPDATE, dans la table "commentaires" uniquement
+			Connection connection = PostgresConnection.GetConnexion();
 			PreparedStatement ps = connection.prepareStatement(rqUpdate);
 			ps.setString(1,  LocItem.getAvis());
 			ps.setInt(2,  LocItem.getNote());
@@ -107,11 +108,13 @@ public class CommentaireDal extends DataLayerExtended {
 			}
 
 			ps.close();
+			connection.close();
 
 		} else {
 
 			// INSERT
 			// premiere partie, dans la table "commentaires"
+			Connection connection = PostgresConnection.GetConnexion();
 			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
 			ps.setLong(1,  LocItem.getIdUtilisateur());
 			ps.setString(2,  LocItem.getAvis());
@@ -137,6 +140,8 @@ public class CommentaireDal extends DataLayerExtended {
 				if (ps.executeUpdate() == 1) LocItem.setFromDb(true);
 				ps.close();
 			}
+
+			connection.close();
 		}
 
 		return newId;
@@ -153,6 +158,7 @@ public class CommentaireDal extends DataLayerExtended {
 		boolean isDeleted = true;
 
 		// premiere partie, dans la table "commentaires"
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqDelete);
 		ps.setLong(1,  LocItem.getIdCommentaire());
 		isDeleted = isDeleted && (ps.executeUpdate() == 1);
@@ -164,6 +170,7 @@ public class CommentaireDal extends DataLayerExtended {
 		ps.setLong(2,  LocItem.getIdType());
 		isDeleted = isDeleted && (ps.executeUpdate() == 1);
 		ps.close();
+		connection.close();
 
 		if (isDeleted) LocItem.setFromDb(false);
 

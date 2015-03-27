@@ -1,19 +1,22 @@
 /**
- *  Modified By Julien J
+ * File modified by : Julien Caillon
  */
 package fr.cursusSopra.dataLayer;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import fr.cursusSopra.tech.PostgresConnection;
+
 /**
- * 
+ *
  * @author Julien J
  *
  */
-public class Type2Dal extends DataLayerExtended {
+public class Type2Dal {
 
 	private final static String rqInsert = "INSERT INTO types2 (libelle2, id_type1) VALUES(?,?)";
 	private final static String rqType2 = "SELECT * FROM types2 WHERE id_type2=?";
@@ -26,6 +29,7 @@ public class Type2Dal extends DataLayerExtended {
 	public Type2Dal(long idType2) throws SQLException {
 		this.idType2 = idType2;
 
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqType2);
 		ps.setLong(1, idType2);
 		ResultSet rs = ps.executeQuery();
@@ -34,6 +38,9 @@ public class Type2Dal extends DataLayerExtended {
 			libelle2 = rs.getString("libelle2");
 			idType1 = rs.getLong("id_type1");
 		}
+
+		ps.close();
+		connection.close();
 
 	}
 
@@ -45,6 +52,7 @@ public class Type2Dal extends DataLayerExtended {
 	public long save() throws SQLException {
 
 		// Génération de l'idType2 non utile dans le code, sert au débug
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqInsert,
 				Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, libelle2);
@@ -55,12 +63,16 @@ public class Type2Dal extends DataLayerExtended {
 			setIdType2(generatedKeys.getLong("id_type2"));
 		}
 
+		ps.close();
+		connection.close();
+
 		return idType2;
 	}
-	
+
 	public void modify() throws SQLException {
 
 		// Génération de l'idType1 non utile dans le code, sert au débug
+		Connection connection = PostgresConnection.GetConnexion();
 		PreparedStatement ps = connection.prepareStatement(rqModify);
 		System.out.println(libelle2);
 		ps.setString(1, libelle2);
@@ -69,8 +81,10 @@ public class Type2Dal extends DataLayerExtended {
 		System.out.println(idType2);
 		ps.setLong(3, idType2);
 
-
 		ps.executeUpdate();
+
+		ps.close();
+		connection.close();
 
 	}
 
