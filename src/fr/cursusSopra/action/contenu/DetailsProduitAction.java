@@ -94,7 +94,7 @@ public class DetailsProduitAction extends ActionSupportExtended {
 	}
 
 	public String getPhoto() {
-		return photo;
+		return "/lesfinesgueules/content/images/" + photo;
 	}
 
 	public boolean isDisponible() {

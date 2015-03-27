@@ -194,7 +194,7 @@ function displayList(data) {
 		output +=
 			'<div class="col-md-3">' + 
 				'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' +
-					'<img alt="image" class="img-responsive img-thumbnail" id="idImage' + index + '" src="' + elt.photo + '"/>' + 
+					'<img alt="image" class="img-responsive img-thumbnail" id="idImage' + index + '" src="/lesfinesgueules/content/images/' + elt.photo + '"/>' + 
 				'</a>'+
 				
 				'<h4>' + elt.designation +
