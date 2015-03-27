@@ -47,7 +47,6 @@ public class JSONListeProduitsAction {
 		System.out.println("numberOfPages = " + numberOfPages);
 		System.out.println("displayNumber = " + displayNumber);
 		
-		
 		return Action.SUCCESS;
 	}
 	
