@@ -110,14 +110,13 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 			
 			Produit prod = new Produit(idProducteur, idType2, prix, designation, disponible, description, lienPhoto);
 			
-//			if(description != null){
-//				prod.setDescription(description);
-//			}
-//			if(photo != null){
-//				prod.setPhoto(lienPhoto);
-//			}
+			try {
+				prod.save();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			prod.save();
 			idProduit = prod.getIdProduit();
 			//System.out.println(idProduit);
 		}
