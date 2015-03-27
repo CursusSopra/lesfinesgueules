@@ -121,7 +121,7 @@ function displayList(data) {
 												'<span class="glyphicon glyphicon-plus"></span>' +
 											'</button>' +
 										'</div>' +
-										'<input type="text" class="form-control" id="idQuantite' + index + '" value="1" readonly/>' +
+										'<input type="text" class="form-control" id="idQuantite' + index + '" value="1" readonly disabled />' +
 										'<span class="input-group-btn">' +
 											'<button type="button" class="btn btn-default" id="buttonMoins' + index + '">' +
 												'<span class="glyphicon glyphicon-minus"></span>' +
@@ -140,7 +140,7 @@ function displayList(data) {
 												'<span class="glyphicon glyphicon-plus"></span>' +
 											'</button>' +
 										'</div>' +
-										'<input type="text" class="form-control" id="idQuantite' + index + '" value="1" readonly/>' +
+										'<input type="text" class="form-control" id="idQuantite' + index + '" value="1" readonly disabled />' +
 										'<span class="input-group-btn">' +
 											'<button type="button" class="btn btn-default" id="buttonMoins' + index + '" disabled="disabled">' +
 												'<span class="glyphicon glyphicon-minus"></span>' +
@@ -155,7 +155,7 @@ function displayList(data) {
 										'<small>D&eacute;tails produit</small>' +
 									'</a>' +
 								'</span>' +
-								'<input type="text" class="form-control text-right" value="' + $.number(elt.prix, 2, ',', ' ') + ' &euro;" readonly>' +
+								'<input type="text" class="form-control text-right" value="' + $.number(elt.prix, 2, ',', ' ') + ' &euro;" readonly disabled />' +
 							'</div>';
 		
 		// Ajout de l'image par défaut si non présente

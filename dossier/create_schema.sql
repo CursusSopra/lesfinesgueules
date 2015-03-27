@@ -144,10 +144,37 @@ CREATE INDEX idx_items_commandes_0 ON items_commandes ( id_commande );
 
 -- producteurs
 INSERT INTO producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, code_postal, ville, description, delai_livraison, photo, gpslat, gpslong) VALUES 
-('Les Jardins de lucie', 111111111, '69 Chemin du Tram', '', '69360', 'COMMUNAY', 'Notre coeur de métier est de favoriser l''insertion sociale et professionnelle de personnes éloignées de l''emploi en leur proposant des contrats de travail dans le secteur de l''agriculture. Nous produisons des légumes de saison dans le cadre du cahier des charges de l''agriculture biologique. Nos légumes sont donc certifiés AB.', 4, 'images/default.jpg', '45.595258', '4.832434'),
-('Jardin d''Avenir', 111111111, 'Le Colombier', '', '69850', 'Saint Martin en Haut', 'Le mode de distribution est original car il s''adresse à un réseau d''adhérents consommateurs qui viennent chercher leur panier chaque semaine dans différents points de dépôts. L''accent est mis sur la qualité et la diversité des produits proposés. Ces fruits et légumes sont accessibles sous forme de paniers hebdomadaires directement dans nos jardins ou dans des points de dépôts.', 4, 'images/default.jpg', '45.672523', '4.575432'),
-('Potager Mi-Plaine', 111111111, '27, route de Grenoble', '', '69800', 'Saint-Priest', 'Nous employons pour l''instant plus de 4000 personnes en insertion dans déjà 120 jardins dans tout la France et nous prévoyons de nous développer davantage. L''objectif de nos jardins solidaires est à la fois social et environnemental.', 4, 'images/default.jpg', '45.704664', '4.994573');
-
+('Les terres d''auvergne', 111111111, 'Croix de la Combe', '', '63610', 'Bresse-et-saint-anastaise', 
+	'Notre passion pour l’affinage est toujours présente depuis 3 générations maintenant, et elle se traduit par un savoir-faire dans la façon de traiter le fromage. <br><br>Nous récupérons le fromage frais directement chez nos producteurs de la région, qui nourrissent leurs bêtes avec des matières premières au maximim issues de leur propre exploitation. <br><br>L’esprit d’équipe que nous, les maîtres affineurs avons avec nos producteurs, se traduit par de nombreuses récompenses lors de concours.<br><br>Notre société a su adopter une technologie innovante sans renoncer aux spécificités des produits de terroir, nos caves sont d’ailleurs enterrées et voutées pour un ensemencement naturel, donnant ainsi au fromage l’unicité à son goût, sa couleur et sa texture.',
+	5, 'Les-Terres-dAuvergne.jpg', '45.512924', '2.942802'),
+('Earl Goyard', 111111111, 'Logeat', '', '18370', 'Saint-Priest-la-Marche', 
+	'Nous sommes dans le fromage depuis 1993, ce qui nous permet d’utiliser notre savoir-faire dans tout le processus de fabrication de nos produits.',
+	2, 'EARL-Goyard.jpg', '46.457189', '2.163977'),
+('La bergerie de la prade', 111111111, 'La Vaud', '', '23500', 'La Nouaille', 
+	'Cela fait maintenant plus de 20 ans que je fabrique Le Nouaille, un fromage de Brebis au saveur exceptionnelle dont le savoir-faire est primordial',
+	3, 'La-Bergerie-de-la-Prade.jpg', '45.840173', '2.079941'),
+('La fromagerie Deret', 111111111, 'Le Bourg', '', '03350', 'Theneuille', 
+	'C’est au début des années 50, que mon père coquetier Max DERET lance l’aventure de notre fromagerie, dont une partie du succès provient du beurre de baratte',
+	1, 'Fromagerie-Deret.jpg', '46.533833', '2.838274'),
+('L''atelier de viand''art', 111111111, '9 Rue Alfred Grand', '', '23000', 'Guéret', 
+	'C’est au début des années 50, que mon père coquetier Max DERET lance l’aventure de notre fromagerie, dont une partie du succès provient du beurre de baratte',
+	2, 'Boucherie-Dubois.jpg', '46.533833', '2.838274'),
+('L''usseloise', 111111111, 'Rue du Moulin du Peuch', '', '19200', 'Guéret', 
+	'Notre salaison née en 1930 a été créée sous le nom de « La Sociale » car une partie de nos employés étaient des combattants mutilés',
+	3, 'Usseloise.jpg', '46.533833', '2.838274'),
+('Les collines', 111111111, 'Rue du jaiplusenviedecopiercoller', '', '66699', 'HiThere', 
+	'Ceci est une description de producteur complètement bidon. Pourquoi continuez-vous à lire? Non mais vraiment, ça n''a aucun sens! Stop! Enfin bref... Bonne journée!''',
+	8, 'Collines.jpg', '46.533833', '2.838274'),
+('Gaec fontloup', 111111111, 'Rue du jaiplusenviedecopiercoller', '', '66699', 'HiThere', 
+	'Ceci est une description de producteur complètement bidon. Pourquoi continuez-vous à lire? Non mais vraiment, ça n''a aucun sens! Stop! Enfin bref... Bonne journée!''',
+	10, 'GAEC-fontloup_1.jpg', '46.533833', '2.838274'),
+('Moulin de saint désiré', 111111111, 'Rue du jaiplusenviedecopiercoller', '', '66699', 'HiThere', 
+	'Ceci est une description de producteur complètement bidon. Pourquoi continuez-vous à lire? Non mais vraiment, ça n''a aucun sens! Stop! Enfin bref... Bonne journée!''',
+	100, 'Moulin-de-Saint-Desire.jpg', '46.533833', '2.838274'),
+('Comtes de la marche', 111111111, 'Rue du jaiplusenviedecopiercoller', '', '66699', 'HiThere', 
+	'Ceci est une description de producteur complètement bidon. Pourquoi continuez-vous à lire? Non mais vraiment, ça n''a aucun sens! Stop! Enfin bref... Bonne journée!''',
+	8, 'Comtes-de-la-Marche.jpg', '46.533833', '2.838274');
+	
 -- type1
 INSERT INTO types1 (libelle1) VALUES ('Fromage');
 INSERT INTO types1 (libelle1) VALUES ('Charcuterie');
