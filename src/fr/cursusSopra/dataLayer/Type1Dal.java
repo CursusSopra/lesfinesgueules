@@ -194,6 +194,8 @@ public class Type1Dal {
 			// Et on l'ajoute à la collection
 			type1.getListeType2().add(type2);
 		}
+		// On ajoute type1 à la collection finale
+		listeType1.add(type1);
 
 		rs.close();
 		state.close();
