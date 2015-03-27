@@ -70,7 +70,7 @@
 			<legend> Votre compte utilisateur : </legend>
 			<div class="form-group">
 				<label for="idEmail" class="col-sm-2 control-label">Email</label>
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<input type="text" class="form-control input-lg" id="idEmail"
 						name="email" value="<s:property value="email"/>"
 						placeholder="email"> 
@@ -78,8 +78,8 @@
 			</div>
 			<div class="form-group">
 				<label for="idMdp" class="col-sm-2 control-label">Mot de passe</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control input-lg" id="idMdp"
+				<div class="col-sm-4">
+					<input type="password" class="form-control input-lg" id="idMdp"
 						name="mdp" value="<s:property value="mdp"/>"
 						placeholder="Mot de passe"> 
 				</div>

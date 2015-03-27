@@ -34,4 +34,8 @@
 		</tr>	
 	</table>
 	
+	
+<p><a href="<s:url action="listeUtilisateurs"/>"> Retour à la liste des utilisateurs</a></p>
+	
 </div>
+
