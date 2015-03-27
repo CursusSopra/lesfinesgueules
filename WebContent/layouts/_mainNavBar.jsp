@@ -77,6 +77,10 @@
 						<b class="caret"></b>&nbsp;&nbsp; <i class="fa fa-cogs navbaricon"></i>
 					</a>
 					<ul class="dropdown-menu">
+						<li class="dropdown-header">Mon compte :</li>
+						<li><a href="details.action?idUtilisateur=1"><i class="fa fa-arrow-circle-right"></i> Mon compte (id=1)</a></li>
+						<li><a href="<s:url action="mes-commandes-passees"/>"><i class="fa fa-arrow-circle-right"></i> Mes commandes passées</a></li>
+						<li class="divider"></li>
 						<li class="dropdown-header">Utilisateurs :</li>
 						<li><a href="<s:url action="liste-utilisateurs"/>"><i class="fa fa-arrow-circle-right"></i> Liste des utilisateurs</a></li>
 						<li class="divider"></li>
@@ -90,7 +94,6 @@
 						<li class="dropdown-header">Autres? :</li>
 					</ul>
 				</li>
-				
 				
 <!-- 				UTILISATEUR -->
 				<li class="dropdown">
