@@ -8,6 +8,7 @@
 </div>
 
 <table class="table table-striped table-hover table-bordered">
+	<caption><i class="fa fa-arrow-circle-o-right"></i> Commande n°<s:property value="panier.idCommande" /></caption>
 	<tbody>
 		<tr class="info">
 			<th class="text-left">Produit</th>
@@ -32,11 +33,11 @@
 		
 		<tr class="warning">
 			<td colspan="2">Prix total de la commande</td>
-			<td class="text-right my-price"> <s:property value="coutTotal" /> &euro;</td>
+			<td class="text-right my-price"> <s:property value="panier.coutTotal" /> &euro;</td>
 		</tr>
 		<tr class="warning">
 			<td colspan="2">Frais de port</td>
-			<td class="text-right my-price"> <s:property value="fraisPort" /> &euro;</td>
+			<td class="text-right my-price"> <s:property value="panier.fraisPort" /> &euro;</td>
 		</tr>
 	</tbody>
 </table>

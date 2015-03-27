@@ -173,12 +173,12 @@ INSERT INTO utilisateurs (nom, prenom, ligne_adresse1, ligne_adresse2, code_post
 
 -- produits
 INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) VALUES 
-(1, 1, 'Le camembert est...', 1.29, 'Camembert', 'images/default.jpg', true),
-(1, 2, 'Idéale pour faire...', 2.54, 'Tome de brebis', 'images/default.jpg', true),
-(1, 3, 'A partager en famille...', 10.72, 'Bûche fraîche (1kg)', 'images/default.jpg', false),
-(2, 7, 'Le boeuf, c''est bon !', 22.65, 'Côte de boeuf (1kg)', 'images/default.jpg', false),
-(2, 8, 'Les escalope de veau sont...', 7, 'Escalopes de veau (x6)', 'images/default.jpg', false),
-(3, 13, 'Même si ceux de charente sont...', 3.8, 'Melon commun', 'images/default.jpg', true);
+(1, 1, 'Le camembert est...', 1.29, 'Camembert', 'default.jpg', true),
+(1, 2, 'Idéale pour faire...', 2.54, 'Tome de brebis', 'default.jpg', true),
+(1, 3, 'A partager en famille...', 10.72, 'Bûche fraîche (1kg)', 'default.jpg', false),
+(2, 7, 'Le boeuf, c''est bon !', 22.65, 'Côte de boeuf (1kg)', 'default.jpg', false),
+(2, 8, 'Les escalope de veau sont...', 7, 'Escalopes de veau (x6)', 'default.jpg', false),
+(3, 13, 'Même si ceux de charente sont...', 3.8, 'Melon commun', 'default.jpg', true);
 
 
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////

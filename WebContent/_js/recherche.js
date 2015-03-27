@@ -5,19 +5,13 @@
 // Chargement de la page
 $(function() {
 	
-	$.getJSON('getProduitsJSON?idType1=' + $('#idType1').val() + 
-			'&idType2=' + $('#idType2').val() + 
-			'&idProducteur=' + $('#idProducteur').val() +
-			'&displayNumber=' + $('#displayNumber').val() +
-			'&pageNumber=' + $('#pageNumber').val(), function(data) {
-		
-		console.log('pageNumber = ' + $('#pageNumber').val());
-		console.log('displayNumber = ' + $('#displayNumber').val());
-		console.log('data.numberOfPages = ' + data.numberOfPages);
-		
-		getPage(data);
+	// Changement du nombre de produits affichés
+	$('#displayNumber').change(function () {
+		$('#pageNumber').val(1);
+		requestJSON();
 	});
 	
+	requestJSON();
 });
 
 // Fonction JSON
@@ -28,11 +22,6 @@ function getPage(data) {
 	
 	// Ajout évènement 'onclick' sur tous les boutons 'Ajout produit'
 	addClickEventPanier();
-	
-	// Changement du nombre de produits affichés
-	$('#displayNumber').change(function () {
-		changeDisplay();
-	});
 	
 	// Aller à la page précédente
 	$('#pPage').unbind('click').click(function () {
@@ -76,49 +65,33 @@ function getPage(data) {
 
 // UTILITARY FUNCTIONS ========================================================================== //
 
-function changeDisplay() {
-	$.getJSON('getProduitsJSON?idType1=' + $('#idType1').val() + 
-			'&idType2=' + $('#idType2').val() + 
-			'&idProducteur=' + $('#idProducteur').val() +
-			'&displayNumber=' + $('#displayNumber').val() +
-			'&pageNumber=' + 1, function(data) {
-		
-		getPage(data);
-	});
-}
-
 function nextPage() {
-	if($('#pageNumber').val() < $('#numberOfPages').val()) {
+	if(parseInt($('#pageNumber').val()) < parseInt($('#numberOfPages').val())) {
 		var tempPageNumber = parseInt($('#pageNumber').val()) + 1;
-		$.getJSON('getProduitsJSON?idType1=' + $('#idType1').val() + 
-				'&idType2=' + $('#idType2').val() + 
-				'&idProducteur=' + $('#idProducteur').val() +
-				'&displayNumber=' + $('#displayNumber').val() +
-				'&pageNumber=' + tempPageNumber, function(data) {
-			
-			getPage(data);
-		});
-		
 		$('#pageNumber').val(tempPageNumber);
-		console.log('pageNumber = ' + tempPageNumber);
+		
+		requestJSON();
 	}
 }
 
 function previousPage() {
 	if(parseInt($('#pageNumber').val()) > 1) {
-		var tempPageNumber = parseInt($('#pageNumber').val()) - 1;
-		$.getJSON('getProduitsJSON?idType1=' + $('#idType1').val() + 
-				'&idType2=' + $('#idType2').val() + 
-				'&idProducteur=' + $('#idProducteur').val() +
-				'&displayNumber=' + $('#displayNumber').val() +
-				'&pageNumber=' + tempPageNumber, function(data) {
-			
-			getPage(data);
-		});
-		
+		var tempPageNumber = parseInt($('#pageNumber').val()) - 1;		
 		$('#pageNumber').val(tempPageNumber);
-		console.log('pageNumber = ' + tempPageNumber);
+		
+		requestJSON();
 	}
+}
+
+function requestJSON() {
+	var pn = $('#pageNumber').val();
+	$.getJSON('getProduitsJSON?idType1=' + $('#idType1').val() + 
+			'&idType2=' + $('#idType2').val() + 
+			'&idProducteur=' + $('#idProducteur').val() +
+			'&displayNumber=' + $('#displayNumber').val() +
+			'&pageNumber=' + pn, function(data) {		
+		getPage(data);
+	});
 }
 
 // DISPLAY FUNCTION ============================================================================= //

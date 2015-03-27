@@ -6,6 +6,7 @@ package fr.cursusSopra.model;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,9 @@ public class Commande {
 	private Timestamp tsValidation;
 	private Timestamp tsArchivage;
 	private int moyenPaiement;
+
+	private double coutTotal = 0;
+	private double fraisPort = 0;
 
 	/* isFromDb :
   		boolean utilise pour savoir si je suis deja present dans la base (true) ou non (false)
@@ -48,6 +52,8 @@ public class Commande {
 		this.idUtilisateur = idUtilisateur;
 		// get la liste des items enfants
 		getMyListOfItems();
+		coutTotal = this.calculTotalPrixCommande();
+		fraisPort = this.calculFraisDePort();
 	}
 
 
@@ -301,16 +307,16 @@ public class Commande {
 		this.idUtilisateur = idUtilisateur;
 	}
 
-	public Timestamp getTsValidation() {
-		return tsValidation;
+	public String getTsValidation() {
+		return new SimpleDateFormat("yyyy-MM-dd @ HH:mm").format(tsValidation);
 	}
 
 	public void setTsValidation(Timestamp tsValidation) {
 		this.tsValidation = tsValidation;
 	}
 
-	public Timestamp getTsArchivage() {
-		return tsArchivage;
+	public String getTsArchivage() {
+		return new SimpleDateFormat("yyyy-MM-dd @ HH:mm").format(tsArchivage);
 	}
 
 	public void setTsArchivage(Timestamp tsArchivage) {
@@ -349,5 +355,12 @@ public class Commande {
 		this.etat = EtatCommande.intToEtatCommande(etat);
 	}
 
+	public double getCoutTotal() {
+		return coutTotal;
+	}
+
+	public double getFraisPort() {
+		return fraisPort;
+	}
 
 }

@@ -15,7 +15,7 @@
 			<td class="col-md-3">
 				<div>
 					<input type="hidden" id="idProduit1" value="<s:property value="idProduit"/>"/>
-					<img alt="<s:property value="desgination"/>" id="idImage1" src="<s:property value="photo"  default="images/default.jpg"/>" width="300">
+					<img alt="<s:property value="desgination"/>" id="idImage1" src="<s:property value="photo"  default="/lesfinesgueules/content/images/default.jpg"/>" width="300">
 					
 					<div class="col-md-6">
 						<button type="button" class="btn btn-default" id="idButton1" <s:if test="!disponible">disabled="disabled"</s:if>>

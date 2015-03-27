@@ -15,6 +15,9 @@
  		<put-list-attribute name="moreScripts">
  			<add-attribute value="_js/recherche.js"></add-attribute>
  		</put-list-attribute>
+ 		<put-list-attribute name="moreStyles">
+ 			<add-attribute value="_css/listeProduits.css"></add-attribute>
+ 		</put-list-attribute>
 	</definition>
 	
 	<!-- LISTE PRODUCTEURS -->

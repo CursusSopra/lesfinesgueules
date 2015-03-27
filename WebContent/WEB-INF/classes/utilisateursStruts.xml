@@ -13,7 +13,7 @@
 		</result-types>
 		
 		<!-- INSCRIPTION -->
-		<action name="formulaire-inscription" class="fr.cursusSopra.action.utilisateurs.InscriptionAction" method="createProfilForm">
+		<action name="formulaire" class="fr.cursusSopra.action.utilisateurs.InscriptionAction" method="createProfilForm">
 			<result name="success" type="tiles">inscription</result>
 		</action>
 		
@@ -22,7 +22,7 @@
 		</action>
 		
 		<!-- LISTE DES UTILISATEURS -->
-		<action name="liste-utilisateurs" class="fr.cursusSopra.action.utilisateurs.ListeUtilisateursAction" method="createListProfil">
+		<action name="listeUtilisateurs" class="fr.cursusSopra.action.utilisateurs.ListeUtilisateursAction" method="createListProfil">
 			<result name="success" type="tiles">liste-utilisateurs</result>
 		</action>
 		
@@ -64,6 +64,11 @@
 		</action>
 		<action name="validerCommandeHtml" class="fr.cursusSopra.action.utilisateurs.PanierAction" method="validerCommande">
 		    <result>/views/utilisateurs/panier/validerCommandeHtml.jsp</result>
+		</action>
+		
+		<!-- MES-COMMANDES PASSEES -->
+		<action name="mes-commandes-passees" class="fr.cursusSopra.action.utilisateurs.CommandeAction">
+		    <result name="success" type="tiles">mes-commandes-passees</result>
 		</action>
 	</package>
 
