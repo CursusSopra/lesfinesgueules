@@ -3,9 +3,11 @@
 
 
 
+
+
 <div id="carousel-example-generic" class="carousel slide"
 	data-ride="carousel"
-	style="width: 700px; height: 400px; margin: 0 auto">
+	style="width: 400px; height: 400px; margin: 0 auto">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
 		<li data-target="#carousel-example-generic" data-slide-to="0"
@@ -22,7 +24,7 @@
 		<s:iterator value="listeProduitsRandom" status="stats">
 			<s:if test="1==#stats.count">
 				<div class="item active">
-					<img src="/lesfinesgueules/content/images/<s:property value="photo" default="default.jpg"/>"
+					<img src="content/images/<s:property value="photo" default="default.jpg"/>"
 						alt="..." style="height: 400px; width: 400px; margin: 0 auto">
 					<div class="carousel-caption">
 						<nav>
@@ -45,7 +47,7 @@
 			</s:if>
 			<s:if test="1!=#stats.count">
 				<div class="item">
-					<img src="/lesfinesgueules/content/images/<s:property value="photo" default="default.jpg"/>"
+					<img src="content/images/<s:property value="photo" default="default.jpg"/>"
 						alt="..." style="height: 400px; width: 400px; margin: 0 auto">
 					<div class="carousel-caption">
 						<nav>
@@ -66,10 +68,8 @@
 					</div>
 				</div>
 			</s:if>
-
 		</s:iterator>
 	</div>
-
 	<!-- Controls -->
 	<a class="left carousel-control" href="#carousel-example-generic"
 		role="button" data-slide="prev"> <span
@@ -81,6 +81,23 @@
 		class="sr-only">Next</span>
 	</a>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="container-fluid">
 	<div class="row">Hello Index</div>

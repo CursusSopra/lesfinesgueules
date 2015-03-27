@@ -173,8 +173,10 @@ public class Type1Dal {
 			// Si rupture sur id_type1, on crée un nouvel objet
 			long idt1 = rs.getLong("id_type1");
 			if (idt1Prev != idt1) {
+				if(idt1Prev != -1) {
 				// On ajoute type1 à la collection finale
 				listeType1.add(type1);
+				}
 
 				// On en créé un nouveau
 				type1 = new Type1(idt1, rs.getString("libelle1"));
