@@ -1,60 +1,60 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<!-- <div class="col-md-8 col-md-offset-2 row"> -->
-<%-- 	<s:if test="!firstDisplay"> --%>
-<!-- 		<p class="alert alert-warning" role="alert"> -->
-<!-- 			<br />Il y a des problèmes, voyez les messages ci-dessous: -->
-<%-- 			<s:if test="!raisonSocialeOK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 La raison sociale de votre exploitation est obligatoire -->
-<%-- 		</s:if> --%>
-<%-- 			<s:if test="!sirenOK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 Votre code siren est obligatoire -->
-<%-- 		</s:if> --%>
-<%-- 			<s:if test="!ligneAdresse1OK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 Vous devez saisir votre adresse -->
-<%-- 		</s:if> --%>
-<%-- 			<s:if test="!codePostalOK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 Votre code postal contient des erreurs -->
-<%-- 		</s:if> --%>
-<%-- 			<s:if test="!villeOK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 Vous devez saisir une ville -->
-<%-- 		</s:if> --%>
-<%-- 			<s:if test="!latitudeOK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 Problème de latitude -->
-<%-- 		</s:if> --%>
-<%-- 			<s:if test="!longitudeOK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 Problème de longitude -->
-<%-- 		</s:if> --%>
-<%-- 			<s:if test="!descriptionOK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 Veuillez décrire votre exploitation -->
-<%-- 		</s:if> --%>
-<%-- 			<s:if test="!delaiLivraisonOK"> --%>
-<!-- 				<br /> -->
-<%-- 				<span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
-<!-- 			 Votre délai n'est pas correct -->
-<%-- 		</s:if> --%>
+<div class="row">
+	<s:if test="!firstDisplay">
+		<p class="alert alert-warning" role="alert">
+			<br />Il y a des problèmes, voyez les messages ci-dessous:
+			<s:if test="!raisonSocialeOK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 La raison sociale de votre exploitation est obligatoire
+		</s:if>
+			<s:if test="!sirenOK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Votre code siren est obligatoire
+		</s:if>
+			<s:if test="!ligneAdresse1OK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Vous devez saisir votre adresse
+		</s:if>
+			<s:if test="!codePostalOK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Votre code postal contient des erreurs
+		</s:if>
+			<s:if test="!villeOK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Vous devez saisir une ville
+		</s:if>
+			<s:if test="!latitudeOK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Problème de latitude
+		</s:if>
+			<s:if test="!longitudeOK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Problème de longitude
+		</s:if>
+			<s:if test="!descriptionOK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Veuillez décrire votre exploitation
+		</s:if>
+			<s:if test="!delaiLivraisonOK">
+				<br />
+				<span class="glyphicon glyphicon-remove"></span>&nbsp;
+			 Votre délai n'est pas correct
+		</s:if>
 			
-<!-- 			<br /> <br /> -->
-<!-- 		</p> -->
-<%-- 	</s:if> --%>
-<!-- </div> -->
+			<br /> <br />
+		</p>
+	</s:if>
+</div>
 
 		
 		

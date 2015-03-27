@@ -1,3 +1,6 @@
+/**
+ * Modified by Cecile
+ */
 package fr.cursusSopra.action;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,7 +10,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import fr.cursusSopra.action.admin.ProducteurAction;
+import fr.cursusSopra.model.Utilisateur;
 
 public class LoginAction extends ActionSupportExtended implements
 		ServletRequestAware {
@@ -25,6 +28,7 @@ public class LoginAction extends ActionSupportExtended implements
 	private String mdp;
 	private String savedURL;
 
+
 	public String getEmail() {
 		return email;
 	}
@@ -41,22 +45,18 @@ public class LoginAction extends ActionSupportExtended implements
 		return savedURL;
 	}
 
+	@Override
 	public String execute() {
 		return SUCCESS;
 	}
 
 	public String control() {
 		HttpSession session = request.getSession();
-		// Vérification ./. à la BDD
 		
-		if (email.equals("mail@mail.fr")) {
-			session.setAttribute("authorized", "yes");
-			//savedURL = session.getAttribute("savedUrl").toString();
-			//savedURL = "/views/welcome.jsp";
-			//logger.info(savedURL);
+		if (Utilisateur.isInBase(email, mdp)) {
+		session.setAttribute("authorized", "yes");		
 			return SUCCESS;
 		}
-
 		return ERROR;
 	}
 

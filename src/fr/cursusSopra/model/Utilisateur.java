@@ -32,104 +32,36 @@ public class Utilisateur {
 	private String tel;
 	private String photo;
 	private int droits;
-
+	
+	
 	// accesseurs
-	public long getIdUtilisateur() {
-		return idUtilisateur;
-	}
+	public long getIdUtilisateur() {return idUtilisateur;}
+	public void setIdUtilisateur(long idUtilisateur) {this.idUtilisateur = idUtilisateur;}
+	public String getNom() {return nom;}
+	public void setNom(String nom) {this.nom = nom;}
+	public String getPrenom() {return prenom;}
+	public void setPrenom(String prenom) {this.prenom = prenom;}
+	public String getEmail() {return email;}
+	public void setEmail(String email) {this.email = email;}
+	public String getLigneAdresse1() {return ligneAdresse1;}
+	public void setLigneAdresse1(String ligneAdresse1) {this.ligneAdresse1 = ligneAdresse1;}
+	public String getLigneAdresse2() {return ligneAdresse2;}
+	public void setLigneAdresse2(String ligneAdresse2) {this.ligneAdresse2 = ligneAdresse2;}
+	public String getCodePostal() {return codePostal;}
+	public void setCodePostal(String codePostal) {this.codePostal = codePostal;}
+	public String getVille() {return ville;}
+	public void setVille(String ville) {this.ville = ville;}
+	public String getMdp() {return mdp;}
+	public void setMdp(String mdp) {this.mdp = mdp;}
+	public String getTel() {return tel;}
+	public void setTel(String tel) {this.tel = tel;}
+	public String getPhoto() {return photo;}
+	public void setPhoto(String photo) {this.photo = photo;}
+	public int getDroits() {return droits;}
+	public void setDroits(int droits) {this.droits = droits;}
 
-	public void setIdUtilisateur(long idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getLigneAdresse1() {
-		return ligneAdresse1;
-	}
-
-	public void setLigneAdresse1(String ligneAdresse1) {
-		this.ligneAdresse1 = ligneAdresse1;
-	}
-
-	public String getLigneAdresse2() {
-		return ligneAdresse2;
-	}
-
-	public void setLigneAdresse2(String ligneAdresse2) {
-		this.ligneAdresse2 = ligneAdresse2;
-	}
-
-	public String getCodePostal() {
-		return codePostal;
-	}
-
-	public void setCodePostal(String codePostal) {
-		this.codePostal = codePostal;
-	}
-
-	public String getVille() {
-		return ville;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-	public String getMdp() {
-		return mdp;
-	}
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-
-	public int getDroits() {
-		return droits;
-	}
-
-	public void setDroits(int droits) {
-		this.droits = droits;
-	}
-
+//------------CONSTRUCTEURS-------------
+		
 	// constructeur complet
 	public Utilisateur(String nom, String prenom, String ligneAdresse1,
 			String codePostal, String ville, String email, String mdp,
@@ -146,7 +78,7 @@ public class Utilisateur {
 		this.droits = droits;
 	}
 
-	// ctor 2
+	//constructeur liste utilisateur avec nom, prenom, email affichés
 	public Utilisateur(long idUtilisateur, String nom, String prenom,
 			String email) {
 		super();
@@ -156,7 +88,7 @@ public class Utilisateur {
 		this.email = email;
 	}
 
-	// ctor3 : update
+	//constructeur update
 	public Utilisateur(String nom, String prenom, String ligneAdresse1,
 			String codePostal, String ville, String tel) {
 		this.idUtilisateur = idUtilisateur;
@@ -168,7 +100,7 @@ public class Utilisateur {
 		this.tel = tel;
 	}
 
-	// ctor4
+	//constructeur détail utilisateur
 	public Utilisateur(long idUtilisateur) {
 		UtilisateurDal ud = new UtilisateurDal(idUtilisateur);
 		this.nom = ud.getNom();
@@ -178,28 +110,34 @@ public class Utilisateur {
 		this.ville = ud.getVille();
 		this.tel = ud.getTel();
 	}
+	
+//------------METHODES----------------
 
-	// sauvegarde de l'utilisateur en bdd
+	//sauvegarde utilisateur
 	public void save() throws SQLException {
 		UtilisateurDal ud = new UtilisateurDal(nom, prenom, ligneAdresse1,
 				codePostal, ville, email, mdp, tel, photo, droits);
 		ud.save();
 	}
 
-	// maj d'un utilisateur en bdd
+	//update utilisateur
 	public void update(long idUtilisateur) throws SQLException {
-		
 		UtilisateurDal ud = new UtilisateurDal(nom, prenom, ligneAdresse1,
 				codePostal, ville, tel);
 		ud.update(idUtilisateur);
 	}
 
-	// info profil utilisateur
+	//detail utilisateur
 	public void select() throws SQLException {
 		UtilisateurDal ud = new UtilisateurDal(idUtilisateur, nom, prenom,
 				ligneAdresse1, codePostal, ville, tel);
 		ud.select();
 	}
+	
+	//id de connexion dans la base ?
+		public static boolean isInBase(String email, String mdp) {
+			return UtilisateurDal.isInBase(email, mdp);
+		}
 
 	// liste des utilisateurs
 	public static List<Utilisateur> getListeUtilisateurs() throws SQLException {

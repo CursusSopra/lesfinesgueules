@@ -61,7 +61,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private boolean imageOK;
 
 	private boolean firstDisplay = true;
-	private boolean firstDisplayModify = true;
+	private boolean firstDisplayModify;
 
 	// Fontion qui retournera le formulaire de création de producteur
 	public String createProducteurForm() {
@@ -81,6 +81,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 
 	// Fonction d'ajout d'un producteur en BDD
 	public String createProducteur() {
+		firstDisplay = testFirstDisplay();
 
 		if (isFirstDisplay()) {
 			try {
@@ -139,6 +140,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	
 	public String modifyPhotoProducteur() {
 
+		firstDisplay = testFirstDisplay();
 		if (isFirstDisplay()) {
 			try {
 
@@ -184,6 +186,28 @@ public class ProducteurAction extends ActionSupportExtended implements
 		imageName = producteur.getPhoto();
 
 		return SUCCESS;
+	}
+	
+	public boolean testFirstDisplay() {
+
+		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
+				.length() < 50);
+		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
+		ligneAdresse1OK = (FormTools.isStrNotEmpty(ligneAdresse1) && ligneAdresse1
+				.length() < 50);
+		codePostalOK = FormTools.isZipValid(codePostal);
+		villeOK = (FormTools.isStrNotEmpty(ville) && ville.length() < 50);
+		latitudeOK = (FormTools.isStrNotEmpty(latitude) && latitude.length() < 13);
+		longitudeOK = (FormTools.isStrNotEmpty(longitude) && longitude.length() < 13);
+		descriptionOK = FormTools.isStrNotEmpty(description);
+		delaiLivraisonOK = (delaiLivraison > 0);
+		imageOK = FormTools.isStrNotEmpty(userImageFileName);
+
+		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
+				&& codePostalOK && villeOK && latitudeOK && longitudeOK
+				&& descriptionOK && delaiLivraisonOK && imageOK;
+
+		return firstDisplay;
 	}
 
 	public String getRaisonSociale() {
@@ -319,25 +343,12 @@ public class ProducteurAction extends ActionSupportExtended implements
 	}
 
 	public boolean isFirstDisplay() {
-
-		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
-				.length() < 50);
-		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
-		ligneAdresse1OK = (FormTools.isStrNotEmpty(ligneAdresse1) && ligneAdresse1
-				.length() < 50);
-		codePostalOK = FormTools.isZipValid(codePostal);
-		villeOK = (FormTools.isStrNotEmpty(ville) && ville.length() < 50);
-		latitudeOK = (FormTools.isStrNotEmpty(latitude) && latitude.length() < 13);
-		longitudeOK = (FormTools.isStrNotEmpty(longitude) && longitude.length() < 13);
-		descriptionOK = FormTools.isStrNotEmpty(description);
-		delaiLivraisonOK = (delaiLivraison > 0);
-		imageOK = FormTools.isStrNotEmpty(userImageFileName);
-
-		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
-				&& codePostalOK && villeOK && latitudeOK && longitudeOK
-				&& descriptionOK && delaiLivraisonOK && imageOK;
-
+		
 		return firstDisplay;
+	}
+
+	public void setFirstDisplay(boolean firstDisplay) {
+		this.firstDisplay = firstDisplay;
 	}
 
 	public boolean isFromDb() {
@@ -395,6 +406,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	}
 
 	public boolean isFirstDisplayModify() {
+		firstDisplayModify = true;
 		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
 				.length() < 50);
 		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
@@ -407,7 +419,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 		descriptionOK = FormTools.isStrNotEmpty(description);
 		delaiLivraisonOK = (delaiLivraison > 0);
 		
-		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
+		firstDisplayModify = raisonSocialeOK && sirenOK && ligneAdresse1OK
 				&& codePostalOK && villeOK && latitudeOK && longitudeOK
 				&& descriptionOK && delaiLivraisonOK;
 		return firstDisplayModify;

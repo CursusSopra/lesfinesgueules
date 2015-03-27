@@ -75,8 +75,8 @@ public class UtilisateurDal extends DataLayerExtended {
 	public int getDroits() {return droits;}
 	public void setDroits(int droits) {this.droits = droits;}
 
-	
-	//constructeur
+//-----------CONSTRUCTEURS-------------
+	//constructeur complet
 	public UtilisateurDal(String nom, String prenom, String ligneAdresse1,
 			String codePostal, String ville, String email, String mdp, String tel,
 			String photo, int droits) {
@@ -93,14 +93,15 @@ public class UtilisateurDal extends DataLayerExtended {
 		this.droits = droits;
 	}
 	
-	//constructeur 2
+	//constructeur liste utilisateur avec nom, prenom, email affichés
 	public UtilisateurDal(Long idUtilisateur, String nom, String prenom, String email) {
 		this.idUtilisateur = idUtilisateur;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 	}
-	//ctor3 : update
+	
+	//constructeur update
 	public UtilisateurDal(String nom, String prenom, String ligneAdresse1,
 			String codePostal, String ville, String tel) {
 		this.nom = nom;
@@ -110,7 +111,8 @@ public class UtilisateurDal extends DataLayerExtended {
 		this.ville = ville;
 		this.tel = tel;
 	}
-	//ctor3 : select
+	
+	//constructeur détail utilisateur
 	public UtilisateurDal(long idUtilisateur, String nom, String prenom, String ligneAdresse1,
 			String codePostal, String ville, String tel) {
 		this.idUtilisateur = idUtilisateur;
@@ -122,7 +124,7 @@ public class UtilisateurDal extends DataLayerExtended {
 		this.tel = tel;
 	}
 	
-	//ctor4
+	//constructeur retour formulaire pré-rempli
 	public UtilisateurDal(long idUtilisateur) {
 		
 		try{PreparedStatement ps = connection.prepareStatement(rqSelect);
@@ -146,7 +148,8 @@ public class UtilisateurDal extends DataLayerExtended {
 		}	
 	}
 	
-
+//----------METHODES------------
+	
 		//sauvegarde de l'utilisateur en BDD
 		public long save() throws SQLException {
 			PreparedStatement ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
@@ -172,7 +175,7 @@ public class UtilisateurDal extends DataLayerExtended {
 			return idUtilisateur;
 		}
 		
-		//maj des données d'un utilisateur
+		//update utilisateur
 		public long update(long idUtilisateur) throws SQLException {
 			PreparedStatement ps = connection.prepareStatement(rqUpdate);
 			ps.setString(1, nom);
@@ -194,6 +197,33 @@ public class UtilisateurDal extends DataLayerExtended {
 			ps.executeUpdate();
 			ps.close();
 			return idUtilisateur;
+		}
+		
+		//authentification
+		public static boolean isInBase(String email, String mdp) {
+			Connection c = PostgresConnection.GetConnexion();
+			String rq = "SELECT count(*) nb FROM utilisateurs WHERE email=? AND mdp=?";
+			boolean res = false;
+			try {
+				PreparedStatement ps = c.prepareStatement(rq);
+				ps.setString(1, email);
+				ps.setString(2, mdp);
+				ResultSet rs = ps.executeQuery();
+				
+				rs.next();
+				long nb = rs.getLong("nb");
+				res = nb == 1;
+				System.out.println(nb);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					c.close();
+				} catch (SQLException e) {
+				}
+			}
+
+			return res;
 		}
 		
 		//liste des utilisateurs

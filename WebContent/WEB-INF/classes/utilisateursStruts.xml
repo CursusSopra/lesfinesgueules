@@ -13,7 +13,7 @@
 		</result-types>
 		
 		<!-- INSCRIPTION -->
-		<action name="formulaire-inscription" class="fr.cursusSopra.action.utilisateurs.InscriptionAction" method="createProfilForm">
+		<action name="formulaire" class="fr.cursusSopra.action.utilisateurs.InscriptionAction" method="createProfilForm">
 			<result name="success" type="tiles">inscription</result>
 		</action>
 		
@@ -22,7 +22,7 @@
 		</action>
 		
 		<!-- LISTE DES UTILISATEURS -->
-		<action name="liste-utilisateurs" class="fr.cursusSopra.action.utilisateurs.ListeUtilisateursAction" method="createListProfil">
+		<action name="listeUtilisateurs" class="fr.cursusSopra.action.utilisateurs.ListeUtilisateursAction" method="createListProfil">
 			<result name="success" type="tiles">liste-utilisateurs</result>
 		</action>
 		

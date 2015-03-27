@@ -50,6 +50,7 @@ public class InscriptionAction extends ActionSupportExtended{
 		this.listeUtilisateurs = listeUtilisateurs;
 	}
 	//accesseurs de l'utilisateur
+	@Override
 	public long getIdUtilisateur() {return idUtilisateur;}
 	public void setIdUtilisateur(long idUtilisateur) {this.idUtilisateur = idUtilisateur;}
 	
@@ -87,6 +88,7 @@ public class InscriptionAction extends ActionSupportExtended{
 		
 		Utilisateur utilisateur = new Utilisateur(nom, prenom, ligneAdresse1,
 				codePostal, ville, email, mdp, tel, photo, droits);
+		
 		utilisateur.save();
 
 		return SUCCESS;
@@ -117,6 +119,7 @@ public class InscriptionAction extends ActionSupportExtended{
 		utilisateur.setCodePostal(codePostal);
 		utilisateur.setVille(ville);
 		utilisateur.setTel(tel);
+		
 		utilisateur.update(idUtilisateur);
 		
 		return SUCCESS;
