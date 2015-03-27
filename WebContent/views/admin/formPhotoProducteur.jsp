@@ -6,7 +6,7 @@
 	<div class="row">
 
 
-		<h1 class="text-center">Modification Photo</h1>
+		<h1 class="text-center">Modification Photo de: <s:property value="raisonSociale"/></h1>
 		
 		<input type="hidden" class="form-control" id="idProducteur" name="idProducteur" 
 				value="<s:property value="idProducteur" />" >
