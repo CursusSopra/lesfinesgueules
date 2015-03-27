@@ -11,6 +11,9 @@ $(function() {
 		majNavBarPanier(data)
 	});
 	
+	// for the details produit page
+	addClickEventPanier();
+	
 });
 
 function majNavBarPanierJSON() {

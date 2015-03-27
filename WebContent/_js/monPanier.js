@@ -49,7 +49,7 @@ function majMonPanier(data) {
     	var moyenPaiement = $("#idOptionsPaiement").attr("value")
 		$('#idPanier4').load('validerCommandeHtml.action?moyenPaiement=' + moyenPaiement, function() {
 			majNavBarPanierJSON();
-			$('.my-price').number(true, 2, ',', ' ');
+//			$('.my-price').number(true, 2, ',', ' ');
 		});
 		// autre maniere:
 		// $.get('validerCommandeHtml.action', function(data) { $('#idPanier4').html(data); majNavBarPanierJSON(); });
