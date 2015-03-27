@@ -92,13 +92,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 				File fileToCreate = new File(filePath, imageName);
 				FileUtils.copyFile(this.userImage, fileToCreate);
 
-				// System.out.println("Server path:" + filePath);
-				// File fileToCreate = new File(filePath, this.photoFileName);
-				// FileUtils.copyFile(this.photo, fileToCreate);
-				//
 				lienPhoto = imageName;
-				// logger.info(servletRequest.getSession().getServletContext()
-				// .getContextPath());
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -116,7 +110,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// idProducteur = prod.getIdProducteur();
+			 idProducteur = prod.getIdProducteur();
 		}
 		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
@@ -142,7 +136,37 @@ public class ProducteurAction extends ActionSupportExtended implements
 		}
 		return firstDisplayModify ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
+	
+	public String modifyPhotoProducteur() {
 
+		if (isFirstDisplay()) {
+			try {
+
+				String[] tokens = userImageFileName.split("\\.(?=[^\\.]+$)");
+				imageName = UUID.randomUUID() + "." + tokens[1];
+				String filePath = servletRequest.getSession()
+						.getServletContext().getRealPath("/content/images");
+				File fileToCreate = new File(filePath, imageName);
+				FileUtils.copyFile(this.userImage, fileToCreate);
+
+				lienPhoto = imageName;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				addActionError(e.getMessage());
+				return INPUT;
+			}
+
+			Producteur prod = new Producteur(raisonSociale, siren,
+					ligneAdresse1, ligneAdresse2, codePostal, ville, latitude,
+					longitude, description, delaiLivraison, lienPhoto);
+			prod.setIdProducteur(idProducteur);
+
+			prod.modify();
+		}
+		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
+	}
+	
 	public String modifyProducteurForm() {
 		producteur = new Producteur(idProducteur);
 		producteur.setFromDb(true);

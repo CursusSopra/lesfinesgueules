@@ -25,14 +25,14 @@
 							<s:property value="idProducteur" />
 						</s:param>
 					</s:url>
-					<s:url action="modifyPhotoProducteur" var="mphoto">
+					<s:url action="modifyPhotoProducteurForm" var="mphoto">
 						<s:param name="idProducteur">
 							<s:property value="idProducteur" />
 						</s:param>
 					</s:url>
 				
 					<tr>
-						<td><a href="<s:property value='#mphoto'/>"><img  alt="image" class="img-responsive img-thumbnail" width="200px" src="/lesfinesgueules/content/images/<s:property value="photo" default="default.jpg"/>" /></a></td>
+						<td><a href="<s:property value='#dp'/>"><img  alt="image" class="img-responsive img-thumbnail" width="200px" src="/lesfinesgueules/content/images/<s:property value="photo" default="default.jpg"/>" /></a></td>
 						<td>
 							<h4>
 								<s:property value="raisonSociale" />
@@ -44,6 +44,7 @@
 									<span class="input-group-addon"><s:property value="delaiLivraison" /> jours</span>
 									<a href="<s:property value='#dp'/>"><button type="button" class="btn btn-default">Voir les d&eacute;tails</button></a>
 									<a href="<s:property value='#mp'/>"><button type="button" class="btn btn-info">Modifier le Producteur</button></a>
+									<a href="<s:property value='#mphoto'/>"><button type="button" class="btn btn-info">Modifier Photo</button></a>
 									
 								</div>
 						</td>

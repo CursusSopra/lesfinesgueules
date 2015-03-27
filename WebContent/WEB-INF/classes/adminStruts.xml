@@ -43,10 +43,16 @@
 			<result name="none" type="tiles">modifyProducteur</result>
 		</action>
 		
-		<action name="modifyPhotoProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteurForm">
+		<action name="modifyPhotoProducteurForm" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteurForm">
 			<result name="success" type="tiles">modifyPhotoProducteur</result>
 			<result name="error" type="redirect">listeProducteurs</result>
 			<result name="none" type="redirect">listeProducteurs</result>
+		</action>
+		
+		<action name="modifyPhotoProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyPhotoProducteur">
+			<result name="success" type="redirect">listeProducteurs</result>
+			<result name="error" type="tiles">modifyPhotoProducteur</result>
+			<result name="none" type="tiles">modifyPhotoProducteur</result>
 		</action>
 		
 		<!-- CREATION PRODUIT -->
