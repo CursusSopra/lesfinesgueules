@@ -110,7 +110,7 @@
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-6">
 					<div class="checkbox">
-						<label> <input type="checkbox"id="idDisponible" name="disponible" value="1"
+						<label> <input type="checkbox"id="idDisponible" name="disponible" value="true"
 							<s:if test="disponible">checked</s:if>  > Disponibilité du produit
 						</label>
 					</div>
