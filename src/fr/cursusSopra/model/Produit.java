@@ -81,6 +81,17 @@ public class Produit {
 		this.description = description;
 		this.photo = photo;
 	}
+	
+	public Produit(long idProduit, long producteur, long type2, double prix, String designation, boolean disponible, String description, String photo) {
+		this.idProduit = idProduit;
+		this.designation = designation;
+		this.prix = prix;
+		this.disponible = disponible;
+		this.type2 = type2;
+		this.producteur = producteur;
+		this.description = description;
+		this.photo = photo;
+	}
 
 	/* METHODS */
 	
@@ -89,8 +100,20 @@ public class Produit {
 		List<ProduitDal> lpdal = ProduitDal.getListeProduitsDal(idType1, idType2, idProducteur);
 		
 		for (int i = 0; i < lpdal.size(); i++) {
-			Produit p = new Produit(lpdal.get(i).getIdProduit());
-			listeProduits.add(p);
+			
+			long idProduit = lpdal.get(i).getIdProduit();
+			String designation = lpdal.get(i).getDesignation();
+			String description = lpdal.get(i).getDescription();
+			double prix = lpdal.get(i).getPrix();
+			String photo = lpdal.get(i).getPhoto();
+			boolean disponible = lpdal.get(i).isDisponible();
+			long type2 =lpdal.get(i).getType2();
+			long producteur = lpdal.get(i).getProducteur();
+			
+			listeProduits.add(new Produit(idProduit, producteur, type2, prix, designation, disponible, description, photo));
+			
+//			Produit p = new Produit(lpdal.get(i).getIdProduit());
+//			listeProduits.add(p);
 		}
 		return listeProduits;
 	}
