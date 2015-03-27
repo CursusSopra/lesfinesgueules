@@ -186,9 +186,9 @@ function displayList(data) {
 							'</div>';
 		
 		// Ajout de l'image par défaut si non présente
-		if(elt.photo.length == 0){
-			elt.photo = 'images/default.jpg';
-		}
+//		if(elt.photo.length == 0){
+//			elt.photo = 'images/default.jpg';
+//		}
 		
 		// Création de la variable chaîne de sortie
 		output +=
