@@ -69,23 +69,28 @@
 				un nouveau producteur
 			</p>
 		</s:if>
-		<s:if test="idProducteur == 0">
-			<p class="bg-danger">
-				<br /> <span class="glyphicon glyphicon-remove"></span>&nbsp;
-				Problème serveur. L'enregistrement de vos paramètres a échoué. Vous
-				pourrez essayer plus tard.
-			</p>
-		</s:if>
+		<%-- 		<s:if test="idProducteur == 0"> --%>
+		<!-- 			<p class="bg-danger"> -->
+		<%-- 				<br /> <span class="glyphicon glyphicon-remove"></span>&nbsp; --%>
+		<!-- 				Problème serveur. L'enregistrement de vos paramètres a échoué. Vous -->
+		<!-- 				pourrez essayer plus tard. -->
+		<!-- 			</p> -->
+		<%-- 		</s:if> --%>
 		<br />
 		<br />
 	</s:if>
 </div>
 
-<div class="col-md-10 col-md-offset-1 row">
-	<span class="glyphicon glyphicon-map-marker"
-		style="font-size: 2em; color: red"></span>
-	<p>Pour saisir un producteur, tous les champs du formulaire sont
-		obligatoires, exceptée la seconde ligne d'adresse.</p>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+
+		<h4 class="bg-primary text-center">
+			<span class="glyphicon glyphicon-map-marker"
+				style="font-size: 2em; color: red"></span>Veuillez saisir tous les
+			champs, seul la deuxième ligne d'adresse est facultative
+		</h4>
+
+	</div>
 </div>
 
 <div class="row" id="divFormProducteur"
@@ -94,53 +99,49 @@
 	<s:actionerror />
 	<%-- 	<s:form action="ajout-producteur" method="post" enctype="multipart/form-data" class="form-horizontal"> --%>
 
-	<form class="form-horizontal row" id="FormProducteur" method="post"
+	<form class="form-horizontal" id="FormProducteur" method="post"
 		enctype="multipart/form-data"
 		action="<s:url action='ajout-producteur' />">
 
-		<input type="hidden" id="fromDb" name="fromDb"
-			value="<s:property value="fromDb" />"> 			
-			
-		<input type="hidden" id="idProducteur" name="idProducteur"
+		 <input type="hidden"
+			id="idProducteur" name="idProducteur"
 			value="<s:property value="idProducteur" />">
 
 		<fieldset>
 
 			<legend> Producteur : </legend>
 
-			<div class="form-group row">
-				<label for="idRaisonSociale" class="col-sm-2 control-label">Raison
-					sociale du producteur : </label>
-				<div class="col-sm-6">
+			<div class="form-group">
+				<label for="idRaisonSociale" class="col-md-2 control-label">Raison sociale : </label>
+
+				<div class="col-md-4">
 					<input type="text" class="form-control input-lg"
 						id="idRaisonSociale" maxlength="50" name="raisonSociale"
 						value="<s:property value="raisonSociale"/>">
 				</div>
 			</div>
 
-			<div class="form-group row">
-				<label for="idSiren" class="col-sm-2 control-label">SIREN :
-				</label>
-				<div class="col-sm-6">
+			<div class="form-group">
+				<label for="idSiren" class="col-md-2 control-label">SIREN :</label>
+				<div class="col-md-4">
 					<input type="text" class="form-control input-lg" id="idSiren"
-						maxlength="50" name="siren" value="<s:property value="siren"/>">
+						maxlength="50" name="siren" value="<s:property value="siren"/>"/>
 				</div>
 			</div>
 
-			<div class="form-group row">
-				<label for="idDelai" class="col-sm-2 control-label">Délai de
-					livraison : </label>
-				<div class="col-sm-2">
+
+			<div class="form-group">
+				<label for="idDelai" class="col-md-2 control-label">Délai de livraison :</label>
+				<div class="col-md-4">
 					<input type="number" class="form-control" id="idDelai"
 						name="delaiLivraison" min="0"
 						value="<s:property value="delaiLivraison" />">
 				</div>
 			</div>
 
-			<div class="form-group row">
-				<label for="idDescription" class="col-sm-2 control-label">Description
-					: </label>
-				<div class="col-sm-6">
+			<div class="form-group">
+				<label for="idDescription" class="col-md-2 control-label">Description : </label>
+				<div class="col-md-4">
 					<textarea class="form-control" name="description"
 						id="idDescription" rows="5"><s:property
 							value="description" /></textarea>
@@ -148,16 +149,9 @@
 			</div>
 
 
-			<!-- 			<div class="form-group row"> -->
-			<!-- 				<div class="col-sm-6"> -->
-			<%-- 					<s:file name="userImage" label="User Image"> <s:property value="imageName" /></s:file> --%>
-			<!-- 				</div> -->
-			<!-- 			</div> -->
-
 			<div class="form-group">
-				<label for="idPhotoProducteur" class="col-sm-2 control-label">Photo
-					de votre producteur : </label>
-				<div class="col-sm-6">
+				<label for="idPhotoProducteur" class="col-md-2 control-label">Photo : </label>
+				<div class="col-md-4">
 					<input type="file" name="userImage" id="idPhotoProducteur" />
 				</div>
 			</div>
@@ -166,7 +160,7 @@
 
 		<fieldset>
 			<legend> Adresse : </legend>
-			<div class="form-group row">
+			<div class="form-group ">
 				<label for="idLigneAdresse1" class="col-sm-2 control-label">Rue
 					: </label>
 				<div class="col-sm-3">
@@ -181,7 +175,7 @@
 				</div>
 			</div>
 
-			<div class="form-group row">
+			<div class="form-group ">
 				<label for="idCodePostal" class="col-sm-2 control-label">Code
 					Postal : </label>
 				<div class="col-sm-2">
@@ -192,7 +186,7 @@
 				</div>
 			</div>
 
-			<div class="form-group row">
+			<div class="form-group ">
 				<label for="inputVille" class="col-sm-2 control-label">Ville
 					: </label>
 				<div class="col-sm-3">
@@ -203,7 +197,7 @@
 			</div>
 
 
-			<div class="form-group row">
+			<div class="form-group ">
 				<label for="idLatitude" class="col-sm-2 control-label">Latitude
 					: </label>
 				<div class="col-sm-6">
@@ -212,7 +206,7 @@
 				</div>
 			</div>
 
-			<div class="form-group row">
+			<div class="form-group ">
 				<label for="idLongitude" class="col-sm-2 control-label">Longitude
 					: </label>
 				<div class="col-sm-6">
@@ -229,13 +223,6 @@
 					Producteur</button>
 			</div>
 		</div>
-
-		<!-- 		<div class="form-group row"> -->
-		<!-- 			<div class="col-sm-offset-2 col-sm-10"> -->
-		<%-- 				<s:submit value="Upload" align="center"></s:submit> --%>
-		<!-- 			</div>  -->
-		<!-- 		</div>  -->
-
 
 	</form>
 	<%-- </s:form> --%>
