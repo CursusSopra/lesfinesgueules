@@ -49,32 +49,6 @@
 				<img src="/lesfinesgueules/content/images/<s:property value="photo" default="default.jpg"/>" 
 						alt="..." style="height:400px; width:400px; margin:0 auto">
 				<div class="carousel-caption">
-				
-				
-<!-- 					<table class="table table-stripped table-hover"> -->
-<!-- 						<thead> -->
-<!-- 							<tr> -->
-<!-- 								<th> -->
-<!-- 									<button type="button" class="btn btn-primary"> -->
-<%-- 										<s:property value="designation"/> --%>
-<!-- 									</button> -->
-<!-- 								</th> -->
-<!-- 								<th> -->
-<!-- 									<button type="button" class="btn btn-danger"> -->
-<%-- 										<s:property value="prix" />&nbsp;<span class="glyphicon glyphicon-euro"></span> --%>
-<!-- 									</button> -->
-<!-- 								</th> -->
-<!-- 							</tr> -->
-<!-- 						</thead> -->
-<!-- 						<tbody> -->
-<!-- 						</tbody> -->
-<!-- 					</table> -->
-
-
-
-
-
-
 					<nav>
 						<ul class="pagination">
 							<li class="bg bg-warning"><a><s:property value="designation"/></a></li>
