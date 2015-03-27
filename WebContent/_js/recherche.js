@@ -99,12 +99,16 @@ function requestJSON() {
 function displayList(data) {
 	var output = '';
 	
+	var curDisp = 0;
+	
 	// Ecriture des propriété d'affichage dans les champs cachés
 	$('#numberOfPages').val(data.numberOfPages);
 	$('#pageNumber').val(data.pageNumber);
 	
 	// Affichage de la navigation des pages
 	$('#nbPages').html(data.pageNumber + ' / ' + data.numberOfPages);
+	
+	output += '<div class="row clearfix">';
 	
 	// Boucle de création de la liste
 	$.each(data.listeProduits, function(index, elt) {
@@ -186,7 +190,15 @@ function displayList(data) {
 				enableAddCart + // Bouton ajout au panier
 				
 			'</div></div>';
+		
+		curDisp += 1;
+		if (curDisp >= 4) {
+			output += '</div>';
+			output += '<div class="row clearfix">';
+			curDisp = 0;
+		}
 	});
 	
+	output += '</div>';
 	return output;
 }

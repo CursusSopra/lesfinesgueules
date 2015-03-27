@@ -10,7 +10,7 @@
 		<select id="displayNumber" name="displayNumber">
 			<option value="4">4</option>
 			<option value="8">8</option>
-			<option value="12">12</option>
+			<option value="12" selected>12</option>
 			<option value="24">24</option>
 		</select>
 	</p>
@@ -23,7 +23,7 @@
 <input type="hidden" id="idType2" name="idType2" value="<s:property value="idType2"/>"/>
 <input type="hidden" id="idProducteur" name="idProducteur" value="<s:property value="idProducteur"/>"/>
 
-<div class="row clearfix" id="listeProduits">
+<div class="clearfix" id="listeProduits">
 	<!-- Contenu de la liste des produits -->
 </div>
 

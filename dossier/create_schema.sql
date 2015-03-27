@@ -198,12 +198,57 @@ INSERT INTO utilisateurs (nom, prenom, ligne_adresse1, ligne_adresse2, code_post
 
 -- produits
 INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) VALUES 
-(1, 1, 'Le camembert est...', 1.29, 'Camembert', 'default.jpg', true),
-(1, 2, 'Idéale pour faire...', 2.54, 'Tome de brebis', 'default.jpg', true),
-(1, 3, 'A partager en famille...', 10.72, 'Bûche fraîche (1kg)', 'default.jpg', false),
-(2, 7, 'Le boeuf, c''est bon !', 22.65, 'Côte de boeuf (1kg)', 'default.jpg', false),
-(2, 8, 'Les escalope de veau sont...', 7, 'Escalopes de veau (x6)', 'default.jpg', false),
-(3, 13, 'Même si ceux de charente sont...', 3.8, 'Melon commun', 'default.jpg', true);
+(4, 1, 'Fromage à pâte pressée cuite.', 8, 'Abondance', 'Abondance.jpg', true),
+(4, 1, 'Fromage à la croûte brossée', 7.99, 'Beaufort', 'Beaufort.jpg', true),
+(4, 1, 'Fromage à pâte non cuite', 15, 'Beaumont', 'Beaumont.jpg', false),
+(4, 1, 'Fromage à pâte persillée', 22, 'Bleu de Dévoluy', 'Bleu_de_Devoluy.jpg', true),
+(4, 1, 'Fromage à pâte persillée', 12, 'Bleu de Gex', 'bleu_de_gex.jpg', true),
+(4, 1, 'Fromage à de lait de vâche & lait de chèvre, à Pâte persillée', 22, 'Bleu de Sainte-Foy', 'bleu-vercors.png', true),
+(4, 1, 'Fromage à croûte cendré', 22, 'Brisegoût', 'Brisegout.jpg', true),
+(4, 1, 'Fromage à pâte molle', 14, 'Chambarand', 'Chambarand.jpg', true),
+(4, 1, 'Fromage à pâte persillée', 13.99, 'Rigotte de Condrieu', 'Rigotte_de_Condrieu.jpg', true),
+(4, 1, 'Fromage en forme de coeur', 25, 'Neufchâtel', 'Neufchatel.jpg', true),
+(4, 2, 'Fromage à croûte noire comme le charbon', 25, 'St_Felicien', 'St_felicien.jpg', true),
+(6, 10, 'Le côtes-du-rhône villages est un vin d''appellation d''origine contrôlée produit sur une large partie du vignoble de la vallée du Rhône méridionale, sur quatre départements : l''Ardèche, la Drôme, le Gard et le Vaucluse.', 18.00, 'Côtes-du-rhône villages 2001', 'cdr.jpg', true),
+(5, 10, 'Le côte-rôtie est un vin rouge d''appellation d''origine contrôlée produit sur les communes d''Ampuis, de Saint-Cyr-sur-le-Rhône et de Tupin-et-Semons, sur la rive droite du Rhône, en face de la ville de Vienne, au sud de Lyon.', 17.8, 'AOC Côte-Roti 2005', 'cote-rotie.jpg', true),
+(3, 13, 'La chartreuse est une liqueur d''origine végétale fabriquée par les moines chartreux dans les caves de Voiron en Isère, en bordure du Massif de la Chartreuse. Liqueur au très haut degré d''alcool sa fabrication se fait sous la supervision des moines de la Grande-Chartreuse.', 25.00, 'La Chartreuse', 'chartreuse.jpg', true),
+(1, 13, 'La recette de la liqueur de génépi historiquement et universellement (mais pas la meilleure) connue est "40 brins, 40 sucres, 40 jours". En français : faire macérer 40 brins de génépi fleuri dans 1 litre d''alcool à 40° pendant 40 jours et rajouter 40 sucres.', 8.72, 'Liqueur de Genepi Dolin', 'genepi.jpg', true),
+(6, 11, 'Le condrieu est un vin blanc d''appellation d''origine contrôlée produit sur la rive droite du Rhône, près de Condrieu, au sud de la ville de Vienne. Il s''agit d''une appellation du vignoble de la vallée du Rhône septentrionale, entre les aires de production du côte-rôtie au nord et du saint-joseph au sud.', 19.60, 'AOC le Condrieu 2011', 'condrieu.jpg', true),
+(9, 11, 'Le coteaux-de-die est un vin blanc d''appellation d''origine contrôlée produit dans la haute vallée de la Drôme. Cette AOC désigne des vins blancs secs produits sur la même aire d’appellation que la Clairette de Die.', 18.00, 'AOC le Coteau de Die 2012', 'coteau-de-die.jpg', true),
+(6, 12, 'Parfaitement adapté à nos terroirs le Merlot Noir reste le cépage dominant de notre vignoble, dans ce vin, il représente 40%. Le Cabernet Franc apporte ici de la structure et surtout un bouquet délicat, il est présent à 35% et complété par 25% de Cabernet Sauvignon.', 13.50, 'Vin rosé Bergerac 2013', 'vin-rose.jpg', true),
+(1, 12, 'Les vins du Vivarais dans le sud-est du Massif central ont une origine assez ancienne qui remonte à l''époque romaine mais son implantation s''est réellement développée au Moyen Âge. Les chemins muletiers, dès le Moyen Âge et jusqu''à la fin du XIXe siècle, ont été utilisés pour monter le vin du bas-Vivarais vers les contrées du Gévaudan, de la Lozère et même vers les plateaux auvergnats (Le Puy).', 18.00, 'AOC Côtes-du-vivarais 2013', 'Côtes_du_Vivarais_rose.jpg', true),
+(8, 13, 'La liqueur de gentiane est une boisson apéritive amère et alcoolisée fabriquée par macération et distillation de racines de gentiane jaune d''Auvergne (gentiana lutea) qui lui confèrent son amertume bien spécifique. On retrouve cette plante en importantes quantités dans les monts du Cantal, entre le Puy Mary et le Plomb du Cantal.', 10.00, 'Liqueur de Gentiane', 'gentiane.jpg', true),
+(2, 7, 'Poids : 350 g, Composition : 62 g de sucre / 100 g et 60 g de fruits / 100 g.', 4.19, 'Confiture d''Abricots aux Amandons', 'confiture-01.jpg', true),
+(6, 7, 'Poids : 350 g, Composition : 62 g de sucre / 100 g et 64 g de fruits / 100 g.', 4.19, 'Confiture de Cassis', 'confiture-02.jpg', true),
+(3, 7, 'Poids : 350 g, Composition : 62 g de sucre / 100 g et 63 g de fruits / 100 g.', 4.19, 'Confiture de Châtaignes', 'confiture-03.jpg', true),
+(5, 7, 'Poids : 350 g, Composition : 62 g de sucre / 100 g et 69 g de fruits / 100 g.', 4.19, 'Confiture de Figues aux Noix', 'confiture-04.jpg', true),
+(4, 8, 'Conditionnement : bouteille de 1 L. Produit fermier FR-BIO-01 pour friture.', 5.02, 'Huile de Tournesol AB', 'condiment-01.jpg', true),
+(8, 8, 'Poids : 200 g. Composition : 500 mg / kg de Grande Absinthe.', 4.46, 'Moutarde à l''Absinthe ', 'condiment-02.jpg', true),
+(1, 8, 'Conditionnement : bouteille de 1 L.', 3.58, 'Vinaigre de Cidre Fermier', 'condiment-03.jpg', true),
+(9, 8, 'Poids : 100 g. Composition : 66 % d''oignons.', 2.70, 'Confit d''Oignons', 'condiment-04.jpg', true),
+(4, 9, 'Poids : 320 g. Composition : 10 % de noisettes broyées. S''accompagne avec : Gewurtztraminer', 7.44, 'Le Creusois', 'gourmandise-01.jpg', true),
+(10, 9, 'Poids : 100 g. Composition : essentiellement du Miel de Lavande.', 2.79, 'Nougat de Montélimar', 'gourmandise-02.jpg', true),
+(7, 9, 'Poids : 350 g. Composition : Amandes grillées concassées.', 6.46, 'Pralines concassées d''Auvergne pour Brioches', 'gourmandise-03.jpg', true),
+(5, 9, 'Poids : 210 g. Composition : 14 % d''amande.', 3.44, 'Mini Financiers aux Amandes', 'gourmandise-04.jpg', true),
+(1, 3, 'Le banon est un petit fromage français issu d''anciennes recettes des fermes des Alpes-de-Haute-Provence. Son nom vient d''un petit village adossé au Plateau d''Albion entre la montagne de Lure et le Mont Ventoux, dans les collines chères à Jean Giono. C''est un fromage de 6 à 7 cm de diamètre, au lait cru d''une centaine de grammes.', 1.29, 'Le Banon', 'Banon_02.jpg', true),
+(2, 3, 'Sa forme caratéristique haute et légèrement bombée comme un tonnelet, sa pâte moelleuse, sa saveur douce, font de ce fromage de chèvre une véritable gourmandise.
+Très apprécié sur le plateau d''un repas de fête...', 1.56, 'Charolais', 'Charolais.jpg', true),
+(3, 3, 'Le Picodon est un fromage au lait de chèvre à pâte molle et à croûte naturelle produit dans un vaste territoire constitué par les Cévennes ardéchoises, une partie de la vallée du Rhône et les Préalpes drômoises en France. Il pèse entre 45 à 90 grammes et est en forme de disque plat aux bords arrondis1. Il bénéficie d''une appellation d''origine contrôlée depuis 1983 et d''une appellation d''origine protégée.', 1.72, 'Picodon', 'picodon.jpg', true),
+(4, 3, 'Saveur à la fois salée et acidulée, avec des arômes subtils de fruits, de lait caillé, et un goût caprin au départ très doux qui se renforce avec le temps. Lorsque les bouchons sèchent leur arômes deviennent typés, poivrés, et plus persistants en bouche.', 2.65, 'Bouchon de Chèvre', 'bouchon_de_chevre.jpg', false),
+(5, 3, 'Il porte le nom de la commune homonyme. Il est protégé par une appellation d''origine contrôlée2, depuis février 1972 et par une appellation d''origine protégée, depuis le 29 octobre 20093.', 1.82, 'Pouligny-Saint-Pierre', 'Pouligny-saint-pierre.jpg', true),
+(1, 3, 'C''est un petit fromage à pâte molle à croûte fleurie et de couleur blanche, jaune ou bleue selon sa maturité2. Il contient entre 40 et 45 % de matière grasse.', 1.50, 'Bouton de culotte', 'bouton_de_culotte.jpg', false);
+
+INSERT INTO produits (id_producteur, id_type2, description, prix, designation, photo, disponible) VALUES 
+(1, 1, 'Terrine de foie gras de canard. Se déguste avec un vin moelleux ou du beaujolais. Conditionné ainsi il se conserve 2 ans.', 19.50, 'Terrine de foie gras, 190gr', 'foiegras.jpg', true),
+(1, 1, 'Ce magret de canard de race Mulard est farci au foie gras. Il est idéal en salade, avec un vin moelleux. Il se conserve 40 jours.', 14.80, 'Magret de canard au foie gras (35%),150gr', 'magret.jpg', false),
+(2, 1, 'Nos rillettes de canard se dégustent avec un vin rouge léger. Elles contiennent 20% de foie gras. La conservation est de 30 jours.', 8.70, 'Rillettes de canard', 'rillettes.jpg', true),
+(1, 1, 'Foie gras de canard entier aux pépites de figues séchées. Les Canards de Limagne sont issus de souche Mulard, et sont nourris avec du maïs de la plaine de Limagne en Auvergne. Cette terre particulière de notre terroir donne un goût spécifique et unique à nos foies gras. Conditionné en bloc de 400gr, il se conserve 1 ans', 28.20, 'Bloc de foie gras de canard entier', 'blocfoie.jpg', true),
+(3, 2, 'Demi-Jambon Sec origine Auvergne, sans os et sans jarret, de 2.75 kg. Il se conserve 20 jours. A accompagner de vin rosé.', 43.15, 'Demi-Jambon Sec Auvergne', 'jambonsec.jpg', true),
+(3, 2, 'Jambon Sec des Combrailles, conditionné en paquet de 150 gr. Un vin rosé est le bienvenue pour déguster de jambon sec. Se conserve 75 jours.', 5.60, 'Jambon Sec', 'jambon.jpg', true),
+(3, 3, 'Saucisson sec aux figues, une des spécialités de notre exploitation. Dans la fabrication, outre la qualité des matières premières, le séchage donne au saucisson ses qualités gustatives.', 3.10, 'Saucisson aux figues', 'saucissonfigues.jpg', false),
+(3, 3, 'Saucisson aux herbes, spécialité de notre terroir. Le séchage est important mais la qualité des herbes de provence lui confère son parfum unique.', 3.25, 'Saucisson aux herbes', 'saucissonherbes.jpg', true),
+(5, 3, 'Saucisson aux noisettes a subit un séchage particulier en cave ce qui lui confère un gout incomparable. Les petits éclats de noisettes donne du croquant au saucisson', 4.85, 'Saucisson aux noisettes', 'saucissonnoisettes.jpg', true),
+(4, 3, 'Saucisse sèche primée au salon agricole 2012 de la région Rhône-Alpes pour son gout unique. En boyaux naturels, elle se conserve plus de 50 jours. Accompagner absolument de Velançay', 8.20, 'Saucisse seche', 'saucisseseche.jpg', true);
 
 
 -- ///////////////////////////////////////////////////////////////////////////////////////////////////
