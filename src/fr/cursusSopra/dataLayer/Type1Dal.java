@@ -75,7 +75,6 @@ public class Type1Dal extends DataLayerExtended {
 			setIdType1(generatedKeys.getLong("id_type1"));
 		}
 
-
 		return idType1;
 	}
 
@@ -95,7 +94,6 @@ public class Type1Dal extends DataLayerExtended {
 		listeType1 = new ArrayList<Type1>();
 
 		Connection conn = PostgresConnection.GetConnexion();
-
 
 		try {
 			Statement state;
@@ -147,30 +145,38 @@ public class Type1Dal extends DataLayerExtended {
 	public static List<Type1> getListeForNavBar() throws SQLException {
 
 		listeType1 = new ArrayList<Type1>();
-		List<Type2> listeType2 = new ArrayList<Type2>();
 
 		Connection conn = PostgresConnection.GetConnexion();
+		conn.setClientInfo("ApplicationName", Thread.currentThread().getName());
 
 		Statement state;
 		state = conn.createStatement();
 		ResultSet rs = state.executeQuery(rqSelAll);
 
+		long idt1Prev = -1;
+		Type1 type1 = null;
 		while (rs.next()) {
-			Type2 type2 = new Type2(rs.getLong("id_type2"), rs.getLong("id_type1"), rs.getString("libelle2"), rs.getString("libelle1"));
-			listeType2.add(type2);
-		}
+			// Si rupture sur id_type1, on crée un nouvel objet
+			long idt1 = rs.getLong("id_type1");
+			if (idt1Prev != idt1) {
+				// On ajoute type1 à la collection finale
+				listeType1.add(type1);
 
-		rs = state.executeQuery(rq);
-		while (rs.next()) {
-			Type1 type1 = new Type1(rs.getLong("id_type1"), rs.getString("libelle1"));
-			List<Type2> listeType2Temp = new ArrayList<Type2>();
-			for (Type2 item : listeType2) {
-				if (item.getIdType1() == type1.getIdType1()) {
-					listeType2Temp.add(item);
-				}
+				// On en créé un nouveau
+				type1 = new Type1(idt1, rs.getString("libelle1"));
+
+				// On créé sa liste de type2
+				type1.setListeType2(new ArrayList<Type2>());
+
+				// On mémorise l'identifiant comme ancien
+				idt1Prev = idt1;
 			}
-			type1.setListeType2(listeType2Temp);
-			listeType1.add(type1);
+
+			// On créé un objet type2 à toutes les itérations
+			Type2 type2 = new Type2(rs.getLong("id_type2"),
+					rs.getString("libelle2"));
+			// Et on l'ajoute à la collection
+			type1.getListeType2().add(type2);
 		}
 
 		rs.close();
@@ -180,7 +186,6 @@ public class Type1Dal extends DataLayerExtended {
 		return listeType1;
 	}
 
-
 	public String getLibelle1() {
 		return libelle1;
 	}
@@ -188,6 +193,7 @@ public class Type1Dal extends DataLayerExtended {
 	public void setLibelle1(String libelle1) {
 		this.libelle1 = libelle1;
 	}
+
 	public long getIdType1() {
 		return idType1;
 	}
