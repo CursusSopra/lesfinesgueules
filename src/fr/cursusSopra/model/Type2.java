@@ -17,7 +17,6 @@ public class Type2 {
 	private long idType2;
 	private long idType1;
 	private String libelle2;
-	private String libelle1;
 
 	/**
 	 * Constructeur permettant d'enregistrer un elemeent type2 dans la base de donnée
@@ -82,17 +81,13 @@ public class Type2 {
 	 * @param idType2
 	 * @param idType1
 	 * @param libelle2
-	 * @param libelle1
 	 */
-	public Type2(long idType2, long idType1, String libelle2, String libelle1) {
-		super();
+	public Type2(long idType2, long idType1, String libelle2) {
 		this.idType2 = idType2;
 		this.idType1 = idType1;
 		this.libelle2 = libelle2;
-		this.libelle1 = libelle1;
 	}
 
-	public String getLibelle1() { return libelle1; }
 	public long getIdType2() {return idType2;}
 	public long getIdType1() {return idType1;}
 	public String getLibelle2() {return libelle2;}
@@ -100,5 +95,4 @@ public class Type2 {
 	public void setIdType1(long idType1) {this.idType1 = idType1;}
 	public void setIdType2(long idType2) {this.idType2 = idType2;}
 	public void setLibelle2(String libelle2) {this.libelle2 = libelle2;}
-	public void setLibelle1(String libelle1) {this.libelle1 = libelle1;}
 }
