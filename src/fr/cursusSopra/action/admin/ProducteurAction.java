@@ -61,7 +61,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private boolean imageOK;
 
 	private boolean firstDisplay = true;
-	private boolean firstDisplayModify = true;
+	private boolean firstDisplayModify;
 
 	// Fontion qui retournera le formulaire de création de producteur
 	public String createProducteurForm() {
@@ -395,6 +395,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	}
 
 	public boolean isFirstDisplayModify() {
+		firstDisplayModify = true;
 		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
 				.length() < 50);
 		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
@@ -407,7 +408,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 		descriptionOK = FormTools.isStrNotEmpty(description);
 		delaiLivraisonOK = (delaiLivraison > 0);
 		
-		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
+		firstDisplayModify = raisonSocialeOK && sirenOK && ligneAdresse1OK
 				&& codePostalOK && villeOK && latitudeOK && longitudeOK
 				&& descriptionOK && delaiLivraisonOK;
 		return firstDisplayModify;
