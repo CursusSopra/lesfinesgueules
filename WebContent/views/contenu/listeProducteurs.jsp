@@ -20,7 +20,7 @@
 							<s:property value="idProducteur" />
 						</s:param>
 					</s:url>
-					<s:url action="modifyProducteur" var="mp">
+					<s:url action="modifyProducteurForm" var="mp">
 						<s:param name="idProducteur">
 							<s:property value="idProducteur" />
 						</s:param>

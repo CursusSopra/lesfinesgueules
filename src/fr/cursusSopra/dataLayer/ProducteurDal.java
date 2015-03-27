@@ -140,7 +140,6 @@ public class ProducteurDal extends DataLayerExtended {
 	/* METHODS */
 	
 	public long save() {
-		if(!fromDb){
 			PreparedStatement ps;
 			try {
 				ps = connection.prepareStatement(rqInsert, Statement.RETURN_GENERATED_KEYS);
@@ -167,40 +166,38 @@ public class ProducteurDal extends DataLayerExtended {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+		return idProducteur;
+	}
+	
+	public void modify() {
 		
-		}else{
-			
-			PreparedStatement ps;
-			try {
-				ps = connection.prepareStatement(rqUpdate);
+		PreparedStatement ps;
+		try {
+			ps = connection.prepareStatement(rqUpdate);
 
-				ps.setString(1, raisonSociale);
-				ps.setString(2, siren);
-				ps.setString(3, ligneAdresse1);
-				ps.setString(4, ligneAdresse2);
-				ps.setString(5, codePostal);
-				ps.setString(6, ville);
-				ps.setString(7, latitude);
-				ps.setString(8, longitude);
-				ps.setString(9, description);
-				ps.setInt   (10, delaiLivraison);
-				ps.setString(11, photo);
-				ps.setLong(12, idProducteur);
-				
-				try {
-					ps.executeUpdate();
-				}catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			ps.setString(1, raisonSociale);
+			ps.setString(2, siren);
+			ps.setString(3, ligneAdresse1);
+			ps.setString(4, ligneAdresse2);
+			ps.setString(5, codePostal);
+			ps.setString(6, ville);
+			ps.setString(7, latitude);
+			ps.setString(8, longitude);
+			ps.setString(9, description);
+			ps.setInt   (10, delaiLivraison);
+			ps.setString(11, photo);
+			ps.setLong(12, idProducteur);
+			
+			try {
+				ps.executeUpdate();
+			}catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return idProducteur;
+		
 	}
 	
 	/* STATIC METHODS */
@@ -231,4 +228,5 @@ public class ProducteurDal extends DataLayerExtended {
 		}
 		return listeProducteursDal;
 	}
+	
 }

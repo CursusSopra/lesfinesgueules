@@ -31,13 +31,19 @@
 		</action>
 		
 <!-- 		MODIFICATION PRODUCTEUR -->
-		<action name="modifyProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteur">
-			<result name="success" type="tiles">ajout-producteur</result>
+		<action name="modifyProducteurForm" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteurForm">
+			<result name="success" type="tiles">modifyProducteur</result>
 			<result name="error" type="redirect">listeProducteurs</result>
 			<result name="none" type="redirect">listeProducteurs</result>
 		</action>
 		
-		<action name="modifyPhotoProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteur">
+		<action name="modifyProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteur">
+			<result name="success" type="redirect">listeProducteurs</result>
+			<result name="error" type="tiles">modifyProducteur</result>
+			<result name="none" type="tiles">modifyProducteur</result>
+		</action>
+		
+		<action name="modifyPhotoProducteur" class="fr.cursusSopra.action.admin.ProducteurAction" method="modifyProducteurForm">
 			<result name="success" type="tiles">modifyPhotoProducteur</result>
 			<result name="error" type="redirect">listeProducteurs</result>
 			<result name="none" type="redirect">listeProducteurs</result>

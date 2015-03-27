@@ -155,4 +155,10 @@ public class Producteur {
 			pd.save();
 		}
 	}
+	public void modify() {
+		ProducteurDal pd = new ProducteurDal(raisonSociale, siren, ligneAdresse1, ligneAdresse2, codePostal, ville, latitude, longitude, description, delaiLivraison, photo);
+		pd.setIdProducteur(idProducteur);
+		pd.modify();
+		
+	}
 }

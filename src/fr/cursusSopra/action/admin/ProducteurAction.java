@@ -43,7 +43,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private String latitude;
 	private String description;
 	private int delaiLivraison;
-	//Pareil ne pas setter l'id à 0 sinon on peut pas modifier
+	// Pareil ne pas setter l'id à 0 sinon on peut pas modifier
 	private long idProducteur;
 	// private String photo;
 	private boolean fromDb = false;
@@ -61,6 +61,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private boolean imageOK;
 
 	private boolean firstDisplay = true;
+	private boolean firstDisplayModify = true;
 
 	// Fontion qui retournera le formulaire de création de producteur
 	public String createProducteurForm() {
@@ -73,7 +74,7 @@ public class ProducteurAction extends ActionSupportExtended implements
 	private String imageName;
 
 	private HttpServletRequest servletRequest;
-	
+
 	// private String filePath =
 	// servletRequest.getSession().getServletContext().getRealPath("/images");
 	private String lienPhoto;
@@ -81,65 +82,70 @@ public class ProducteurAction extends ActionSupportExtended implements
 	// Fonction d'ajout d'un producteur en BDD
 	public String createProducteur() {
 
-		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale.length() < 50);
-		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
-		ligneAdresse1OK = (FormTools.isStrNotEmpty(ligneAdresse1) && ligneAdresse1.length() < 50);
-		codePostalOK = FormTools.isZipValid(codePostal);
-		villeOK = (FormTools.isStrNotEmpty(ville) && ville.length() < 50);
-		latitudeOK = (FormTools.isStrNotEmpty(latitude) && latitude.length() < 13);
-		longitudeOK = (FormTools.isStrNotEmpty(longitude) && longitude.length() < 13);
-		descriptionOK = FormTools.isStrNotEmpty(description);
-		delaiLivraisonOK = (delaiLivraison > 0);
-		imageOK = FormTools.isStrNotEmpty(userImageFileName);
-		
-		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
-				&& codePostalOK && villeOK && latitudeOK && longitudeOK
-				&& descriptionOK && delaiLivraisonOK && imageOK;
-		
-		
-		if (firstDisplay) {
+		if (isFirstDisplay()) {
 			try {
-				
+
 				String[] tokens = userImageFileName.split("\\.(?=[^\\.]+$)");
 				imageName = UUID.randomUUID() + "." + tokens[1];
 				String filePath = servletRequest.getSession()
 						.getServletContext().getRealPath("/content/images");
 				File fileToCreate = new File(filePath, imageName);
 				FileUtils.copyFile(this.userImage, fileToCreate);
-				
+
 				// System.out.println("Server path:" + filePath);
 				// File fileToCreate = new File(filePath, this.photoFileName);
 				// FileUtils.copyFile(this.photo, fileToCreate);
 				//
 				lienPhoto = imageName;
-//				logger.info(servletRequest.getSession().getServletContext()
-//						.getContextPath());
+				// logger.info(servletRequest.getSession().getServletContext()
+				// .getContextPath());
 
 			} catch (Exception e) {
 				e.printStackTrace();
 				addActionError(e.getMessage());
 				return INPUT;
 			}
-			
+
 			Producteur prod = new Producteur(raisonSociale, siren,
 					ligneAdresse1, ligneAdresse2, codePostal, ville, latitude,
 					longitude, description, delaiLivraison, lienPhoto);
 			prod.setFromDb(this.isFromDb());
 			prod.setIdProducteur(idProducteur);
-			
+
 			try {
 				prod.save();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			idProducteur = prod.getIdProducteur();
-			System.out.println(idProducteur);
+			// idProducteur = prod.getIdProducteur();
 		}
 		return firstDisplay ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
 	}
-	
+
 	public String modifyProducteur() {
+
+		if (isFirstDisplayModify()) {
+			try {
+
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				addActionError(e.getMessage());
+				return INPUT;
+			}
+
+			Producteur prod = new Producteur(raisonSociale, siren,
+					ligneAdresse1, ligneAdresse2, codePostal, ville, latitude,
+					longitude, description, delaiLivraison, imageName);
+			prod.setIdProducteur(idProducteur);
+
+			prod.modify();
+		}
+		return firstDisplayModify ? (idProducteur != 0 ? SUCCESS : NONE) : ERROR;
+	}
+
+	public String modifyProducteurForm() {
 		producteur = new Producteur(idProducteur);
 		producteur.setFromDb(true);
 		this.fromDb = producteur.isFromDb();
@@ -154,10 +160,10 @@ public class ProducteurAction extends ActionSupportExtended implements
 		description = producteur.getDescription();
 		delaiLivraison = producteur.getDelaiLivraison();
 		imageName = producteur.getPhoto();
-		
+
 		return SUCCESS;
 	}
-	
+
 	public String getRaisonSociale() {
 		return raisonSociale;
 	}
@@ -291,6 +297,24 @@ public class ProducteurAction extends ActionSupportExtended implements
 	}
 
 	public boolean isFirstDisplay() {
+
+		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
+				.length() < 50);
+		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
+		ligneAdresse1OK = (FormTools.isStrNotEmpty(ligneAdresse1) && ligneAdresse1
+				.length() < 50);
+		codePostalOK = FormTools.isZipValid(codePostal);
+		villeOK = (FormTools.isStrNotEmpty(ville) && ville.length() < 50);
+		latitudeOK = (FormTools.isStrNotEmpty(latitude) && latitude.length() < 13);
+		longitudeOK = (FormTools.isStrNotEmpty(longitude) && longitude.length() < 13);
+		descriptionOK = FormTools.isStrNotEmpty(description);
+		delaiLivraisonOK = (delaiLivraison > 0);
+		imageOK = FormTools.isStrNotEmpty(userImageFileName);
+
+		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
+				&& codePostalOK && villeOK && latitudeOK && longitudeOK
+				&& descriptionOK && delaiLivraisonOK && imageOK;
+
 		return firstDisplay;
 	}
 
@@ -346,5 +370,28 @@ public class ProducteurAction extends ActionSupportExtended implements
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public boolean isFirstDisplayModify() {
+		raisonSocialeOK = (FormTools.isStrNotEmpty(raisonSociale) && raisonSociale
+				.length() < 50);
+		sirenOK = (FormTools.isStrNotEmpty(siren) && siren.length() < 50);
+		ligneAdresse1OK = (FormTools.isStrNotEmpty(ligneAdresse1) && ligneAdresse1
+				.length() < 50);
+		codePostalOK = FormTools.isZipValid(codePostal);
+		villeOK = (FormTools.isStrNotEmpty(ville) && ville.length() < 50);
+		latitudeOK = (FormTools.isStrNotEmpty(latitude) && latitude.length() < 13);
+		longitudeOK = (FormTools.isStrNotEmpty(longitude) && longitude.length() < 13);
+		descriptionOK = FormTools.isStrNotEmpty(description);
+		delaiLivraisonOK = (delaiLivraison > 0);
+		
+		firstDisplay = raisonSocialeOK && sirenOK && ligneAdresse1OK
+				&& codePostalOK && villeOK && latitudeOK && longitudeOK
+				&& descriptionOK && delaiLivraisonOK;
+		return firstDisplayModify;
+	}
+
+	public void setFirstDisplayModify(boolean firstDisplayModify) {
+		this.firstDisplayModify = firstDisplayModify;
 	}
 }
