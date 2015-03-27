@@ -17,14 +17,12 @@ public abstract class ActionSupportExtended extends ActionSupportExtendedJSONOnl
 	private static final long serialVersionUID = -4931119770070210257L;
 
 	private List<Type1> listeType1 = new ArrayList<Type1>();
-	private List<Breadcrumbs> listeBreadcrumbs = new ArrayList<Breadcrumbs>();
+	protected List<Breadcrumbs> listeBreadcrumbs = new ArrayList<Breadcrumbs>();
 
 	public ActionSupportExtended () {
 
 		// base breadcrumb
 		listeBreadcrumbs.add(new Breadcrumbs("Accueil", "retourIndex", null));
-
-//		listeBreadcrumbs.add(new Breadcrumbs("fromage", "listeProduits", "?idType2=1"));
 
 		// liste des types (pour le menu navbar)
 		listeType1 = Type1.getListeForNavBar();

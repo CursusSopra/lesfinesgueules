@@ -37,12 +37,17 @@ public class Type2 {
 	 * @param idType2 the id type2
 	 * @throws SQLException
 	 */
-	public Type2 (long idType2) throws SQLException{
+	public Type2 (long idType2) {
 		this.idType2=idType2;
-		Type2Dal t2d= new Type2Dal(idType2);
-		idType1 = t2d.getIdType1();
-		libelle2= t2d.getLibelle2();
-
+		Type2Dal t2d;
+		try {
+			t2d = new Type2Dal(idType2);
+			idType1 = t2d.getIdType1();
+			libelle2= t2d.getLibelle2();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /**
- * Modified by Nicolas
+ * File modified by : Julien Caillon
  */
 package fr.cursusSopra.action.admin;
 
@@ -19,18 +19,19 @@ import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.model.Producteur;
 import fr.cursusSopra.model.Produit;
 import fr.cursusSopra.model.Type1;
+import fr.cursusSopra.tech.Breadcrumbs;
 import fr.cursusSopra.tech.FormTools;
 
 public class ProduitAction extends ActionSupportExtended implements ServletRequestAware {
-	
+
 	// Define a static logger variable so that it references the
 	// Logger instance named "MyApp".
 	private static final Logger logger = LogManager.getLogger(ProducteurAction.class);
-		
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private long idProduit;
-	
+
 	private long idProducteur;
 	private long idType2;
 	private String description;
@@ -38,18 +39,18 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 	private String designation;
 	private String photo;
 	private boolean disponible;
-	
+
 	private List<Type1> listeType1;
 	private List<Producteur> listeProducteur;
-	
+
 	private boolean idProducteurOK;
 	private boolean idType2OK;
 	private boolean prixOK;
 	private boolean designationOK;
 	private boolean imageOK;
-	
+
 	private boolean firstDisplay = true;
-	
+
 	private File photoProduit;
 	private String photoProduitContentType;
 	private String photoProduitFileName;
@@ -57,8 +58,12 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 	private String lienPhoto;
 
 	private HttpServletRequest servletRequest;
-	
-	
+
+
+	public ProduitAction() {
+		listeBreadcrumbs.add(new Breadcrumbs("Liste des produits", "listeProduits", null));
+	}
+
 	//Affichage du formulaire de création de produit
 	public String createProduitForm() throws SQLException {
 		//listeType2 = Type2Dal.getListeType2();
@@ -66,36 +71,36 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 		listeProducteur = Producteur.getListeProducteur();
 		return SUCCESS;
 	}
-	
+
 	//Fonction d'ajout d'un produit en BDD
 	public String createProduit() throws SQLException {
 		listeType1 = Type1.getListeType1();
 		listeProducteur = Producteur.getListeProducteur();
-		
+
 		idProducteurOK = (idProducteur > 0);
 		idType2OK = (idType2 > 0);
 		prixOK = (prix > 0);
 		designationOK = (FormTools.isStrNotEmpty(designation) && designation.length() < 50);
 		imageOK = FormTools.isStrNotEmpty(photoProduitFileName);
-		
+
 		firstDisplay = idProducteurOK && idType2OK && prixOK && designationOK;
-		
+
 		long idProduit = 0;
-		
+
 		if(firstDisplay){
-			
+
 			if(imageOK){
 				try {
 					String[] tokens = photoProduitFileName.split("\\.(?=[^\\.]+$)");
 					imageName = UUID.randomUUID() + "." + tokens[1];
-					
-					
+
+
 					System.out.println(imageName);
 					String filePath = servletRequest.getSession().getServletContext().getRealPath("/content/images");
 					System.out.println(filePath);
 					File fileToCreate = new File(filePath, imageName);
 					FileUtils.copyFile(this.photoProduit, fileToCreate);
-					
+
 					// System.out.println("Server path:" + filePath);
 					// File fileToCreate = new File(filePath, this.photoFileName);
 					// FileUtils.copyFile(this.photo, fileToCreate);
@@ -107,23 +112,23 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 					return INPUT;
 				}
 			}
-			
+
 			Produit prod = new Produit(idProducteur, idType2, prix, designation, disponible, description, lienPhoto);
-			
+
 			try {
 				prod.save();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			idProduit = prod.getIdProduit();
 			//System.out.println(idProduit);
 		}
-		
+
 		return firstDisplay ? (idProduit != 0 ? SUCCESS : NONE) : ERROR;
 	}
-	
+
 	//ACCESSEURS
 	public long getIdProducteur() {
 		return idProducteur;
@@ -222,7 +227,7 @@ public class ProduitAction extends ActionSupportExtended implements ServletReque
 	public boolean isFirstDisplay() {
 		return firstDisplay;
 	}
-	
+
 	//ACCESSEURS UPLOAD DATA
 	public File getPhotoProduit() {
 		return photoProduit;

@@ -1,5 +1,5 @@
 /**
- * File modified by : Benoît
+ * File modified by : Julien Caillon
  */
 package fr.cursusSopra.action.contenu;
 
@@ -10,15 +10,18 @@ import fr.cursusSopra.action.ActionSupportExtended;
 import fr.cursusSopra.dataLayer.ProducteurDal;
 import fr.cursusSopra.model.Commentaire;
 import fr.cursusSopra.model.Produit;
+import fr.cursusSopra.model.Type1;
+import fr.cursusSopra.model.Type2;
+import fr.cursusSopra.tech.Breadcrumbs;
 
 public class DetailsProduitAction extends ActionSupportExtended {
 
 	/* SERIAL ID */
-	
+
 	private static final long serialVersionUID = -1802942881247205702L;
-	
+
 	/* PROPERTIES */
-	
+
 	private long idProduit;
 	private String designation;
 	private String description;
@@ -29,20 +32,21 @@ public class DetailsProduitAction extends ActionSupportExtended {
 	private long idType2;
 	private long idProducteur;
 	private List<Commentaire> listeCommentaires;
-	
+
 	private String raisonSociale;
 	private String ligneAdresse1;
 	private String ligneAdresse2;
 	private String codePostal;
 	private String ville;
 	private int delaiLivraison;
-	
+
+
+
 	/* EXECUTE METHOD */
-	
 	@Override
 	public String execute() throws SQLException {
 		Produit produit = new Produit(idProduit);
-		
+
 		designation = produit.getDesignation();
 		description = produit.getDescription();
 		prix = produit.getPrix();
@@ -52,9 +56,9 @@ public class DetailsProduitAction extends ActionSupportExtended {
 		idType2 = produit.getType2();
 		idProducteur = produit.getProducteur();
 		listeCommentaires = produit.getListeCommentaires();
-		
+
 		ProducteurDal prod = new ProducteurDal(idProducteur);
-		
+
 		idProducteur = prod.getIdProducteur();
 		raisonSociale = prod.getRaisonSociale();
 		ligneAdresse1 = prod.getLigneAdresse1();
@@ -62,10 +66,16 @@ public class DetailsProduitAction extends ActionSupportExtended {
 		codePostal = prod.getCodePostal();
 		ville = prod.getVille();
 		delaiLivraison = prod.getDelaiLivraison();
-		
+
+		listeBreadcrumbs.add(new Breadcrumbs("Liste des produits", "listeProduits", null));
+		String libelle1 = new Type1(idType1).getLibelle1();
+		listeBreadcrumbs.add(new Breadcrumbs(libelle1, "listeProduits", "?idType1=" + idType1));
+		String libelle2 = new Type2(idType2).getLibelle2();
+		listeBreadcrumbs.add(new Breadcrumbs(libelle2, "listeProduits", "?idType2=" + idType2));
+
 		return SUCCESS;
 	}
-	
+
 	/* ACCESSORS */
 
 	public void setIdProduit(String idProduit) {
@@ -140,5 +150,5 @@ public class DetailsProduitAction extends ActionSupportExtended {
 	public int getDelaiLivraison() {
 		return delaiLivraison;
 	}
-	
+
 }
