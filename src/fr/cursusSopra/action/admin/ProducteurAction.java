@@ -109,8 +109,6 @@ public class ProducteurAction extends ActionSupportExtended implements
 			Producteur prod = new Producteur(raisonSociale, siren,
 					ligneAdresse1, ligneAdresse2, codePostal, ville, latitude,
 					longitude, description, delaiLivraison, lienPhoto);
-			prod.setFromDb(this.isFromDb());
-			prod.setIdProducteur(idProducteur);
 
 			try {
 				prod.save();
