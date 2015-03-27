@@ -150,17 +150,15 @@ INSERT INTO producteurs (raison_sociale, siren, ligne_adresse1, ligne_adresse2, 
 
 -- type1
 INSERT INTO types1 (libelle1) VALUES ('Fromage');
-INSERT INTO types1 (libelle1) VALUES ('Cave');
-INSERT INTO types1 (libelle1) VALUES ('Viande');
-INSERT INTO types1 (libelle1) VALUES ('Légumes');
-INSERT INTO types1 (libelle1) VALUES ('Fruit');
+INSERT INTO types1 (libelle1) VALUES ('Charcuterie');
+INSERT INTO types1 (libelle1) VALUES ('Epicerie');
+INSERT INTO types1 (libelle1) VALUES ('Caviste');
 
 -- type2
-INSERT INTO types2 (id_type1, libelle2) VALUES (1, 'Vache'), (1, 'Brebis'), (1, 'Chèvre');
-INSERT INTO types2 (id_type1, libelle2) VALUES (2, 'Vin'), (2, 'Mousseux'), (2, 'Champagne');
-INSERT INTO types2 (id_type1, libelle2) VALUES (3, 'Boeuf'), (3, 'Veau'), (3, 'Volail');
-INSERT INTO types2 (id_type1, libelle2) VALUES (4, 'Poireaux'), (4, 'Tomates'), (4, 'Pommes-de-terre');
-INSERT INTO types2 (id_type1, libelle2) VALUES (5, 'Melon'), (5, 'Orange'), (5, 'Pomme');
+INSERT INTO types2 (id_type1, libelle2) VALUES (1, 'Vache'), (1, 'Chèvre'), (1, 'Brebis');
+INSERT INTO types2 (id_type1, libelle2) VALUES (2, 'Foie gras'), (2, 'Jambon sec'), (2, 'Saucisson');
+INSERT INTO types2 (id_type1, libelle2) VALUES (3, 'Confiture'), (3, 'Condiment'), (3, 'Gourmandise');
+INSERT INTO types2 (id_type1, libelle2) VALUES (4, 'Vin rouge'), (4, 'Vin blanc'), (4, 'Vin rosé'), (4, 'Alcool divers');
 
 -- utilisateurs
 INSERT INTO utilisateurs (nom, prenom, ligne_adresse1, ligne_adresse2, code_postal, ville, email, mdp, tel, photo, droits) VALUES 

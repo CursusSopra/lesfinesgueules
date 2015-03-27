@@ -104,13 +104,13 @@ function displayList(data) {
 	$('#pageNumber').val(data.pageNumber);
 	
 	// Affichage de la navigation des pages
-	$('#nbPages').html(data.pageNumber + '/' + data.numberOfPages);
+	$('#nbPages').html(data.pageNumber + ' / ' + data.numberOfPages);
 	
 	// Boucle de création de la liste
 	$.each(data.listeProduits, function(index, elt) {
 		// Disponible / Non disponible
 		if(elt.disponible) {
-			var badgeDisponible =	'<p><span class="label label-success">Disponible</span></p>';
+			var badgeDisponible =	'<span class="label label-success">Disponible</span>';
 			var enableAddCart	=	'<input type="hidden" id="idProduit' + index + '" value="' + elt.idProduit + '"/>' +
 									'<div class="input-group">' +
 										'<div class="input-group-btn">' +
@@ -129,7 +129,7 @@ function displayList(data) {
 										'</span>' +
 									'</div>';	// input-group
 		} else {
-			var badgeDisponible = 	'<p><span class="label label-danger">Non disponible</span></p>';
+			var badgeDisponible = 	'<span class="label label-danger">Non disponible</span>';
 			var enableAddCart	=	'<input type="hidden" id="idProduit' + index + '" value="' + elt.idProduit + '"/>' +
 									'<div class="input-group">' +
 										'<div class="input-group-btn">' +
@@ -149,13 +149,13 @@ function displayList(data) {
 									'</div>';	// input-group
 		}
 		
-		var prixDetails =	'<div class="input-group">' +
+		var prixDetails =	'<div class="input-group detail-prix">' +
 								'<span class="input-group-btn">' +
-									'<a  class="btn btn-default" href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + // Bouton "Détails"
+									'<a role="button" class="btn btn-default" href="detailsProduit.action?idProduit=' + elt.idProduit + '">' + // Bouton "Détails"
 										'<small>D&eacute;tails produit</small>' +
 									'</a>' +
 								'</span>' +
-								'<input type="text" class="form-control" value="' + $.number(elt.prix, 2, ',', ' ') + ' &euro;" readonly>' +
+								'<input type="text" class="form-control text-right" value="' + $.number(elt.prix, 2, ',', ' ') + ' &euro;" readonly>' +
 							'</div>';
 		
 		// Ajout de l'image par défaut si non présente
@@ -165,25 +165,27 @@ function displayList(data) {
 		
 		// Création de la variable chaîne de sortie
 		output +=
-			'<div class="col-md-3">' + 
-				'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' +
-					'<img alt="image" class="img-responsive img-thumbnail" id="idImage' + index + '" src="/lesfinesgueules/content/images/' + elt.photo + '"/>' + 
-				'</a>'+
+			'<div class="col-md-3"><div class="ma-vignette">' + 
+			
+				'<div class="text-right">' +
+					badgeDisponible + // Label de disponibilité
+					'<a href="detailsProduit.action?idProduit=' + elt.idProduit + '">' +
+						'<img alt="image" class="img-responsive img-thumbnail" id="idImage' + index + '" src="./content/images/' + elt.photo + '"/>' + 
+					'</a>'+
+				'</div>' +
 				
-				'<h4>' + elt.designation +
-					' <span class="badge">' + elt.listeCommentaires.length + ' avis</span>' + 
-				'</h4>' +
+				'<div class="titre-vignette"><h4><b>' + elt.designation + '</b>' +
+				' <span class="badge">' + elt.listeCommentaires.length + ' avis</span>' + 
+				'</h4></div>' +
 				
-				badgeDisponible + // Label de disponibilité
+				'<blockquote><i class="fa fa-quote-left pull-left fa-border"></i>' + elt.description.substring(0,250) + ''+
+				'<br><i class="fa fa-ellipsis-h"></i></blockquote>' + 
 				
 				prixDetails +	// Affichage du prix et du bouton détails
 				
-				'<p>' + elt.description.substring(0,250) + '...</p>' + 
-				
 				enableAddCart + // Bouton ajout au panier
 				
-			'</div>' +	// col-md-3
-		'</div>';	// ???
+			'</div></div>';
 	});
 	
 	return output;

@@ -1,6 +1,26 @@
-.col-md-3 {
+.ma-vignette {
 /* 	background-color: #eee; */
 	padding: 5px;
 /* 	margin: 5px; */
 	margin-bottom: 12px;
+}
+
+/* .ma-vignette > div { */
+/* 	margin: 0px; */
+/* 	padding: 0px; */
+/* } */
+
+.titre-vignette {
+	text-align: center;
+	margin: 15px;
+}
+
+blockquote {
+	margin: 5px;
+	padding: 5px;
+	font-size: 80%;
+}
+
+.detail-prix {
+	margin-bottom: 5px;
 }
